@@ -74,7 +74,6 @@ Note : An empty token can be define as follows -
 
 ##About me
 
-[LinkedIn](http://uk.linkedin.com/in/sachinhandiekar)
-
-Email   : sachin.handiekar at gmail.com / sach21 at gmail.com
-Twitter : [@sachinhandiekar](http://twitter.com/sachinhandiekar)
+* [LinkedIn](http://uk.linkedin.com/in/sachinhandiekar)
+* Email   : sachin.handiekar at gmail.com / sach21 at gmail.com
+* Twitter : [@sachinhandiekar](http://twitter.com/sachinhandiekar)
