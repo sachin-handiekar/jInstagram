@@ -63,64 +63,19 @@ Note : An empty token can be define as follows -
 			System.out.println("type : " + mediaData.getType());
 			System.out.println("-- Comments --");
 
-			Comments comments = mediaData.getComments();
-			List<CommentData> commentList = comments.getComments();
-
-			for (CommentData comment : commentList) {
-				System.out.println("commentId : " + comment.getId());
-				System.out.println("created Time : " + comment.getCreatedTime());
-				System.out.println("text : " + comment.getText());
-				System.out.println("** From **");
-				System.out.println("id : " + comment.getCommentFrom().getId());
-				System.out.println("full name : " + comment.getCommentFrom().getFullName());
-				System.out.println("user name : " + comment.getCommentFrom().getUsername());
-				System.out.println("profile picture : " + comment.getCommentFrom().getProfilePicture());
-			}
-
-			System.out.println("-- Caption --");
-
-			Caption caption = mediaData.getCaption();
-
-			System.out.println("id : " + caption.getId());
-			System.out.println("created time : " + caption.getCreatedTime());
-			System.out.println("text : " + caption.getText());
-			System.out.println("** From **");
-			System.out.println("id : " + caption.getFrom().getId());
-			System.out.println("full name : " + caption.getFrom().getFullName());
-			System.out.println("user name : " + caption.getFrom().getUsername());
-			System.out.println("profile picture : " + caption.getFrom().getProfilePicture());
-			System.out.println("-- Likes --");
-
-			Likes likes = mediaData.getLikes();
-
-			System.out.println("count : " + likes.getCount());
-			likes.getLikesUserList();
-			System.out.println("-- Images --");
-
-			Images images = mediaData.getImages();
-
-			System.out.println("-- Low Resolution Image --");
-
-			ImageData lowResolutionImg = images.getLowResolution();
-
-			System.out.println("url : " + lowResolutionImg.getImageUrl());
-			System.out.println("width : " + lowResolutionImg.getImageWidth());
-			System.out.println("height : " + lowResolutionImg.getImageHeight());
-			System.out.println("-- Location --");
-
-			Location location = mediaData.getLocation();
-
-			System.out.println("id : " + location.getId());
-			System.out.println("name : " + location.getName());
-			System.out.println("latitude : " + location.getLatitude());
-			System.out.println("longitude : " + location.getLongitude());
-			System.out.println();
+			// Please see the Usage page for more detail...
 		}
 
 
-### For more usage, please see the WIKI
-
+### Please see the [API Usage](https://github.com/sachin-handiekar/jInstagram/wiki/Usage)
 
 ##Dependencies
 
 * Google GSON (http://code.google.com/p/google-gson/)
+
+##About me
+
+[LinkedIn](http://uk.linkedin.com/in/sachinhandiekar)
+
+Email   : sachin.handiekar at gmail.com / sach21 at gmail.com
+Twitter : [@sachinhandiekar](http://twitter.com/sachinhandiekar)
