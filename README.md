@@ -61,13 +61,12 @@ Note : An empty token can be define as follows -
 			System.out.println("tags : " + mediaData.getTags().toString());
 			System.out.println("filter : " + mediaData.getImageFilter());
 			System.out.println("type : " + mediaData.getType());
-			System.out.println("-- Comments --");
-
+		
 			// Please see the Usage page for more detail...
 		}
 
 
-### Please see the [API Usage](https://github.com/sachin-handiekar/jInstagram/wiki/Usage)
+### Please see the [API Usage](https://github.com/sachin-handiekar/jInstagram/wiki/jInstagram-Usage)
 
 ##Dependencies
 
