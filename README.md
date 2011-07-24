@@ -31,42 +31,9 @@ Note : An empty token can be define as follows -
 	    Instagram instagram = new Instagram(accessToken);
 	    
 	    
-##Instagram API Endpoints
+##Instagram API Endpoints 
 
-###Users
-
-* Get basic information about a user.
-
- 		UserInfo userInfo = instagram.getUserInfo(1574083);
-
-		UserInfoData userData = userInfo.getData();
-		
-		System.out.println("id : " + userData.getId());
-		System.out.println("first_name : " + userData.getFirst_name());
-		System.out.println("last_name : " + userData.getLast_name());
-		System.out.println("profile_picture : " + userData.getProfile_picture());
-		System.out.println("website : " + userData.getWebsite());
-
-	}
-	
-* See the authenticated user's feed.
-
-		MediaFeed mediaFeed = instagram.getUserFeeds();
-		List<MediaFeedData> mediaFeeds = mediaFeed.getData();
-
-		for (MediaFeedData mediaData : mediaFeeds) {
-			System.out.println("id : " + mediaData.getId());
-			System.out.println("created time : " + mediaData.getCreatedTime());
-			System.out.println("link : " + mediaData.getLink());
-			System.out.println("tags : " + mediaData.getTags().toString());
-			System.out.println("filter : " + mediaData.getImageFilter());
-			System.out.println("type : " + mediaData.getType());
-		
-			// Please see the Usage page for more detail...
-		}
-
-
-### Please see the [API Usage](https://github.com/sachin-handiekar/jInstagram/wiki/jInstagram-Usage)
+### Please see the [API Usage](https://github.com/sachin-handiekar/jInstagram/wiki/jInstagram-Usage) for more details.
 
 ##Dependencies
 
