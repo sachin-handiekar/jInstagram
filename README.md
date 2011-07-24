@@ -21,12 +21,12 @@ Note : An empty token can be define as follows -
 
 		String authorizationUrl = service.getAuthorizationUrl(EMPTY_TOKEN);
 
-** Getting the Access Token 
+* Getting the Access Token 
 
 		Verifier verifier = new Verifier("verifier you get from the user");
 		Token accessToken = service.getAccessToken(EMPTY_TOKEN, verifier);
  
-** Creating the Instagram Object
+* Creating the Instagram Object
 
 	    Instagram instagram = new Instagram(accessToken);
 	    
@@ -35,7 +35,7 @@ Note : An empty token can be define as follows -
 
 ###Users
 
-** Get basic information about a user.
+* Get basic information about a user.
 
  		UserInfo userInfo = instagram.getUserInfo(1574083);
 
@@ -49,7 +49,7 @@ Note : An empty token can be define as follows -
 
 	}
 	
-** See the authenticated user's feed.
+* See the authenticated user's feed.
 
 		MediaFeed mediaFeed = instagram.getUserFeeds();
 		List<MediaFeedData> mediaFeeds = mediaFeed.getData();
@@ -118,9 +118,9 @@ Note : An empty token can be define as follows -
 		}
 
 
-## For more usage, please see the WIKI
+### For more usage, please see the WIKI
 
 
-###Dependencies
+##Dependencies
 
 * Google GSON (http://code.google.com/p/google-gson/)
