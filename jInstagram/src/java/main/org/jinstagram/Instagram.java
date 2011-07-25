@@ -345,8 +345,11 @@ public class Instagram {
 	 * @throws InstagramException
 	 */
 	public TagSearchFeed searchTags(String tagName) throws InstagramException {
-		String apiMethod = String.format(Methods.TAGS_SEARCH, tagName);
-		TagSearchFeed feed = createInstagramObject(Verbs.GET, TagSearchFeed.class, apiMethod, null);
+ 		
+		Map<String, String> params = new HashMap<String, String>();
+		params.put(QueryParam.SEARCH_QUERY, tagName);
+		
+		TagSearchFeed feed = createInstagramObject(Verbs.GET, TagSearchFeed.class, Methods.TAGS_SEARCH, params);
 
 		return feed;
 	}
