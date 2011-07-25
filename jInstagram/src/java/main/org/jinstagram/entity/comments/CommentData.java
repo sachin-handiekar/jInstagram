@@ -8,7 +8,7 @@ public class CommentData {
 	@SerializedName("from")
 	private FromTagData commentFrom;
 
-	@SerializedName("created_Time")
+	@SerializedName("created_time")
 	private String createdTime;
 
 	@SerializedName("id")

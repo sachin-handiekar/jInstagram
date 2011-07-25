@@ -236,7 +236,7 @@ public class Instagram {
 	 * @throws InstagramException
 	 */
 	public MediaCommentsFeed getMediaComments(long mediaId) throws InstagramException {
-		String apiMethod = String.format(Methods.MEDIA_BY_ID, mediaId);
+		String apiMethod = String.format(Methods.MEDIA_COMMENTS, mediaId);
 		MediaCommentsFeed feed = createInstagramObject(Verbs.GET, MediaCommentsFeed.class, apiMethod, null);
 
 		return feed;
