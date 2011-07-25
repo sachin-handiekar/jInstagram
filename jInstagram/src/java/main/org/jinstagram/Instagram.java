@@ -251,7 +251,6 @@ public class Instagram {
 	 */
 	public MediaCommentsFeed setMediaComments(long mediaId, String text) throws InstagramException {
 		Map<String, String> params = new HashMap<String, String>();
-
 		params.put(QueryParam.TEXT, text);
 
 		String apiMethod = String.format(Methods.MEDIA_BY_ID, mediaId);
@@ -320,7 +319,8 @@ public class Instagram {
 	 * @throws InstagramException
 	 */
 	public TagInfoFeed getTagInfo(String tagName) throws InstagramException {
-		TagInfoFeed feed = createInstagramObject(Verbs.GET, TagInfoFeed.class, Methods.TAGS_BY_NAME, null);
+		String apiMethod = String.format(Methods.TAGS_BY_NAME, tagName);
+		TagInfoFeed feed = createInstagramObject(Verbs.GET, TagInfoFeed.class, apiMethod, null);
 
 		return feed;
 	}
@@ -396,8 +396,6 @@ public class Instagram {
 		return feed;
 	}
 
-	 
-
 	/**
 	 * 
 	 * @param verbs
@@ -415,8 +413,6 @@ public class Instagram {
 		return object;
 	}
 
- 
-
 	/**
 	 * 
 	 * @param verb
@@ -432,12 +428,23 @@ public class Instagram {
 		// Additional parameters in url
 		if (params != null) {
 			for (Map.Entry<String, String> entry : params.entrySet()) {
-				request.addQuerystringParameter(entry.getKey(), entry.getValue());
+
+				if (verb == Verbs.GET)
+					request.addQuerystringParameter(entry.getKey(), entry.getValue());
+				else {
+					request.addBodyParameter(entry.getKey(), entry.getValue());
+				}
+
 			}
 		}
 
 		// Add the AccessToken to the Request Url
-		request.addQuerystringParameter(OAuthConstants.ACCESS_TOKEN, accessToken.getToken());
+		if (verb == Verbs.GET)
+			request.addQuerystringParameter(OAuthConstants.ACCESS_TOKEN, accessToken.getToken());
+		else {
+			request.addBodyParameter(OAuthConstants.ACCESS_TOKEN, accessToken.getToken());
+		}
+
 
 		response = request.send();
 

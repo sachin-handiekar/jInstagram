@@ -12,7 +12,7 @@ public class LikesFeed {
 	@SerializedName("meta")
 	private Meta meta;
 
-	@SerializedName("user")
+	@SerializedName("data")
 	private List<User> userList;
 
 	/**
