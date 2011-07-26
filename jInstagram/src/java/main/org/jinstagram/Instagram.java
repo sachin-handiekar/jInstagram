@@ -5,6 +5,7 @@ import com.google.gson.Gson;
 import org.jinstagram.auth.model.OAuthConstants;
 import org.jinstagram.auth.model.OAuthRequest;
 import org.jinstagram.auth.model.Token;
+import org.jinstagram.entity.comments.MediaCommentResponse;
 import org.jinstagram.entity.comments.MediaCommentsFeed;
 import org.jinstagram.entity.likes.LikesFeed;
 import org.jinstagram.entity.locations.LocationInfo;
@@ -249,12 +250,12 @@ public class Instagram {
 	 * @return
 	 * @throws InstagramException
 	 */
-	public MediaCommentsFeed setMediaComments(long mediaId, String text) throws InstagramException {
+	public MediaCommentResponse setMediaComments(long mediaId, String text) throws InstagramException {
 		Map<String, String> params = new HashMap<String, String>();
 		params.put(QueryParam.TEXT, text);
 
-		String apiMethod = String.format(Methods.MEDIA_BY_ID, mediaId);
-		MediaCommentsFeed feed = createInstagramObject(Verbs.POST, MediaCommentsFeed.class, apiMethod, params);
+		String apiMethod = String.format(Methods.MEDIA_COMMENTS, mediaId);
+		MediaCommentResponse feed = createInstagramObject(Verbs.POST, MediaCommentResponse.class, apiMethod, params);
 
 		return feed;
 	}
@@ -266,9 +267,9 @@ public class Instagram {
 	 * @return
 	 * @throws InstagramException
 	 */
-	public MediaCommentsFeed deleteMediaCommentById(long mediaId, long commentId) throws InstagramException {
+	public MediaCommentResponse deleteMediaCommentById(long mediaId, long commentId) throws InstagramException {
 		String apiMethod = String.format(Methods.DELETE_MEDIA_COMMENTS, mediaId, commentId);
-		MediaCommentsFeed feed = createInstagramObject(Verbs.DELETE, MediaCommentsFeed.class, apiMethod, null);
+		MediaCommentResponse feed = createInstagramObject(Verbs.DELETE, MediaCommentResponse.class, apiMethod, null);
 
 		return feed;
 	}
@@ -411,6 +412,9 @@ public class Instagram {
 	private <T> T createInstagramObject(Verbs verbs, Class<T> clazz, String methodName, Map<String, String> params)
 			throws InstagramException {
 		Response response = getApiResponse(verbs, methodName, params);
+		
+		System.out.println(response.getBody());
+		
 		T object = createObjectFromResponse(clazz, response.getBody());
 
 		return object;
@@ -432,7 +436,7 @@ public class Instagram {
 		if (params != null) {
 			for (Map.Entry<String, String> entry : params.entrySet()) {
 
-				if (verb == Verbs.GET)
+				if (verb == Verbs.GET  )
 					request.addQuerystringParameter(entry.getKey(), entry.getValue());
 				else {
 					request.addBodyParameter(entry.getKey(), entry.getValue());
@@ -442,13 +446,20 @@ public class Instagram {
 		}
 
 		// Add the AccessToken to the Request Url
-		if (verb == Verbs.GET)
+		if (verb == Verbs.GET || verb == Verbs.DELETE)
 			request.addQuerystringParameter(OAuthConstants.ACCESS_TOKEN, accessToken.getToken());
 		else {
 			request.addBodyParameter(OAuthConstants.ACCESS_TOKEN, accessToken.getToken());
 		}
 
 
+		System.out.println("Url : " + request.getUrl());
+		System.out.println("Verbs : " + request.getVerb());
+		System.out.println("Printing Body Params: " );
+		for (Map.Entry<String, String> entry : request.getBodyParams().entrySet()) {
+			System.out.println(entry.getKey() + " = " + entry.getValue());
+		}
+		
 		response = request.send();
 
 		return response;

@@ -12,8 +12,6 @@ public class Methods {
 	 */
 	public static final String DELETE_MEDIA_COMMENTS = "/media/%s/comments/%s";
 
-	/** Geographies */
-
 	/**
 	 * Get most recent media from a geography subscription that you created.
 	 * Note: you can only access Geographies that were explicitly created by
@@ -27,8 +25,6 @@ public class Methods {
 	 * Required scope : likes
 	 */
 	public static final String LIKES_BY_MEDIA_ID = "/media/%s/likes/";
-
-	/** Locations */
 
 	/**
 	 * Get information about a location.
@@ -45,14 +41,10 @@ public class Methods {
 	 */
 	public static final String LOCATIONS_SEARCH = "/locations/search";
 
-	/** Media */
-
 	/**
 	 * Get information about a media object.
 	 */
 	public static final String MEDIA_BY_ID = "/media/%s";
-
-	/** Comments */
 
 	/**
 	 * Get a full list of comments on a media.
@@ -71,7 +63,6 @@ public class Methods {
 	 */
 	public static final String MEDIA_SEARCH = "/media/search";
 
-	/** Tags */
 
 	/**
 	 * Get information about a tag object.
@@ -99,8 +90,6 @@ public class Methods {
 	 */
 	public static final String USERS_ID_FOLLOWED_BY = "/users/%s/followed-by";
 
-	/** Relationship */
-
 	/**
 	 * Get the list of users this user follows.
 	 * 
@@ -125,8 +114,6 @@ public class Methods {
 	 * Search for a user by name.
 	 */
 	public static final String USERS_SEARCH = "/users/search";
-
-	/** Users */
 
 	/**
 	 * Get basic information about a user (self).
