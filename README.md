@@ -6,30 +6,38 @@ A Java wrapper for the [Instagram API](http://instagram.com/developer/)
 
 * Create the InstagramService object
 
-        InstagramService service =	new InstagramAuthService()
-            							.apiKey("your_client_id")
-            							.apiSecret("your_client_secret")
-            							.callback("your_callback_url")             
-            							.build();
-            							
-         
+```java
+InstagramService service =	new InstagramAuthService()
+    							.apiKey("your_client_id")
+    							.apiSecret("your_client_secret")
+    							.callback("your_callback_url")     
+    							.build();
+```    							
+ 
 Note : An empty token can be define as follows -
 
-	     private static final Token EMPTY_TOKEN = null;
+```java
+private static final Token EMPTY_TOKEN = null;
+```
 
 * Validate your user against Instagram
 
-		String authorizationUrl = service.getAuthorizationUrl(EMPTY_TOKEN);
+```java
+String authorizationUrl = service.getAuthorizationUrl(EMPTY_TOKEN);
+```
 
 * Getting the Access Token 
 
-		Verifier verifier = new Verifier("verifier you get from the user");
-		Token accessToken = service.getAccessToken(EMPTY_TOKEN, verifier);
+```java
+Verifier verifier = new Verifier("verifier you get from the user");
+Token accessToken = service.getAccessToken(EMPTY_TOKEN, verifier);
+ ```
  
 * Creating the Instagram Object
 
-	    Instagram instagram = new Instagram(accessToken);
-	    
+```java
+Instagram instagram = new Instagram(accessToken);
+```
 	    
 ##Instagram API Endpoints 
 
