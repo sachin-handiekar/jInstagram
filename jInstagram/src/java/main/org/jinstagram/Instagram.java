@@ -451,14 +451,6 @@ public class Instagram {
 		else {
 			request.addBodyParameter(OAuthConstants.ACCESS_TOKEN, accessToken.getToken());
 		}
-
-
-		System.out.println("Url : " + request.getUrl());
-		System.out.println("Verbs : " + request.getVerb());
-		System.out.println("Printing Body Params: " );
-		for (Map.Entry<String, String> entry : request.getBodyParams().entrySet()) {
-			System.out.println(entry.getKey() + " = " + entry.getValue());
-		}
 		
 		response = request.send();
 
