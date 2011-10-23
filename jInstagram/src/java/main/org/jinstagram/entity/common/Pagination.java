@@ -7,16 +7,16 @@ public class Pagination {
 	private String depreciationWarning;
 
 	@SerializedName("min_tag_id")
-	private long minTagId;
+	private String minTagId;
 
 	@SerializedName("next_max_id")
-	private long nextMaxId;
+	private String nextMaxId;
 
 	@SerializedName("next_max_tag_id")
-	private long nextMaxTagId;
+	private String nextMaxTagId;
 
 	@SerializedName("next_min_id")
-	private long nextMinId;
+	private String nextMinId;
 
 	@SerializedName("next_url")
 	private String nextUrl;
@@ -38,56 +38,56 @@ public class Pagination {
 	/**
 	 * @return the nextMaxId
 	 */
-	public long getNextMaxId() {
+	public String getNextMaxId() {
 		return nextMaxId;
 	}
 
 	/**
 	 * @param nextMaxId the nextMaxId to set
 	 */
-	public void setNextMaxId(long nextMaxId) {
+	public void setNextMaxId(String nextMaxId) {
 		this.nextMaxId = nextMaxId;
 	}
 
 	/**
 	 * @return the nextMinId
 	 */
-	public long getNextMinId() {
+	public String getNextMinId() {
 		return nextMinId;
 	}
 
 	/**
 	 * @param nextMinId the nextMinId to set
 	 */
-	public void setNextMinId(long nextMinId) {
+	public void setNextMinId(String nextMinId) {
 		this.nextMinId = nextMinId;
 	}
 
 	/**
 	 * @return the minTagId
 	 */
-	public long getMinTagId() {
+	public String getMinTagId() {
 		return minTagId;
 	}
 
 	/**
 	 * @param minTagId the minTagId to set
 	 */
-	public void setMinTagId(long minTagId) {
+	public void setMinTagId(String minTagId) {
 		this.minTagId = minTagId;
 	}
 
 	/**
 	 * @return the nextMaxTagId
 	 */
-	public long getNextMaxTagId() {
+	public String getNextMaxTagId() {
 		return nextMaxTagId;
 	}
 
 	/**
 	 * @param nextMaxTagId the nextMaxTagId to set
 	 */
-	public void setNextMaxTagId(long nextMaxTagId) {
+	public void setNextMaxTagId(String nextMaxTagId) {
 		this.nextMaxTagId = nextMaxTagId;
 	}
 
