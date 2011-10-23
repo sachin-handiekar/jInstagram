@@ -7,4 +7,6 @@ public class Constants {
 
 	public static final String API_URL = String.format("%s/%s", BASE_URI,
 			VERSION);
+	
+	
 }

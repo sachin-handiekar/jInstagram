@@ -13,7 +13,7 @@ public class UserInfoData {
 	private String first_name;
 
 	@SerializedName("id")
-	private int id;
+	private long id;
 
 	@SerializedName("last_name")
 	private String last_name;
@@ -24,6 +24,9 @@ public class UserInfoData {
 	@SerializedName("username")
 	private String username;
 
+	@SerializedName("full_name")
+	private String fullName;
+	
 	@SerializedName("website")
 	private String website;
 
@@ -35,11 +38,11 @@ public class UserInfoData {
 		this.username = username;
 	}
 
-	public int getId() {
+	public long getId() {
 		return id;
 	}
 
-	public void setId(int id) {
+	public void setId(long id) {
 		this.id = id;
 	}
 
@@ -89,5 +92,13 @@ public class UserInfoData {
 
 	public void setCounts(Counts counts) {
 		this.counts = counts;
+	}
+
+	public String getFullName() {
+		return fullName;
+	}
+
+	public void setFullName(String fullName) {
+		this.fullName = fullName;
 	}
 }
