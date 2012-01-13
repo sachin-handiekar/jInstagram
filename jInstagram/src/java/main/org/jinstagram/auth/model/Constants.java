@@ -7,5 +7,5 @@ public class Constants {
 
 	public static final String SCOPED_AUTHORIZE_URL = AUTHORIZE_URL	+ "&scope=%s";
 	
-	public static final String ACCESS_TOKEN_EXTRACTOR_REGEX = "\"access_token\": \"(\\S*?)\"";
+	public static final String ACCESS_TOKEN_EXTRACTOR_REGEX = "\"access_token\":\"(\\S*?)\"";
 }
