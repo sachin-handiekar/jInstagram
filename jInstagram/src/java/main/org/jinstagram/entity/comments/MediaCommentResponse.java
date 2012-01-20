@@ -39,4 +39,8 @@ public class MediaCommentResponse {
 		this.meta = meta;
 	}
 
+    @Override
+    public String toString() {
+        return String.format("MediaCommentResponse [commentData=%s, meta=%s]", commentData, meta);
+    }
 }

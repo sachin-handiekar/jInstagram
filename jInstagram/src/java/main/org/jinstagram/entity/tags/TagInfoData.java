@@ -36,4 +36,9 @@ public class TagInfoData {
 	public void setTagName(String tagName) {
 		this.tagName = tagName;
 	}
+
+    @Override
+    public String toString() {
+        return String.format("TagInfoData [mediaCount=%s, tagName=%s]", mediaCount, tagName);
+    }
 }

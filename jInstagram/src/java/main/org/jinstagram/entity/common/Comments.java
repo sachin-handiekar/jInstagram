@@ -28,4 +28,9 @@ public class Comments {
 	public void setCount(int count) {
 		this.count = count;
 	}
+
+    @Override
+    public String toString() {
+        return String.format("Comments [comments=%s, count=%s]", comments, count);
+    }
 }

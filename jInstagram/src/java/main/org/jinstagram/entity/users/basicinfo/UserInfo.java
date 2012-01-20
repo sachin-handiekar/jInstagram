@@ -13,4 +13,9 @@ public class UserInfo {
 	public void setData(UserInfoData data) {
 		this.data = data;
 	}
+
+    @Override
+    public String toString() {
+        return String.format("UserInfo [data=%s]", data);
+    }
 }
