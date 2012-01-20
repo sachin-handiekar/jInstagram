@@ -17,4 +17,8 @@ public class LocationInfo {
 		this.locationData = locationData;
 	}
 
+    @Override
+    public String toString() {
+        return String.format("LocationInfo [locationData=%s]", locationData);
+    }
 }

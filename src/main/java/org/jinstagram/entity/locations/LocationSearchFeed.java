@@ -26,4 +26,8 @@ public class LocationSearchFeed {
 		this.locationList = locationList;
 	}
 
+    @Override
+    public String toString() {
+        return String.format("LocationSearchFeed [locationList=%s]", locationList);
+    }
 }

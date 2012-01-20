@@ -32,4 +32,9 @@ public class TagInfoFeed {
 	public void setTagInfo(TagInfoData tagInfo) {
 		this.tagInfo = tagInfo;
 	}
+
+    @Override
+    public String toString() {
+        return String.format("TagInfoFeed [meta=%s, tagInfo=%s]", meta, tagInfo);
+    }
 }

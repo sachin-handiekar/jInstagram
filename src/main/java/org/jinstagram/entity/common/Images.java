@@ -35,4 +35,10 @@ public class Images {
 	public void setStandardResolution(ImageData standardResolution) {
 		this.standardResolution = standardResolution;
 	}
+
+    @Override
+    public String toString() {
+        return String.format("Images [lowResolution=%s, standardResolution=%s, thumbnail=%s]",
+                lowResolution, standardResolution, thumbnail);
+    }
 }

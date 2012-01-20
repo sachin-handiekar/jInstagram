@@ -26,7 +26,7 @@ public class UserInfoData {
 
 	@SerializedName("full_name")
 	private String fullName;
-	
+
 	@SerializedName("website")
 	private String website;
 
@@ -101,4 +101,10 @@ public class UserInfoData {
 	public void setFullName(String fullName) {
 		this.fullName = fullName;
 	}
+
+    @Override
+    public String toString() {
+        return String.format("UserInfoData [bio=%s, counts=%s, first_name=%s, id=%s, last_name=%s, profile_picture=%s, username=%s, fullName=%s, website=%s]",
+                        bio, counts, first_name, id, last_name, profile_picture, username, fullName, website);
+    }
 }

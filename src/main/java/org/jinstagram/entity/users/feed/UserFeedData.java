@@ -87,4 +87,10 @@ public class UserFeedData {
 	public void setId(long id) {
 		this.id = id;
 	}
+
+    @Override
+    public String toString() {
+        return String.format("UserFeedData [firstName=%s, id=%s, lastName=%s, profilePictureUrl=%s, userName=%s]",
+                firstName, id, lastName, profilePictureUrl, userName);
+    }
 }

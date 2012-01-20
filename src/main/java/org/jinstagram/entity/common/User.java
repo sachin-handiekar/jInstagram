@@ -104,4 +104,10 @@ public class User {
 	public void setId(long id) {
 		this.id = id;
 	}
+
+    @Override
+    public String toString() {
+        return String.format("User [bio=%s, fullName=%s, id=%s, profilePictureUrl=%s, userName=%s, websiteUrl=%s]",
+                bio, fullName, id, profilePictureUrl, userName, websiteUrl);
+    }
 }

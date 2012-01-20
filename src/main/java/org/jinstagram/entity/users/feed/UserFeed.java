@@ -58,4 +58,9 @@ public class UserFeed {
 	public void setUserList(List<UserFeedData> userList) {
 		this.userList = userList;
 	}
+
+    @Override
+    public String toString() {
+        return String.format("UserFeed [meta=%s, pagination=%s, userList=%s]", meta, pagination, userList);
+    }
 }
