@@ -5,9 +5,9 @@ public class Methods {
 	/**
 	 * Remove a comment either on the authenticated user's media or authored by
 	 * the authenticated user.
-	 * 
+	 *
 	 * Required scope: comments
-	 * 
+	 *
 	 * DELETE /media/{id}/comments/{id}
 	 */
 	public static final String DELETE_MEDIA_COMMENTS = "/media/%s/comments/%s";
@@ -21,7 +21,7 @@ public class Methods {
 
 	/**
 	 * Get a list of users who have liked this media.
-	 * 
+	 *
 	 * Required scope : likes
 	 */
 	public static final String LIKES_BY_MEDIA_ID = "/media/%s/likes/";
@@ -48,7 +48,7 @@ public class Methods {
 
 	/**
 	 * Get a full list of comments on a media.
-	 * 
+	 *
 	 * Required scope: comments
 	 */
 	public static final String MEDIA_COMMENTS = "/media/%s/comments";
@@ -85,14 +85,14 @@ public class Methods {
 
 	/**
 	 * Get the list of users this user is followed by.
-	 * 
+	 *
 	 * Required scope: relationships
 	 */
 	public static final String USERS_ID_FOLLOWED_BY = "/users/%s/followed-by";
 
 	/**
 	 * Get the list of users this user follows.
-	 * 
+	 *
 	 * Required scope: relationships
 	 */
 	public static final String USERS_ID_FOLLOWS = "/users/%s/follows";
@@ -100,7 +100,7 @@ public class Methods {
 	/**
 	 * Get information about the current user's relationship
 	 * (follow/following/etc) to another user.
-	 * 
+	 *
 	 * Required scope: relationships
 	 */
 	public static final String USERS_ID_RELATIONSHIP = "/users/%s/relationship";
@@ -136,7 +136,7 @@ public class Methods {
 
 	/**
 	 * List the users who have requested this user's permission to follow
-	 * 
+	 *
 	 * Required scope: relationships
 	 */
 	public static final String USERS_SELF_REQUESTED_BY = "/users/self/requested-by";

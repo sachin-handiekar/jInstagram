@@ -32,7 +32,7 @@ import java.util.Map;
 
 /**
  * Instagram
- * 
+ *
  * @author Sachin Handiekar
  * @version 1.0
  */
@@ -62,7 +62,7 @@ public class Instagram {
 
 	/**
 	 * Get basic information about a user.
-	 * 
+	 *
 	 * @param userId user-id
 	 * @return a MediaFeed object.
 	 * @throws InstagramException if any error occurs.
@@ -75,16 +75,16 @@ public class Instagram {
 
 		return userInfo;
 	}
-	
-	
+
+
 	/**
 	 * Get basic information about a user.
-	 * 
+	 *
 	 * @param userId user-id
 	 * @return a MediaFeed object.
 	 * @throws InstagramException if any error occurs.
 	 */
-	public UserInfo getCurrentUserInfo() throws InstagramException { 
+	public UserInfo getCurrentUserInfo() throws InstagramException {
 
  		UserInfo userInfo = this.createInstagramObject(Verbs.GET, UserInfo.class, Methods.USERS_SELF, null);
 
@@ -93,7 +93,7 @@ public class Instagram {
 
 	/**
 	 * See the authenticated user's feed.
-	 * 
+	 *
 	 * @return a MediaFeed object.
 	 * @throws InstagramException if any error occurs.
 	 */
@@ -105,7 +105,7 @@ public class Instagram {
 
 	/**
 	 * Get the most recent media published by a user.
-	 * 
+	 *
 	 * @param userId userId of the User.
 	 * @return a MediaFeed object.
 	 * @throws InstagramException if any error occurs
@@ -121,7 +121,7 @@ public class Instagram {
 
 	/**
 	 * Get the authenticated user's list of media they've liked.
-	 * 
+	 *
 	 * @return a MediaFeed object.
 	 * @throws InstagramException if any error occurs.
 	 */
@@ -134,7 +134,7 @@ public class Instagram {
 
 	/**
 	 * Search for a user by name.
-	 * 
+	 *
 	 * @param query A query string.
 	 * @return a UserFeed object.
 	 * @throws InstagramException if any error occurs.
@@ -152,7 +152,7 @@ public class Instagram {
 
 	/**
 	 * Get the list of users this user follows.
-	 * 
+	 *
 	 * @param userId userId of the User.
 	 * @return a UserFeed object.
 	 * @throws InstagramException if any error occurs.
@@ -168,7 +168,7 @@ public class Instagram {
 
 	/**
 	 * Get the list of users this user is followed by.
-	 * 
+	 *
 	 * @param userId userId of the User.
 	 * @return a UserFeed object.
 	 * @throws InstagramException if any error occurs.
@@ -184,7 +184,7 @@ public class Instagram {
 
 	/**
 	 * Get a list of users who have requested this user's permission to follow
-	 * 
+	 *
 	 * @return a UserFeed object.
 	 * @throws InstagramException if any error occurs.
 	 */
@@ -198,7 +198,7 @@ public class Instagram {
 	/**
 	 * Get information about the current user's relationship
 	 * (follow/following/etc) to another user.
-	 * 
+	 *
 	 * @param userId userId of the User.
 	 * @return a Relationship feed object.
 	 * @throws InstagramException if any error occurs.
@@ -214,7 +214,7 @@ public class Instagram {
 
 	/**
 	 * Set the relationship between the current user and the target user
-	 * 
+	 *
 	 * @param userId userId of the user.
 	 * @param relationship Relationship status
 	 * @return a Relationship feed object
@@ -236,7 +236,7 @@ public class Instagram {
 
 	/**
 	 * Get information about a media object.
-	 * 
+	 *
 	 * @param mediaId mediaId of the Media object.
 	 * @return a mediaFeed object.
 	 * @throws InstagramException if any error occurs.
@@ -252,7 +252,7 @@ public class Instagram {
 
 	/**
 	 * Search for media in a given area.
-	 * 
+	 *
 	 * @param latitude Latitude of the center search coordinate.
 	 * @param longitude Longitude of the center search coordinate.
 	 * @return a MediaFeed object.
@@ -271,7 +271,7 @@ public class Instagram {
 
 	/**
 	 * Get a list of what media is most popular at the moment.
-	 * 
+	 *
 	 * @return a MediaFeed object.
 	 * @throws InstagramException if any error occurs.
 	 */
@@ -283,7 +283,7 @@ public class Instagram {
 
 	/**
 	 * Get a full list of comments on a media.
-	 * 
+	 *
 	 * @param mediaId a mediaId
 	 * @return a MediaCommentsFeed object.
 	 * @throws InstagramException if any error occurs.
@@ -297,7 +297,7 @@ public class Instagram {
 
 	/**
 	 * Create a comment on a media.
-	 * 
+	 *
 	 * @param mediaId a mediaId
 	 * @param text Text to post as a comment on the media as specified in
 	 * media-id.
@@ -318,7 +318,7 @@ public class Instagram {
 	/**
 	 * Remove a comment either on the authenticated user's media or authored by
 	 * the authenticated user.
-	 * 
+	 *
 	 * @param mediaId a mediaId of the Media
 	 * @param commentId a commentId of the Comment
 	 * @return a MediaCommentResponse feed.
@@ -333,7 +333,7 @@ public class Instagram {
 
 	/**
 	 * Get a list of users who have liked this media.
-	 * 
+	 *
 	 * @param mediaId a mediaId of the Media
 	 * @return a LikesFeed object.
 	 * @throws InstagramException if any error occurs.
@@ -347,7 +347,7 @@ public class Instagram {
 
 	/**
 	 * Set a like on this media by the currently authenticated user.
-	 * 
+	 *
 	 * @param mediaId a mediaId of the Media
 	 * @return a LikesFeed object.
 	 * @throws InstagramException if any error occurs.
@@ -361,7 +361,7 @@ public class Instagram {
 
 	/**
 	 * Remove a like on this media by the currently authenticated user.
-	 * 
+	 *
 	 * @param mediaId a mediaId of the Media
 	 * @return a LikesFeed object.
 	 * @throws InstagramException if any error occurs.
@@ -375,7 +375,7 @@ public class Instagram {
 
 	/**
 	 * Get information about a tag object.
-	 * 
+	 *
 	 * @param tagName name of the tag.
 	 * @return a TagInfoFeed object.
 	 * @throws InstagramException if any error occurs.
@@ -389,7 +389,7 @@ public class Instagram {
 
 	/**
 	 * Get a list of recently tagged media.
-	 * 
+	 *
 	 * @param tagName name of the tag.
 	 * @return a TagMediaFeed object.
 	 * @throws InstagramException if any error occurs.
@@ -404,7 +404,7 @@ public class Instagram {
 	/**
 	 * Search for tags by name - results are ordered first as an exact match,
 	 * then by popularity.
-	 * 
+	 *
 	 * @param tagName name of the tag
 	 * @return a TagSearchFeed object.
 	 * @throws InstagramException if any error occurs.
@@ -421,7 +421,7 @@ public class Instagram {
 
 	/**
 	 * Get information about a location.
-	 * 
+	 *
 	 * @param locationId an id of the Location
 	 * @return a LocationInfo object.
 	 * @throws InstagramException if any error occurs.
@@ -435,7 +435,7 @@ public class Instagram {
 
 	/**
 	 * Get a list of recent media objects from a given location.
-	 * 
+	 *
 	 * @param mediaId a id of the Media.
 	 * @return a MediaFeed object.
 	 * @throws InstagramException if any error occurs.
@@ -449,7 +449,7 @@ public class Instagram {
 
 	/**
 	 * Search for a location by geographic coordinate.
-	 * 
+	 *
 	 * @param latitude Latitude of the center search coordinate.
 	 * @param longitude Longitude of the center search coordinate.
 	 * @return a LocationSearchFeed object.
@@ -469,7 +469,7 @@ public class Instagram {
 
 	/**
 	 * Create a instagram object based on class-name and response.
-	 * 
+	 *
 	 * @param verbs
 	 * @param clazz
 	 * @param methodName
@@ -490,7 +490,7 @@ public class Instagram {
 
 	/**
 	 * Get response from Instagram.
-	 * 
+	 *
 	 * @param verb HTTP Verb
 	 * @param methodName Instagram API Method
 	 * @param params parameters which would be sent with the request.
@@ -528,7 +528,7 @@ public class Instagram {
 
 	/**
 	 * Creates an object from the JSON response and the class which the object would be mapped to.
-	 * 
+	 *
 	 * @param clazz a class instance
 	 * @param response a JSON feed
 	 * @return a object of type <T>
