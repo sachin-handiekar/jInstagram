@@ -492,8 +492,6 @@ public class Instagram {
 			throws InstagramException {
 		Response response = getApiResponse(verbs, methodName, params);
 
-		System.out.println(response.getBody());
-
 		T object = createObjectFromResponse(clazz, response.getBody());
 
 		return object;
