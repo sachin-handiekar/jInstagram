@@ -38,9 +38,20 @@ import java.util.Map;
  */
 public class Instagram {
 	private Token accessToken;
+    private final String clientId;
 
 	public Instagram(Token accessToken) {
 		this.accessToken = accessToken;
+		clientId = null;
+	}
+
+	/**
+	 * Create a new Instagram instance only appropriate for unauthenticated requests (i.e. on behalf of the
+	 * application but not any particular user)
+	 */
+	public Instagram(String clientId) {
+	    this.accessToken = null;
+	    this.clientId = clientId;
 	}
 
 
@@ -515,10 +526,18 @@ public class Instagram {
 
 		// Add the AccessToken to the Request Url
 		if ((verb == Verbs.GET) || (verb == Verbs.DELETE)) {
-			request.addQuerystringParameter(OAuthConstants.ACCESS_TOKEN, accessToken.getToken());
+			if (accessToken == null) {
+			    request.addQuerystringParameter(OAuthConstants.CLIENT_ID, clientId);
+			} else {
+			    request.addQuerystringParameter(OAuthConstants.ACCESS_TOKEN, accessToken.getToken());
+			}
 		}
 		else {
-			request.addBodyParameter(OAuthConstants.ACCESS_TOKEN, accessToken.getToken());
+		    if (accessToken == null) {
+		        request.addBodyParameter(OAuthConstants.CLIENT_ID, clientId);
+		    } else {
+		        request.addBodyParameter(OAuthConstants.ACCESS_TOKEN, accessToken.getToken());
+		    }
 		}
 
 		response = request.send();
