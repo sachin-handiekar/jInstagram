@@ -478,6 +478,24 @@ public class Instagram {
 		return feed;
 	}
 
+    /**
+     * Search for a location by v2 Foursquare id.
+     *
+     * @param foursquareId Foursquare Venue ID of the location
+     * @return a LocationSearchFeed object.
+     * @throws InstagramException if any error occurs.
+     */
+    public LocationSearchFeed searchFoursquareVenue(String foursquareId) throws InstagramException {
+        Map<String, String> params = new HashMap<String, String>();
+
+        params.put(QueryParam.FOURSQUARE_V2_ID, foursquareId);
+
+        LocationSearchFeed feed = createInstagramObject(Verbs.GET, LocationSearchFeed.class, Methods.LOCATIONS_SEARCH,
+                params);
+
+        return feed;
+    }
+
 	/**
 	 * Create a instagram object based on class-name and response.
 	 *
