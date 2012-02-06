@@ -13,7 +13,7 @@
     <developerConnection>scm:git:git@github.com:NessComputing/jInstagram.git</developerConnection>
   </scm>
 
-  <groupId>com.likeness.instagram</groupId>
+  <groupId>com.nesscomputing.instagram</groupId>
   <artifactId>jInstagram</artifactId>
   <name>jInstagram</name>
   <version>1.0.0-SNAPSHOT</version>
