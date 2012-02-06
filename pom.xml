@@ -3,9 +3,9 @@
 
   <modelVersion>4.0.0</modelVersion>
   <parent>
-    <groupId>com.likeness</groupId>
+    <groupId>com.nesscomputing</groupId>
     <artifactId>ness-oss-parent</artifactId>
-    <version>2</version>
+    <version>3</version>
   </parent>
 
   <scm>
