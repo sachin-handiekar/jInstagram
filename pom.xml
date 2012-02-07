@@ -16,7 +16,7 @@
   <groupId>com.nesscomputing.instagram</groupId>
   <artifactId>jInstagram</artifactId>
   <name>jInstagram</name>
-  <version>1.0.0-SNAPSHOT</version>
+  <version>1.0.1-SNAPSHOT</version>
   <packaging>jar</packaging>
   <description>Java Instagram API, originally by sachin-handiekar</description>
   
