@@ -16,7 +16,7 @@ import java.util.Set;
 
 /**
  * Utils to deal with URL and url-encodings
- * 
+ *
  */
 public class URLUtils {
 	private static final String EMPTY_STRING = "";
@@ -46,7 +46,7 @@ public class URLUtils {
 
 	/**
 	 * Turns a map into a form-urlencoded string
-	 * 
+	 *
 	 * @param map any map
 	 * @return form-url-encoded string
 	 */
@@ -73,7 +73,7 @@ public class URLUtils {
 
 	/**
 	 * Percent encodes a string
-	 * 
+	 *
 	 * @param string plain string
 	 * @return percent encoded string
 	 */
@@ -89,7 +89,7 @@ public class URLUtils {
 
 	/**
 	 * Translates a string into application/x-www-form-urlencoded format
-	 * 
+	 *
 	 * @param plain
 	 * @return form-urlencoded string
 	 */
@@ -106,7 +106,7 @@ public class URLUtils {
 
 	/**
 	 * Decodes a application/x-www-form-urlencoded string
-	 * 
+	 *
 	 * @param string form-urlencoded string
 	 * @return plain string
 	 */
@@ -123,7 +123,7 @@ public class URLUtils {
 
 	/**
 	 * Append given parameters to the query string of the url
-	 * 
+	 *
 	 * @param url the url to append parameters to
 	 * @param params any map
 	 * @return new url with parameters on query string
@@ -148,7 +148,7 @@ public class URLUtils {
 
 	/**
 	 * Concats a key-value map into a querystring-like String
-	 * 
+	 *
 	 * @param params key-value map
 	 * @return querystring-like String
 	 */
@@ -168,7 +168,7 @@ public class URLUtils {
 
 	/**
 	 * Parses and form-urldecodes a querystring-like string into a map
-	 * 
+	 *
 	 * @param queryString querystring-like String
 	 * @return a map with the form-urldecoded parameters
 	 */
