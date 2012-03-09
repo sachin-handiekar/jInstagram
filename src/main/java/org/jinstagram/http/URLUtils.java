@@ -11,6 +11,7 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
+import java.util.Map.Entry;
 import java.util.Set;
 
 /**
@@ -157,9 +158,9 @@ public class URLUtils {
 			Map<String, String> params) {
 		StringBuilder result = new StringBuilder();
 
-		for (String key : params.keySet()) {
-			result.append(key).append(PAIR_SEPARATOR);
-			result.append(params.get(key)).append(PARAM_SEPARATOR);
+		for (Entry<String, String> entry : params.entrySet()) {
+			result.append(entry.getKey()).append(PAIR_SEPARATOR);
+			result.append(entry.getValue()).append(PARAM_SEPARATOR);
 		}
 
 		return result.toString().substring(0, result.length() - 1);
