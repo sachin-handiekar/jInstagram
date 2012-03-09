@@ -64,7 +64,7 @@ public class URLUtils {
 
 			if (entry.getValue() != null) {
 				encodedString.append(PAIR_SEPARATOR).append(
-						formURLEncode(entry.getKey()));
+						formURLEncode(entry.getValue()));
 			}
 		}
 
