@@ -21,8 +21,6 @@ import java.util.concurrent.TimeUnit;
 public class Request {
 	private static final String CONTENT_LENGTH = "Content-Length";
 
-	private byte[] bytePayload = null;
-
 	private String payload = null;
 
 	private boolean connectionKeepAlive = false;
@@ -153,15 +151,6 @@ public class Request {
 	}
 
 	/**
-	 * Overloaded version for byte arrays
-	 * 
-	 * @param payload
-	 */
-	public void addPayload(byte[] payload) {
-		this.bytePayload = payload;
-	}
-
-	/**
 	 * Get a {@link Map} of the query string parameters.
 	 * 
 	 * @return a map containing the query string parameters
@@ -225,10 +214,6 @@ public class Request {
 	}
 
 	byte[] getByteBodyContents() {
-		if (bytePayload != null) {
-			return bytePayload;
-		}
-
 		String body = (payload != null) ? payload : URLUtils
 				.formURLEncodeMap(bodyParams);
 
