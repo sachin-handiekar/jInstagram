@@ -38,4 +38,9 @@ public class RelationshipFeed {
 	public void setData(RelationshipData data) {
 		this.data = data;
 	}
+
+    @Override
+    public String toString() {
+        return String.format("RelationshipFeed [data=%s, meta=%s]", data, meta);
+    }
 }

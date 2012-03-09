@@ -58,4 +58,10 @@ public class FromTagData {
 	public void setFullName(String fullName) {
 		this.fullName = fullName;
 	}
+
+    @Override
+    public String toString() {
+        return String.format("FromTagData [fullName=%s, id=%s, profilePicture=%s, username=%s]",
+                fullName, id, profilePicture, username);
+    }
 }

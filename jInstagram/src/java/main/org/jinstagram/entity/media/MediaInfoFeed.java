@@ -39,4 +39,9 @@ public class MediaInfoFeed {
 	public void setData(MediaFeedData data) {
 		this.data = data;
 	}
+
+    @Override
+    public String toString() {
+        return String.format("MediaInfoFeed [data=%s, meta=%s]", data, meta);
+    }
 }

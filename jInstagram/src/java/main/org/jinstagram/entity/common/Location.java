@@ -5,10 +5,10 @@ import com.google.gson.annotations.SerializedName;
 public class Location {
 	@SerializedName("id")
 	private long id;
-	
+
 	@SerializedName("name")
 	private String name;
-	
+
 	@SerializedName("latitude")
 	private double latitude;
 
@@ -72,8 +72,9 @@ public class Location {
 	public void setName(String name) {
 		this.name = name;
 	}
-	
-	
-	
-	
+
+    @Override
+    public String toString() {
+        return String.format("Location [id=%s, name=%s, latitude=%s, longitude=%s]", id, name, latitude, longitude);
+    }
 }

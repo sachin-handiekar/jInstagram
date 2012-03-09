@@ -104,4 +104,10 @@ public class Pagination {
 	public void setDepreciationWarning(String depreciationWarning) {
 		this.depreciationWarning = depreciationWarning;
 	}
+
+    @Override
+    public String toString() {
+        return String.format("Pagination [depreciationWarning=%s, minTagId=%s, nextMaxId=%s, nextMaxTagId=%s, nextMinId=%s, nextUrl=%s]",
+                        depreciationWarning, minTagId, nextMaxId, nextMaxTagId, nextMinId, nextUrl);
+    }
 }

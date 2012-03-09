@@ -3,7 +3,6 @@ package org.jinstagram.realtime;
 import org.jinstagram.auth.model.OAuthConstants;
 import org.jinstagram.auth.model.OAuthRequest;
 import org.jinstagram.exceptions.InstagramException;
-import org.jinstagram.http.Request;
 import org.jinstagram.http.Response;
 import org.jinstagram.http.Verbs;
 import org.jinstagram.utils.Preconditions;
@@ -32,7 +31,7 @@ public class InstagramSubscription {
 
 	/**
 	 * Configures the callback url
-	 * 
+	 *
 	 * @param callback The callback for your application
 	 * @return the {@link InstagramSubscription} instance for method chaining
 	 */
@@ -46,7 +45,7 @@ public class InstagramSubscription {
 
 	/**
 	 * Configures the clientId
-	 * 
+	 *
 	 * @param clientId The clientId for your application
 	 * @return the {@link InstagramSubscription} instance for method chaining
 	 */
@@ -111,7 +110,7 @@ public class InstagramSubscription {
 		return subscriptionResponse;
 
 	}
-	
+
 	  private SubscriptionResponse getSubscriptionResponse(String jsonBody) throws InstagramException {
 	        Gson gson = new Gson();
 	        SubscriptionResponse response = null;
@@ -124,8 +123,8 @@ public class InstagramSubscription {
 
 	        return response;
 	    }
-	    
-	  
+
+
 
 	public void deleteAllSubscription() {
 

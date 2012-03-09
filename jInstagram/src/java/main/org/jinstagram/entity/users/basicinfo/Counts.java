@@ -35,4 +35,9 @@ public class Counts {
 	public void setFollwed_by(int follwed_by) {
 		this.follwed_by = follwed_by;
 	}
+
+    @Override
+    public String toString() {
+        return String.format("Counts [follows=%s, follwed_by=%s, media=%s]", follows, follwed_by, media);
+    }
 }

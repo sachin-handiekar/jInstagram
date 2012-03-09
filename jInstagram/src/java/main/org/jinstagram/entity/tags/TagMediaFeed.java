@@ -59,4 +59,9 @@ public class TagMediaFeed {
 	public void setData(List<MediaFeedData> data) {
 		this.data = data;
 	}
+
+    @Override
+    public String toString() {
+        return String.format("TagMediaFeed [data=%s, meta=%s, pagination=%s]", data, meta, pagination);
+    }
 }

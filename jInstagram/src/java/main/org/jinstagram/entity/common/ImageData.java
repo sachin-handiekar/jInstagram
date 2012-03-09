@@ -4,7 +4,7 @@ import com.google.gson.annotations.SerializedName;
 
 /**
  * A class to denote the ImageData.
- * 
+ *
  * @author Sachin Handiekar
  * @version 1.0
  */
@@ -59,4 +59,10 @@ public class ImageData {
 	public void setImageHeight(int imageHeight) {
 		this.imageHeight = imageHeight;
 	}
+
+    @Override
+    public String toString() {
+        return String.format("ImageData [imageHeight=%s, imageUrl=%s, imageWidth=%s]",
+                imageHeight, imageUrl, imageWidth);
+    }
 }
