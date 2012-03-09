@@ -1,6 +1,7 @@
 package org.jinstagram;
 
 import com.google.gson.Gson;
+import com.google.gson.JsonSyntaxException;
 
 import org.jinstagram.auth.model.OAuthConstants;
 import org.jinstagram.auth.model.OAuthRequest;
@@ -510,10 +511,28 @@ public class Instagram {
 			throws InstagramException {
 		Response response = getApiResponse(verbs, methodName, params);
 
-		T object = createObjectFromResponse(clazz, response.getBody());
+		if (response.getCode() >= 200 && response.getCode() < 300) {
+		    T object = createObjectFromResponse(clazz, response.getBody());
 
-		return object;
+		    return object;
+		}
+
+		throw handleInstagramError(response);
 	}
+
+    private InstagramException handleInstagramError(Response response) throws InstagramException {
+        if (response.getCode() == 400) {
+		    Gson gson = new Gson();
+		    final InstagramErrorResponse error;
+		    try {
+		        error = gson.fromJson(response.getBody(), InstagramErrorResponse.class);
+		    } catch (JsonSyntaxException e) {
+		        throw new InstagramException("Failed to decode error response " + response.getBody(), e);
+		    }
+		    error.throwException();
+		}
+        throw new InstagramException("Unknown error response code: " + response.getCode() + " " + response.getBody());
+    }
 
 	/**
 	 * Get response from Instagram.
