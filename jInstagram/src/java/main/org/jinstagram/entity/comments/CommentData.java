@@ -72,4 +72,10 @@ public class CommentData {
 	public void setId(long id) {
 		this.id = id;
 	}
+
+    @Override
+    public String toString() {
+        return String.format("CommentData [commentFrom=%s, createdTime=%s, id=%s, text=%s]",
+                commentFrom, createdTime, id, text);
+    }
 }

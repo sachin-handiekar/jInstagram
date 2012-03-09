@@ -45,4 +45,8 @@ public class LikesFeed {
 		this.userList = userList;
 	}
 
+    @Override
+    public String toString() {
+        return String.format("LikesFeed [meta=%s, userList=%s]", meta, userList);
+    }
 }

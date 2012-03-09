@@ -32,4 +32,9 @@ public class Likes {
 	public void setLikesUserList(List<User> likesUserList) {
 		this.likesUserList = likesUserList;
 	}
+
+    @Override
+    public String toString() {
+        return String.format("Likes [count=%s, likesUserList=%s]", count, likesUserList);
+    }
 }

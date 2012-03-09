@@ -58,4 +58,9 @@ public class MediaFeed {
 	public void setData(List<MediaFeedData> data) {
 		this.data = data;
 	}
+
+    @Override
+    public String toString() {
+        return String.format("MediaFeed [data=%s, meta=%s, pagination=%s]", data, meta, pagination);
+    }
 }

@@ -36,4 +36,9 @@ public class RelationshipData {
 	public void setIncomingStatus(String incomingStatus) {
 		this.incomingStatus = incomingStatus;
 	}
+
+    @Override
+    public String toString() {
+        return String.format("RelationshipData [incomingStatus=%s, outgoingStatus=%s]", incomingStatus, outgoingStatus);
+    }
 }

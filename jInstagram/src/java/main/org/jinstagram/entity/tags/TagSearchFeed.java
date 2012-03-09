@@ -34,4 +34,9 @@ public class TagSearchFeed {
 	public void setTagList(List<TagInfoData> tagList) {
 		this.tagList = tagList;
 	}
+
+    @Override
+    public String toString() {
+        return String.format("TagSearchFeed [meta=%s, tagList=%s]", meta, tagList);
+    }
 }

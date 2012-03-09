@@ -6,7 +6,7 @@ import com.google.gson.annotations.SerializedName;
  * The meta key is used to communicate extra information about the response to
  * the developer. If all goes well, you'll only ever see a code key with value
  * 200.
- * 
+ *
  * @author Sachin Handiekar
  * @version 1.0
  */
@@ -61,4 +61,9 @@ public class Meta {
 	public void setErrorMessage(String errorMessage) {
 		this.errorMessage = errorMessage;
 	}
+
+    @Override
+    public String toString() {
+        return String.format("Meta [code=%s, errorMessage=%s, errorType=%s]", code, errorMessage, errorType);
+    }
 }

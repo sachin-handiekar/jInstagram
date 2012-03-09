@@ -40,4 +40,9 @@ public class MediaCommentsFeed {
 	public void setCommentDataList(List<CommentData> commentDataList) {
 		this.commentDataList = commentDataList;
 	}
+
+    @Override
+    public String toString() {
+        return String.format("MediaCommentsFeed [commentDataList=%s, meta=%s]", commentDataList, meta);
+    }
 }

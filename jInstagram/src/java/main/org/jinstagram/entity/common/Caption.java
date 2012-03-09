@@ -70,4 +70,9 @@ public class Caption {
 	public void setId(long id) {
 		this.id = id;
 	}
+
+    @Override
+    public String toString() {
+        return String.format("Caption [createdTime=%s, from=%s, id=%s, text=%s]", createdTime, from, id, text);
+    }
 }
