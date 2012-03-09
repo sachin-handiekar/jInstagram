@@ -7,6 +7,7 @@ import java.util.Collections;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Map.Entry;
 
 /**
  * Utils for {@link Map} manipulation
@@ -48,9 +49,9 @@ public class MapUtils {
 	 */
 	public static void decodeAndAppendEntries(Map<String, String> source,
 			Map<String, String> target) {
-		for (String key : source.keySet()) {
-			target.put(URLUtils.percentEncode(key),
-					URLUtils.percentEncode(source.get(key)));
+		for (Entry<String, String> entry : source.entrySet()) {
+			target.put(URLUtils.percentEncode(entry.getKey()),
+					URLUtils.percentEncode(entry.getValue()));
 		}
 	}
 }
