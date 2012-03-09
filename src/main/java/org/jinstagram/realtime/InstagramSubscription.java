@@ -151,4 +151,23 @@ public class InstagramSubscription {
 		System.out.println(response.getBody());
 	}
 
+    @Override
+    public String toString() {
+        StringBuilder builder = new StringBuilder();
+        builder.append("InstagramSubscription [");
+        if (aspect != null)
+            builder.append("aspect=").append(aspect).append(", ");
+        if (callback != null)
+            builder.append("callback=").append(callback).append(", ");
+        if (clientId != null)
+            builder.append("clientId=").append(clientId).append(", ");
+        if (clientSecret != null)
+            builder.append("clientSecret=").append(clientSecret).append(", ");
+        if (subscriptionType != null)
+            builder.append("subscriptionType=").append(subscriptionType).append(", ");
+        if (verifyToken != null)
+            builder.append("verifyToken=").append(verifyToken);
+        builder.append("]");
+        return builder.toString();
+    }
 }
