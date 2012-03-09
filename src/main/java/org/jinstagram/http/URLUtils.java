@@ -59,12 +59,12 @@ public class URLUtils {
 	private static String doFormUrlEncode(Map<String, String> map) {
 		StringBuffer encodedString = new StringBuffer(map.size() * 20);
 
-		for (String key : map.keySet()) {
-			encodedString.append(PARAM_SEPARATOR).append(formURLEncode(key));
+		for (Entry<String, String> entry : map.entrySet()) {
+			encodedString.append(PARAM_SEPARATOR).append(formURLEncode(entry.getKey()));
 
-			if (map.get(key) != null) {
+			if (entry.getValue() != null) {
 				encodedString.append(PAIR_SEPARATOR).append(
-						formURLEncode(map.get(key)));
+						formURLEncode(entry.getKey()));
 			}
 		}
 
