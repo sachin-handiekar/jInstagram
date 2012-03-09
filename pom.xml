@@ -9,7 +9,7 @@
   </parent>
 
   <scm>
-    <connection>scm:git:git//github.com/NessComputing/jInstagram.git</connection>
+    <connection>scm:git:git@github.com/NessComputing/jInstagram.git</connection>
     <developerConnection>scm:git:git@github.com:NessComputing/jInstagram.git</developerConnection>
   </scm>
 
