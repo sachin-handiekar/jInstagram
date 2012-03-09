@@ -16,7 +16,7 @@ public class MapUtils {
 
 	/**
 	 * Sorts a Map
-	 * 
+	 *
 	 * @param map unsorted map
 	 * @return sorted map
 	 */
@@ -43,7 +43,7 @@ public class MapUtils {
 	/**
 	 * Form-urlDecodes and appends all keys from the source {@link Map} to the
 	 * target {@link Map}
-	 * 
+	 *
 	 * @param source Map from where the keys get copied and decoded
 	 * @param target Map where the decoded keys are copied to
 	 */
