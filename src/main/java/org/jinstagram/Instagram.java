@@ -28,6 +28,7 @@ import org.jinstagram.model.QueryParam;
 import org.jinstagram.model.Relationship;
 import org.jinstagram.utils.Preconditions;
 
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -505,11 +506,15 @@ public class Instagram {
 	 * @param methodName
 	 * @param params
 	 * @return
-	 * @throws InstagramException
 	 */
 	private <T> T createInstagramObject(Verbs verbs, Class<T> clazz, String methodName, Map<String, String> params)
 			throws InstagramException {
-		Response response = getApiResponse(verbs, methodName, params);
+		Response response;
+        try {
+            response = getApiResponse(verbs, methodName, params);
+        } catch (IOException e) {
+            throw new InstagramException("IOException while retrieving data", e);
+        }
 
 		if (response.getCode() >= 200 && response.getCode() < 300) {
 		    T object = createObjectFromResponse(clazz, response.getBody());
@@ -542,7 +547,7 @@ public class Instagram {
 	 * @param params parameters which would be sent with the request.
 	 * @return Response object.
 	 */
-	private Response getApiResponse(Verbs verb, String methodName, Map<String, String> params) {
+	private Response getApiResponse(Verbs verb, String methodName, Map<String, String> params) throws IOException {
 		Response response = null;
 		String apiResourceUrl = Constants.API_URL + methodName;
 		OAuthRequest request = new OAuthRequest(verb, apiResourceUrl);

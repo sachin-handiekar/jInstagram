@@ -1,6 +1,9 @@
 package org.jinstagram.auth.oauth;
 
+import java.io.IOException;
+
 import org.jinstagram.auth.InstagramApi;
+import org.jinstagram.auth.exceptions.OAuthException;
 import org.jinstagram.auth.model.OAuthConfig;
 import org.jinstagram.auth.model.OAuthConstants;
 import org.jinstagram.auth.model.OAuthRequest;
@@ -17,7 +20,7 @@ public class InstagramService {
 
 	/**
 	 * Default constructor
-	 * 
+	 *
 	 * @param api OAuth2.0 api information
 	 * @param config OAuth 2.0 configuration param object
 	 */
@@ -48,7 +51,12 @@ public class InstagramService {
 			request.addBodyParameter(OAuthConstants.DISPLAY, config.getDisplay());
 		}
 
-		Response response = request.send();
+		Response response;
+        try {
+            response = request.send();
+        } catch (IOException e) {
+            throw new OAuthException("Could not get access token", e);
+        }
 
 		return api.getAccessTokenExtractor().extract(response.getBody());
 	}

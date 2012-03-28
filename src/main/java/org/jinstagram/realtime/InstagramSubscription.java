@@ -1,5 +1,7 @@
 package org.jinstagram.realtime;
 
+import java.io.IOException;
+
 import org.jinstagram.auth.model.OAuthConstants;
 import org.jinstagram.auth.model.OAuthRequest;
 import org.jinstagram.exceptions.InstagramException;
@@ -104,7 +106,12 @@ public class InstagramSubscription {
 		request.addBodyParameter(Constants.VERIFY_TOKEN, this.verifyToken);
 		request.addBodyParameter(Constants.CALLBACK_URL, callback);
 
-		Response response = request.send();
+		Response response;
+        try {
+            response = request.send();
+        } catch (IOException e) {
+            throw new InstagramException("Failed to create subscription", e);
+        }
 
 		SubscriptionResponse subscriptionResponse = getSubscriptionResponse(response.getBody());
 		return subscriptionResponse;
@@ -126,7 +133,7 @@ public class InstagramSubscription {
 
 
 
-	public void deleteAllSubscription() {
+	public void deleteAllSubscription() throws InstagramException {
 
 		OAuthRequest request = new OAuthRequest(Verbs.DELETE, Constants.SUBSCRIPTION_ENDPOINT);
 
@@ -135,19 +142,29 @@ public class InstagramSubscription {
 		request.addQuerystringParameter(Constants.CLIENT_SECRET, this.clientSecret);
 		request.addQuerystringParameter("object", "all");
 
-		Response response = request.send();
+		Response response;
+        try {
+            response = request.send();
+        } catch (IOException e) {
+            throw new InstagramException("Failed to delete all subscriptions", e);
+        }
 		System.out.println(response.getBody());
 
 	}
 
-	public void getSubscriptionList() {
+	public void getSubscriptionList() throws InstagramException {
 		OAuthRequest request = new OAuthRequest(Verbs.GET, Constants.SUBSCRIPTION_ENDPOINT);
 
 		// Add the oauth parameter in the body
 		request.addQuerystringParameter(Constants.CLIENT_ID, this.clientId);
 		request.addQuerystringParameter(Constants.CLIENT_SECRET, this.clientSecret);
 
-		Response response = request.send();
+		Response response;
+        try {
+            response = request.send();
+        } catch (IOException e) {
+            throw new InstagramException("Failed to get subscription list", e);
+        }
 		System.out.println(response.getBody());
 	}
 
