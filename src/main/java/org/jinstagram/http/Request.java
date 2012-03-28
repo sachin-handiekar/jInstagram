@@ -57,17 +57,12 @@ public class Request {
 	 * Execute the request and return a {@link Response}
 	 *
 	 * @return Http Response
-	 * @throws RuntimeException if the connection cannot be created.
+	 * @throws IOException if the connection cannot be created.
 	 */
-	public Response send() {
-		try {
-			createConnection();
+	public Response send() throws IOException {
+		createConnection();
 
-			return doSend();
-		}
-		catch (IOException ioe) {
-			throw new OAuthException("Problems while creating connection", ioe);
-		}
+		return doSend();
 	}
 
 	private void createConnection() throws IOException {
