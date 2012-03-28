@@ -1,5 +1,7 @@
 package org.jinstagram.entity.common;
 
+import org.apache.commons.lang3.StringUtils;
+
 import com.google.gson.annotations.SerializedName;
 
 public class Pagination {
@@ -96,6 +98,10 @@ public class Pagination {
 	 */
 	public String getDepreciationWarning() {
 		return depreciationWarning;
+	}
+
+	public boolean hasNextPage() {
+	    return !StringUtils.isBlank(nextUrl);
 	}
 
 	/**

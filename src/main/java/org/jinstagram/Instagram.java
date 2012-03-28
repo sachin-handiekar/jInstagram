@@ -3,11 +3,13 @@ package org.jinstagram;
 import com.google.gson.Gson;
 import com.google.gson.JsonSyntaxException;
 
+import org.apache.commons.lang3.StringUtils;
 import org.jinstagram.auth.model.OAuthConstants;
 import org.jinstagram.auth.model.OAuthRequest;
 import org.jinstagram.auth.model.Token;
 import org.jinstagram.entity.comments.MediaCommentResponse;
 import org.jinstagram.entity.comments.MediaCommentsFeed;
+import org.jinstagram.entity.common.Pagination;
 import org.jinstagram.entity.likes.LikesFeed;
 import org.jinstagram.entity.locations.LocationInfo;
 import org.jinstagram.entity.locations.LocationSearchFeed;
@@ -459,6 +461,15 @@ public class Instagram {
 
 		return feed;
 	}
+
+	/**
+	 * Get the next page of recent media objects from a previously executed request
+	 * @param pagination
+	 * @throws InstagramException
+	 */
+    public MediaFeed getRecentMediaNextPage(Pagination pagination) throws InstagramException {
+        return createInstagramObject(Verbs.GET, MediaFeed.class, StringUtils.removeStart(pagination.getNextUrl(), Constants.API_URL), null);
+    }
 
 	/**
 	 * Search for a location by geographic coordinate.
