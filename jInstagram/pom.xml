@@ -46,7 +46,8 @@
 					<target>1.5</target>
 				</configuration>
 			</plugin>
-			<plugin>
+			<!--
+            <plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-gpg-plugin</artifactId>
 				<executions>
@@ -59,6 +60,7 @@
 					</execution>
 				</executions>
 			</plugin>
+			-->
 		</plugins>
 	</build>
 </project>
