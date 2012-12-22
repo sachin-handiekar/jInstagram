@@ -1,0 +1,3 @@
+language: java
+script: sh -c 'cd jInstagram'
+install: mvn clean package -DskipTests=true

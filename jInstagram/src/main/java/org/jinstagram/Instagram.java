@@ -2,11 +2,13 @@ package org.jinstagram;
 
 import com.google.gson.Gson;
 
+import com.google.gson.JsonSyntaxException;
 import org.jinstagram.auth.model.OAuthConstants;
 import org.jinstagram.auth.model.OAuthRequest;
 import org.jinstagram.auth.model.Token;
 import org.jinstagram.entity.comments.MediaCommentResponse;
 import org.jinstagram.entity.comments.MediaCommentsFeed;
+import org.jinstagram.entity.common.InstagramErrorResponse;
 import org.jinstagram.entity.likes.LikesFeed;
 import org.jinstagram.entity.locations.LocationInfo;
 import org.jinstagram.entity.locations.LocationSearchFeed;
@@ -27,6 +29,7 @@ import org.jinstagram.model.QueryParam;
 import org.jinstagram.model.Relationship;
 import org.jinstagram.utils.Preconditions;
 
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -91,8 +94,7 @@ public class Instagram {
 	/**
 	 * Get basic information about a user.
 	 *
-	 * @param userId user-id
-	 * @return a MediaFeed object.
+	 * @return a UserInfo object.
 	 * @throws InstagramException if any error occurs.
 	 */
 	public UserInfo getCurrentUserInfo() throws InstagramException {
@@ -447,7 +449,7 @@ public class Instagram {
 	/**
 	 * Get a list of recent media objects from a given location.
 	 *
-	 * @param mediaId a id of the Media.
+	 * @param locationId a id of the Media.
 	 * @return a MediaFeed object.
 	 * @throws InstagramException if any error occurs.
 	 */
@@ -507,13 +509,36 @@ public class Instagram {
 	 * @throws InstagramException
 	 */
 	private <T> T createInstagramObject(Verbs verbs, Class<T> clazz, String methodName, Map<String, String> params)
-			throws InstagramException {
-		Response response = getApiResponse(verbs, methodName, params);
+        throws InstagramException {
+            Response response;
+            try {
+                response = getApiResponse(verbs, methodName, params);
+            } catch (IOException e) {
+                throw new InstagramException("IOException while retrieving data", e);
+            }
 
-		T object = createObjectFromResponse(clazz, response.getBody());
+            if (response.getCode() >= 200 && response.getCode() < 300) {
+                T object = createObjectFromResponse(clazz, response.getBody());
 
-		return object;
-	}
+                return object;
+            }
+
+            throw handleInstagramError(response);
+        }
+
+    private InstagramException handleInstagramError(Response response) throws InstagramException {
+        if (response.getCode() == 400) {
+            Gson gson = new Gson();
+            final InstagramErrorResponse error;
+            try {
+                error = gson.fromJson(response.getBody(), InstagramErrorResponse.class);
+            } catch (JsonSyntaxException e) {
+                throw new InstagramException("Failed to decode error response " + response.getBody(), e);
+            }
+            error.throwException();
+        }
+        throw new InstagramException("Unknown error response code: " + response.getCode() + " " + response.getBody());
+    }
 
 	/**
 	 * Get response from Instagram.
@@ -523,7 +548,7 @@ public class Instagram {
 	 * @param params parameters which would be sent with the request.
 	 * @return Response object.
 	 */
-	private Response getApiResponse(Verbs verb, String methodName, Map<String, String> params) {
+	private Response getApiResponse(Verbs verb, String methodName, Map<String, String> params) throws IOException {
 		Response response = null;
 		String apiResourceUrl = Constants.API_URL + methodName;
 		OAuthRequest request = new OAuthRequest(verb, apiResourceUrl);

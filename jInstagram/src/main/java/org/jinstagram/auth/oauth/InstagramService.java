@@ -6,7 +6,10 @@ import org.jinstagram.auth.model.OAuthConstants;
 import org.jinstagram.auth.model.OAuthRequest;
 import org.jinstagram.auth.model.Token;
 import org.jinstagram.auth.model.Verifier;
+import org.jinstagram.auth.exceptions.OAuthException;
 import org.jinstagram.http.Response;
+
+import java.io.IOException;
 
 public class InstagramService {
 	private static final String VERSION = "1.0";
@@ -48,7 +51,12 @@ public class InstagramService {
 			request.addBodyParameter(OAuthConstants.DISPLAY, config.getDisplay());
 		}
 
-		Response response = request.send();
+        Response response;
+        try {
+            response = request.send();
+        } catch (IOException e) {
+            throw new OAuthException("Could not get access token", e);
+        }
 
 		return api.getAccessTokenExtractor().extract(response.getBody());
 	}
