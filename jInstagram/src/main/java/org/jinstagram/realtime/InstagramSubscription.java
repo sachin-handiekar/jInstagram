@@ -9,6 +9,8 @@ import org.jinstagram.utils.Preconditions;
 
 import com.google.gson.Gson;
 
+import java.io.IOException;
+
 public class InstagramSubscription {
 	private String aspect;
 
@@ -104,7 +106,12 @@ public class InstagramSubscription {
 		request.addBodyParameter(Constants.VERIFY_TOKEN, this.verifyToken);
 		request.addBodyParameter(Constants.CALLBACK_URL, callback);
 
-		Response response = request.send();
+        Response response;
+        try {
+            response = request.send();
+        } catch (IOException e) {
+            throw new InstagramException("Failed to create subscription", e);
+        }
 
 		SubscriptionResponse subscriptionResponse = getSubscriptionResponse(response.getBody());
 		return subscriptionResponse;
@@ -126,7 +133,7 @@ public class InstagramSubscription {
 
 
 
-	public void deleteAllSubscription() {
+	public void deleteAllSubscription() throws InstagramException {
 
 		OAuthRequest request = new OAuthRequest(Verbs.DELETE, Constants.SUBSCRIPTION_ENDPOINT);
 
@@ -135,20 +142,47 @@ public class InstagramSubscription {
 		request.addQuerystringParameter(Constants.CLIENT_SECRET, this.clientSecret);
 		request.addQuerystringParameter("object", "all");
 
-		Response response = request.send();
-		System.out.println(response.getBody());
-
+        Response response;
+        try {
+            response = request.send();
+        } catch (IOException e) {
+            throw new InstagramException("Failed to delete all subscriptions", e);
+        }
 	}
 
-	public void getSubscriptionList() {
+	public void getSubscriptionList() throws InstagramException {
 		OAuthRequest request = new OAuthRequest(Verbs.GET, Constants.SUBSCRIPTION_ENDPOINT);
 
 		// Add the oauth parameter in the body
 		request.addQuerystringParameter(Constants.CLIENT_ID, this.clientId);
 		request.addQuerystringParameter(Constants.CLIENT_SECRET, this.clientSecret);
 
-		Response response = request.send();
-		System.out.println(response.getBody());
+        Response response;
+        try {
+            response = request.send();
+        } catch (IOException e) {
+            throw new InstagramException("Failed to get subscription list", e);
+        }
 	}
+
+    @Override
+    public String toString() {
+        StringBuilder builder = new StringBuilder();
+        builder.append("InstagramSubscription [");
+        if (aspect != null)
+            builder.append("aspect=").append(aspect).append(", ");
+        if (callback != null)
+            builder.append("callback=").append(callback).append(", ");
+        if (clientId != null)
+            builder.append("clientId=").append(clientId).append(", ");
+        if (clientSecret != null)
+            builder.append("clientSecret=").append(clientSecret).append(", ");
+        if (subscriptionType != null)
+            builder.append("subscriptionType=").append(subscriptionType).append(", ");
+        if (verifyToken != null)
+            builder.append("verifyToken=").append(verifyToken);
+        builder.append("]");
+        return builder.toString();
+    }
 
 }

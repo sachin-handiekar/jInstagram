@@ -21,8 +21,6 @@ import java.util.concurrent.TimeUnit;
 public class Request {
 	private static final String CONTENT_LENGTH = "Content-Length";
 
-	private byte[] bytePayload = null;
-
 	private String payload = null;
 
 	private boolean connectionKeepAlive = false;
@@ -61,15 +59,10 @@ public class Request {
 	 * @return Http Response
 	 * @throws RuntimeException if the connection cannot be created.
 	 */
-	public Response send() {
-		try {
-			createConnection();
+	public Response send() throws IOException {
+        createConnection();
 
-			return doSend();
-		}
-		catch (IOException ioe) {
-			throw new OAuthException("Problems while creating connection", ioe);
-		}
+        return doSend();
 	}
 
 	private void createConnection() throws IOException {
@@ -153,15 +146,6 @@ public class Request {
 	}
 
 	/**
-	 * Overloaded version for byte arrays
-	 * 
-	 * @param payload
-	 */
-	public void addPayload(byte[] payload) {
-		this.bytePayload = payload;
-	}
-
-	/**
 	 * Get a {@link Map} of the query string parameters.
 	 * 
 	 * @return a map containing the query string parameters
@@ -225,9 +209,6 @@ public class Request {
 	}
 
 	byte[] getByteBodyContents() {
-		if (bytePayload != null) {
-			return bytePayload;
-		}
 
 		String body = (payload != null) ? payload : URLUtils
 				.formURLEncodeMap(bodyParams);
@@ -303,8 +284,7 @@ public class Request {
 	/**
 	 * Sets wether the underlying Http Connection is persistent or not.
 	 * 
-	 * @see http
-	 * ://download.oracle.com/javase/1.5.0/docs/guide/net/http-keepalive.html
+	 * @see http://download.oracle.com/javase/1.5.0/docs/guide/net/http-keepalive.html
 	 * @param connectionKeepAlive
 	 */
 	public void setConnectionKeepAlive(boolean connectionKeepAlive) {
