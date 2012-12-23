@@ -3,12 +3,14 @@ package org.jinstagram;
 import com.google.gson.Gson;
 
 import com.google.gson.JsonSyntaxException;
+import org.apache.commons.lang3.StringUtils;
 import org.jinstagram.auth.model.OAuthConstants;
 import org.jinstagram.auth.model.OAuthRequest;
 import org.jinstagram.auth.model.Token;
 import org.jinstagram.entity.comments.MediaCommentResponse;
 import org.jinstagram.entity.comments.MediaCommentsFeed;
 import org.jinstagram.entity.common.InstagramErrorResponse;
+import org.jinstagram.entity.common.Pagination;
 import org.jinstagram.entity.likes.LikesFeed;
 import org.jinstagram.entity.locations.LocationInfo;
 import org.jinstagram.entity.locations.LocationSearchFeed;
@@ -30,6 +32,7 @@ import org.jinstagram.model.Relationship;
 import org.jinstagram.utils.Preconditions;
 
 import java.io.IOException;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -85,7 +88,7 @@ public class Instagram {
 		Preconditions.checkNotNull(userId, "UserId cannot be null.");
 
 		String apiMethod = String.format(Methods.USERS_WITH_ID, userId);
-		UserInfo userInfo = this.createInstagramObject(Verbs.GET, UserInfo.class, apiMethod, null);
+		UserInfo userInfo = createInstagramObject(Verbs.GET, UserInfo.class, apiMethod, null);
 
 		return userInfo;
 	}
@@ -98,10 +101,8 @@ public class Instagram {
 	 * @throws InstagramException if any error occurs.
 	 */
 	public UserInfo getCurrentUserInfo() throws InstagramException {
-
- 		UserInfo userInfo = this.createInstagramObject(Verbs.GET, UserInfo.class, Methods.USERS_SELF, null);
-
-		return userInfo;
+ 		UserInfo userInfo = createInstagramObject(Verbs.GET, UserInfo.class, Methods.USERS_SELF, null);
+ 		return userInfo;
 	}
 
 	/**
@@ -111,10 +112,37 @@ public class Instagram {
 	 * @throws InstagramException if any error occurs.
 	 */
 	public MediaFeed getUserFeeds() throws InstagramException {
-		MediaFeed userFeed = this.createInstagramObject(Verbs.GET, MediaFeed.class, Methods.USERS_SELF_FEED, null);
-
-		return userFeed;
+		MediaFeed userFeed = createInstagramObject(Verbs.GET, MediaFeed.class, Methods.USERS_SELF_FEED, null);
+        return userFeed;
 	}
+
+     /**
+     * See the authenticated user's feed
+     *
+     * @param maxId
+     * @param minId
+     * @param count Count of media to return.
+     * @return a MediaFeed object.
+     * @throws InstagramException if any error occurs.
+     */
+    public MediaFeed getUserFeeds(long maxId, long minId, long count) throws InstagramException {
+        Map<String, String> params = new HashMap<String, String>();
+
+        if(maxId != 0) {
+            params.put(QueryParam.MAX_ID,String.valueOf(maxId));
+        }
+
+        if(minId != 0) {
+            params.put(QueryParam.MIN_ID,String.valueOf(minId));
+        }
+
+        if(count != 0) {
+            params.put(QueryParam.COUNT,String.valueOf(count));
+        }
+
+        MediaFeed userFeed = createInstagramObject(Verbs.GET, MediaFeed.class, Methods.USERS_SELF_FEED, params);
+        return userFeed;
+    }
 
 	/**
 	 * Get the most recent media published by a user.
@@ -127,10 +155,56 @@ public class Instagram {
 		Preconditions.checkNotNull(userId, "UserId cannot be null.");
 
 		String methodName = String.format(Methods.USERS_RECENT_MEDIA, userId);
-		MediaFeed recentMediaFeed = this.createInstagramObject(Verbs.GET, MediaFeed.class, methodName, null);
+		MediaFeed recentMediaFeed = createInstagramObject(Verbs.GET, MediaFeed.class, methodName, null);
 
 		return recentMediaFeed;
 	}
+
+    /**
+     * Get the most recent media published by a user.
+     *
+     * @param userId userId of the User.
+     * @return a MediaFeed object.
+     * @throws InstagramException if any error occurs
+     */
+    public MediaFeed getRecentMediaFeed(long userId, int count, int minId, int maxId, Date maxTimeStamp, Date minTimeStamp) throws InstagramException {
+        Preconditions.checkNotNull(userId, "UserId cannot be null.");
+        Map<String, String> params = new HashMap<String, String>();
+
+        if(maxId != 0) {
+            params.put(QueryParam.MAX_ID,String.valueOf(maxId));
+        }
+
+        if(minId != 0) {
+            params.put(QueryParam.MIN_ID,String.valueOf(minId));
+        }
+
+        if(count != 0) {
+            params.put(QueryParam.COUNT,String.valueOf(count));
+        }
+
+        if(maxTimeStamp != null) {
+            params.put(QueryParam.MAX_TIMESTAMP, String.valueOf(maxTimeStamp.getTime()));
+        }
+
+        if(minTimeStamp != null) {
+            params.put(QueryParam.MIN_TIMESTAMP, String.valueOf(minTimeStamp.getTime()));
+        }
+
+        String methodName = String.format(Methods.USERS_RECENT_MEDIA, userId);
+        MediaFeed recentMediaFeed = createInstagramObject(Verbs.GET, MediaFeed.class, methodName, params);
+
+        return recentMediaFeed;
+    }
+
+    /**
+     * Get the next page of recent media objects from a previously executed request
+     * @param pagination
+     * @throws InstagramException
+     */
+    public MediaFeed getRecentMediaNextPage(Pagination pagination) throws InstagramException {
+        return createInstagramObject(Verbs.GET, MediaFeed.class, StringUtils.removeStart(pagination.getNextUrl(), Constants.API_URL), null);
+    }
 
 	/**
 	 * Get the authenticated user's list of media they've liked.
@@ -139,11 +213,34 @@ public class Instagram {
 	 * @throws InstagramException if any error occurs.
 	 */
 	public MediaFeed getUserLikedMediaFeed() throws InstagramException {
-		MediaFeed userLikedMedia = this.createInstagramObject(Verbs.GET, MediaFeed.class,
+		MediaFeed userLikedMedia = createInstagramObject(Verbs.GET, MediaFeed.class,
 				Methods.USERS_SELF_LIKED_MEDIA, null);
 
 		return userLikedMedia;
 	}
+
+    /**
+     * Get the authenticated user's list of media they've liked.
+     *
+     * @return a MediaFeed object.
+     * @throws InstagramException if any error occurs.
+     */
+    public MediaFeed getUserLikedMediaFeed(long maxLikeId, int count) throws InstagramException {
+        Map<String, String> params = new HashMap<String, String>();
+
+        if(maxLikeId > 0) {
+            params.put(QueryParam.MAX_LIKE_ID, String.valueOf(maxLikeId));
+        }
+
+        if(count > 0) {
+            params.put(QueryParam.COUNT, String.valueOf(count));
+        }
+
+        MediaFeed userLikedMedia = createInstagramObject(Verbs.GET, MediaFeed.class,
+                Methods.USERS_SELF_LIKED_MEDIA, params);
+
+        return userLikedMedia;
+    }
 
 	/**
 	 * Search for a user by name.
@@ -158,13 +255,36 @@ public class Instagram {
 		Map<String, String> params = new HashMap<String, String>();
 		params.put(QueryParam.SEARCH_QUERY, query);
 
-		UserFeed userFeed = this.createInstagramObject(Verbs.GET, UserFeed.class, Methods.USERS_SEARCH, params);
+		UserFeed userFeed = createInstagramObject(Verbs.GET, UserFeed.class, Methods.USERS_SEARCH, params);
 
 		return userFeed;
 	}
 
-	/**
-	 * Get the list of users this user follows.
+    /**
+     * Search for a user by name.
+     *
+     * @param query A query string.
+     * @return a UserFeed object.
+     * @throws InstagramException if any error occurs.
+     */
+    public UserFeed searchUser(String query, int count) throws InstagramException {
+        Preconditions.checkNotNull(query, "search query cannot be null.");
+
+        Map<String, String> params = new HashMap<String, String>();
+        params.put(QueryParam.SEARCH_QUERY, query);
+
+        if(count > 0) {
+            params.put(QueryParam.COUNT, String.valueOf(count));
+        }
+
+        UserFeed userFeed = createInstagramObject(Verbs.GET, UserFeed.class, Methods.USERS_SEARCH, params);
+
+        return userFeed;
+    }
+
+
+    /**
+	 * Get the list of 'users' the authenticated user follows.
 	 *
 	 * @param userId userId of the User.
 	 * @return a UserFeed object.
@@ -174,13 +294,13 @@ public class Instagram {
 		Preconditions.checkNotNull(userId, "userId cannot be null.");
 
 		String apiMethod = String.format(Methods.USERS_ID_FOLLOWS, userId);
-		UserFeed userFeed = this.createInstagramObject(Verbs.GET, UserFeed.class, apiMethod, null);
+		UserFeed userFeed = createInstagramObject(Verbs.GET, UserFeed.class, apiMethod, null);
 
 		return userFeed;
 	}
 
 	/**
-	 * Get the list of users this user is followed by.
+	 * Get the list of 'users' the current authenticated user is followed by.
 	 *
 	 * @param userId userId of the User.
 	 * @return a UserFeed object.
@@ -190,7 +310,7 @@ public class Instagram {
 		Preconditions.checkNotNull(userId, "userId cannot be null.");
 
 		String apiMethod = String.format(Methods.USERS_ID_FOLLOWED_BY, userId);
-		UserFeed userFeed = this.createInstagramObject(Verbs.GET, UserFeed.class, apiMethod, null);
+		UserFeed userFeed = createInstagramObject(Verbs.GET, UserFeed.class, apiMethod, null);
 
 		return userFeed;
 	}
@@ -202,8 +322,7 @@ public class Instagram {
 	 * @throws InstagramException if any error occurs.
 	 */
 	public UserFeed getUserRequestedBy() throws InstagramException {
-		UserFeed userFeed = this
-				.createInstagramObject(Verbs.GET, UserFeed.class, Methods.USERS_SELF_REQUESTED_BY, null);
+		UserFeed userFeed = createInstagramObject(Verbs.GET, UserFeed.class, Methods.USERS_SELF_REQUESTED_BY, null);
 
 		return userFeed;
 	}
@@ -220,7 +339,7 @@ public class Instagram {
 		Preconditions.checkNotNull(userId, "userId cannot be null.");
 
 		String apiMethod = String.format(Methods.USERS_ID_RELATIONSHIP, userId);
-		RelationshipFeed feed = this.createInstagramObject(Verbs.GET, RelationshipFeed.class, apiMethod, null);
+		RelationshipFeed feed = createInstagramObject(Verbs.GET, RelationshipFeed.class, apiMethod, null);
 
 		return feed;
 	}
@@ -242,7 +361,7 @@ public class Instagram {
 
 		params.put(QueryParam.ACTION, relationship.toString());
 
-		RelationshipFeed feed = this.createInstagramObject(Verbs.POST, RelationshipFeed.class, apiMethod, params);
+		RelationshipFeed feed = createInstagramObject(Verbs.POST, RelationshipFeed.class, apiMethod, params);
 
 		return feed;
 	}
@@ -258,7 +377,7 @@ public class Instagram {
 		Preconditions.checkNotNull(mediaId, "mediaId cannot be null.");
 
 		String apiMethod = String.format(Methods.MEDIA_BY_ID, mediaId);
-		MediaInfoFeed feed = this.createInstagramObject(Verbs.GET, MediaInfoFeed.class, apiMethod, null);
+		MediaInfoFeed feed = createInstagramObject(Verbs.GET, MediaInfoFeed.class, apiMethod, null);
 
 		return feed;
 	}
@@ -281,6 +400,36 @@ public class Instagram {
 
 		return mediaFeed;
 	}
+
+    /**
+     * Search for media in a given area.
+     *
+     * @param latitude Latitude of the center search coordinate.
+     * @param longitude Longitude of the center search coordinate.
+     * @return a MediaFeed object.
+     * @throws InstagramException if any error occurs
+     */
+    public MediaFeed searchMedia(double latitude, double longitude, Date maxTimeStamp, Date minTimeStamp, int distance) throws InstagramException {
+        Map<String, String> params = new HashMap<String, String>();
+
+        params.put(QueryParam.LATITUDE, Double.toString(latitude));
+        params.put(QueryParam.LONGITUDE, Double.toString(longitude));
+
+        if(maxTimeStamp != null) {
+            params.put(QueryParam.MAX_TIMESTAMP, String.valueOf(maxTimeStamp.getTime()));
+        }
+
+        if(minTimeStamp != null) {
+            params.put(QueryParam.MIN_TIMESTAMP, String.valueOf(minTimeStamp.getTime()));
+        }
+
+        params.put(QueryParam.DISTANCE, String.valueOf(distance));
+
+
+        MediaFeed mediaFeed = createInstagramObject(Verbs.GET, MediaFeed.class, Methods.MEDIA_SEARCH, params);
+
+        return mediaFeed;
+    }
 
 	/**
 	 * Get a list of what media is most popular at the moment.
@@ -414,6 +563,28 @@ public class Instagram {
 		return feed;
 	}
 
+    /**
+     * Get a list of recently tagged media.
+     *
+     * @param tagName name of the tag.
+     * @return a TagMediaFeed object.
+     * @throws InstagramException if any error occurs.
+     */
+    public TagMediaFeed getRecentMediaTags(String tagName, int minId, int maxId) throws InstagramException {
+        Map<String, String> params = new HashMap<String, String>();
+
+        if(minId > 0)
+        params.put(QueryParam.MIN_ID, String.valueOf(minId));
+
+        if(maxId > 0)
+        params.put(QueryParam.MAX_ID, String.valueOf(maxId));
+
+        String apiMethod = String.format(Methods.TAGS_RECENT_MEDIA, tagName);
+        TagMediaFeed feed = createInstagramObject(Verbs.GET, TagMediaFeed.class, apiMethod, null);
+
+        return feed;
+    }
+
 	/**
 	 * Search for tags by name - results are ordered first as an exact match,
 	 * then by popularity.
@@ -460,6 +631,41 @@ public class Instagram {
 		return feed;
 	}
 
+    /**
+     * Get a list of recent media objects from a given location.
+     *
+     * @param locationId a id of the Media.
+     * @param minId Return media before this min_id.
+     * @param maxId Return media before this max_id.
+     * @param maxTimeStamp Return media before this max date.
+     * @param minTimeStamp Return media after this min date.
+     * @return a MediaFeed object.
+     * @throws InstagramException if any error occurs.
+     */
+    public MediaFeed getRecentMediaByLocation(long locationId, int minId, int maxId, Date maxTimeStamp, Date minTimeStamp) throws InstagramException {
+        Map<String, String> params = new HashMap<String, String>();
+
+        if(maxTimeStamp != null) {
+            params.put(QueryParam.MAX_TIMESTAMP, String.valueOf(maxTimeStamp.getTime()));
+        }
+
+        if(minTimeStamp != null) {
+            params.put(QueryParam.MIN_TIMESTAMP, String.valueOf(minTimeStamp.getTime()));
+        }
+
+        if(minId > 0)
+            params.put(QueryParam.MIN_ID, String.valueOf(minId));
+
+        if(maxId > 0)
+            params.put(QueryParam.MAX_ID, String.valueOf(maxId));
+
+
+        String apiMethod = String.format(Methods.LOCATIONS_RECENT_MEDIA_BY_ID, locationId);
+        MediaFeed feed = createInstagramObject(Verbs.GET, MediaFeed.class, apiMethod, params);
+
+        return feed;
+    }
+
 	/**
 	 * Search for a location by geographic coordinate.
 	 *
@@ -479,6 +685,29 @@ public class Instagram {
 
 		return feed;
 	}
+
+
+    /**
+     * Search for a location by geographic coordinate.
+     *
+     * @param latitude Latitude of the center search coordinate.
+     * @param longitude Longitude of the center search coordinate.
+     * @param distance Default is 1000m (distance=1000), max distance is 5000.
+     * @return a LocationSearchFeed object.
+     * @throws InstagramException if any error occurs.
+     */
+    public LocationSearchFeed searchLocation(double latitude, double longitude, int distance) throws InstagramException {
+        Map<String, String> params = new HashMap<String, String>();
+
+        params.put(QueryParam.LATITUDE, Double.toString(latitude));
+        params.put(QueryParam.LONGITUDE, Double.toString(longitude));
+        params.put(QueryParam.DISTANCE, Integer.toString(distance));
+
+        LocationSearchFeed feed = createInstagramObject(Verbs.GET, LocationSearchFeed.class, Methods.LOCATIONS_SEARCH,
+                params);
+
+        return feed;
+    }
 
     /**
      * Search for a location by v2 Foursquare id.
@@ -501,7 +730,7 @@ public class Instagram {
 	/**
 	 * Create a instagram object based on class-name and response.
 	 *
-	 * @param verbs
+	 * @param verbs HTTP State
 	 * @param clazz
 	 * @param methodName
 	 * @param params
@@ -594,12 +823,12 @@ public class Instagram {
 	 * @return a object of type <T>
 	 * @throws InstagramException if any error occurs.
 	 */
-	private <T> T createObjectFromResponse(Class<T> clazz, final String response) throws InstagramException {
-		Gson gson = new Gson();
-		T object = null;
+        private <T> T createObjectFromResponse(Class<T> clazz, final String response) throws InstagramException {
+            Gson gson = new Gson();
+            T object = null;
 
-		try {
-			object = clazz.newInstance();
+            try {
+                object = clazz.newInstance();
 			object = gson.fromJson(response, clazz);
 		}
 		catch (InstantiationException e) {

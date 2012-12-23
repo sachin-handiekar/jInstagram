@@ -1,6 +1,7 @@
 package org.jinstagram.entity.common;
 
 import com.google.gson.annotations.SerializedName;
+import org.apache.commons.lang3.StringUtils;
 
 public class Pagination {
 	@SerializedName("deprecation_warning")
@@ -104,6 +105,10 @@ public class Pagination {
 	public void setDepreciationWarning(String depreciationWarning) {
 		this.depreciationWarning = depreciationWarning;
 	}
+
+    public boolean hasNextPage() {
+        return !StringUtils.isBlank(nextUrl);
+    }
 
     @Override
     public String toString() {
