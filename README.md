@@ -1,5 +1,5 @@
 #jInstagram
-[![Build Status](https://travis-ci.org/sachin-handiekar/jInstagram.png?branch=master)](https://travis-ci.org/sachin-handiekar/jInstagram)
+[![Build Status](https://travis-ci.org/sachin-handiekar/jInstagram.png)](https://travis-ci.org/sachin-handiekar/jInstagram)
 
 A Java wrapper for the [Instagram API](http://instagram.com/developer/).
 
