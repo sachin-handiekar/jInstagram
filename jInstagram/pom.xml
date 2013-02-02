@@ -7,7 +7,7 @@
 	</parent>
 
 	<modelVersion>4.0.0</modelVersion>
-	<groupId>org.jinstagram</groupId>
+	<groupId>com.sachinhandiekar</groupId>
 	<artifactId>jInstagram</artifactId>
 	<name>jInstagram</name>
 	<version>1.0.1-SNAPSHOT</version>
