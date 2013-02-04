@@ -47,6 +47,15 @@ Instagram instagram = new Instagram(accessToken);
 
 ### Please see the [API Usage](https://github.com/sachin-handiekar/jInstagram/wiki/jInstagram-Usage) for more details.
 
+##Maven
+```xml
+<dependency>
+   <groupId>com.sachinhandiekar</groupId>
+   <artifactId>jInstagram</artifactId>
+   <version>1.0.1</version>
+</dependency>
+```
+
 ##Dependencies
 
 * Google GSON (http://code.google.com/p/google-gson/)
