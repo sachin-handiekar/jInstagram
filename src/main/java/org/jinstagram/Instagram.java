@@ -125,14 +125,14 @@ public class Instagram {
      * @return a MediaFeed object.
      * @throws InstagramException if any error occurs.
      */
-    public MediaFeed getUserFeeds(long maxId, long minId, long count) throws InstagramException {
+    public MediaFeed getUserFeeds(String maxId, String minId, long count) throws InstagramException {
         Map<String, String> params = new HashMap<String, String>();
 
-        if(maxId != 0) {
+        if(maxId != null) {
             params.put(QueryParam.MAX_ID,String.valueOf(maxId));
         }
 
-        if(minId != 0) {
+        if(minId != null) {
             params.put(QueryParam.MIN_ID,String.valueOf(minId));
         }
 
@@ -167,15 +167,15 @@ public class Instagram {
      * @return a MediaFeed object.
      * @throws InstagramException if any error occurs
      */
-    public MediaFeed getRecentMediaFeed(long userId, int count, int minId, int maxId, Date maxTimeStamp, Date minTimeStamp) throws InstagramException {
+    public MediaFeed getRecentMediaFeed(long userId, int count, String minId, String maxId, Date maxTimeStamp, Date minTimeStamp) throws InstagramException {
         Preconditions.checkNotNull(userId, "UserId cannot be null.");
         Map<String, String> params = new HashMap<String, String>();
 
-        if(maxId != 0) {
+        if(maxId != null) {
             params.put(QueryParam.MAX_ID,String.valueOf(maxId));
         }
 
-        if(minId != 0) {
+        if(minId != null) {
             params.put(QueryParam.MIN_ID,String.valueOf(minId));
         }
 
@@ -373,7 +373,7 @@ public class Instagram {
 	 * @return a mediaFeed object.
 	 * @throws InstagramException if any error occurs.
 	 */
-	public MediaInfoFeed getMediaInfo(long mediaId) throws InstagramException {
+	public MediaInfoFeed getMediaInfo(String mediaId) throws InstagramException {
 		Preconditions.checkNotNull(mediaId, "mediaId cannot be null.");
 
 		String apiMethod = String.format(Methods.MEDIA_BY_ID, mediaId);
@@ -450,7 +450,7 @@ public class Instagram {
 	 * @return a MediaCommentsFeed object.
 	 * @throws InstagramException if any error occurs.
 	 */
-	public MediaCommentsFeed getMediaComments(long mediaId) throws InstagramException {
+	public MediaCommentsFeed getMediaComments(String mediaId) throws InstagramException {
 		String apiMethod = String.format(Methods.MEDIA_COMMENTS, mediaId);
 		MediaCommentsFeed feed = createInstagramObject(Verbs.GET, MediaCommentsFeed.class, apiMethod, null);
 
@@ -466,7 +466,7 @@ public class Instagram {
 	 * @return a MediaCommentResponse feed.
 	 * @throws InstagramException if any error occurs.
 	 */
-	public MediaCommentResponse setMediaComments(long mediaId, String text) throws InstagramException {
+	public MediaCommentResponse setMediaComments(String mediaId, String text) throws InstagramException {
 		Map<String, String> params = new HashMap<String, String>();
 
 		params.put(QueryParam.TEXT, text);
@@ -486,7 +486,7 @@ public class Instagram {
 	 * @return a MediaCommentResponse feed.
 	 * @throws InstagramException if any error occurs.
 	 */
-	public MediaCommentResponse deleteMediaCommentById(long mediaId, long commentId) throws InstagramException {
+	public MediaCommentResponse deleteMediaCommentById(String mediaId, long commentId) throws InstagramException {
 		String apiMethod = String.format(Methods.DELETE_MEDIA_COMMENTS, mediaId, commentId);
 		MediaCommentResponse feed = createInstagramObject(Verbs.DELETE, MediaCommentResponse.class, apiMethod, null);
 
@@ -500,7 +500,7 @@ public class Instagram {
 	 * @return a LikesFeed object.
 	 * @throws InstagramException if any error occurs.
 	 */
-	public LikesFeed getUserLikes(long mediaId) throws InstagramException {
+	public LikesFeed getUserLikes(String mediaId) throws InstagramException {
 		String apiMethod = String.format(Methods.LIKES_BY_MEDIA_ID, mediaId);
 		LikesFeed feed = createInstagramObject(Verbs.GET, LikesFeed.class, apiMethod, null);
 
@@ -514,7 +514,7 @@ public class Instagram {
 	 * @return a LikesFeed object.
 	 * @throws InstagramException if any error occurs.
 	 */
-	public LikesFeed setUserLike(long mediaId) throws InstagramException {
+	public LikesFeed setUserLike(String mediaId) throws InstagramException {
 		String apiMethod = String.format(Methods.LIKES_BY_MEDIA_ID, mediaId);
 		LikesFeed feed = createInstagramObject(Verbs.POST, LikesFeed.class, apiMethod, null);
 
@@ -528,7 +528,7 @@ public class Instagram {
 	 * @return a LikesFeed object.
 	 * @throws InstagramException if any error occurs.
 	 */
-	public LikesFeed deleteUserLike(long mediaId) throws InstagramException {
+	public LikesFeed deleteUserLike(String mediaId) throws InstagramException {
 		String apiMethod = String.format(Methods.LIKES_BY_MEDIA_ID, mediaId);
 		LikesFeed feed = createInstagramObject(Verbs.DELETE, LikesFeed.class, apiMethod, null);
 
@@ -760,6 +760,7 @@ public class Instagram {
             Gson gson = new Gson();
             final InstagramErrorResponse error;
             try {
+                System.out.println(response.getBody());
                 error = gson.fromJson(response.getBody(), InstagramErrorResponse.class);
             } catch (JsonSyntaxException e) {
                 throw new InstagramException("Failed to decode error response " + response.getBody(), e);
