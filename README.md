@@ -17,7 +17,20 @@ InstagramService service =	new InstagramAuthService()
     							.callback("your_callback_url")     
     							.build();
 ```    							
- 
+
+[With Scope]
+
+Note : Multiple scopes can be provided with a space in between. For ex. ``` .scope("likes comments") ``` Please see [Instagram API](http://instagram.com/developer/authentication/#scope) for more details regarding the supported scopes.
+
+```java
+InstagramService service = new InstagramAuthService()
+    							.apiKey("your_client_id")
+    							.apiSecret("your_client_secret")
+    							.callback("your_callback_url") 
+    							.scope("comments")
+    							.build();
+``` 
+
 Note : An empty token can be define as follows -
 
 ```java
