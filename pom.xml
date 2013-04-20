@@ -36,6 +36,7 @@
 	<scm>
 		<connection>scm:git:git@github.com/sachin-handiekar/jInstagram.git</connection>
 		<developerConnection>scm:git:git@github.com:sachin-handiekar/jInstagram.git</developerConnection>
+		<url>git@github.com:sachin-handiekar/jInstagram.git</url>
 	</scm>
 
 	<dependencies>
