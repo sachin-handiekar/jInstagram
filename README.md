@@ -60,6 +60,13 @@ Instagram instagram = new Instagram(accessToken);
 
 ### Please see the [API Usage](https://github.com/sachin-handiekar/jInstagram/wiki/jInstagram-Usage) for more details.
 
+##Instagram Embedding Endpoints
+
+```java
+InstagramOembed oembed = new InstagramOembed();
+OembedInformation info = oembed.getOembedInformation("http://instagram.com/p/BUG/");
+```
+
 ##Maven
 ```xml
 <dependency>
