@@ -145,4 +145,10 @@ public class Methods {
 	 * Get basic information about a user.
 	 */
 	public static final String USERS_WITH_ID = "/users/%s";
+
+    /**
+     * Given a short link, returns information about the media associated with
+     * that link.
+     */
+    public static final String OEMBED_INFORMATION = "/oembed?url=%s";
 }
