@@ -580,7 +580,7 @@ public class Instagram {
         params.put(QueryParam.MAX_ID, String.valueOf(maxId));
 
         String apiMethod = String.format(Methods.TAGS_RECENT_MEDIA, tagName);
-        TagMediaFeed feed = createInstagramObject(Verbs.GET, TagMediaFeed.class, apiMethod, null);
+        TagMediaFeed feed = createInstagramObject(Verbs.GET, TagMediaFeed.class, apiMethod, params);
 
         return feed;
     }
