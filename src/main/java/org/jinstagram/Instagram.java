@@ -205,6 +205,25 @@ public class Instagram {
     public MediaFeed getRecentMediaNextPage(Pagination pagination) throws InstagramException {
         return createInstagramObject(Verbs.GET, MediaFeed.class, StringUtils.removeStart(pagination.getNextUrl(), Constants.API_URL), null);
     }
+    
+	    /**
+     * Get the next page of user feed objects from a previously executed request
+     * @param pagination
+     * @throws InstagramException
+     */
+    public UserFeed getUserFeedInfoNextPage(Pagination pagination) throws InstagramException {
+    	return createInstagramObject(Verbs.GET, UserFeed.class, StringUtils.removeStart(pagination.getNextUrl(), Constants.API_URL), null);
+    }
+    
+	    /**
+     * Get the next page of tagged media objects from a previously executed request
+     * @param pagination
+     * @throws InstagramException
+     */
+    public TagMediaFeed getTagMediaInfoNextPage(Pagination pagination) throws InstagramException {
+    	return createInstagramObject(Verbs.GET, TagMediaFeed.class, StringUtils.removeStart(pagination.getNextUrl(), Constants.API_URL), null);
+    }
+
 
 	/**
 	 * Get the authenticated user's list of media they've liked.
