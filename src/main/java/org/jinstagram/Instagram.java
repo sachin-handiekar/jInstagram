@@ -1,8 +1,10 @@
 package org.jinstagram;
 
-import com.google.gson.Gson;
+import java.io.IOException;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
 
-import com.google.gson.JsonSyntaxException;
 import org.apache.commons.lang3.StringUtils;
 import org.jinstagram.auth.model.OAuthConstants;
 import org.jinstagram.auth.model.OAuthRequest;
@@ -25,16 +27,13 @@ import org.jinstagram.entity.users.feed.UserFeed;
 import org.jinstagram.exceptions.InstagramException;
 import org.jinstagram.http.Response;
 import org.jinstagram.http.Verbs;
-import org.jinstagram.model.Constants;
 import org.jinstagram.model.Methods;
 import org.jinstagram.model.QueryParam;
 import org.jinstagram.model.Relationship;
 import org.jinstagram.utils.Preconditions;
 
-import java.io.IOException;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.Map;
+import com.google.gson.Gson;
+import com.google.gson.JsonSyntaxException;
 
 /**
  * Instagram
@@ -45,10 +44,18 @@ import java.util.Map;
 public class Instagram {
 	private Token accessToken;
     private final String clientId;
+    private final InstagramConfig config;
 
 	public Instagram(Token accessToken) {
 		this.accessToken = accessToken;
 		clientId = null;
+		config = new InstagramConfig();
+	}
+	
+	public Instagram(Token accessToken, InstagramConfig config) {
+		this.accessToken = accessToken;
+		clientId = null;
+		this.config = config;
 	}
 
 	/**
@@ -58,9 +65,19 @@ public class Instagram {
 	public Instagram(String clientId) {
 	    this.accessToken = null;
 	    this.clientId = clientId;
+	    config = new InstagramConfig();
+	}
+	
+	public Instagram(String clientId, InstagramConfig config) {
+	    this.accessToken = null;
+	    this.clientId = clientId;
+	    this.config = config;
 	}
 
-
+	public InstagramConfig getInstagramConfig() {
+		return config;
+	}
+	
 	/**
 	 * @return the accessToken
 	 */
@@ -203,7 +220,7 @@ public class Instagram {
      * @throws InstagramException
      */
     public MediaFeed getRecentMediaNextPage(Pagination pagination) throws InstagramException {
-        return createInstagramObject(Verbs.GET, MediaFeed.class, StringUtils.removeStart(pagination.getNextUrl(), Constants.API_URL), null);
+        return createInstagramObject(Verbs.GET, MediaFeed.class, StringUtils.removeStart(pagination.getNextUrl(), config.getApiURL()), null);
     }
     
 	    /**
@@ -212,7 +229,7 @@ public class Instagram {
      * @throws InstagramException
      */
     public UserFeed getUserFeedInfoNextPage(Pagination pagination) throws InstagramException {
-    	return createInstagramObject(Verbs.GET, UserFeed.class, StringUtils.removeStart(pagination.getNextUrl(), Constants.API_URL), null);
+    	return createInstagramObject(Verbs.GET, UserFeed.class, StringUtils.removeStart(pagination.getNextUrl(), config.getApiURL()), null);
     }
     
 	    /**
@@ -221,7 +238,7 @@ public class Instagram {
      * @throws InstagramException
      */
     public TagMediaFeed getTagMediaInfoNextPage(Pagination pagination) throws InstagramException {
-    	return createInstagramObject(Verbs.GET, TagMediaFeed.class, StringUtils.removeStart(pagination.getNextUrl(), Constants.API_URL), null);
+    	return createInstagramObject(Verbs.GET, TagMediaFeed.class, StringUtils.removeStart(pagination.getNextUrl(), config.getApiURL()), null);
     }
 
 
@@ -231,7 +248,7 @@ public class Instagram {
 	 * @return a MediaFeed object.
 	 * @throws InstagramException if any error occurs.
 	 */
-	public MediaFeed getUserLikedMediaFeed() throws InstagramException {
+    public MediaFeed getUserLikedMediaFeed() throws InstagramException {
 		MediaFeed userLikedMedia = createInstagramObject(Verbs.GET, MediaFeed.class,
 				Methods.USERS_SELF_LIKED_MEDIA, null);
 
@@ -799,7 +816,7 @@ public class Instagram {
 	 */
 	private Response getApiResponse(Verbs verb, String methodName, Map<String, String> params) throws IOException {
 		Response response = null;
-		String apiResourceUrl = Constants.API_URL + methodName;
+		String apiResourceUrl = config.getApiURL() + methodName;
 		OAuthRequest request = new OAuthRequest(verb, apiResourceUrl);
 
 		// Additional parameters in url
