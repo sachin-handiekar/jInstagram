@@ -792,16 +792,21 @@ public class Instagram {
         }
 
     private InstagramException handleInstagramError(Response response) throws InstagramException {
-        if (response.getCode() == 400) {
-            Gson gson = new Gson();
-            final InstagramErrorResponse error;
-            try {
-                System.out.println(response.getBody());
+        Gson gson = new Gson();
+        final InstagramErrorResponse error;
+        try {
+            if (response.getCode() == 400) {
                 error = gson.fromJson(response.getBody(), InstagramErrorResponse.class);
-            } catch (JsonSyntaxException e) {
-                throw new InstagramException("Failed to decode error response " + response.getBody(), e);
+                error.throwException();
             }
-            error.throwException();
+            //sending too many requests too quickly;
+            //limited to 5000 requests per hour per access_token or client_id overall.  (according to spec)
+            else if (response.getCode() == 503) {
+                error = gson.fromJson(response.getBody(), InstagramErrorResponse.class);
+                error.throwException();
+            }
+        } catch (JsonSyntaxException e) {
+            throw new InstagramException("Failed to decode error response " + response.getBody(), e);
         }
         throw new InstagramException("Unknown error response code: " + response.getCode() + " " + response.getBody());
     }
