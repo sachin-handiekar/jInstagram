@@ -606,13 +606,13 @@ public class Instagram {
      * @return a TagMediaFeed object.
      * @throws InstagramException if any error occurs.
      */
-    public TagMediaFeed getRecentMediaTags(String tagName, int minId, int maxId) throws InstagramException {
+    public TagMediaFeed getRecentMediaTags(String tagName, String minId, String maxId) throws InstagramException {
         Map<String, String> params = new HashMap<String, String>();
 
-        if(minId > 0)
+        if(!StringUtils.isEmpty(minId))
         params.put(QueryParam.MIN_ID, String.valueOf(minId));
 
-        if(maxId > 0)
+        if(!StringUtils.isEmpty(maxId))
         params.put(QueryParam.MAX_ID, String.valueOf(maxId));
 
         String apiMethod = String.format(Methods.TAGS_RECENT_MEDIA, tagName);
