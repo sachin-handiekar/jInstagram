@@ -1,6 +1,6 @@
 package org.jinstagram.entity.users.feed;
 
-import com.google.gson.annotations.SerializedName;
+import java.util.List;
 
 import org.jinstagram.entity.common.Caption;
 import org.jinstagram.entity.common.Comments;
@@ -8,8 +8,9 @@ import org.jinstagram.entity.common.Images;
 import org.jinstagram.entity.common.Likes;
 import org.jinstagram.entity.common.Location;
 import org.jinstagram.entity.common.User;
+import org.jinstagram.entity.common.Videos;
 
-import java.util.List;
+import com.google.gson.annotations.SerializedName;
 
 public class MediaFeedData {
 	@SerializedName("caption")
@@ -29,6 +30,9 @@ public class MediaFeedData {
 
 	@SerializedName("images")
 	private Images images;
+	
+	@SerializedName("videos")
+	private Videos videos;
 
 	@SerializedName("likes")
 	private Likes likes;
@@ -42,6 +46,9 @@ public class MediaFeedData {
 	@SerializedName("tags")
 	private List<String> tags;
 
+	public static final String TYPE_IMAGE = "image";
+	public static final String TYPE_VIDEO = "video";
+	
 	@SerializedName("type")
 	private String type;
 
@@ -214,6 +221,15 @@ public class MediaFeedData {
 	public void setType(String type) {
 		this.type = type;
 	}
+
+	public Videos getVideos() {
+		return videos;
+	}
+
+	public void setVideos(Videos videos) {
+		this.videos = videos;
+	}
+
 
     @Override
     public String toString() {
