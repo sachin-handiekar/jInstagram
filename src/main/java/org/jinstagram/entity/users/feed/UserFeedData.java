@@ -3,12 +3,14 @@ package org.jinstagram.entity.users.feed;
 import com.google.gson.annotations.SerializedName;
 
 public class UserFeedData {
+	@Deprecated
 	@SerializedName("first_name")
 	private String firstName;
 
 	@SerializedName("id")
 	private long id;
 
+	@Deprecated
 	@SerializedName("last_name")
 	private String lastName;
 
@@ -17,6 +19,17 @@ public class UserFeedData {
 
 	@SerializedName("username")
 	private String userName;
+	
+	@SerializedName("full_name")
+	private String fullName;
+
+	public String getFullName() {
+		return fullName;
+	}
+
+	public void setFullName(String fullName) {
+		this.fullName = fullName;
+	}
 
 	/**
 	 * @return the userName
