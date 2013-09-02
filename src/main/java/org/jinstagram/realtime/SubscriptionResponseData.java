@@ -13,7 +13,7 @@ public class SubscriptionResponseData {
 	@SerializedName("aspect")
 	private String aspect;
 
-	@SerializedName("callbackUrl")
+	@SerializedName("callback_url")
 	private String callbackUrl;
 
 	@SerializedName("type")
