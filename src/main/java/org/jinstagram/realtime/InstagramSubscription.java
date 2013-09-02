@@ -131,7 +131,18 @@ public class InstagramSubscription {
 	        return response;
 	    }
 
+	  private SubscriptionsListResponse getSubscriptionsListResponse(String jsonBody) throws InstagramException {
+          Gson gson = new Gson();
+          SubscriptionsListResponse response = null;
 
+          try {
+              response = gson.fromJson(jsonBody, SubscriptionsListResponse.class);
+          } catch (Exception e) {
+              throw new InstagramException("Error parsing json to object type ");
+          }
+
+          return response;
+      }
 
 	public void deleteAllSubscription() throws InstagramException {
 
@@ -150,7 +161,7 @@ public class InstagramSubscription {
         }
 	}
 
-	public void getSubscriptionList() throws InstagramException {
+	public SubscriptionsListResponse getSubscriptionList() throws InstagramException {
 		OAuthRequest request = new OAuthRequest(Verbs.GET, Constants.SUBSCRIPTION_ENDPOINT);
 
 		// Add the oauth parameter in the body
@@ -160,6 +171,7 @@ public class InstagramSubscription {
         Response response;
         try {
             response = request.send();
+            return getSubscriptionsListResponse(response.getBody());
         } catch (IOException e) {
             throw new InstagramException("Failed to get subscription list", e);
         }
