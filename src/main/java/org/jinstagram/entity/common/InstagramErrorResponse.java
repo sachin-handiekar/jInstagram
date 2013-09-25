@@ -8,17 +8,12 @@ import com.google.gson.annotations.SerializedName;
 
 public class InstagramErrorResponse {
 
-    private int code;
-
-    @SerializedName("error_type")
-    private String errorType;
-
-    @SerializedName("error_message")
-    private String errorMessage;
+    @SerializedName("meta")
+    private Meta errorMeta;
 
     public void throwException() throws InstagramException {
-        String joinedMessage = errorType + ": " + errorMessage;
-        switch (code) {
+        String joinedMessage = errorMeta.getErrorType() + ": " + errorMeta.getErrorMessage();
+        switch (errorMeta.getCode()) {
         case 400:
             throw new InstagramBadRequestException(joinedMessage);
         case 420:
