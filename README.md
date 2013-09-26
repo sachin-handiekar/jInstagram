@@ -18,9 +18,11 @@ InstagramService service =	new InstagramAuthService()
     							.build();
 ```    							
 
-[With Scope]
+__[With Scope]__
 
 Note : Multiple scopes can be provided with a space in between. For ex. ``` .scope("likes comments") ``` Please see [Instagram API](http://instagram.com/developer/authentication/#scope) for more details regarding the supported scopes.
+
+__Commenting access__ - You need to register your clientId and Application Name on [http://bit.ly/instacomments](http://bit.ly/instacomments), to get access to commenting.
 
 ```java
 InstagramService service = new InstagramAuthService()
