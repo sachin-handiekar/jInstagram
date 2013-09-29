@@ -22,6 +22,8 @@ public class InstagramSubscription {
 
 	private SubscriptionType subscriptionType;
 
+    private String objectId;
+
 	private String verifyToken;
 
 	/**
@@ -74,6 +76,18 @@ public class InstagramSubscription {
 		return this;
 	}
 
+    /**
+     * Configures the target id for the subscription, if any. In case of a a real-time tag update, this
+     * defines the target tag to use.
+     *
+     * @param objectId the object to target for this real-time subscription
+     * @return the {@link InstagramSubscription} instance for method chaining
+     */
+    public InstagramSubscription objectId(String objectId) {
+        this.objectId = objectId;
+        return this;
+    }
+
 	public InstagramSubscription verifyToken(String verifyToken) {
 		Preconditions.checkEmptyString(verifyToken, "Invalid 'verifyToken' key");
 
@@ -102,6 +116,7 @@ public class InstagramSubscription {
 		request.addBodyParameter(Constants.CLIENT_ID, this.clientId);
 		request.addBodyParameter(Constants.CLIENT_SECRET, this.clientSecret);
 		request.addBodyParameter(Constants.SUBSCRIPTION_TYPE, subscriptionType.toString());
+        request.addBodyParameter(Constants.OBJECT_ID, objectId);
 		request.addBodyParameter(Constants.ASPECT, "media");
 		request.addBodyParameter(Constants.VERIFY_TOKEN, this.verifyToken);
 		request.addBodyParameter(Constants.CALLBACK_URL, callback);
