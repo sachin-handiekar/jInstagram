@@ -14,44 +14,60 @@ import java.util.Map.Entry;
  */
 public class MapUtils {
 
-	/**
-	 * Sorts a Map
-	 * 
-	 * @param map unsorted map
-	 * @return sorted map
-	 */
-	public static final Map<String, String> sort(Map<String, String> map) {
-		Preconditions.checkNotNull(map, "Cannot sort a null object.");
+    /**
+     * Sorts a Map
+     *
+     * @param map unsorted map
+     * @return sorted map
+     */
+    public static Map<String, String> sort(Map<String, String> map) {
+        Preconditions.checkNotNull(map, "Cannot sort a null object.");
 
-		Map<String, String> sorted = new LinkedHashMap<String, String>();
+        Map<String, String> sorted = new LinkedHashMap<String, String>();
 
-		for (String key : getSortedKeys(map)) {
-			sorted.put(key, map.get(key));
-		}
+        for (String key : getSortedKeys(map)) {
+            sorted.put(key, map.get(key));
+        }
 
-		return sorted;
-	}
+        return sorted;
+    }
 
-	private static List<String> getSortedKeys(Map<String, String> map) {
-		List<String> keys = new ArrayList<String>(map.keySet());
+    private static List<String> getSortedKeys(Map<String, String> map) {
+        List<String> keys = new ArrayList<String>(map.keySet());
 
-		Collections.sort(keys);
+        Collections.sort(keys);
 
-		return keys;
-	}
+        return keys;
+    }
 
-	/**
-	 * Form-urlDecodes and appends all keys from the source {@link Map} to the
-	 * target {@link Map}
-	 * 
-	 * @param source Map from where the keys get copied and decoded
-	 * @param target Map where the decoded keys are copied to
-	 */
-	public static void decodeAndAppendEntries(Map<String, String> source,
-			Map<String, String> target) {
+    /**
+     * Form-urlDecodes and appends all keys from the source {@link Map} to the
+     * target {@link Map}
+     *
+     * @param source Map from where the keys get copied and decoded
+     * @param target Map where the decoded keys are copied to
+     */
+    public static void decodeAndAppendEntries(Map<String, String> source,
+                                              Map<String, String> target) {
         for (Entry<String, String> entry : source.entrySet()) {
             target.put(URLUtils.percentEncode(entry.getKey()),
                     URLUtils.percentEncode(entry.getValue()));
         }
-	}
+    }
+
+    public static <K, V> String toString(Map<K, V> map) {
+        if (map == null) {
+            return "";
+        }
+        if (map.isEmpty()) {
+            return "{}";
+        }
+
+        StringBuilder result = new StringBuilder();
+        for (Map.Entry<K, V> entry : map.entrySet()) {
+            result.append(
+                    String.format(", %s -> %s ", entry.getKey().toString(), entry.getValue().toString()));
+        }
+        return "{" + result.substring(1) + "}";
+    }
 }

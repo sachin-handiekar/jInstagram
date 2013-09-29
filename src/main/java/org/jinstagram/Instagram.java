@@ -820,7 +820,7 @@ public class Instagram {
 	 * @return Response object.
 	 */
 	private Response getApiResponse(Verbs verb, String methodName, Map<String, String> params) throws IOException {
-		Response response = null;
+		Response response;
 		String apiResourceUrl = config.getApiURL() + methodName;
 		OAuthRequest request = new OAuthRequest(verb, apiResourceUrl);
 
@@ -867,7 +867,7 @@ public class Instagram {
 	 */
         private <T> T createObjectFromResponse(Class<T> clazz, final String response) throws InstagramException {
             Gson gson = new Gson();
-            T object = null;
+            T object;
 
             try {
                 object = clazz.newInstance();

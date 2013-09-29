@@ -1,6 +1,6 @@
 package org.jinstagram.model;
 
-public class QueryParam {
+public final class QueryParam {
 	public static final String ACTION = "action";
 
 	public static final String COUNT = "count";

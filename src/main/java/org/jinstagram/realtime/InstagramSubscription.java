@@ -120,7 +120,7 @@ public class InstagramSubscription {
 
 	  private SubscriptionResponse getSubscriptionResponse(String jsonBody) throws InstagramException {
 	        Gson gson = new Gson();
-	        SubscriptionResponse response = null;
+	        SubscriptionResponse response;
 
 	        try {
 	            response = gson.fromJson(jsonBody, SubscriptionResponse.class);
@@ -153,9 +153,8 @@ public class InstagramSubscription {
 		request.addQuerystringParameter(Constants.CLIENT_SECRET, this.clientSecret);
 		request.addQuerystringParameter("object", "all");
 
-        Response response;
         try {
-            response = request.send();
+            request.send();
         } catch (IOException e) {
             throw new InstagramException("Failed to delete all subscriptions", e);
         }

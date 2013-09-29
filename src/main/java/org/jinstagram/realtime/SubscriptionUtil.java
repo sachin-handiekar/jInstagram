@@ -9,7 +9,7 @@ public class SubscriptionUtil {
     
     public static SubscriptionResponseObject[] getSubscriptionResponseData(String jsonBody) throws InstagramException {
     	  Gson gson = new Gson();
-    	  SubscriptionResponseObject[] responseData = null;
+    	  SubscriptionResponseObject[] responseData;
 
           try {
         	  responseData = gson.fromJson(jsonBody, SubscriptionResponseObject[].class);

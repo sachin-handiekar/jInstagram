@@ -14,8 +14,7 @@ public class Verifier {
 	 * @param value verifier value
 	 */
 	public Verifier(String value) {
-		Preconditions.checkNotNull(value,
-				"Must provide a valid string as verifier");
+		Preconditions.checkNotNull(value, "Must provide a valid string as verifier");
 
 		this.value = value;
 	}

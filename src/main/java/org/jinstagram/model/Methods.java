@@ -1,6 +1,6 @@
 package org.jinstagram.model;
 
-public class Methods {
+public final class Methods {
 
 	/**
 	 * Remove a comment either on the authenticated user's media or authored by
