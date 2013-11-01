@@ -600,6 +600,22 @@ public class Instagram {
 	}
 
     /**
+     * Get a list of tagged media including params. This allows you to loop through all tags
+     * by passing a map with next_max_id from the previous request.
+     *
+     * @param tagName
+     * @param params
+     * @return
+     * @throws InstagramException
+     */
+    public TagMediaFeed getRecentMediaTags(String tagName, Map<String, String> params) throws InstagramException {
+        String apiMethod = String.format(Methods.TAGS_RECENT_MEDIA, tagName);
+        TagMediaFeed feed = createInstagramObject(Verbs.GET, TagMediaFeed.class, apiMethod, params);
+
+        return feed;
+    }
+
+    /**
      * Get a list of recently tagged media.
      *
      * @param tagName name of the tag.
