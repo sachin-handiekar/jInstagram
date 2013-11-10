@@ -104,92 +104,120 @@ public class InstagramSubscription {
 		return this;
 	}
 
+    /**
+     * Creates a subscription with the current state of this instance.
+     * <p/>
+     * The {@link SubscriptionResponse} holds the result of the subscription such as the identifier
+     * of the subscription that can be used later to {@linkplain #deleteSubscription(long) delete it}.
+     *
+     * @return the result of the subscription
+     * @throws InstagramException
+     */
 	public SubscriptionResponse createSubscription() throws InstagramException {
+		Preconditions.checkEmptyString(callback, "You must provide a callback url");
 
-		Preconditions.checkEmptyString(clientId, "You must provide a clientId key");
-		Preconditions.checkEmptyString(clientSecret, "You must provide a clientSecret");
-		Preconditions.checkEmptyString(clientSecret, "You must provide a clientSecret");
-
-		OAuthRequest request = new OAuthRequest(Verbs.POST, Constants.SUBSCRIPTION_ENDPOINT);
-
-		// Add the oauth parameter in the body
-		request.addBodyParameter(Constants.CLIENT_ID, this.clientId);
-		request.addBodyParameter(Constants.CLIENT_SECRET, this.clientSecret);
+        final OAuthRequest request = prepareOAuthRequest(Verbs.POST);
 		request.addBodyParameter(Constants.SUBSCRIPTION_TYPE, subscriptionType.toString());
         request.addBodyParameter(Constants.OBJECT_ID, objectId);
 		request.addBodyParameter(Constants.ASPECT, "media");
 		request.addBodyParameter(Constants.VERIFY_TOKEN, this.verifyToken);
 		request.addBodyParameter(Constants.CALLBACK_URL, callback);
 
-        Response response;
         try {
-            response = request.send();
+            final Response response = request.send();
+            return getSubscriptionResponse(response.getBody());
         } catch (IOException e) {
             throw new InstagramException("Failed to create subscription", e);
         }
-
-		SubscriptionResponse subscriptionResponse = getSubscriptionResponse(response.getBody());
-		return subscriptionResponse;
-
 	}
 
-	  private SubscriptionResponse getSubscriptionResponse(String jsonBody) throws InstagramException {
-	        Gson gson = new Gson();
-	        SubscriptionResponse response;
+    /**
+     * Deletes a subscription with the specified identifier.
+     *
+     * @param id the id of the subscription to remove
+     */
+    public SubscriptionResponse deleteSubscription(long id) throws InstagramException {
+        final OAuthRequest request = prepareOAuthRequest(Verbs.DELETE);
+        request.addQuerystringParameter("id", String.valueOf(id));
 
-	        try {
-	            response = gson.fromJson(jsonBody, SubscriptionResponse.class);
-	        } catch (Exception e) {
-	            throw new InstagramException("Error parsing json to object type ");
-	        }
+        try {
+            final Response response = request.send();
+            return getSubscriptionResponse(response.getBody());
+        } catch (IOException e) {
+            throw new InstagramException("Failed to delete subscription with id ["+id+"]", e);
+        }
+    }
 
-	        return response;
-	    }
-
-	  private SubscriptionsListResponse getSubscriptionsListResponse(String jsonBody) throws InstagramException {
-          Gson gson = new Gson();
-          SubscriptionsListResponse response = null;
-
-          try {
-              response = gson.fromJson(jsonBody, SubscriptionsListResponse.class);
-          } catch (Exception e) {
-              throw new InstagramException("Error parsing json to object type ");
-          }
-
-          return response;
-      }
-
-	public void deleteAllSubscription() throws InstagramException {
-
-		OAuthRequest request = new OAuthRequest(Verbs.DELETE, Constants.SUBSCRIPTION_ENDPOINT);
-
-		// Add the oauth parameter in the body
-		request.addQuerystringParameter(Constants.CLIENT_ID, this.clientId);
-		request.addQuerystringParameter(Constants.CLIENT_SECRET, this.clientSecret);
+    /**
+     * Deletes all the known subscription.
+     *
+     * @return the response of this request, holding mainly the code
+     */
+	public SubscriptionResponse deleteAllSubscription() throws InstagramException {
+        final OAuthRequest request = prepareOAuthRequest(Verbs.DELETE);
 		request.addQuerystringParameter("object", "all");
 
         try {
-            request.send();
+            final Response response = request.send();
+            return getSubscriptionResponse(response.getBody());
         } catch (IOException e) {
             throw new InstagramException("Failed to delete all subscriptions", e);
         }
 	}
 
+    /**
+     * Returns the currently active subscription.
+     *
+     * @return the active subscription
+     */
 	public SubscriptionsListResponse getSubscriptionList() throws InstagramException {
-		OAuthRequest request = new OAuthRequest(Verbs.GET, Constants.SUBSCRIPTION_ENDPOINT);
+		final OAuthRequest request = prepareOAuthRequest(Verbs.GET);
 
-		// Add the oauth parameter in the body
-		request.addQuerystringParameter(Constants.CLIENT_ID, this.clientId);
-		request.addQuerystringParameter(Constants.CLIENT_SECRET, this.clientSecret);
-
-        Response response;
         try {
-            response = request.send();
+            final Response response = request.send();
             return getSubscriptionsListResponse(response.getBody());
         } catch (IOException e) {
             throw new InstagramException("Failed to get subscription list", e);
         }
 	}
+
+    private OAuthRequest prepareOAuthRequest(Verbs verb) {
+        Preconditions.checkEmptyString(clientId, "You must provide a clientId key");
+        Preconditions.checkEmptyString(clientSecret, "You must provide a clientSecret");
+
+        final OAuthRequest request = new OAuthRequest(verb, Constants.SUBSCRIPTION_ENDPOINT);
+        // Add the oauth parameter in the body
+        request.addQuerystringParameter(Constants.CLIENT_ID, this.clientId);
+        request.addQuerystringParameter(Constants.CLIENT_SECRET, this.clientSecret);
+
+        return request;
+    }
+
+    private SubscriptionResponse getSubscriptionResponse(String jsonBody) throws InstagramException {
+        Gson gson = new Gson();
+        SubscriptionResponse response;
+
+        try {
+            response = gson.fromJson(jsonBody, SubscriptionResponse.class);
+        } catch (Exception e) {
+            throw new InstagramException("Error parsing json to object type ");
+        }
+
+        return response;
+    }
+
+    private SubscriptionsListResponse getSubscriptionsListResponse(String jsonBody) throws InstagramException {
+        Gson gson = new Gson();
+        SubscriptionsListResponse response = null;
+
+        try {
+            response = gson.fromJson(jsonBody, SubscriptionsListResponse.class);
+        } catch (Exception e) {
+            throw new InstagramException("Error parsing json to object type ");
+        }
+
+        return response;
+    }
 
     @Override
     public String toString() {
