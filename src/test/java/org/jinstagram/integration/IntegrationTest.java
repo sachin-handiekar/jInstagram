@@ -1,9 +1,10 @@
-package org.jinstagram;
+package org.jinstagram.integration;
 
 import java.util.Date;
 import java.util.List;
 import java.util.Scanner;
 
+import org.jinstagram.Instagram;
 import org.jinstagram.auth.InstagramAuthService;
 import org.jinstagram.auth.model.Token;
 import org.jinstagram.auth.model.Verifier;
