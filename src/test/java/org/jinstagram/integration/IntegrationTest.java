@@ -1,13 +1,10 @@
-package org.jinstagram;
+package org.jinstagram.integration;
 
 import java.util.Date;
 import java.util.List;
-import java.util.Scanner;
 
-import org.jinstagram.auth.InstagramAuthService;
+import org.jinstagram.Instagram;
 import org.jinstagram.auth.model.Token;
-import org.jinstagram.auth.model.Verifier;
-import org.jinstagram.auth.oauth.InstagramService;
 import org.jinstagram.entity.users.basicinfo.UserInfo;
 import org.jinstagram.entity.users.feed.MediaFeed;
 import org.jinstagram.entity.users.feed.MediaFeedData;
@@ -16,7 +13,6 @@ import org.jinstagram.exceptions.InstagramException;
 
 public class IntegrationTest {
 
-    private static final Token EMPTY_TOKEN = null;
 
     public static void main(String[] args) throws InstagramException {
       /*

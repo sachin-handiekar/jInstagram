@@ -2,12 +2,13 @@ package org.jinstagram.entity.users.feed;
 
 import com.google.gson.annotations.SerializedName;
 
+import org.jinstagram.InstagramObject;
 import org.jinstagram.entity.common.Meta;
 import org.jinstagram.entity.common.Pagination;
 
 import java.util.List;
 
-public class UserFeed {
+public class UserFeed extends InstagramObject{
 	@SerializedName("meta")
 	private Meta meta;
 

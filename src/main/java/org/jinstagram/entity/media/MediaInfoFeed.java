@@ -2,10 +2,11 @@ package org.jinstagram.entity.media;
 
 import com.google.gson.annotations.SerializedName;
 
+import org.jinstagram.InstagramObject;
 import org.jinstagram.entity.common.Meta;
 import org.jinstagram.entity.users.feed.MediaFeedData;
 
-public class MediaInfoFeed {
+public class MediaInfoFeed extends InstagramObject{
 	@SerializedName("data")
 	private MediaFeedData data;
 

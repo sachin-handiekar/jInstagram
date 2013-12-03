@@ -2,11 +2,12 @@ package org.jinstagram.entity.locations;
 
 import java.util.List;
 
+import org.jinstagram.InstagramObject;
 import org.jinstagram.entity.common.Location;
 
 import com.google.gson.annotations.SerializedName;
 
-public class LocationSearchFeed {
+public class LocationSearchFeed extends InstagramObject{
 
 	@SerializedName("data")
 	private List<Location> locationList;

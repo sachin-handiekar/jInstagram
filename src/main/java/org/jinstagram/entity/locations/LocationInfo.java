@@ -1,10 +1,11 @@
 package org.jinstagram.entity.locations;
 
+import org.jinstagram.InstagramObject;
 import org.jinstagram.entity.common.Location;
 
 import com.google.gson.annotations.SerializedName;
 
-public class LocationInfo {
+public class LocationInfo extends InstagramObject{
 
 	@SerializedName("data")
 	private Location locationData;

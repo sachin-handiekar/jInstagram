@@ -773,7 +773,7 @@ public class Instagram {
 	 * @return
 	 * @throws InstagramException
 	 */
-	private <T> T createInstagramObject(Verbs verbs, Class<T> clazz, String methodName, Map<String, String> params)
+	private <T extends InstagramObject> T createInstagramObject(Verbs verbs, Class<T> clazz, String methodName, Map<String, String> params)
         throws InstagramException {
             Response response;
             try {
@@ -784,7 +784,7 @@ public class Instagram {
 
             if (response.getCode() >= 200 && response.getCode() < 300) {
                 T object = createObjectFromResponse(clazz, response.getBody());
-
+                object.setHeaders(response.getHeaders());
                 return object;
             }
 

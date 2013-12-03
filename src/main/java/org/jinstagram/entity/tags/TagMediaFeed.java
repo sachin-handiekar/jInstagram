@@ -2,13 +2,14 @@ package org.jinstagram.entity.tags;
 
 import com.google.gson.annotations.SerializedName;
 
+import org.jinstagram.InstagramObject;
 import org.jinstagram.entity.common.Meta;
 import org.jinstagram.entity.common.Pagination;
 import org.jinstagram.entity.users.feed.MediaFeedData;
 
 import java.util.List;
 
-public class TagMediaFeed {
+public class TagMediaFeed extends InstagramObject{
 	@SerializedName("data")
 	private List<MediaFeedData> data;
 
