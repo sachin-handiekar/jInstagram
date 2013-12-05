@@ -2,9 +2,10 @@ package org.jinstagram.entity.relationships;
 
 import com.google.gson.annotations.SerializedName;
 
+import org.jinstagram.InstagramObject;
 import org.jinstagram.entity.common.Meta;
 
-public class RelationshipFeed {
+public class RelationshipFeed extends InstagramObject{
 	@SerializedName("data")
 	private RelationshipData data;
 

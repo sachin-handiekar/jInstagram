@@ -2,9 +2,10 @@ package org.jinstagram.entity.comments;
 
 import com.google.gson.annotations.SerializedName;
 
+import org.jinstagram.InstagramObject;
 import org.jinstagram.entity.common.Meta;
 
-public class MediaCommentResponse {
+public class MediaCommentResponse extends InstagramObject{
 	@SerializedName("data")
 	private CommentData commentData;
 

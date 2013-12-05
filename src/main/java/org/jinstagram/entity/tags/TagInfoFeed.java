@@ -2,9 +2,10 @@ package org.jinstagram.entity.tags;
 
 import com.google.gson.annotations.SerializedName;
 
+import org.jinstagram.InstagramObject;
 import org.jinstagram.entity.common.Meta;
 
-public class TagInfoFeed {
+public class TagInfoFeed extends InstagramObject{
 	@SerializedName("meta")
 	private Meta meta;
 

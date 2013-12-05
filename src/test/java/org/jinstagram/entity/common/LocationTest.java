@@ -1,13 +1,12 @@
 package org.jinstagram.entity.common;
 
-import com.google.gson.Gson;
-import com.google.gson.annotations.SerializedName;
-
-import org.junit.Test;
-
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertNull;
+
+import org.junit.Test;
+
+import com.google.gson.Gson;
 
 public class LocationTest {
     private Gson GSON_PARSER = new Gson();

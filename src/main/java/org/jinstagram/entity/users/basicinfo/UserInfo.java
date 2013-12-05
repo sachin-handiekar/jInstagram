@@ -1,8 +1,10 @@
 package org.jinstagram.entity.users.basicinfo;
 
+import org.jinstagram.InstagramObject;
+
 import com.google.gson.annotations.SerializedName;
 
-public class UserInfo {
+public class UserInfo extends InstagramObject{
 	@SerializedName("data")
 	private UserInfoData data;
 
