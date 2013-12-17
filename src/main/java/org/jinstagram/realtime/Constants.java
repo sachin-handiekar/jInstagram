@@ -16,5 +16,11 @@ class Constants {
 	public static final String CALLBACK_URL = "callback_url";
 
 	public static final String ASPECT = "aspect";
+	
+	public static final String LATITUDE = "lat";
+	
+	public static final String LONGITUDE = "lng";
+	
+	public static final String RADIUS = "radius";
 
 }
