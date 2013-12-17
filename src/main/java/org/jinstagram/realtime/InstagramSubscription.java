@@ -10,27 +10,19 @@ import org.jinstagram.utils.Preconditions;
 import com.google.gson.Gson;
 
 import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
 
 public class InstagramSubscription {
-	private String aspect;
 
-	private String callback;
-
-	private String clientId;
-
-	private String clientSecret;
-
-	private SubscriptionType subscriptionType;
-
-    private String objectId;
-
-	private String verifyToken;
+	private final Map<String, String> params;
 
 	/**
 	 * Default constructor
 	 */
 	public InstagramSubscription() {
-		this.callback = OAuthConstants.OUT_OF_BAND;
+		this.params = new HashMap<String, String>();
+		this.params.put(Constants.CALLBACK_URL, OAuthConstants.OUT_OF_BAND);
 	}
 
 	/**
@@ -42,7 +34,7 @@ public class InstagramSubscription {
 	public InstagramSubscription callback(String callback) {
 		Preconditions.checkValidUrl(callback, "Invalid Callback Url");
 
-		this.callback = callback;
+		this.params.put(Constants.CALLBACK_URL, callback);
 
 		return this;
 	}
@@ -56,23 +48,33 @@ public class InstagramSubscription {
 	public InstagramSubscription clientId(String clientId) {
 		Preconditions.checkEmptyString(clientId, "Invalid 'clientId' key");
 
-		this.clientId = clientId;
-
+		this.params.put(Constants.CLIENT_ID, clientId);
+		
 		return this;
 	}
 
+	/**
+	 * Configure the clientSecret
+	 * @param clientSecret The clientSecret for your application
+	 * @return the {@link InstagramSubscription} instance for method chaining
+	 */
 	public InstagramSubscription clientSecret(String clientSecret) {
 		Preconditions.checkEmptyString(clientSecret, "Invalid 'clientSecret' key");
 
-		this.clientSecret = clientSecret;
-
+		this.params.put(Constants.CLIENT_SECRET, clientSecret);
+		
 		return this;
 	}
 
+	/**
+	 * Configure the subscription type
+	 * @param type The subscription type for your usage
+	 * @return the {@link InstagramSubscription} instance for method chaining
+	 */
 	public InstagramSubscription object(SubscriptionType type) {
 
-		this.subscriptionType = type;
-
+		this.params.put(Constants.SUBSCRIPTION_TYPE, type.toString());
+	
 		return this;
 	}
 
@@ -84,23 +86,74 @@ public class InstagramSubscription {
      * @return the {@link InstagramSubscription} instance for method chaining
      */
     public InstagramSubscription objectId(String objectId) {
-        this.objectId = objectId;
+    	this.params.put(Constants.OBJECT_ID, objectId);
         return this;
     }
 
+    /**
+     * Configure the verifyToken for the subscription
+     * 
+     * @param verifyToken The token for the subscription
+     * @return the {@link InstagramSubscription} instance for method chaining
+     */
 	public InstagramSubscription verifyToken(String verifyToken) {
 		Preconditions.checkEmptyString(verifyToken, "Invalid 'verifyToken' key");
 
-		this.verifyToken = verifyToken;
+		this.params.put(Constants.VERIFY_TOKEN, verifyToken);
 
 		return this;
 	}
 
+	/**
+	 * Configure the aspect for the subscription
+	 * 
+	 * @param aspect The aspect of the subscription
+	 * @return the {@link InstagramSubscription} instance for method chaining
+	 */
 	public InstagramSubscription aspect(String aspect) {
 		Preconditions.checkEmptyString(aspect, "Invalid 'aspect' key");
+		
+		this.params.put(Constants.ASPECT, aspect);
 
-		this.aspect = aspect;
-
+		return this;
+	}
+	
+	/**
+	 * Configure the latitude for geography subscription
+	 * @param latitude The latitude for geography subscription
+	 * @return the {@link InstagramSubscription} instance for method chaining
+	 */
+	public InstagramSubscription latitute(String latitude){
+		Preconditions.checkValidLatLong(latitude, "Invalid 'lat' key");
+		
+		this.params.put(Constants.LATITUDE, latitude);
+		
+		return this;
+	}
+	
+	/**
+	 * Configure the longitude for geography subscription
+	 * @param longitude The longitude for geography subscription
+	 * @return the {@link InstagramSubscription} instance for method chaining
+	 */
+	public InstagramSubscription longitude(String longitude){
+		Preconditions.checkValidLatLong(longitude, "Invalid 'lng' key");
+		
+		this.params.put(Constants.LONGITUDE, longitude);
+		
+		return this;
+	}
+	
+	/**
+	 * Configure the radius for geography subscription
+	 * @param radius The radius for geography subscription in metre
+	 * @return the {@link InstagramSubscription} instance for method chaining
+	 */
+	public InstagramSubscription radius(String radius){
+		Preconditions.checkValidRadius(radius, "Invalid 'radius' key");
+		
+		this.params.put(Constants.RADIUS, radius);
+		
 		return this;
 	}
 
@@ -114,14 +167,18 @@ public class InstagramSubscription {
      * @throws InstagramException
      */
 	public SubscriptionResponse createSubscription() throws InstagramException {
+		String callback = params.get(Constants.CALLBACK_URL);
+		if(callback == null){
+			callback = "";
+		}
 		Preconditions.checkEmptyString(callback, "You must provide a callback url");
 
         final OAuthRequest request = prepareOAuthRequest(Verbs.POST);
-		request.addBodyParameter(Constants.SUBSCRIPTION_TYPE, subscriptionType.toString());
-        request.addBodyParameter(Constants.OBJECT_ID, objectId);
 		request.addBodyParameter(Constants.ASPECT, "media");
-		request.addBodyParameter(Constants.VERIFY_TOKEN, this.verifyToken);
-		request.addBodyParameter(Constants.CALLBACK_URL, callback);
+		
+		for(Map.Entry<String, String> entry: this.params.entrySet()){
+			request.addBodyParameter(entry.getKey(), entry.getValue());
+		}
 
         try {
             final Response response = request.send();
@@ -155,7 +212,7 @@ public class InstagramSubscription {
      */
 	public SubscriptionResponse deleteAllSubscription() throws InstagramException {
         final OAuthRequest request = prepareOAuthRequest(Verbs.DELETE);
-		request.addQuerystringParameter("object", "all");
+		request.addQuerystringParameter(Constants.SUBSCRIPTION_TYPE, "all");
 
         try {
             final Response response = request.send();
@@ -182,13 +239,16 @@ public class InstagramSubscription {
 	}
 
     private OAuthRequest prepareOAuthRequest(Verbs verb) {
+    	String clientId = params.get(Constants.CLIENT_ID);
         Preconditions.checkEmptyString(clientId, "You must provide a clientId key");
+  
+        String clientSecret = params.get(Constants.CLIENT_SECRET);
         Preconditions.checkEmptyString(clientSecret, "You must provide a clientSecret");
 
         final OAuthRequest request = new OAuthRequest(verb, Constants.SUBSCRIPTION_ENDPOINT);
         // Add the oauth parameter in the body
-        request.addQuerystringParameter(Constants.CLIENT_ID, this.clientId);
-        request.addQuerystringParameter(Constants.CLIENT_SECRET, this.clientSecret);
+        request.addQuerystringParameter(Constants.CLIENT_ID, clientId);
+        request.addQuerystringParameter(Constants.CLIENT_SECRET, clientSecret);
 
         return request;
     }
@@ -223,18 +283,13 @@ public class InstagramSubscription {
     public String toString() {
         StringBuilder builder = new StringBuilder();
         builder.append("InstagramSubscription [");
-        if (aspect != null)
-            builder.append("aspect=").append(aspect).append(", ");
-        if (callback != null)
-            builder.append("callback=").append(callback).append(", ");
-        if (clientId != null)
-            builder.append("clientId=").append(clientId).append(", ");
-        if (clientSecret != null)
-            builder.append("clientSecret=").append(clientSecret).append(", ");
-        if (subscriptionType != null)
-            builder.append("subscriptionType=").append(subscriptionType).append(", ");
-        if (verifyToken != null)
-            builder.append("verifyToken=").append(verifyToken);
+        
+        for(Map.Entry<String, String> entry: this.params.entrySet()){
+        	builder.append(entry.getKey()).append('=').append(entry.getValue()).append(',');
+        }
+        int lastIndexOfComma = builder.lastIndexOf(",");
+        builder.replace(lastIndexOfComma, lastIndexOfComma + 1, "");
+        
         builder.append("]");
         return builder.toString();
     }

@@ -37,20 +37,12 @@ public class CommentsTest {
 
     @Test
     public void testCommentsEntity_Null() {
-        Comments comments;
-        comments = GSON_PARSER.fromJson(COMMENTS_JSON_NULL, Comments.class);
-
-        System.out.println(comments);
-
+        GSON_PARSER.fromJson(COMMENTS_JSON_NULL, Comments.class);
     }
 
     @Test
     public void testCaptionEntity_WithData() {
-        Comments comments;
-        comments = GSON_PARSER.fromJson(COMMENTS_JSON_DATA, Comments.class);
-        System.out.println(comments);
-
-
+        GSON_PARSER.fromJson(COMMENTS_JSON_DATA, Comments.class);
     }
 
 
