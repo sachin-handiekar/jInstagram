@@ -201,11 +201,11 @@ public class Instagram {
         }
 
         if(maxTimeStamp != null) {
-            params.put(QueryParam.MAX_TIMESTAMP, String.valueOf(maxTimeStamp.getTime()));
+            params.put(QueryParam.MAX_TIMESTAMP, String.valueOf(maxTimeStamp.getTime()/1000));
         }
 
         if(minTimeStamp != null) {
-            params.put(QueryParam.MIN_TIMESTAMP, String.valueOf(minTimeStamp.getTime()));
+            params.put(QueryParam.MIN_TIMESTAMP, String.valueOf(minTimeStamp.getTime()/1000));
         }
 
         String methodName = String.format(Methods.USERS_RECENT_MEDIA, userId);
@@ -452,11 +452,11 @@ public class Instagram {
         params.put(QueryParam.LONGITUDE, Double.toString(longitude));
 
         if(maxTimeStamp != null) {
-            params.put(QueryParam.MAX_TIMESTAMP, String.valueOf(maxTimeStamp.getTime()));
+            params.put(QueryParam.MAX_TIMESTAMP, String.valueOf(maxTimeStamp.getTime()/1000));
         }
 
         if(minTimeStamp != null) {
-            params.put(QueryParam.MIN_TIMESTAMP, String.valueOf(minTimeStamp.getTime()));
+            params.put(QueryParam.MIN_TIMESTAMP, String.valueOf(minTimeStamp.getTime()/1000));
         }
 
         params.put(QueryParam.DISTANCE, String.valueOf(distance));
@@ -682,11 +682,11 @@ public class Instagram {
         Map<String, String> params = new HashMap<String, String>();
 
         if(maxTimeStamp != null) {
-            params.put(QueryParam.MAX_TIMESTAMP, String.valueOf(maxTimeStamp.getTime()));
+            params.put(QueryParam.MAX_TIMESTAMP, String.valueOf(maxTimeStamp.getTime()/1000));
         }
 
         if(minTimeStamp != null) {
-            params.put(QueryParam.MIN_TIMESTAMP, String.valueOf(minTimeStamp.getTime()));
+            params.put(QueryParam.MIN_TIMESTAMP, String.valueOf(minTimeStamp.getTime()/1000));
         }
 
         if(minId > 0)

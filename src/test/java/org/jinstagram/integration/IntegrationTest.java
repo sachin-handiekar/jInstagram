@@ -55,7 +55,7 @@ public class IntegrationTest {
 
         UserInfo userInfo = instagram.getCurrentUserInfo();
 
-        MediaFeed mediaFeed =                                  instagram.getRecentMediaFeed(userInfo.getData().getId());
+        MediaFeed mediaFeed =  instagram.getRecentMediaFeed(userInfo.getData().getId());
         // MediaFeed mediaFeed =  instagram.getUserFeeds();
 
         List<MediaFeedData> mediaList = mediaFeed.getData();
