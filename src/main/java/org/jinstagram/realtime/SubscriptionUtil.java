@@ -1,5 +1,6 @@
 package org.jinstagram.realtime;
 
+import java.nio.charset.StandardCharsets;
 import java.security.InvalidKeyException;
 import java.security.NoSuchAlgorithmException;
 
@@ -29,34 +30,20 @@ public class SubscriptionUtil {
     }
     
     /**
+     * 
      * Method to verify Instagram's POST request for a specific subscription.
      * This method follow the algorithm in <a href="https://github.com/Instagram/python-instagram/blob/master/instagram/subscriptions.py">python-instagram</a> implementation.
-     * @param clientSecret Client secret of our Instagram application
+	 *
+     * @param clientSecret clientSecret Client secret of our Instagram application
      * @param rawJsonData Raw JSON data from the POST request
      * @param xHubSignature The signature given by the HTTP header of the POST request
      * @return VerificationResult a class that represent result of the signature verification
      * @throws InstagramException
      */
-    public static VerificationResult verifySubscriptionPostSignature(String clientSecret, String rawJsonData, String xHubSignature) throws InstagramException{
-    	SecretKeySpec keySpec = new SecretKeySpec(clientSecret.getBytes(), HMAC_SHA1);
-    	Mac mac;
-    	
-    	try {
-			mac = Mac.getInstance(HMAC_SHA1);
-			mac.init(keySpec);
-			byte[] result = mac.doFinal(rawJsonData.getBytes());
-			String encodedResult = Hex.encodeHexString(result);
-			
-			return new VerificationResult(encodedResult.equals(xHubSignature), encodedResult);
-    	} catch (NoSuchAlgorithmException e) {
-			throw new InstagramException("Invalid algorithm name!");
-		} catch (InvalidKeyException e){
-			throw new InstagramException("Invalid key: " + clientSecret);
-		}
-    }
     
-    public static VerificationResult verifySubscriptionPostSignature(String clientSecret, byte[] rawJsonData, String xHubSignature) throws InstagramException{
-    	SecretKeySpec keySpec = new SecretKeySpec(clientSecret.getBytes(), HMAC_SHA1);
+    public static VerificationResult verifySubscriptionPostRequestSignature(String clientSecret, byte[] rawJsonData, String xHubSignature) throws InstagramException{
+    	SecretKeySpec keySpec;
+		keySpec = new SecretKeySpec(clientSecret.getBytes(StandardCharsets.UTF_8), HMAC_SHA1);
     	Mac mac;
     	
     	try {
@@ -67,9 +54,9 @@ public class SubscriptionUtil {
 			
 			return new VerificationResult(encodedResult.equals(xHubSignature), encodedResult);
     	} catch (NoSuchAlgorithmException e) {
-			throw new InstagramException("Invalid algorithm name!");
+			throw new InstagramException("Invalid algorithm name!", e);
 		} catch (InvalidKeyException e){
-			throw new InstagramException("Invalid key: " + clientSecret);
+			throw new InstagramException("Invalid key: " + clientSecret, e);
 		}
     }
     
@@ -88,7 +75,7 @@ public class SubscriptionUtil {
 			return success;
 		}
 
-		public String getResultingSignature() {
+		public String getCalculatedSignature() {
 			return resultingSignature;
 		}
     	
