@@ -22,11 +22,14 @@ public class Response {
 	private Map<String, String> headers;
 
 	private InputStream stream;
+	
+	private String url;
 
 	Response(HttpURLConnection connection) throws IOException {
 		try {
 			connection.connect();
 
+            url = connection.getURL().toString();
 			code = connection.getResponseCode();
 			headers = parseHeaders(connection);
 			stream = wasSuccessful() ? connection.getInputStream() : connection
@@ -36,6 +39,10 @@ public class Response {
 			code = 404;
 			body = EMPTY;
 		}
+	}
+	
+	public String getURL() {
+		return url;
 	}
 
 	private String parseBodyContents() {
