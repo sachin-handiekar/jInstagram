@@ -7,6 +7,7 @@ public class InstagramConfig {
 	private String baseURI;
 	private String version;
 	private String apiURL;
+	private Integer connectionTimeoutMills;
 	
 	public InstagramConfig() {
 		baseURI = Constants.BASE_URI;
@@ -36,4 +37,12 @@ public class InstagramConfig {
 		return apiURL;
 	}
 	
+
+	public Integer getConnectionTimeoutMills() {
+		return connectionTimeoutMills;
+	}
+	
+	public void setConnectionTimeoutMills(Integer connectionTimeoutMills) {
+		this.connectionTimeoutMills = connectionTimeoutMills;
+	}
 }
