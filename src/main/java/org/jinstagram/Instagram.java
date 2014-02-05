@@ -825,9 +825,8 @@ public class Instagram {
 		String apiResourceUrl = config.getApiURL() + methodName;
 		OAuthRequest request = new OAuthRequest(verb, apiResourceUrl);
 
-		if(config.getConnectionTimeoutMills() != null){
-			request.setConnectTimeout(config.getConnectionTimeoutMills(), TimeUnit.MILLISECONDS);
-		}
+		request.setConnectTimeout(config.getConnectionTimeoutMills(), TimeUnit.MILLISECONDS);
+		request.setReadTimeout(config.getReadTimeoutMills(), TimeUnit.MILLISECONDS);
 		
 		// Additional parameters in url
 		if (params != null) {

@@ -7,7 +7,8 @@ public class InstagramConfig {
 	private String baseURI;
 	private String version;
 	private String apiURL;
-	private Integer connectionTimeoutMills;
+	private int connectionTimeoutMills = 0;
+	private int readTimeoutMills = 0;
 	
 	public InstagramConfig() {
 		baseURI = Constants.BASE_URI;
@@ -36,13 +37,19 @@ public class InstagramConfig {
 	public String getApiURL() {
 		return apiURL;
 	}
-	
-
-	public Integer getConnectionTimeoutMills() {
+	public int getConnectionTimeoutMills() {
 		return connectionTimeoutMills;
 	}
 	
-	public void setConnectionTimeoutMills(Integer connectionTimeoutMills) {
+	public void setConnectionTimeoutMills(int connectionTimeoutMills) {
 		this.connectionTimeoutMills = connectionTimeoutMills;
+	}
+	
+	public int getReadTimeoutMills() {
+		return readTimeoutMills;
+	}
+	
+	public void setReadTimeoutMills(int readTimeoutMills) {
+		this.readTimeoutMills = readTimeoutMills;
 	}
 }

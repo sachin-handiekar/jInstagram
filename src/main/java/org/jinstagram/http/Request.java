@@ -38,6 +38,10 @@ public class Request {
 	private String url;
 
 	private Verbs verb;
+	
+	private int connectTimeout;
+	
+	private int readTimeout;
 
 	/**
 	 * Creates a new Http Request
@@ -75,6 +79,9 @@ public class Request {
 
 			connection = (HttpURLConnection) new URL(effectiveUrl)
 					.openConnection();
+					
+			connection.setConnectTimeout(connectTimeout);
+			connection.setReadTimeout(readTimeout);
 		}
 	}
 
@@ -258,7 +265,7 @@ public class Request {
 	 * @param unit unit of time (milliseconds, seconds, etc)
 	 */
 	public void setConnectTimeout(int duration, TimeUnit unit) {
-		this.connection.setConnectTimeout((int) unit.toMillis(duration));
+		this.connectTimeout = (int) unit.toMillis(duration);
 	}
 
 	/**
@@ -269,7 +276,7 @@ public class Request {
 	 * @param unit unit of time (milliseconds, seconds, etc)
 	 */
 	public void setReadTimeout(int duration, TimeUnit unit) {
-		this.connection.setReadTimeout((int) unit.toMillis(duration));
+		this.readTimeout = (int) unit.toMillis(duration);
 	}
 
 	/**
