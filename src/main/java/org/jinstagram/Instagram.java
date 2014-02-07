@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.concurrent.TimeUnit;
 
 import org.apache.commons.lang3.StringUtils;
 import org.jinstagram.auth.model.OAuthConstants;
@@ -824,6 +825,9 @@ public class Instagram {
 		String apiResourceUrl = config.getApiURL() + methodName;
 		OAuthRequest request = new OAuthRequest(verb, apiResourceUrl);
 
+		request.setConnectTimeout(config.getConnectionTimeoutMills(), TimeUnit.MILLISECONDS);
+		request.setReadTimeout(config.getReadTimeoutMills(), TimeUnit.MILLISECONDS);
+		
 		// Additional parameters in url
 		if (params != null) {
 			for (Map.Entry<String, String> entry : params.entrySet()) {
