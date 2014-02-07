@@ -792,7 +792,7 @@ public class Instagram {
             throw handleInstagramError(response);
         }
 
-    private InstagramException handleInstagramError(Response response) throws InstagramException {
+    protected InstagramException handleInstagramError(Response response) throws InstagramException {
         Gson gson = new Gson();
         final InstagramErrorResponse error;
         try {
@@ -820,7 +820,7 @@ public class Instagram {
 	 * @param params parameters which would be sent with the request.
 	 * @return Response object.
 	 */
-	private Response getApiResponse(Verbs verb, String methodName, Map<String, String> params) throws IOException {
+	protected Response getApiResponse(Verbs verb, String methodName, Map<String, String> params) throws IOException {
 		Response response;
 		String apiResourceUrl = config.getApiURL() + methodName;
 		OAuthRequest request = new OAuthRequest(verb, apiResourceUrl);
@@ -869,7 +869,7 @@ public class Instagram {
 	 * @return a object of type <T>
 	 * @throws InstagramException if any error occurs.
 	 */
-        private <T> T createObjectFromResponse(Class<T> clazz, final String response) throws InstagramException {
+        protected <T> T createObjectFromResponse(Class<T> clazz, final String response) throws InstagramException {
             Gson gson = new Gson();
             T object;
 
