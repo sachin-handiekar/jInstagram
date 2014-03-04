@@ -1,6 +1,6 @@
 package org.jinstagram.realtime;
 
-import java.nio.charset.StandardCharsets;
+import java.nio.charset.Charset;
 import java.security.InvalidKeyException;
 import java.security.NoSuchAlgorithmException;
 
@@ -43,7 +43,7 @@ public class SubscriptionUtil {
     
     public static VerificationResult verifySubscriptionPostRequestSignature(String clientSecret, byte[] rawJsonData, String xHubSignature) throws InstagramException{
     	SecretKeySpec keySpec;
-		keySpec = new SecretKeySpec(clientSecret.getBytes(StandardCharsets.UTF_8), HMAC_SHA1);
+		keySpec = new SecretKeySpec(clientSecret.getBytes(Charset.forName("UTF-8")), HMAC_SHA1);
     	Mac mac;
     	
     	try {
