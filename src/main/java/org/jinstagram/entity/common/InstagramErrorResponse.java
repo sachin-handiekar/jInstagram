@@ -8,6 +8,11 @@ import org.jinstagram.exceptions.InstagramRateLimitException;
 
 import com.google.gson.annotations.SerializedName;
 
+/**
+ * A class to represents an error response from Instagram API
+ * @author Sachin Handiekar
+ *
+ */
 public class InstagramErrorResponse {
     
     private Map<String, String> headers;
@@ -28,14 +33,19 @@ public class InstagramErrorResponse {
      * @throws InstagramException
      */
     public void throwException() throws InstagramException {
-        String joinedMessage = errorMeta.getErrorType() + ": " + errorMeta.getErrorMessage();
-        switch (errorMeta.getCode()) {
-        case 400:
-            throw new InstagramBadRequestException(joinedMessage, this.headers);
-        case 420:
-            throw new InstagramRateLimitException(joinedMessage, this.headers);
+        if(errorMeta != null) {
+            StringBuilder joinedMessageSb = new StringBuilder(errorMeta.getErrorType()).append(':').append(' ').append(errorMeta.getErrorMessage());
+            String joinedMessage = joinedMessageSb.toString();
+            switch (errorMeta.getCode()) {
+            case 400:
+                throw new InstagramBadRequestException(joinedMessage, this.headers);
+            case 420:
+                throw new InstagramRateLimitException(joinedMessage, this.headers);
+            }
+    
+            throw new InstagramException(joinedMessage, this.headers); 
+        } else {
+            throw new InstagramException("errorMeta is null!", this.headers);
         }
-
-        throw new InstagramException(joinedMessage, this.headers);
     }
 }
