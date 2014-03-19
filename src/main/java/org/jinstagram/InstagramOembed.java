@@ -71,12 +71,13 @@ public class InstagramOembed {
             try {
                 System.out.println(response.getBody());
                 error = gson.fromJson(response.getBody(), InstagramErrorResponse.class);
+                error.setHeaders(response.getHeaders());
             } catch (JsonSyntaxException e) {
-                throw new InstagramException("Failed to decode error response " + response.getBody(), e);
+                throw new InstagramException("Failed to decode error response " + response.getBody(), e, response.getHeaders());
             }
             error.throwException();
         }
-        throw new InstagramException("Unknown error response code: " + response.getCode() + " " + response.getBody());
+        throw new InstagramException("Unknown error response code: " + response.getCode() + " " + response.getBody(), response.getHeaders());
     }
 
     /**

@@ -798,18 +798,20 @@ public class Instagram {
         try {
             if (response.getCode() == 400) {
                 error = gson.fromJson(response.getBody(), InstagramErrorResponse.class);
+                error.setHeaders(response.getHeaders());
                 error.throwException();
             }
             //sending too many requests too quickly;
             //limited to 5000 requests per hour per access_token or client_id overall.  (according to spec)
             else if (response.getCode() == 503) {
                 error = gson.fromJson(response.getBody(), InstagramErrorResponse.class);
+                error.setHeaders(response.getHeaders());
                 error.throwException();
             }
         } catch (JsonSyntaxException e) {
-            throw new InstagramException("Failed to decode error response " + response.getBody(), e);
+            throw new InstagramException("Failed to decode error response " + response.getBody(), e, response.getHeaders());
         }
-        throw new InstagramException("Unknown error response code: " + response.getCode() + " " + response.getBody());
+        throw new InstagramException("Unknown error response code: " + response.getCode() + " " + response.getBody(), response.getHeaders());
     }
 
 	/**

@@ -6,17 +6,17 @@ import org.jinstagram.http.APILimitUtils;
 
 /**
  * InstagramObject is a super abstract class that contains the HTTP headers from Response instance
- * when we created an entity via Instagram.createInstagramObject.
+ * when we create an entity via Instagram.createInstagramObject.
  * 
  * @author Arinto Murdopo
  *
  */
-public abstract class InstagramObject {
+public abstract class InstagramObject implements InstagramResponse{
 	
 	private Map<String, String> headers;
 	
 	/**
-	 * Package-private method so that Instagram can set HTTP headers
+	 * Package-private method so that Instagram can set HTTP headers 
 	 * when creating the entity.
 	 * 
 	 * @param headers
