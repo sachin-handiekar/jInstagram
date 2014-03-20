@@ -22,6 +22,12 @@ public class UserFeedData {
 	
 	@SerializedName("full_name")
 	private String fullName;
+	
+	@SerializedName("website")
+	private String website;
+	
+	@SerializedName("bio")
+	private String bio;
 
 	public String getFullName() {
 		return fullName;
@@ -101,9 +107,41 @@ public class UserFeedData {
 		this.id = id;
 	}
 
+	/**
+	 * 
+	 * @return the website
+	 */
+    public String getWebsite() {
+        return website;
+    }
+
+    /**
+     * 
+     * @param website the website to set
+     */
+    public void setWebsite(String website) {
+        this.website = website;
+    }
+
+    /**
+     * 
+     * @return the bio
+     */
+    public String getBio() {
+        return bio;
+    }
+
+    /**
+     * 
+     * @param bio the bio to set
+     */
+    public void setBio(String bio) {
+        this.bio = bio;
+    }
+
     @Override
     public String toString() {
-        return String.format("UserFeedData [firstName=%s, id=%s, lastName=%s, profilePictureUrl=%s, userName=%s]",
-                firstName, id, lastName, profilePictureUrl, userName);
+        return String.format("UserFeedData [id=%s, profilePictureUrl=%s, userName=%s, website=%s, bio=%s]",
+                id, profilePictureUrl, userName, website, bio);
     }
 }
