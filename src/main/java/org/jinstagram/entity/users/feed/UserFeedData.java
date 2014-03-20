@@ -54,6 +54,7 @@ public class UserFeedData {
 	/**
 	 * @return the firstName
 	 */
+	@Deprecated
 	public String getFirstName() {
 		return firstName;
 	}
@@ -61,6 +62,7 @@ public class UserFeedData {
 	/**
 	 * @param firstName the firstName to set
 	 */
+	@Deprecated
 	public void setFirstName(String firstName) {
 		this.firstName = firstName;
 	}
@@ -82,6 +84,7 @@ public class UserFeedData {
 	/**
 	 * @return the lastName
 	 */
+	@Deprecated
 	public String getLastName() {
 		return lastName;
 	}
@@ -89,6 +92,7 @@ public class UserFeedData {
 	/**
 	 * @param lastName the lastName to set
 	 */
+	@Deprecated
 	public void setLastName(String lastName) {
 		this.lastName = lastName;
 	}
@@ -141,7 +145,7 @@ public class UserFeedData {
 
     @Override
     public String toString() {
-        return String.format("UserFeedData [id=%s, profilePictureUrl=%s, userName=%s, website=%s, bio=%s]",
-                id, profilePictureUrl, userName, website, bio);
+        return String.format("UserFeedData [id=%s, profilePictureUrl=%s, userName=%s, fullName=%s, website=%s, bio=%s]",
+                id, profilePictureUrl, userName, fullName, website, bio);
     }
 }
