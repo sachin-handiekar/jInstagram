@@ -22,6 +22,12 @@ public class UserFeedData {
 	
 	@SerializedName("full_name")
 	private String fullName;
+	
+	@SerializedName("website")
+	private String website;
+	
+	@SerializedName("bio")
+	private String bio;
 
 	public String getFullName() {
 		return fullName;
@@ -48,6 +54,7 @@ public class UserFeedData {
 	/**
 	 * @return the firstName
 	 */
+	@Deprecated
 	public String getFirstName() {
 		return firstName;
 	}
@@ -55,6 +62,7 @@ public class UserFeedData {
 	/**
 	 * @param firstName the firstName to set
 	 */
+	@Deprecated
 	public void setFirstName(String firstName) {
 		this.firstName = firstName;
 	}
@@ -76,6 +84,7 @@ public class UserFeedData {
 	/**
 	 * @return the lastName
 	 */
+	@Deprecated
 	public String getLastName() {
 		return lastName;
 	}
@@ -83,6 +92,7 @@ public class UserFeedData {
 	/**
 	 * @param lastName the lastName to set
 	 */
+	@Deprecated
 	public void setLastName(String lastName) {
 		this.lastName = lastName;
 	}
@@ -101,9 +111,41 @@ public class UserFeedData {
 		this.id = id;
 	}
 
+	/**
+	 * 
+	 * @return the website
+	 */
+    public String getWebsite() {
+        return website;
+    }
+
+    /**
+     * 
+     * @param website the website to set
+     */
+    public void setWebsite(String website) {
+        this.website = website;
+    }
+
+    /**
+     * 
+     * @return the bio
+     */
+    public String getBio() {
+        return bio;
+    }
+
+    /**
+     * 
+     * @param bio the bio to set
+     */
+    public void setBio(String bio) {
+        this.bio = bio;
+    }
+
     @Override
     public String toString() {
-        return String.format("UserFeedData [firstName=%s, id=%s, lastName=%s, profilePictureUrl=%s, userName=%s]",
-                firstName, id, lastName, profilePictureUrl, userName);
+        return String.format("UserFeedData [id=%s, profilePictureUrl=%s, userName=%s, fullName=%s, website=%s, bio=%s]",
+                id, profilePictureUrl, userName, fullName, website, bio);
     }
 }
