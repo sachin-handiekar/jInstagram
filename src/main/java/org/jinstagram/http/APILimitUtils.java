@@ -8,17 +8,18 @@ import java.util.Map;
  * @author Arinto Murdopo
  *
  */
-public class APILimitUtils {
+public final class APILimitUtils {
 	
-	private static final String LIMIT_HEADER_KEY = "X-Ratelimit-Limit";
-	private static final String REMAINING_HEADER_KEY = "X-Ratelimit-Remaining";
+	protected static final String LIMIT_HEADER_KEY = "X-Ratelimit-Limit";
+	protected static final String REMAINING_HEADER_KEY = "X-Ratelimit-Remaining";
 	
 	/**
 	 * Get the available API limit. It correspond to the value of 
 	 * X-Ratelimit-Limit key in HTTP response headers. For Instagram 
 	 * v1 API, this method should return 5000.
 	 * @param headers HTTP headers from a Response object
-	 * @return Available API limit
+	 * @return Available API limit. -1 if response header is invalid or does not contains the API 
+     * limit information
 	 */
 	public static int getAPILimitStatus(Map<String, String> headers){
 		return APILimitUtils.getIntegerValue(headers, LIMIT_HEADER_KEY);
@@ -28,7 +29,8 @@ public class APILimitUtils {
 	 * Get the remaining API limit. It correspond to the value of 
 	 * X-Ratelimit-Remaining key in HTTP response headers.
 	 * @param headers HTTP headers from a Response object
-	 * @return Remaining API limit
+	 * @return Remaining API limit. -1 if response header is invalid or does not contains the remaining 
+	 * limit information
 	 */
 	public static int getRemainingLimitStatus(Map<String, String> headers){
 		return APILimitUtils.getIntegerValue(headers, REMAINING_HEADER_KEY);
@@ -41,7 +43,7 @@ public class APILimitUtils {
 		try {
 			value = Integer.valueOf(intValueStr);
 		} catch (NumberFormatException e) {
-			System.out.printf("Invalid Integer value for key: %s, value %s%n", key, intValueStr);
+			System.err.printf("Invalid Integer value for key: %s, value %s%n", key, intValueStr);
 		}
 		return value;
 	}
