@@ -797,14 +797,14 @@ public class Instagram {
         final InstagramErrorResponse error;
         try {
             if (response.getCode() == 400) {
-                error = gson.fromJson(response.getBody(), InstagramErrorResponse.class);
+                error = InstagramErrorResponse.parse(gson, response.getBody());
                 error.setHeaders(response.getHeaders());
                 error.throwException();
             }
             //sending too many requests too quickly;
             //limited to 5000 requests per hour per access_token or client_id overall.  (according to spec)
             else if (response.getCode() == 503) {
-                error = gson.fromJson(response.getBody(), InstagramErrorResponse.class);
+                error = InstagramErrorResponse.parse(gson, response.getBody());
                 error.setHeaders(response.getHeaders());
                 error.throwException();
             }

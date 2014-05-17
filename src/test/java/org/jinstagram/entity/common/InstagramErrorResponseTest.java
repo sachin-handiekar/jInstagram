@@ -1,53 +1,62 @@
 package org.jinstagram.entity.common;
 
 import com.google.gson.Gson;
-
+import org.jinstagram.exceptions.InstagramBadRequestException;
+import org.jinstagram.exceptions.InstagramException;
+import org.jinstagram.exceptions.InstagramRateLimitException;
+import org.junit.Rule;
 import org.junit.Test;
-
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertNull;
+import org.junit.rules.ExpectedException;
 
 public class InstagramErrorResponseTest {
+
+    @Rule
+    public final ExpectedException thrown = ExpectedException.none();
+
     private Gson GSON_PARSER = new Gson();
 
-    private static final String CAPTION_JSON_NULL = "{\"caption\": null}";
+    private static final String RATE_LIMIT_JSON = "{" +
+            "\"code\": 420, \"error_type\": \"OAuthRateLimitException\", " +
+            "\"error_message\": \"You have exceeded the maximum number of requests per hour. You have performed " +
+            "a total of 10672 requests in the last hour. Our general maximum request limit is set at 5000 " +
+            "requests per hour.\"}";
 
-    private static final String CAPTION_JSON_DATA = "{"
-            + "            \"created_time\": \"1296656006\",\n"
-            + "            \"text\": \"ã\u0083\u008Fã\u0083¼ã\u0083\u0088â\u0099¥ã\u0082¢ã\u0083\u0097ã\u0083ªå§\u008Bã\u0082\u0081ã\u0081¦ä½¿ã\u0081£ã\u0081¦ã\u0081¿ã\u0081\u009Fã\u0082\u0087(^^)\",\n"
-            + "            \"from\": {\n"
-            + "                \"username\": \"cocomiin\",\n"
-            + "                \"full_name\": \"\",\n"
-            + "                \"type\": \"user\",\n"
-            + "                \"id\": \"1127272\"\n"
-            + "            },\n"
-            + "            \"id\": \"26329105\"\n"
-            + "        }";
+    private static final String OAUTH_EXCEPTION_JSON = "{\n" +
+            "    \"meta\": {\n" +
+            "        \"error_type\": \"OAuthException\",\n" +
+            "        \"code\": 400,\n" +
+            "        \"error_message\": \"...\"\n" +
+            "    }\n" +
+            "}";
+
+    private static final String INVALID_JSON = "{ foo : 420 }";
 
 
     @Test
-    public void testCaptionEntity_Null() {
-        Caption caption;
-        caption = GSON_PARSER.fromJson(CAPTION_JSON_NULL, Caption.class);
+    public void rateLimitException() throws InstagramException {
+        InstagramErrorResponse response = InstagramErrorResponse.parse(GSON_PARSER, RATE_LIMIT_JSON);
 
-        assertNull(caption.getCreatedTime());
-        assertNull(caption.getFrom());
-        assertEquals(0, caption.getId());
-        assertNull(caption.getText());
+        thrown.expect(InstagramRateLimitException.class);
+        thrown.expectMessage("OAuthRateLimitException");
+        response.throwException();
     }
 
     @Test
-    public void testCaptionEntity_WithData() {
-        Caption caption;
-        caption = GSON_PARSER.fromJson(CAPTION_JSON_DATA, Caption.class);
+    public void oauthException() throws InstagramException {
+        InstagramErrorResponse response = InstagramErrorResponse.parse(GSON_PARSER, OAUTH_EXCEPTION_JSON);
 
-        assertNotNull("'Caption' entity should not be null.", caption);
-        assertNotNull(caption.getCreatedTime());
-        assertNotNull(caption.getFrom());
-        assertNotNull(caption.getId());
-        assertNotNull(caption.getText());
+        thrown.expect(InstagramBadRequestException.class);
+        thrown.expectMessage("OAuthException");
+        response.throwException();
     }
 
+    @Test
+    public void invalidJson() throws InstagramException {
+        InstagramErrorResponse response = InstagramErrorResponse.parse(GSON_PARSER, INVALID_JSON);
+
+        thrown.expect(InstagramException.class);
+        thrown.expectMessage("No metadata found in response");
+        response.throwException();
+    }
 
 }
