@@ -16,7 +16,7 @@ public class InstagramErrorResponseTest {
     private Gson GSON_PARSER = new Gson();
 
     private static final String RATE_LIMIT_JSON = "{" +
-            "\"code\": 420, \"error_type\": \"OAuthRateLimitException\", " +
+            "\"code\": 429, \"error_type\": \"OAuthRateLimitException\", " +
             "\"error_message\": \"You have exceeded the maximum number of requests per hour. You have performed " +
             "a total of 10672 requests in the last hour. Our general maximum request limit is set at 5000 " +
             "requests per hour.\"}";

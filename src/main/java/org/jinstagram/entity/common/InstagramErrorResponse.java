@@ -42,7 +42,7 @@ public class InstagramErrorResponse {
             switch (errorMeta.getCode()) {
                 case 400:
                     throw new InstagramBadRequestException(msg, this.headers);
-                case 420:
+                case 429:
                     throw new InstagramRateLimitException(msg, this.headers);
             }
 
