@@ -10,7 +10,7 @@
 	<groupId>com.sachinhandiekar</groupId>
 	<artifactId>jInstagram</artifactId>
 	<name>jInstagram</name>
-	<version>1.0.8-SNAPSHOT</version>
+	<version>1.0.8</version>
 	<packaging>jar</packaging>
 	<description>Java Instagram API by Sachin Handiekar</description>
 
