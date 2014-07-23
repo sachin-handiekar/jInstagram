@@ -33,7 +33,7 @@ public class CaptionTest {
 
         assertNull(caption.getCreatedTime());
         assertNull(caption.getFrom());
-        assertEquals(0, caption.getId());
+        assertNull(caption.getId());
         assertNull(caption.getText());
     }
 
