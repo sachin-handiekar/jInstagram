@@ -10,7 +10,7 @@ public class User {
 	private String fullName;
 
 	@SerializedName("id")
-	private long id;
+	private String id;
 
 	@SerializedName("profile_picture")
 	private String profilePictureUrl;
@@ -94,14 +94,14 @@ public class User {
 	/**
 	 * @return the id
 	 */
-	public long getId() {
+	public String getId() {
 		return id;
 	}
 
 	/**
 	 * @param id the id to set
 	 */
-	public void setId(long id) {
+	public void setId(String id) {
 		this.id = id;
 	}
 

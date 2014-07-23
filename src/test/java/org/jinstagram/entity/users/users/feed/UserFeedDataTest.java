@@ -17,7 +17,7 @@ public class UserFeedDataTest {
         final String aFullName = "a full name";
         ufd.setFullName(aFullName);
         
-        final long anID = 12345L;
+        final String anID = "12345";
         ufd.setId(anID);
         
         final String anUrl = "http://images.ak.instagram.com/profiles/profile_493845840_75sq_1384173674.jpg";

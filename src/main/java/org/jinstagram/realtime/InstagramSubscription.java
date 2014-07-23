@@ -161,7 +161,7 @@ public class InstagramSubscription {
      * Creates a subscription with the current state of this instance.
      * <p/>
      * The {@link SubscriptionResponse} holds the result of the subscription such as the identifier
-     * of the subscription that can be used later to {@linkplain #deleteSubscription(long) delete it}.
+     * of the subscription that can be used later to {@linkplain #deleteSubscription(String) delete it}.
      *
      * @return the result of the subscription
      * @throws InstagramException
@@ -193,9 +193,9 @@ public class InstagramSubscription {
      *
      * @param id the id of the subscription to remove
      */
-    public SubscriptionResponse deleteSubscription(long id) throws InstagramException {
+    public SubscriptionResponse deleteSubscription(String id) throws InstagramException {
         final OAuthRequest request = prepareOAuthRequest(Verbs.DELETE);
-        request.addQuerystringParameter("id", String.valueOf(id));
+        request.addQuerystringParameter("id", id);
 
         try {
             final Response response = request.send();

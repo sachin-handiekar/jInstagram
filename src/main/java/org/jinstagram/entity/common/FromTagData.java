@@ -7,7 +7,7 @@ public class FromTagData {
 	private String fullName;
 
 	@SerializedName("id")
-	private long id;
+	private String id;
 
 	@SerializedName("profile_picture")
 	private String profilePicture;
@@ -23,11 +23,11 @@ public class FromTagData {
 		this.username = username;
 	}
 
-	public long getId() {
+	public String getId() {
 		return id;
 	}
 
-	public void setId(long id) {
+	public void setId(String id) {
 		this.id = id;
 	}
 

@@ -102,8 +102,8 @@ public class Instagram {
 	 * @return a MediaFeed object.
 	 * @throws InstagramException if any error occurs.
 	 */
-	public UserInfo getUserInfo(long userId) throws InstagramException {
-		Preconditions.checkNotNull(userId, "UserId cannot be null.");
+	public UserInfo getUserInfo(String userId) throws InstagramException {
+		Preconditions.checkEmptyString(userId, "UserId cannot be null or empty.");
 
 		String apiMethod = String.format(Methods.USERS_WITH_ID, userId);
 		UserInfo userInfo = createInstagramObject(Verbs.GET, UserInfo.class, apiMethod, null);
@@ -169,8 +169,8 @@ public class Instagram {
 	 * @return a MediaFeed object.
 	 * @throws InstagramException if any error occurs
 	 */
-	public MediaFeed getRecentMediaFeed(long userId) throws InstagramException {
-		Preconditions.checkNotNull(userId, "UserId cannot be null.");
+	public MediaFeed getRecentMediaFeed(String userId) throws InstagramException {
+		Preconditions.checkEmptyString(userId, "UserId cannot be null or empty.");
 
 		String methodName = String.format(Methods.USERS_RECENT_MEDIA, userId);
 		MediaFeed recentMediaFeed = createInstagramObject(Verbs.GET, MediaFeed.class, methodName, null);
@@ -185,8 +185,8 @@ public class Instagram {
      * @return a MediaFeed object.
      * @throws InstagramException if any error occurs
      */
-    public MediaFeed getRecentMediaFeed(long userId, int count, String minId, String maxId, Date maxTimeStamp, Date minTimeStamp) throws InstagramException {
-        Preconditions.checkNotNull(userId, "UserId cannot be null.");
+    public MediaFeed getRecentMediaFeed(String userId, int count, String minId, String maxId, Date maxTimeStamp, Date minTimeStamp) throws InstagramException {
+        Preconditions.checkEmptyString(userId, "UserId cannot be null or empty.");
         Map<String, String> params = new HashMap<String, String>();
 
         if(maxId != null) {
@@ -327,8 +327,8 @@ public class Instagram {
 	 * @return a UserFeed object.
 	 * @throws InstagramException if any error occurs.
 	 */
-	public UserFeed getUserFollowList(long userId) throws InstagramException {
-		Preconditions.checkNotNull(userId, "userId cannot be null.");
+	public UserFeed getUserFollowList(String userId) throws InstagramException {
+		Preconditions.checkEmptyString(userId, "userId cannot be null or empty.");
 
 		String apiMethod = String.format(Methods.USERS_ID_FOLLOWS, userId);
 		UserFeed userFeed = createInstagramObject(Verbs.GET, UserFeed.class, apiMethod, null);
@@ -343,8 +343,8 @@ public class Instagram {
 	 * @return a UserFeed object.
 	 * @throws InstagramException if any error occurs.
 	 */
-	public UserFeed getUserFollowedByList(long userId) throws InstagramException {
-		Preconditions.checkNotNull(userId, "userId cannot be null.");
+	public UserFeed getUserFollowedByList(String userId) throws InstagramException {
+		Preconditions.checkEmptyString(userId, "userId cannot be null or empty.");
 
 		String apiMethod = String.format(Methods.USERS_ID_FOLLOWED_BY, userId);
 		UserFeed userFeed = createInstagramObject(Verbs.GET, UserFeed.class, apiMethod, null);
@@ -372,8 +372,8 @@ public class Instagram {
 	 * @return a Relationship feed object.
 	 * @throws InstagramException if any error occurs.
 	 */
-	public RelationshipFeed getUserRelationship(long userId) throws InstagramException {
-		Preconditions.checkNotNull(userId, "userId cannot be null.");
+	public RelationshipFeed getUserRelationship(String userId) throws InstagramException {
+		Preconditions.checkEmptyString(userId, "userId cannot be null or empty.");
 
 		String apiMethod = String.format(Methods.USERS_ID_RELATIONSHIP, userId);
 		RelationshipFeed feed = createInstagramObject(Verbs.GET, RelationshipFeed.class, apiMethod, null);
@@ -389,8 +389,8 @@ public class Instagram {
 	 * @return a Relationship feed object
 	 * @throws InstagramException if any error occurs.
 	 */
-	public RelationshipFeed setUserRelationship(long userId, Relationship relationship) throws InstagramException {
-		Preconditions.checkNotNull(userId, "userId cannot be null.");
+	public RelationshipFeed setUserRelationship(String userId, Relationship relationship) throws InstagramException {
+		Preconditions.checkEmptyString(userId, "userId cannot be null or empty.");
 		Preconditions.checkNotNull(relationship, "relationship cannot be null.");
 
 		String apiMethod = String.format(Methods.USERS_ID_RELATIONSHIP, userId);
@@ -523,7 +523,7 @@ public class Instagram {
 	 * @return a MediaCommentResponse feed.
 	 * @throws InstagramException if any error occurs.
 	 */
-	public MediaCommentResponse deleteMediaCommentById(String mediaId, long commentId) throws InstagramException {
+	public MediaCommentResponse deleteMediaCommentById(String mediaId, String commentId) throws InstagramException {
 		String apiMethod = String.format(Methods.DELETE_MEDIA_COMMENTS, mediaId, commentId);
 		MediaCommentResponse feed = createInstagramObject(Verbs.DELETE, MediaCommentResponse.class, apiMethod, null);
 
@@ -699,7 +699,7 @@ public class Instagram {
 	 * @return a LocationInfo object.
 	 * @throws InstagramException if any error occurs.
 	 */
-	public LocationInfo getLocationInfo(long locationId) throws InstagramException {
+	public LocationInfo getLocationInfo(String locationId) throws InstagramException {
 		String apiMethod = String.format(Methods.LOCATIONS_BY_ID, locationId);
 		LocationInfo feed = createInstagramObject(Verbs.GET, LocationInfo.class, apiMethod, null);
 
@@ -713,7 +713,7 @@ public class Instagram {
 	 * @return a MediaFeed object.
 	 * @throws InstagramException if any error occurs.
 	 */
-	public MediaFeed getRecentMediaByLocation(long locationId) throws InstagramException {
+	public MediaFeed getRecentMediaByLocation(String locationId) throws InstagramException {
 		String apiMethod = String.format(Methods.LOCATIONS_RECENT_MEDIA_BY_ID, locationId);
 		MediaFeed feed = createInstagramObject(Verbs.GET, MediaFeed.class, apiMethod, null);
 
@@ -731,7 +731,7 @@ public class Instagram {
      * @return a MediaFeed object.
      * @throws InstagramException if any error occurs.
      */
-    public MediaFeed getRecentMediaByLocation(long locationId, int minId, int maxId, Date maxTimeStamp, Date minTimeStamp) throws InstagramException {
+    public MediaFeed getRecentMediaByLocation(String locationId, int minId, int maxId, Date maxTimeStamp, Date minTimeStamp) throws InstagramException {
         Map<String, String> params = new HashMap<String, String>();
 
         if(maxTimeStamp != null) {

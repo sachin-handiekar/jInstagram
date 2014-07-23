@@ -4,7 +4,7 @@ import com.google.gson.annotations.SerializedName;
 
 public class Location {
 	@SerializedName("id")
-	private long id;
+	private String id;
 
 	@SerializedName("name")
 	private String name;
@@ -48,14 +48,14 @@ public class Location {
 	/**
 	 * @return the id
 	 */
-	public long getId() {
+	public String getId() {
 		return id;
 	}
 
 	/**
 	 * @param id the id to set
 	 */
-	public void setId(long id) {
+	public void setId(String id) {
 		this.id = id;
 	}
 
