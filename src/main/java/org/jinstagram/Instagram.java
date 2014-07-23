@@ -594,11 +594,62 @@ public class Instagram {
 	 * @throws InstagramException if any error occurs.
 	 */
 	public TagMediaFeed getRecentMediaTags(String tagName) throws InstagramException {
-		String apiMethod = String.format(Methods.TAGS_RECENT_MEDIA, tagName);
-		TagMediaFeed feed = createInstagramObject(Verbs.GET, TagMediaFeed.class, apiMethod, null);
-
-		return feed;
+		return getRecentMediaTags(tagName, 0);
 	}
+
+    /**
+     * Get a list of recently tagged media.
+     *
+     * @param tagName name of the tag.
+     * @param count, set to 0 to use default
+     * @return a TagMediaFeed object.
+     * @throws InstagramException if any error occurs.
+     */
+    public TagMediaFeed getRecentMediaTags(String tagName, long count) throws InstagramException {
+        return getRecentMediaTags(tagName, null, null, count);
+    }
+
+    /**
+     * Get a list of recently tagged media.
+     *
+     * @param tagName name of the tag.
+     * @param minTagId (return media before this tag_id), can be null
+     * @param maxTagId (return media before this tag_id), can be null
+     * @return a TagMediaFeed object.
+     * @throws InstagramException if any error occurs.
+     */
+    public TagMediaFeed getRecentMediaTags(String tagName, String minTagId, String maxTagId) throws InstagramException {
+        return getRecentMediaTags(tagName, minTagId, maxTagId, 0);
+    }
+
+    /**
+     * Get a list of recently tagged media.
+     *
+     * @param tagName name of the tag.
+     * @param minTagId (return media before this tag_id), can be null
+     * @param maxTagId (return media before this tag_id), can be null
+     * @param count, set to 0 to use default
+     * @return a TagMediaFeed object.
+     * @throws InstagramException if any error occurs.
+     */
+    public TagMediaFeed getRecentMediaTags(String tagName, String minTagId, String maxTagId, long count) throws InstagramException {
+        Map<String, String> params = new HashMap<String, String>();
+
+        if(!StringUtils.isEmpty(minTagId))
+            params.put(QueryParam.MIN_TAG_ID, String.valueOf(minTagId));
+
+        if(!StringUtils.isEmpty(maxTagId))
+            params.put(QueryParam.MAX_TAG_ID, String.valueOf(maxTagId));
+
+        if(count != 0) {
+            params.put(QueryParam.COUNT,String.valueOf(count));
+        }
+
+        String apiMethod = String.format(Methods.TAGS_RECENT_MEDIA, tagName);
+        TagMediaFeed feed = createInstagramObject(Verbs.GET, TagMediaFeed.class, apiMethod, params);
+
+        return feed;
+    }
 
     /**
      * Get a list of recently tagged media.
@@ -607,14 +658,15 @@ public class Instagram {
      * @return a TagMediaFeed object.
      * @throws InstagramException if any error occurs.
      */
-    public TagMediaFeed getRecentMediaTags(String tagName, String minId, String maxId) throws InstagramException {
+    @Deprecated
+    public TagMediaFeed getRecentMediaTagsByRegularIds(String tagName, String minId, String maxId) throws InstagramException {
         Map<String, String> params = new HashMap<String, String>();
 
         if(!StringUtils.isEmpty(minId))
-        params.put(QueryParam.MIN_ID, String.valueOf(minId));
+            params.put(QueryParam.MIN_ID, String.valueOf(minId));
 
         if(!StringUtils.isEmpty(maxId))
-        params.put(QueryParam.MAX_ID, String.valueOf(maxId));
+            params.put(QueryParam.MAX_ID, String.valueOf(maxId));
 
         String apiMethod = String.format(Methods.TAGS_RECENT_MEDIA, tagName);
         TagMediaFeed feed = createInstagramObject(Verbs.GET, TagMediaFeed.class, apiMethod, params);
