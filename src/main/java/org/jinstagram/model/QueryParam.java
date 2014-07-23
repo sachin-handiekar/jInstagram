@@ -28,4 +28,8 @@ public final class QueryParam {
 	public static final String SEARCH_QUERY = "q";
 
 	public static final String TEXT = "text";
+
+    public static final String MAX_TAG_ID = "max_tag_id";
+
+    public static final String MIN_TAG_ID = "min_tag_id";
 }

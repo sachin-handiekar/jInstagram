@@ -13,7 +13,7 @@ public class UserInfoData {
 	private String first_name;
 
 	@SerializedName("id")
-	private long id;
+	private String id;
 
 	@SerializedName("last_name")
 	private String last_name;
@@ -38,11 +38,11 @@ public class UserInfoData {
 		this.username = username;
 	}
 
-	public long getId() {
+	public String getId() {
 		return id;
 	}
 
-	public void setId(long id) {
+	public void setId(String id) {
 		this.id = id;
 	}
 
