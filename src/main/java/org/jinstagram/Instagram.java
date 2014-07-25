@@ -47,7 +47,6 @@ public class Instagram {
 	private Token accessToken;
     private final String clientId;
     private final InstagramConfig config;
-    private String ips;
     private String enforceSignatrue;
 
 	public Instagram(Token accessToken) {
@@ -61,7 +60,6 @@ public class Instagram {
         this.accessToken = accessToken;
         clientId = null;
         config = new InstagramConfig();
-        this.ips = ips;
         enforceSignatrue = createEnforceSignatrue(secret, ips);
     }
 	
