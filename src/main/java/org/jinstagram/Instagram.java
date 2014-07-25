@@ -31,6 +31,7 @@ import org.jinstagram.http.Verbs;
 import org.jinstagram.model.Methods;
 import org.jinstagram.model.QueryParam;
 import org.jinstagram.model.Relationship;
+import org.jinstagram.utils.EnforceSignedHeaderUtils;
 import org.jinstagram.utils.Preconditions;
 
 import com.google.gson.Gson;
@@ -46,12 +47,21 @@ public class Instagram {
 	private Token accessToken;
     private final String clientId;
     private final InstagramConfig config;
+    private String enforceSignatrue;
 
 	public Instagram(Token accessToken) {
 		this.accessToken = accessToken;
 		clientId = null;
 		config = new InstagramConfig();
 	}
+	
+    public Instagram(String token, String secret, String ips) {
+        Token accessToken = new Token(token, secret);
+        this.accessToken = accessToken;
+        clientId = null;
+        config = new InstagramConfig();
+        enforceSignatrue = createEnforceSignatrue(secret, ips);
+    }
 	
 	public Instagram(Token accessToken, InstagramConfig config) {
 		this.accessToken = accessToken;
@@ -882,6 +892,11 @@ public class Instagram {
 		request.setConnectTimeout(config.getConnectionTimeoutMills(), TimeUnit.MILLISECONDS);
 		request.setReadTimeout(config.getReadTimeoutMills(), TimeUnit.MILLISECONDS);
 		
+        if (enforceSignatrue != null) {
+            request.addHeader(EnforceSignedHeaderUtils.ENFORCE_SIGNED_HEADER, enforceSignatrue);
+        }
+		
+		
 		// Additional parameters in url
 		if (params != null) {
 			for (Map.Entry<String, String> entry : params.entrySet()) {
@@ -914,6 +929,18 @@ public class Instagram {
 
 		return response;
 	}
+	
+    protected String createEnforceSignatrue(String secret, String ips) {
+        if (null != ips) {
+            try {
+                String signature = EnforceSignedHeaderUtils.signature(secret, ips);
+                return ips + "|" + signature;
+            } catch (InstagramException e) {
+                // do nothing
+            }
+        }
+        return null;
+    }
 
 	/**
 	 * Creates an object from the JSON response and the class which the object would be mapped to.
