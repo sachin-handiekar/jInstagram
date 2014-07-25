@@ -3,7 +3,7 @@
 
 A Java wrapper for the [Instagram API](http://instagram.com/developer/).
 
-Note : jInstagram uses code from the [scribe-java] (https://github.com/fernandezpablo85/scribe-java) library developed by [Pablo Fernandez] (https://github.com/fernandezpablo85).
+Note : jInstagram uses code from the [scribe-java] (https://github.com/fernandezpablo85/scribe-java) library developed by [Pablo Fernandez] (https://github.com/fernandezpablo85). 
 
 
 ##Usage
@@ -14,9 +14,9 @@ Note : jInstagram uses code from the [scribe-java] (https://github.com/fernandez
 InstagramService service =	new InstagramAuthService()
     							.apiKey("your_client_id")
     							.apiSecret("your_client_secret")
-    							.callback("your_callback_url")
+    							.callback("your_callback_url")     
     							.build();
-```
+```    							
 
 __[With Scope]__
 
@@ -28,10 +28,10 @@ __Commenting access__ - You need to register your clientId and Application Name 
 InstagramService service = new InstagramAuthService()
     							.apiKey("your_client_id")
     							.apiSecret("your_client_secret")
-    							.callback("your_callback_url")
+    							.callback("your_callback_url") 
     							.scope("comments")
     							.build();
-```
+``` 
 
 Note : An empty token can be define as follows -
 
@@ -45,13 +45,13 @@ private static final Token EMPTY_TOKEN = null;
 String authorizationUrl = service.getAuthorizationUrl(EMPTY_TOKEN);
 ```
 
-* Getting the Access Token
+* Getting the Access Token 
 
 ```java
 Verifier verifier = new Verifier("verifier you get from the user");
 Token accessToken = service.getAccessToken(EMPTY_TOKEN, verifier);
  ```
-
+ 
 * Creating the Instagram Object
 
 ```java
@@ -67,8 +67,8 @@ Instagram instagram = new Instagram(accessToken);
 Instagram instagram = new Instagram(accessToken.getToken(), "your_client_secret", "your_IPs");
 ```
 
-
-##Instagram API Endpoints
+	    
+##Instagram API Endpoints 
 
 ### Please see the [API Usage](https://github.com/sachin-handiekar/jInstagram/wiki/jInstagram-Usage) for more details.
 
