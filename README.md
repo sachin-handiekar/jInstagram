@@ -57,6 +57,13 @@ Token accessToken = service.getAccessToken(EMPTY_TOKEN, verifier);
 ```java
 Instagram instagram = new Instagram(accessToken);
 ```
+
+* Or Creating the Instagram Object with enforce signed header (Note: Enforce signed header of the APP settings should be checked)
+
+```java
+Instagram instagram = new Instagram(accessToken.getToken(), "your_client_secret", "200.15.1.1,131.51.1.35");
+```
+
 	    
 ##Instagram API Endpoints 
 
