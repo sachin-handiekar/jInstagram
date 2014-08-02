@@ -67,6 +67,8 @@ Instagram instagram = new Instagram(accessToken);
 Instagram instagram = new Instagram(accessToken.getToken(), "your_client_secret", "your_IPs");
 ```
 
+###Sample Projects
+* [Basic Web Application](https://github.com/sachin-handiekar/jInstagram-examples) - A basic web application demonstrating the use of jInstagram API.
 	    
 ##Instagram API Endpoints 
 
