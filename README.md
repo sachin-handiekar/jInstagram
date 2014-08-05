@@ -72,7 +72,7 @@ Instagram instagram = new Instagram(accessToken.getToken(), "your_client_secret"
 	    
 ##Instagram API Endpoints 
 
-### Please see the [API Usage](https://github.com/sachin-handiekar/jInstagram/wiki/jInstagram-Usage) for more details.
+Please see the [API Usage](https://github.com/sachin-handiekar/jInstagram/wiki/jInstagram-Usage) for more details.
 
 ##Instagram Embedding Endpoints
 
