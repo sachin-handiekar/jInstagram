@@ -1,2 +1,2 @@
 language: java
-install: mvn clean install -DskipTests=true
+install: mvn clean install
