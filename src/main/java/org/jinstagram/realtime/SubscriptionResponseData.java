@@ -7,7 +7,7 @@ public class SubscriptionResponseData {
 	@SerializedName("object")
 	private String object;
 
-	@SerializedName("objectId")
+	@SerializedName("object_id")
 	private String objectId;
 
 	@SerializedName("aspect")
