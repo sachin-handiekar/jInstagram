@@ -1,4 +1,4 @@
-#jInstagram [![Build Status](https://travis-ci.org/sachin-handiekar/jInstagram.png)](https://travis-ci.org/sachin-handiekar/jInstagram)
+#jInstagram [![Build Status](https://travis-ci.org/sachin-handiekar/jInstagram.svg)](https://travis-ci.org/sachin-handiekar/jInstagram)
 
 <a href="http://flattr.com/thing/846144/sachin-handiekarjInstagram-on-GitHub" target="_blank"><img src="http://api.flattr.com/button/flattr-badge-large.png" alt="Flattr this" title="Flattr this" border="0" /></a>
 
