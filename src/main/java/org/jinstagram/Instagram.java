@@ -234,7 +234,7 @@ public class Instagram {
         return createInstagramObject(Verbs.GET, MediaFeed.class, StringUtils.removeStart(pagination.getNextUrl(), config.getApiURL()), null);
     }
     
-	    /**
+	/**
      * Get the next page of user feed objects from a previously executed request
      * @param pagination
      * @throws InstagramException
@@ -243,7 +243,7 @@ public class Instagram {
     	return createInstagramObject(Verbs.GET, UserFeed.class, StringUtils.removeStart(pagination.getNextUrl(), config.getApiURL()), null);
     }
     
-	    /**
+	/**
      * Get the next page of tagged media objects from a previously executed request
      * @param pagination
      * @throws InstagramException
@@ -346,6 +346,21 @@ public class Instagram {
 		return userFeed;
 	}
 
+	
+	/**
+     * Get the next page for list of 'users' the authenticated user follows.
+     * 
+     * @param pagination
+     * @throws InstagramException
+     */
+    public UserFeed getUserFollowListNextPage(Pagination pagination) throws InstagramException {
+    	return getUserFeedInfoNextPage(pagination);
+    }
+    
+    
+    
+    
+    
 	/**
 	 * Get the list of 'users' the current authenticated user is followed by.
 	 *
@@ -361,6 +376,18 @@ public class Instagram {
 
 		return userFeed;
 	}
+	
+	
+	/**
+     * Get the next page for list of 'users' the authenticated is followed by.
+     * 
+     * @param pagination
+     * @throws InstagramException
+     */
+    public UserFeed getUserFollowedByListNextPage(Pagination pagination) throws InstagramException {
+    	return getUserFeedInfoNextPage(pagination);
+    }
+    
 
 	/**
 	 * Get a list of users who have requested this user's permission to follow
