@@ -456,6 +456,22 @@ public class Instagram {
 		return feed;
 	}
 
+    /**
+     * Get information about a media object.
+     *
+     * @param shortcode shortcode of the Media object.
+     * @return a mediaFeed object.
+     * @throws InstagramException if any error occurs.
+     */
+    public MediaInfoFeed getMediaInfoByShortcode(String shortcode) throws InstagramException {
+        Preconditions.checkNotNull(shortcode, "shortcode cannot be null.");
+
+        String apiMethod = String.format(Methods.MEDIA_BY_SHORTCODE, shortcode);
+        MediaInfoFeed feed = createInstagramObject(Verbs.GET, MediaInfoFeed.class, apiMethod, null);
+
+        return feed;
+    }
+
 	/**
 	 * Search for media in a given area.
 	 *
