@@ -5,6 +5,7 @@ import java.util.List;
 
 import org.jinstagram.Instagram;
 import org.jinstagram.auth.model.Token;
+import org.jinstagram.entity.media.MediaInfoFeed;
 import org.jinstagram.entity.users.basicinfo.UserInfo;
 import org.jinstagram.entity.users.feed.MediaFeed;
 import org.jinstagram.entity.users.feed.MediaFeedData;
@@ -68,5 +69,9 @@ public class IntegrationTest {
 
         System.out.println("***** User Info ******");
         System.out.println("Username : " + userInfo.getData());
+
+        MediaInfoFeed infoFeed = instagram.getMediaInfoByShortcode("svzdnlDBLs");
+        System.out.print("***** Feed Info ******");
+        System.out.print("Caption : " + infoFeed.getData().getCaption().getText());
     }
 }

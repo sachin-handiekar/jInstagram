@@ -46,6 +46,11 @@ public final class Methods {
 	 */
 	public static final String MEDIA_BY_ID = "/media/%s";
 
+    /**
+     * Get information about a media object.
+     */
+    public static final String MEDIA_BY_SHORTCODE = "/media/shortcode/%s";
+
 	/**
 	 * Get a full list of comments on a media.
 	 *
