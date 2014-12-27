@@ -93,7 +93,7 @@ OembedInformation info = oembed.getOembedInformation("http://instagram.com/p/BUG
 
 ##Development
 
-* Please see the [development guide](wiki/Development-Guide).
+* Please see the [development guide](https://github.com/sachin-handiekar/jInstagram/wiki/Development-Guide).
 
 ##About me
 
