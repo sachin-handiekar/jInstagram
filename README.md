@@ -91,9 +91,9 @@ OembedInformation info = oembed.getOembedInformation("http://instagram.com/p/BUG
 </dependency>
 ```
 
-##Dependencies
+##Development
 
-* Google GSON (http://code.google.com/p/google-gson/)
+* Please see the [development guide](wiki/Development-Guide).
 
 ##About me
 
