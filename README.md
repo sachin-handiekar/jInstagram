@@ -1,6 +1,6 @@
 #jInstagram [![Build Status](https://travis-ci.org/sachin-handiekar/jInstagram.svg)](https://travis-ci.org/sachin-handiekar/jInstagram)
 
-## [Table of Contents](#toc) 
+## <a name="toc">Table of Contents</a>
 * [Introduction](#introduction)
 * [How to Use](#how-to-use)
 * [Instagram Endpoints](#instagram-endpoints)
