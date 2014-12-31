@@ -8,7 +8,7 @@ import org.jinstagram.entity.common.User;
 
 import com.google.gson.annotations.SerializedName;
 
-public class LikesFeed extends InstagramObject{
+public class LikesFeed extends InstagramObject {
 
 	@SerializedName("meta")
 	private Meta meta;
@@ -46,8 +46,8 @@ public class LikesFeed extends InstagramObject{
 		this.userList = userList;
 	}
 
-    @Override
-    public String toString() {
-        return String.format("LikesFeed [meta=%s, userList=%s]", meta, userList);
-    }
+	@Override
+	public String toString() {
+		return String.format("LikesFeed [meta=%s, userList=%s]", meta, userList);
+	}
 }

@@ -30,8 +30,7 @@ public class InstagramApi {
 		if (config.hasScope()) {
 			return String.format(Constants.SCOPED_AUTHORIZE_URL, config.getApiKey(),
 					formURLEncode(config.getCallback()), formURLEncode(config.getScope()));
-		}
-		else {
+		} else {
 			return String.format(Constants.AUTHORIZE_URL, config.getApiKey(), formURLEncode(config.getCallback()));
 		}
 	}
@@ -48,8 +47,7 @@ public class InstagramApi {
 
 				if (matcher.find()) {
 					return new Token(matcher.group(1), "", response);
-				}
-				else {
+				} else {
 					throw new OAuthException("Cannot extract an acces token. Response was: " + response);
 				}
 			}

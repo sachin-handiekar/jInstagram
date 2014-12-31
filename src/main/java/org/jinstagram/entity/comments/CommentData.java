@@ -73,9 +73,9 @@ public class CommentData {
 		this.id = id;
 	}
 
-    @Override
-    public String toString() {
-        return String.format("CommentData [commentFrom=%s, createdTime=%s, id=%s, text=%s]",
-                commentFrom, createdTime, id, text);
-    }
+	@Override
+	public String toString() {
+		return String.format("CommentData [commentFrom=%s, createdTime=%s, id=%s, text=%s]", commentFrom, createdTime,
+				id, text);
+	}
 }

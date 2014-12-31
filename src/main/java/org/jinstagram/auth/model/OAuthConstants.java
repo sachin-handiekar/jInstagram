@@ -21,4 +21,6 @@ public class OAuthConstants {
 	public static final String REDIRECT_URI = "redirect_uri";
 
 	public static final String SCOPE = "scope";
+	
+	public static final String GRANT_TYPE = "grant_type";
 }

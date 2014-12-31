@@ -38,10 +38,8 @@ public class StreamUtils {
 			in.close();
 
 			return out.toString();
-		}
-		catch (IOException ioe) {
-			throw new IllegalStateException(
-					"Error while reading response body", ioe);
+		} catch (IOException ioe) {
+			throw new IllegalStateException("Error while reading response body", ioe);
 		}
 	}
 }

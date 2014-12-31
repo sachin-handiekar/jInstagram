@@ -13,18 +13,17 @@ public class InstagramRateLimitException extends InstagramException {
 	public InstagramRateLimitException(String message) {
 		super(message);
 	}
-	
 
-    /**
-     * No-exception constructor with response headers. 
-     * Used when there is no original exception
-     * 
-     * @param message message explaining what went wrong
-     * @param responseHeaders the headers obtained from Instagram http response
-     */
-    public InstagramRateLimitException(String message, Map<String, String> responseHeaders) {
-        super(message, responseHeaders);
-    }
+	/**
+	 * No-exception constructor with response headers. 
+	 * Used when there is no original exception
+	 * 
+	 * @param message message explaining what went wrong
+	 * @param responseHeaders the headers obtained from Instagram http response
+	 */
+	public InstagramRateLimitException(String message, Map<String, String> responseHeaders) {
+		super(message, responseHeaders);
+	}
 
 	/**
 	 * Default constructor
@@ -35,14 +34,14 @@ public class InstagramRateLimitException extends InstagramException {
 	public InstagramRateLimitException(String message, Exception e) {
 		super(message, e);
 	}
-	
-    /**
-     * Constructor with response headers
-     * @param message message explaining what went wrong
-     * @param e original exception
-     * @param responseHeaders the headers obtained from Instagram http response
-     */
+
+	/**
+	 * Constructor with response headers
+	 * @param message message explaining what went wrong
+	 * @param e original exception
+	 * @param responseHeaders the headers obtained from Instagram http response
+	 */
 	public InstagramRateLimitException(String message, Exception e, Map<String, String> responseHeaders) {
-	    super(message, e, responseHeaders);
+		super(message, e, responseHeaders);
 	}
 }

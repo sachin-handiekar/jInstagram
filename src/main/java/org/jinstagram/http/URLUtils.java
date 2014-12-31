@@ -28,8 +28,7 @@ public class URLUtils {
 
 	private static final String UTF_8 = "UTF-8";
 
-	private static final String ERROR_MSG = String.format(
-			"Cannot find specified encoding: %s", UTF_8);
+	private static final String ERROR_MSG = String.format("Cannot find specified encoding: %s", UTF_8);
 
 	private static final Set<EncodingRule> ENCODING_RULES;
 
@@ -62,8 +61,7 @@ public class URLUtils {
 			encodedString.append(PARAM_SEPARATOR).append(formURLEncode(key));
 
 			if (map.get(key) != null) {
-				encodedString.append(PAIR_SEPARATOR).append(
-						formURLEncode(map.get(key)));
+				encodedString.append(PAIR_SEPARATOR).append(formURLEncode(map.get(key)));
 			}
 		}
 
@@ -97,8 +95,7 @@ public class URLUtils {
 
 		try {
 			return URLEncoder.encode(string, UTF_8);
-		}
-		catch (UnsupportedEncodingException uee) {
+		} catch (UnsupportedEncodingException uee) {
 			throw new IllegalStateException(ERROR_MSG, uee);
 		}
 	}
@@ -114,8 +111,7 @@ public class URLUtils {
 
 		try {
 			return URLDecoder.decode(string, UTF_8);
-		}
-		catch (UnsupportedEncodingException uee) {
+		} catch (UnsupportedEncodingException uee) {
 			throw new IllegalStateException(ERROR_MSG, uee);
 		}
 	}
@@ -127,18 +123,15 @@ public class URLUtils {
 	 * @param params any map
 	 * @return new url with parameters on query string
 	 */
-	public static String appendParametersToQueryString(String url,
-			Map<String, String> params) {
+	public static String appendParametersToQueryString(String url, Map<String, String> params) {
 		Preconditions.checkNotNull(url, "Cannot append to null URL");
 
 		String queryString = URLUtils.formURLEncodeMap(params);
 
 		if (queryString.equals(EMPTY_STRING)) {
 			return url;
-		}
-		else {
-			url += (url.indexOf(QUERY_STRING_SEPARATOR) != -1) ? PARAM_SEPARATOR
-					: QUERY_STRING_SEPARATOR;
+		} else {
+			url += (url.indexOf(QUERY_STRING_SEPARATOR) != -1) ? PARAM_SEPARATOR : QUERY_STRING_SEPARATOR;
 			url += queryString;
 
 			return url;
@@ -153,8 +146,7 @@ public class URLUtils {
 	 */
 
 	// TODO Move to MapUtils
-	public static String concatSortedPercentEncodedParams(
-			Map<String, String> params) {
+	public static String concatSortedPercentEncodedParams(Map<String, String> params) {
 		StringBuilder result = new StringBuilder();
 
 		for (String key : params.keySet()) {
@@ -180,8 +172,7 @@ public class URLUtils {
 			for (String param : queryString.split(PARAM_SEPARATOR)) {
 				String pair[] = param.split(PAIR_SEPARATOR);
 				String key = formURLDecode(pair[0]);
-				String value = (pair.length > 1) ? formURLDecode(pair[1])
-						: EMPTY_STRING;
+				String value = (pair.length > 1) ? formURLDecode(pair[1]) : EMPTY_STRING;
 
 				result.put(key, value);
 			}

@@ -9,7 +9,7 @@ import org.jinstagram.http.APILimitUtils;
  * when we create an entity via Instagram.createInstagramObject.
  * 
  * @author Arinto Murdopo
- *
+ * @since 1.0.10
  */
 public abstract class InstagramObject implements InstagramResponse{
 	

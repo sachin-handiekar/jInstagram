@@ -32,8 +32,7 @@ public class InstagramAuthService {
 	 * @return the {@link InstagramAuthService} instance for method chaining
 	 */
 	public InstagramAuthService callback(String callback) {
-		Preconditions.checkValidOAuthCallback(callback,
-				"Callback must be a valid URL or 'oob'");
+		Preconditions.checkValidOAuthCallback(callback, "Callback must be a valid URL or 'oob'");
 
 		this.callback = callback;
 
@@ -107,10 +106,8 @@ public class InstagramAuthService {
 		InstagramApi api = new InstagramApi();
 
 		Preconditions.checkEmptyString(apiKey, "You must provide an api key");
-		Preconditions.checkEmptyString(apiSecret,
-				"You must provide an api secret");
+		Preconditions.checkEmptyString(apiSecret, "You must provide an api secret");
 
-		return api.createService(new OAuthConfig(apiKey, apiSecret, callback,
-				scope, display));
+		return api.createService(new OAuthConfig(apiKey, apiSecret, callback, scope, display));
 	}
 }

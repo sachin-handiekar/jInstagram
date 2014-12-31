@@ -38,9 +38,9 @@ public class Request {
 	private String url;
 
 	private Verbs verb;
-	
+
 	private int connectTimeout;
-	
+
 	private int readTimeout;
 
 	/**
@@ -64,22 +64,19 @@ public class Request {
 	 * @throws RuntimeException if the connection cannot be created.
 	 */
 	public Response send() throws IOException {
-        createConnection();
+		createConnection();
 
-        return doSend();
+		return doSend();
 	}
 
 	private void createConnection() throws IOException {
-		String effectiveUrl = URLUtils.appendParametersToQueryString(url,
-				querystringParams);
+		String effectiveUrl = URLUtils.appendParametersToQueryString(url, querystringParams);
 
 		if (connection == null) {
-			System.setProperty("http.keepAlive", connectionKeepAlive ? "true"
-					: "false");
+			System.setProperty("http.keepAlive", connectionKeepAlive ? "true" : "false");
 
-			connection = (HttpURLConnection) new URL(effectiveUrl)
-					.openConnection();
-					
+			connection = (HttpURLConnection) new URL(effectiveUrl).openConnection();
+
 			connection.setConnectTimeout(connectTimeout);
 			connection.setReadTimeout(readTimeout);
 		}
@@ -167,8 +164,7 @@ public class Request {
 			params.putAll(this.querystringParams);
 
 			return params;
-		}
-		catch (MalformedURLException mue) {
+		} catch (MalformedURLException mue) {
 			throw new OAuthException("Malformed URL", mue);
 		}
 	}
@@ -209,23 +205,19 @@ public class Request {
 	public String getBodyContents() {
 		try {
 			return new String(getByteBodyContents(), getCharset());
-		}
-		catch (UnsupportedEncodingException uee) {
+		} catch (UnsupportedEncodingException uee) {
 			throw new OAuthException("Unsupported Charset: " + charset, uee);
 		}
 	}
 
 	byte[] getByteBodyContents() {
 
-		String body = (payload != null) ? payload : URLUtils
-				.formURLEncodeMap(bodyParams);
+		String body = (payload != null) ? payload : URLUtils.formURLEncodeMap(bodyParams);
 
 		try {
 			return body.getBytes(getCharset());
-		}
-		catch (UnsupportedEncodingException uee) {
-			throw new OAuthException("Unsupported Charset: " + getCharset(),
-					uee);
+		} catch (UnsupportedEncodingException uee) {
+			throw new OAuthException("Unsupported Charset: " + getCharset(), uee);
 		}
 	}
 
