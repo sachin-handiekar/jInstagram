@@ -8,6 +8,7 @@ import org.jinstagram.entity.common.Images;
 import org.jinstagram.entity.common.Likes;
 import org.jinstagram.entity.common.Location;
 import org.jinstagram.entity.common.User;
+import org.jinstagram.entity.common.UsersInPhoto;
 import org.jinstagram.entity.common.Videos;
 
 import com.google.gson.annotations.SerializedName;
@@ -30,7 +31,7 @@ public class MediaFeedData {
 
 	@SerializedName("images")
 	private Images images;
-	
+
 	@SerializedName("videos")
 	private Videos videos;
 
@@ -48,7 +49,7 @@ public class MediaFeedData {
 
 	public static final String TYPE_IMAGE = "image";
 	public static final String TYPE_VIDEO = "video";
-	
+
 	@SerializedName("type")
 	private String type;
 
@@ -57,6 +58,9 @@ public class MediaFeedData {
 
 	@SerializedName("user_has_liked")
 	private boolean userHasLiked;
+
+	@SerializedName("users_in_photo")
+	private List<UsersInPhoto> usersInPhotoList;
 
 	/**
 	 * @return the location
@@ -230,11 +234,21 @@ public class MediaFeedData {
 		this.videos = videos;
 	}
 
+ 
 
-    @Override
-    public String toString() {
-        return String.format("MediaFeedData [caption=%s, comments=%s, createdTime=%s, id=%s, imageFilter=%s, images=%s, likes=%s, link=%s, location=%s, tags=%s, type=%s, user=%s, userHasLiked=%s]",
-                        caption, comments, createdTime, id, imageFilter, images, likes, link, location, tags, type,
-                        user, userHasLiked);
-    }
+	public List<UsersInPhoto> getUsersInPhotoList() {
+		return usersInPhotoList;
+	}
+
+	public void setUsersInPhotoList(List<UsersInPhoto> usersInPhotoList) {
+		this.usersInPhotoList = usersInPhotoList;
+	}
+
+	@Override
+	public String toString() {
+		return String
+				.format("MediaFeedData [caption=%s, comments=%s, createdTime=%s, id=%s, imageFilter=%s, images=%s, likes=%s, link=%s, location=%s, tags=%s, type=%s, user=%s, userHasLiked=%s, usersInPhoto=%s]",
+						caption, comments, createdTime, id, imageFilter, images, likes, link, location, tags, type,
+						user, userHasLiked, usersInPhotoList);
+	}
 }
