@@ -20,7 +20,7 @@ Note : jInstagram uses code from the [scribe-java] (https://github.com/fernandez
 
 * Maven Integration
 
-	If you're using Maven in your project, then you can integrate jInstagram by adding the following dependency in your pom.xml
+If you're using Maven in your project, then you can integrate jInstagram by adding the following dependency in your pom.xml
 	
 ```xml
 <dependency>
@@ -28,6 +28,32 @@ Note : jInstagram uses code from the [scribe-java] (https://github.com/fernandez
    <artifactId>jInstagram</artifactId>
    <version>1.0.10</version>
 </dependency>
+```
+
+If you prefer using the latest snapshot build, include the following lines to your pom.xml.
+	
+```xml
+    <repositories>
+        <repository>
+            <id>oss.snapshots</id>
+            <name>OSS Sonatype Snapshot Repository</name>
+            <url>https://oss.sonatype.org/content/repositories/snapshots/</url>
+            <releases>
+                <enabled>false</enabled>
+            </releases>
+            <snapshots>
+                <enabled>true</enabled>
+            </snapshots>
+        </repository>
+    </repositories>
+
+    <dependencies>
+        <dependency>
+            <groupId>com.sachinhandiekar</groupId>
+            <artifactId>jInstagram</artifactId>
+             <version>1.1.0-SNAPSHOT</version>
+        </dependency>
+    </dependencies>
 ```
         
     
