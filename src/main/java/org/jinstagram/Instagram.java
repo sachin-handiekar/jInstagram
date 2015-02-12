@@ -1003,7 +1003,8 @@ public class Instagram {
 	 */
 	protected <T> T createObjectFromResponse(Class<T> clazz, final String response) throws InstagramException {
 		Gson gson = new Gson();
-		T object;
+		// This is a local variable so should be initialised right? I have initialised this to null
+		T object = null;
 
 		try {
 			object = clazz.newInstance();
