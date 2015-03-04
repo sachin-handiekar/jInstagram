@@ -53,7 +53,7 @@ public class InstagramOembed {
 		}
 
 		if (response.getCode() >= 200 && response.getCode() < 300) {
-			T object = createObjectFromResponse(clazz, response.getBody());
+			T object =  createObjectFromResponse(clazz, response.getBody());
 
 			return object;
 		}

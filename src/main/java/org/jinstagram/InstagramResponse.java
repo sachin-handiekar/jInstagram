@@ -14,12 +14,12 @@ public interface InstagramResponse {
 	 * v1 API, this method should return 5000.
 	 * @return Available API limit. -1 if headers invalid.
 	 */
-	public int getAPILimitStatus();
+	int getAPILimitStatus();
 
 	/**
 	 * Get the remaining API limit. It correspond to the value of 
 	 * X-Ratelimit-Remaining key in HTTP response headers.
 	 * @return Remaining API limit. -1 if headers invalid.
 	 */
-	public int getRemainingLimitStatus();
+	int getRemainingLimitStatus();
 }

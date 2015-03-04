@@ -2,6 +2,9 @@ package org.jinstagram.exceptions;
 
 import java.util.Map;
 
+/**
+ * An exception class to deal with a bad request.
+ */
 public class InstagramBadRequestException extends InstagramException {
 	private static final long serialVersionUID = 1L;
 

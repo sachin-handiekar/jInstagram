@@ -64,13 +64,13 @@ public class InstagramException extends IOException implements InstagramResponse
 		}
 	}
 
-	@Override
-	public int getRemainingLimitStatus() {
-		if (headers == null) {
-			return -1;
-		} else {
-			return APILimitUtils.getRemainingLimitStatus(this.headers);
-		}
-	}
+    @Override
+    public int getRemainingLimitStatus() {
+        if (headers == null) {
+            return -1;
+        } else {
+            return APILimitUtils.getRemainingLimitStatus(this.headers);
+        }
+    }
 
 }

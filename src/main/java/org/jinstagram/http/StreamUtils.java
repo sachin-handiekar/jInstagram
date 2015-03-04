@@ -8,7 +8,7 @@ import java.io.InputStreamReader;
 import java.io.Reader;
 
 /**
- * Utils to deal with Streams.
+ * An utility class to deal with the HttpStream
  */
 public class StreamUtils {
 

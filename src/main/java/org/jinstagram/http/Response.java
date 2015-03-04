@@ -13,7 +13,7 @@ import java.util.Map;
  * Represents an HTTP Response.
  */
 public class Response {
-	private static final String EMPTY = "";
+	private static final String EMPTY_RESPONSE = "";
 
 	private String body;
 
@@ -25,30 +25,26 @@ public class Response {
 	
 	private String url;
 
-	Response(HttpURLConnection connection) throws IOException {
-		try {
-			connection.connect();
+    Response(HttpURLConnection connection) throws IOException {
+        try {
+            connection.connect();
 
             url = connection.getURL().toString();
-			code = connection.getResponseCode();
-			headers = parseHeaders(connection);
-			stream = wasSuccessful() ? connection.getInputStream() : connection
-					.getErrorStream();
-		}
-		catch (UnknownHostException e) {
-			code = 404;
-			body = EMPTY;
-		}
-	}
-	
-	public String getURL() {
+            code = connection.getResponseCode();
+            headers = parseHeaders(connection);
+            stream = wasSuccessful() ? connection.getInputStream() : connection.getErrorStream();
+        } catch (UnknownHostException e) {
+            code = 404;
+            body = EMPTY_RESPONSE;
+        }
+    }
+
+    public String getURL() {
 		return url;
 	}
 
 	private String parseBodyContents() {
-		body = StreamUtils.getStreamContents(getStream());
-
-		return body;
+		return StreamUtils.getStreamContents(getStream());
 	}
 
 	private Map<String, String> parseHeaders(HttpURLConnection conn) {
@@ -105,11 +101,11 @@ public class Response {
 	/**
 	 * Obtains a single HTTP Header value, or null if undefined
 	 * 
-	 * @param header name
+	 * @param headerName name of the header
 	 * 
 	 * @return header value or null
 	 */
-	public String getHeader(String name) {
-		return headers.get(name);
+	public String getHeader(String headerName) {
+		return headers.get(headerName);
 	}
 }

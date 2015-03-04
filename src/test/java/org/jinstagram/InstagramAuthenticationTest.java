@@ -22,8 +22,11 @@ public class InstagramAuthenticationTest {
 
 		String callbackUrl = "http://reveal-it.appspot.com/oauthtest";
 
-		InstagramService service = new InstagramAuthService().apiKey(clientId).apiSecret(clientSecret)
-				.callback(callbackUrl).build();
+		InstagramService service = new InstagramAuthService()
+                                           .apiKey(clientId)
+                                           .apiSecret(clientSecret)
+				                           .callback(callbackUrl)
+                                           .build();
 
 		String authorizationUrl = service.getAuthorizationUrl(EMPTY_TOKEN);
 

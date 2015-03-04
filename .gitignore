@@ -1,5 +1,43 @@
-.classpath
-.project
-.settings
-*~
+### Eclipse ###
+*.pydevproject
+.metadata
+.gradle
+bin/
+tmp/
+*.tmp
+*.class
+*.bak
+*.swp
+*~.nib
+local.properties
+.settings/
+.loadpath
 target/
+
+# Eclipse Core
+.project
+
+# Locally stored "Eclipse launch configurations"
+*.launch
+ 
+# JDT-specific (Eclipse Java Development Tools)
+.classpath
+
+# PDT-specific
+.buildpath
+
+### Intellij ###
+*.iml
+
+## Directory-based project format:
+.idea/
+
+## File-based project format:
+*.ipr
+*.iws
+
+# IntelliJ
+out/ 
+
+### OSX ###
+.DS_Store
