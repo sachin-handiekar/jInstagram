@@ -1,7 +1,11 @@
 package org.jinstagram;
 
-import com.google.gson.Gson;
-import com.google.gson.JsonSyntaxException;
+import java.io.IOException;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.concurrent.TimeUnit;
+
 import org.apache.commons.lang3.StringUtils;
 import org.jinstagram.auth.model.OAuthConstants;
 import org.jinstagram.auth.model.OAuthRequest;
@@ -33,11 +37,8 @@ import org.jinstagram.utils.Preconditions;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.io.IOException;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.concurrent.TimeUnit;
+import com.google.gson.Gson;
+import com.google.gson.JsonSyntaxException;
 
 /**
  * Instagram
