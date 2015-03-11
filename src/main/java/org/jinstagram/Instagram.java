@@ -857,7 +857,7 @@ public class Instagram {
 	public LocationSearchFeed searchFacebookPlace(String facebookPlacesId) throws InstagramException {
 		Map<String, String> params = new HashMap<String, String>();
 
-		params.put(QueryParam.FOURSQUARE_V2_ID, facebookPlacesId);
+		params.put(QueryParam.FACEBOOK_PLACES_ID, facebookPlacesId);
 
 		LocationSearchFeed feed = createInstagramObject(Verbs.GET, LocationSearchFeed.class, Methods.LOCATIONS_SEARCH,
 				params);
