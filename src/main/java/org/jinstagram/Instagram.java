@@ -1,11 +1,7 @@
 package org.jinstagram;
 
-import java.io.IOException;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.concurrent.TimeUnit;
-
+import com.google.gson.Gson;
+import com.google.gson.JsonSyntaxException;
 import org.apache.commons.lang3.StringUtils;
 import org.jinstagram.auth.model.OAuthConstants;
 import org.jinstagram.auth.model.OAuthRequest;
@@ -37,8 +33,11 @@ import org.jinstagram.utils.Preconditions;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.google.gson.Gson;
-import com.google.gson.JsonSyntaxException;
+import java.io.IOException;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.concurrent.TimeUnit;
 
 /**
  * Instagram
@@ -840,6 +839,24 @@ public class Instagram {
 		Map<String, String> params = new HashMap<String, String>();
 
 		params.put(QueryParam.FOURSQUARE_V2_ID, foursquareId);
+
+		LocationSearchFeed feed = createInstagramObject(Verbs.GET, LocationSearchFeed.class, Methods.LOCATIONS_SEARCH,
+				params);
+
+		return feed;
+	}
+
+	/**
+	 * Search for a location by Facebook places id.
+	 *
+	 * @param facebookPlacesId Facebook places id of the location
+	 * @return a LocationSearchFeed object.
+	 * @throws InstagramException if any error occurs.
+	 */
+	public LocationSearchFeed searchFacebookPlace(String facebookPlacesId) throws InstagramException {
+		Map<String, String> params = new HashMap<String, String>();
+
+		params.put(QueryParam.FOURSQUARE_V2_ID, facebookPlacesId);
 
 		LocationSearchFeed feed = createInstagramObject(Verbs.GET, LocationSearchFeed.class, Methods.LOCATIONS_SEARCH,
 				params);
