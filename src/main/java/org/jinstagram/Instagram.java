@@ -848,6 +848,24 @@ public class Instagram {
 	}
 
 	/**
+	 * Search for a location by Facebook places id.
+	 *
+	 * @param facebookPlacesId Facebook places id of the location
+	 * @return a LocationSearchFeed object.
+	 * @throws InstagramException if any error occurs.
+	 */
+	public LocationSearchFeed searchFacebookPlace(String facebookPlacesId) throws InstagramException {
+		Map<String, String> params = new HashMap<String, String>();
+
+		params.put(QueryParam.FACEBOOK_PLACES_ID, facebookPlacesId);
+
+		LocationSearchFeed feed = createInstagramObject(Verbs.GET, LocationSearchFeed.class, Methods.LOCATIONS_SEARCH,
+				params);
+
+		return feed;
+	}
+
+	/**
 	 * Create a instagram object based on class-name and response.
 	 *
 	 * @param verbs HTTP State

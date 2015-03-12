@@ -11,6 +11,8 @@ public final class QueryParam {
 
 	public static final String FOURSQUARE_V2_ID = "foursquare_v2_id";
 
+	public static final String FACEBOOK_PLACES_ID = "facebook_places_id";
+
 	public static final String LATITUDE = "lat";
 
 	public static final String LONGITUDE = "lng";
