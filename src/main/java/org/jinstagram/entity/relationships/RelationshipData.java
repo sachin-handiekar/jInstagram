@@ -11,7 +11,7 @@ public class RelationshipData {
 	private String outgoingStatus;
 
 	@SerializedName("target_user_is_private")
-	private boolean target_user_is_private;
+	private boolean targetUserPrivate;
 	
 	/**
 	 * @return the outgoingStatus
@@ -30,14 +30,14 @@ public class RelationshipData {
 	/**
 	 * @param target_user_is_private set user is locked or not
 	 */
-	public void setTargetUserIsPrivate(boolean target_user_is_private){
-		this.target_user_is_private = target_user_is_private;
+	public void setTargetUserPrivate(boolean targetUserPrivate){
+		this.targetUserPrivate = targetUserPrivate;
 	}
 	/**
 	 * @return the target_user_is_private boolean
 	 */
-	public boolean getTargetUserIsPrivate(){
-		return target_user_is_private;
+	public boolean isTargetUserPrivate(){
+		return targetUserPrivate;
 	}
 	/**
 	 * @return the incomingStatus
