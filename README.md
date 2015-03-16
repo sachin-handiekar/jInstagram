@@ -1,4 +1,5 @@
 #jInstagram [![Build Status](https://travis-ci.org/sachin-handiekar/jInstagram.svg)](https://travis-ci.org/sachin-handiekar/jInstagram)
+A java library for the Instagram API.
 
 ## <a name="toc">Table of Contents</a>
 * [Introduction](#introduction)
