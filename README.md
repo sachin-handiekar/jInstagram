@@ -8,6 +8,7 @@ A java library for the Instagram API.
 * [Instagram Realtime](#instagram-realtime)
 * [Code Examples](#code-examples)
 * [Development](#development)
+* [Projects using jInstagram](#projects-using-jinstagram)
 * [License](#license)
 * [Donation](#donation)
  
@@ -83,6 +84,10 @@ Please see the sample project to see a working example of [jInstagram integratio
 ## <a name="development">Development</a> [&#8593;](#toc)
 
 Please see the [development guide](https://github.com/sachin-handiekar/jInstagram/wiki/Development-Guide).
+
+## <a name="projects-using-jinstagram">Projects using jInstagram</a> [&#8593;](#toc)
+
+Please see the [wiki link](https://github.com/sachin-handiekar/jInstagram/wiki/Development-Guide) for a list of projects using [jInstagram](https://github.com/sachin-handiekar/jInstagram).
 
 ## <a name="license">License</a> [&#8593;](#toc)
 
