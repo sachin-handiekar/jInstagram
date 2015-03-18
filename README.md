@@ -87,7 +87,7 @@ Please see the [development guide](https://github.com/sachin-handiekar/jInstagra
 
 ## <a name="projects-using-jinstagram">Projects using jInstagram</a> [&#8593;](#toc)
 
-Please see the [wiki link](https://github.com/sachin-handiekar/jInstagram/wiki/Development-Guide) for a list of projects using [jInstagram](https://github.com/sachin-handiekar/jInstagram).
+Please see the [wiki link](https://github.com/sachin-handiekar/jInstagram/wiki/Projects-using-jInstagram) for a list of projects using [jInstagram](https://github.com/sachin-handiekar/jInstagram).
 
 ## <a name="license">License</a> [&#8593;](#toc)
 
