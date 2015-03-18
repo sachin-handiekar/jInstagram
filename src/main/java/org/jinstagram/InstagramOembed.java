@@ -53,9 +53,7 @@ public class InstagramOembed {
 		}
 
 		if (response.getCode() >= 200 && response.getCode() < 300) {
-			T object =  createObjectFromResponse(clazz, response.getBody());
-
-			return object;
+			return createObjectFromResponse(clazz, response.getBody());
 		}
 
 		throw handleInstagramError(response);
@@ -87,7 +85,7 @@ public class InstagramOembed {
 	 * @return Response object.
 	 */
 	private Response getApiResponse(Verbs verb, String methodName, Map<String, String> params) throws IOException {
-		Response response = null;
+		Response response;
 		String apiResourceUrl = Constants.API_URL + methodName;
 		OAuthRequest request = new OAuthRequest(verb, apiResourceUrl);
 
@@ -117,15 +115,10 @@ public class InstagramOembed {
 	 */
 	private <T> T createObjectFromResponse(Class<T> clazz, final String response) throws InstagramException {
 		Gson gson = new Gson();
-		T object = null;
+		T object;
 
 		try {
-			object = clazz.newInstance();
 			object = gson.fromJson(response, clazz);
-		} catch (InstantiationException e) {
-			throw new InstagramException("Problem in Instantiation of type " + clazz.getName(), e);
-		} catch (IllegalAccessException e) {
-			throw new InstagramException("Couldn't create object of type " + clazz.getName(), e);
 		} catch (Exception e) {
 			throw new InstagramException("Error parsing json to object type " + clazz.getName(), e);
 		}

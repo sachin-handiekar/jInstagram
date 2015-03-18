@@ -34,7 +34,7 @@ public class Response {
             headers = parseHeaders(connection);
             stream = wasSuccessful() ? connection.getInputStream() : connection.getErrorStream();
         } catch (UnknownHostException e) {
-            code = 404;
+            code = HttpStatus.NOT_FOUND.value();
             body = EMPTY_RESPONSE;
         }
     }

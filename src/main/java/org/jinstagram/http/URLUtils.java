@@ -144,8 +144,6 @@ public class URLUtils {
 	 * @param params key-value map
 	 * @return querystring-like String
 	 */
-
-	// TODO Move to MapUtils
 	public static String concatSortedPercentEncodedParams(Map<String, String> params) {
 		StringBuilder result = new StringBuilder();
 
