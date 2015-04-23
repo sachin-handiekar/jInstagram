@@ -5,9 +5,7 @@ import org.jinstagram.auth.exceptions.OAuthException;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 
-import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
-import java.net.URL;
+import java.net.*;
 
 import java.nio.charset.Charset;
 
@@ -43,9 +41,11 @@ public class Request {
 
 	private int readTimeout;
 
+	private Proxy proxy;
+
 	/**
 	 * Creates a new Http Request
-	 * 
+	 *
 	 * @param verb Http Verb (GET, POST, etc)
 	 * @param url url with optional querystring parameters.
 	 */
@@ -59,7 +59,7 @@ public class Request {
 
 	/**
 	 * Execute the request and return a {@link Response}
-	 * 
+	 *
 	 * @return Http Response
 	 * @throws RuntimeException if the connection cannot be created.
 	 */
@@ -75,7 +75,9 @@ public class Request {
 		if (connection == null) {
 			System.setProperty("http.keepAlive", connectionKeepAlive ? "true" : "false");
 
-			connection = (HttpURLConnection) new URL(effectiveUrl).openConnection();
+			URL url = new URL(effectiveUrl);
+			connection = (HttpURLConnection) (proxy == null ?
+					url.openConnection() : url.openConnection(proxy));
 
 			connection.setConnectTimeout(connectTimeout);
 			connection.setReadTimeout(readTimeout);
@@ -107,7 +109,7 @@ public class Request {
 
 	/**
 	 * Add an HTTP Header to the Request
-	 * 
+	 *
 	 * @param key the header name
 	 * @param value the header value
 	 */
@@ -117,7 +119,7 @@ public class Request {
 
 	/**
 	 * Add a body Parameter (for POST/ PUT Requests)
-	 * 
+	 *
 	 * @param key the parameter name
 	 * @param value the parameter value
 	 */
@@ -127,7 +129,7 @@ public class Request {
 
 	/**
 	 * Add a QueryString parameter
-	 * 
+	 *
 	 * @param key the parameter name
 	 * @param value the parameter value
 	 */
@@ -137,12 +139,12 @@ public class Request {
 
 	/**
 	 * Add body payload.
-	 * 
+	 *
 	 * This method is used when the HTTP body is not a form-url-encoded string,
 	 * but another thing. Like for example XML.
-	 * 
+	 *
 	 * Note: The contents are not part of the OAuth signature
-	 * 
+	 *
 	 * @param payload the body of the request
 	 */
 	public void addPayload(String payload) {
@@ -151,7 +153,7 @@ public class Request {
 
 	/**
 	 * Get a {@link Map} of the query string parameters.
-	 * 
+	 *
 	 * @return a map containing the query string parameters
 	 * @throws OAuthException if the URL is not valid
 	 */
@@ -171,7 +173,7 @@ public class Request {
 
 	/**
 	 * Obtains a {@link Map} of the body parameters.
-	 * 
+	 *
 	 * @return a map containing the body parameters.
 	 */
 	public Map<String, String> getBodyParams() {
@@ -180,7 +182,7 @@ public class Request {
 
 	/**
 	 * Obtains the URL of the HTTP Request.
-	 * 
+	 *
 	 * @return the original URL of the HTTP Request
 	 */
 	public String getUrl() {
@@ -189,7 +191,7 @@ public class Request {
 
 	/**
 	 * Returns the URL without the port and the query string part.
-	 * 
+	 *
 	 * @return the OAuth-sanitized URL
 	 */
 	public String getSanitizedUrl() {
@@ -198,7 +200,7 @@ public class Request {
 
 	/**
 	 * Returns the body of the request
-	 * 
+	 *
 	 * @return form encoded string
 	 * @throws OAuthException if the charset chosen is not supported
 	 */
@@ -223,7 +225,7 @@ public class Request {
 
 	/**
 	 * Returns the HTTP Verb
-	 * 
+	 *
 	 * @return the verb
 	 */
 	public Verbs getVerb() {
@@ -232,7 +234,7 @@ public class Request {
 
 	/**
 	 * Returns the connection headers as a {@link Map}
-	 * 
+	 *
 	 * @return map of headers
 	 */
 	public Map<String, String> getHeaders() {
@@ -242,7 +244,7 @@ public class Request {
 	/**
 	 * Returns the connection charset. Defaults to {@link Charset}
 	 * defaultCharset if not set
-	 * 
+	 *
 	 * @return charset
 	 */
 	public String getCharset() {
@@ -251,9 +253,9 @@ public class Request {
 
 	/**
 	 * Sets the connect timeout for the underlying {@link HttpURLConnection}
-	 * 
+	 *
 	 * @param duration duration of the timeout
-	 * 
+	 *
 	 * @param unit unit of time (milliseconds, seconds, etc)
 	 */
 	public void setConnectTimeout(int duration, TimeUnit unit) {
@@ -262,9 +264,9 @@ public class Request {
 
 	/**
 	 * Sets the read timeout for the underlying {@link HttpURLConnection}
-	 * 
+	 *
 	 * @param duration duration of the timeout
-	 * 
+	 *
 	 * @param unit unit of time (milliseconds, seconds, etc)
 	 */
 	public void setReadTimeout(int duration, TimeUnit unit) {
@@ -273,7 +275,7 @@ public class Request {
 
 	/**
 	 * Set the charset of the body of the request
-	 * 
+	 *
 	 * @param charsetName name of the charset of the request
 	 */
 	public void setCharset(String charsetName) {
@@ -282,7 +284,7 @@ public class Request {
 
 	/**
 	 * Sets wether the underlying Http Connection is persistent or not.
-	 * 
+	 *
 	 * @see http://download.oracle.com/javase/1.5.0/docs/guide/net/http-keepalive.html
 	 * @param connectionKeepAlive
 	 */
@@ -295,6 +297,14 @@ public class Request {
 	 */
 	void setConnection(HttpURLConnection connection) {
 		this.connection = connection;
+	}
+
+	/**
+	 * Set the proxy that will be used for the rquest
+	 * @param proxy proxy to be used
+	 */
+	public void setProxy(Proxy proxy) {
+		this.proxy = proxy;
 	}
 
 	@Override

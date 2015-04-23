@@ -1,6 +1,7 @@
 package org.jinstagram;
 
 import java.io.IOException;
+import java.net.Proxy;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
@@ -53,6 +54,7 @@ public class Instagram {
 	private final String clientId;
 	private final InstagramConfig config;
 	private String enforceSignatrue;
+	private Proxy requestProxy;
 
 	public Instagram(Token accessToken) {
 		this.accessToken = accessToken;
@@ -109,6 +111,13 @@ public class Instagram {
 	}
 
 	/**
+	 * @param requestProxy the proxy to set
+	 */
+	public void setRequestProxy(Proxy requestProxy) {
+		this.requestProxy = requestProxy;
+	}
+
+    /**
 	 * Get basic information about a user.
 	 *
 	 * @param userId user-id
@@ -935,6 +944,10 @@ public class Instagram {
 
 		if (enforceSignatrue != null) {
 			request.addHeader(EnforceSignedHeaderUtils.ENFORCE_SIGNED_HEADER, enforceSignatrue);
+		}
+
+		if (requestProxy != null) {
+			request.setProxy(requestProxy);
 		}
 
 		// Additional parameters in url
