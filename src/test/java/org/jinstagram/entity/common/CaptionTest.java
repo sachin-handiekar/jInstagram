@@ -1,12 +1,11 @@
 package org.jinstagram.entity.common;
 
-import com.google.gson.Gson;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertNull;
 
 import org.junit.Test;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertNull;
+import com.google.gson.Gson;
 
 public class CaptionTest {
     private Gson GSON_PARSER = new Gson();
