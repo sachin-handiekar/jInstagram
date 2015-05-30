@@ -38,6 +38,6 @@ public class Counts {
 
     @Override
     public String toString() {
-        return String.format("Counts [follows=%s, follwed_by=%s, media=%s]", follows, followedBy, media);
+        return String.format("Counts [follows=%s, followed_by=%s, media=%s]", follows, followedBy, media);
     }
 }
