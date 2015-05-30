@@ -21,6 +21,9 @@ public class Pagination {
 
 	@SerializedName("next_url")
 	private String nextUrl;
+	
+	@SerializedName("next_cursor")
+	private String nextCursor;
 
 	/**
 	 * @return the nextUrl
@@ -91,6 +94,20 @@ public class Pagination {
 	public void setNextMaxTagId(String nextMaxTagId) {
 		this.nextMaxTagId = nextMaxTagId;
 	}
+    
+    /**
+     * @param The next cursor
+     */
+    public String getNextCursor() {
+        return nextCursor;
+    }
+
+    /**
+     * @param nextCursor The next cursor to set
+     */
+    public void setNextCursor(String nextCursor) {
+        this.nextCursor = nextCursor;
+    }
 
 	/**
 	 * @return the depreciationWarning
