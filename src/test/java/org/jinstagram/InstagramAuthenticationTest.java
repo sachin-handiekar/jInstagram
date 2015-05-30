@@ -54,8 +54,8 @@ public class InstagramAuthenticationTest {
 
 		System.out.println("***** User Info ******");
 		System.out.println("Username : " + userInfo.getData().getUsername());
-		System.out.println("First Name : " + userInfo.getData().getFirst_name());
-		System.out.println("Last Name : " + userInfo.getData().getLast_name());
+		System.out.println("First Name : " + userInfo.getData().getFirstName());
+		System.out.println("Last Name : " + userInfo.getData().getLastName());
 		System.out.println("Website : " + userInfo.getData().getWebsite());
 
 	}

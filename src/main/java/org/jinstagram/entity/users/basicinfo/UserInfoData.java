@@ -10,16 +10,16 @@ public class UserInfoData {
 	private Counts counts;
 
 	@SerializedName("first_name")
-	private String first_name;
+	private String firstName;
 
 	@SerializedName("id")
 	private String id;
 
 	@SerializedName("last_name")
-	private String last_name;
+	private String lastName;
 
 	@SerializedName("profile_picture")
-	private String profile_picture;
+	private String profilePicture;
 
 	@SerializedName("username")
 	private String username;
@@ -46,28 +46,28 @@ public class UserInfoData {
 		this.id = id;
 	}
 
-	public String getLast_name() {
-		return last_name;
+	public String getLastName() {
+		return lastName;
 	}
 
 	public void setLast_name(String last_name) {
-		this.last_name = last_name;
+		this.lastName = last_name;
 	}
 
-	public String getFirst_name() {
-		return first_name;
+	public String getFirstName() {
+		return firstName;
 	}
 
-	public void setFirst_name(String first_name) {
-		this.first_name = first_name;
+	public void setFirstName(String firstName) {
+		this.firstName = firstName;
 	}
 
-	public String getProfile_picture() {
-		return profile_picture;
+	public String getProfilePicture() {
+		return profilePicture;
 	}
 
-	public void setProfile_picture(String profile_picture) {
-		this.profile_picture = profile_picture;
+	public void setProfilePicture(String profilePicture) {
+		this.profilePicture = profilePicture;
 	}
 
 	public String getBio() {
@@ -105,6 +105,6 @@ public class UserInfoData {
     @Override
     public String toString() {
         return String.format("UserInfoData [bio=%s, counts=%s, first_name=%s, id=%s, last_name=%s, profile_picture=%s, username=%s, fullName=%s, website=%s]",
-                        bio, counts, first_name, id, last_name, profile_picture, username, fullName, website);
+                        bio, counts, firstName, id, lastName, profilePicture, username, fullName, website);
     }
 }

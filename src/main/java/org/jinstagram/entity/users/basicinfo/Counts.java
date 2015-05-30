@@ -7,7 +7,7 @@ public class Counts {
 	private int follows;
 
 	@SerializedName("followed_by")
-	private int follwed_by;
+	private int follwedBy;
 
 	@SerializedName("media")
 	private int media;
@@ -28,16 +28,16 @@ public class Counts {
 		this.follows = follows;
 	}
 
-	public int getFollwed_by() {
-		return follwed_by;
+	public int getFollwedBy() {
+		return follwedBy;
 	}
 
-	public void setFollwed_by(int follwed_by) {
-		this.follwed_by = follwed_by;
+	public void setFollwedBy(int follwedBy) {
+		this.follwedBy = follwedBy;
 	}
 
     @Override
     public String toString() {
-        return String.format("Counts [follows=%s, follwed_by=%s, media=%s]", follows, follwed_by, media);
+        return String.format("Counts [follows=%s, follwed_by=%s, media=%s]", follows, follwedBy, media);
     }
 }
