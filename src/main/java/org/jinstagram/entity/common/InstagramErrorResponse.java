@@ -44,9 +44,9 @@ public class InstagramErrorResponse {
                     throw new InstagramBadRequestException(msg, this.headers);
                 case 429:
                     throw new InstagramRateLimitException(msg, this.headers);
+                default:
+                    throw new InstagramException(msg, this.headers);
             }
-
-            throw new InstagramException(msg, this.headers);
         } else {
             throw new InstagramException("No metadata found in response", this.headers);
         }
