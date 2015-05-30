@@ -797,14 +797,14 @@ public class Instagram {
 	 * Get a list of recent media objects from a given location.
 	 *
 	 * @param locationId a id of the Media.
-	 * @param minId Return media before this min_id.
-	 * @param maxId Return media before this max_id.
-	 * @param maxTimeStamp Return media before this max date.
-	 * @param minTimeStamp Return media after this min date.
+	 * @param minId Return media before this min_id. May be null.
+	 * @param maxId Return media before this max_id. May be null.
+	 * @param maxTimeStamp Return media before this max date. May be null.
+	 * @param minTimeStamp Return media after this min date. May be null.
 	 * @return a MediaFeed object.
 	 * @throws InstagramException if any error occurs.
 	 */
-	public MediaFeed getRecentMediaByLocation(String locationId, int minId, int maxId, Date maxTimeStamp,
+	public MediaFeed getRecentMediaByLocation(String locationId, String minId, String maxId, Date maxTimeStamp,
 			Date minTimeStamp) throws InstagramException {
 		Map<String, String> params = new HashMap<String, String>();
 
@@ -816,11 +816,11 @@ public class Instagram {
 			params.put(QueryParam.MIN_TIMESTAMP, String.valueOf(minTimeStamp.getTime() / 1000));
 		}
 
-		if (minId > 0)
-			params.put(QueryParam.MIN_ID, String.valueOf(minId));
+		if (minId != null)
+			params.put(QueryParam.MIN_ID, minId);
 
-		if (maxId > 0)
-			params.put(QueryParam.MAX_ID, String.valueOf(maxId));
+		if (maxId != null)
+			params.put(QueryParam.MAX_ID, maxId);
 
 		String apiMethod = String.format(Methods.LOCATIONS_RECENT_MEDIA_BY_ID, locationId);
 
