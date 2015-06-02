@@ -358,48 +358,76 @@ public class Instagram {
 	 * @throws InstagramException if any error occurs.
 	 */
 	public UserFeed getUserFollowList(String userId) throws InstagramException {
-		Preconditions.checkEmptyString(userId, "userId cannot be null or empty.");
+	    return getUserFollowListNextPage(userId, null);
+    }
 
-		String apiMethod = String.format(Methods.USERS_ID_FOLLOWS, userId);
- 		return createInstagramObject(Verbs.GET, UserFeed.class, apiMethod, null);
+    /**
+     * Get the next page for list of 'users' the authenticated user follows.
+     *
+     * @param pagination
+     * @throws InstagramException
+     */
+    public UserFeed getUserFollowListNextPage(String userId, String cursor) throws InstagramException {
+        Preconditions.checkEmptyString(userId, "userId cannot be null or empty.");
+        
+        Map<String,String> params=new HashMap<String,String>(1);
+        if(cursor != null)
+            params.put("cursor", cursor);
 
+        String apiMethod = String.format(Methods.USERS_ID_FOLLOWS, userId);
+        UserFeed userFeed = createInstagramObject(Verbs.GET, UserFeed.class, apiMethod, params);
+        
+        return userFeed;
+    }
+    /**
+     * Get the next page for list of 'users' the authenticated user follows.
+     *
+     * @param pagination
+     * @throws InstagramException
+     */
+    public UserFeed getUserFollowListNextPage(Pagination pagination) throws InstagramException {
+        return getUserFeedInfoNextPage(pagination);
     }
 
 	/**
-	 * Get the next page for list of 'users' the authenticated user follows.
-	 *
-	 * @param pagination
-	 * @throws InstagramException
-	 */
-	public UserFeed getUserFollowListNextPage(Pagination pagination) throws InstagramException {
-		return getUserFeedInfoNextPage(pagination);
-	}
-
-	/**
-	 * Get the list of 'users' the current authenticated user is followed by.
+	 * Get the list of 'users' the current given user is followed by.
 	 *
 	 * @param userId userId of the User.
 	 * @return a UserFeed object.
 	 * @throws InstagramException if any error occurs.
 	 */
 	public UserFeed getUserFollowedByList(String userId) throws InstagramException {
-		Preconditions.checkEmptyString(userId, "userId cannot be null or empty.");
-
-		String apiMethod = String.format(Methods.USERS_ID_FOLLOWED_BY, userId);
-		UserFeed userFeed = createInstagramObject(Verbs.GET, UserFeed.class, apiMethod, null);
-
-		return userFeed;
+	    return getUserFollowedByListNextPage(userId, null);
 	}
 
-	/**
-	 * Get the next page for list of 'users' the authenticated is followed by.
-	 *
-	 * @param pagination
-	 * @throws InstagramException
-	 */
-	public UserFeed getUserFollowedByListNextPage(Pagination pagination) throws InstagramException {
-		return getUserFeedInfoNextPage(pagination);
-	}
+    /**
+     * Get the next page for list of 'users' the authenticated is followed by.
+     *
+     * @param pagination
+     * @throws InstagramException
+     */
+    public UserFeed getUserFollowedByListNextPage(String userId, String cursor) throws InstagramException {
+        Preconditions.checkEmptyString(userId, "userId cannot be null or empty.");
+        
+        Map<String,String> params=new HashMap<String,String>(1);
+        if(cursor != null)
+            params.put("cursor", cursor);
+        
+        String apiMethod = String.format(Methods.USERS_ID_FOLLOWED_BY, userId);
+        UserFeed userFeed = createInstagramObject(Verbs.GET, UserFeed.class, apiMethod, params);
+
+        return userFeed;
+    }
+
+    /**
+     * Get the next page for list of 'users' the authenticated is followed by.
+     *
+     * @param pagination
+     * @throws InstagramException
+     */
+    public UserFeed getUserFollowedByListNextPage(Pagination pagination) throws InstagramException {
+        return getUserFeedInfoNextPage(pagination);
+    }
 
 	/**
 	 * Get a list of users who have requested this user's permission to follow
@@ -769,14 +797,14 @@ public class Instagram {
 	 * Get a list of recent media objects from a given location.
 	 *
 	 * @param locationId a id of the Media.
-	 * @param minId Return media before this min_id.
-	 * @param maxId Return media before this max_id.
-	 * @param maxTimeStamp Return media before this max date.
-	 * @param minTimeStamp Return media after this min date.
+	 * @param minId Return media before this min_id. May be null.
+	 * @param maxId Return media before this max_id. May be null.
+	 * @param maxTimeStamp Return media before this max date. May be null.
+	 * @param minTimeStamp Return media after this min date. May be null.
 	 * @return a MediaFeed object.
 	 * @throws InstagramException if any error occurs.
 	 */
-	public MediaFeed getRecentMediaByLocation(String locationId, int minId, int maxId, Date maxTimeStamp,
+	public MediaFeed getRecentMediaByLocation(String locationId, String minId, String maxId, Date maxTimeStamp,
 			Date minTimeStamp) throws InstagramException {
 		Map<String, String> params = new HashMap<String, String>();
 
@@ -788,11 +816,11 @@ public class Instagram {
 			params.put(QueryParam.MIN_TIMESTAMP, String.valueOf(minTimeStamp.getTime() / 1000));
 		}
 
-		if (minId > 0)
-			params.put(QueryParam.MIN_ID, String.valueOf(minId));
+		if (minId != null)
+			params.put(QueryParam.MIN_ID, minId);
 
-		if (maxId > 0)
-			params.put(QueryParam.MAX_ID, String.valueOf(maxId));
+		if (maxId != null)
+			params.put(QueryParam.MAX_ID, maxId);
 
 		String apiMethod = String.format(Methods.LOCATIONS_RECENT_MEDIA_BY_ID, locationId);
 

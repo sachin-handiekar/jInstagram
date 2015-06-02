@@ -1,12 +1,13 @@
 package org.jinstagram.entity.common;
 
-import com.google.gson.Gson;
 import org.jinstagram.exceptions.InstagramBadRequestException;
 import org.jinstagram.exceptions.InstagramException;
 import org.jinstagram.exceptions.InstagramRateLimitException;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.ExpectedException;
+
+import com.google.gson.Gson;
 
 public class InstagramErrorResponseTest {
 
