@@ -1,10 +1,5 @@
 package org.jinstagram;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotEquals;
-
-import java.util.List;
-
 import org.jinstagram.auth.model.Token;
 import org.jinstagram.entity.common.Location;
 import org.jinstagram.entity.locations.LocationSearchFeed;
@@ -13,10 +8,17 @@ import org.jinstagram.entity.users.basicinfo.UserInfoData;
 import org.jinstagram.entity.users.feed.MediaFeed;
 import org.jinstagram.entity.users.feed.MediaFeedData;
 import org.jinstagram.entity.users.feed.UserFeed;
+import org.jinstagram.entity.users.feed.UserFeedData;
 import org.junit.Ignore;
 import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotEquals;
 
 @Ignore
 public class InstagramTest {
@@ -62,7 +64,7 @@ public class InstagramTest {
         LocationSearchFeed locationSearchFeed = instagram.searchLocation(latitude, longitude);
 
         List<Location> locationList = locationSearchFeed.getLocationList();
-        logger.info("Printing Location Details for Latitude " + latitude +" and longitude " + longitude);
+        logger.info("Printing Location Details for Latitude " + latitude + " and longitude " + longitude);
 
         for (Location location : locationList) {
             logger.info("-------------------------------------------");
@@ -80,30 +82,82 @@ public class InstagramTest {
     @Test
     public void userFollowedBy() throws Exception {
         // instagram user id
-        String userId="25025320";
-        
-        UserFeed feed1=instagram.getUserFollowedByList(userId);
+        String userId = "25025320";
+
+        UserFeed feed1 = instagram.getUserFollowedByList(userId);
         assertEquals(50, feed1.getUserList().size());
-        
-        UserFeed feed2=instagram.getUserFollowedByListNextPage(userId, feed1.getPagination().getNextCursor());
+
+        UserFeed feed2 = instagram.getUserFollowedByListNextPage(userId, feed1.getPagination().getNextCursor());
         assertEquals(50, feed2.getUserList().size());
-        
+
         assertNotEquals(feed1.getUserList().get(0).getId(), feed2.getUserList().get(1).getId());
     }
 
     @Test
     public void userFollower() throws Exception {
         // instagram user id
-        String userId="25025320";
-        
-        UserFeed feed1=instagram.getUserFollowList(userId);
+        String userId = "25025320";
+
+        UserFeed feed1 = instagram.getUserFollowList(userId);
         assertEquals(50, feed1.getUserList().size());
-        
-        UserFeed feed2=instagram.getUserFollowListNextPage(userId, feed1.getPagination().getNextCursor());
+
+        UserFeed feed2 = instagram.getUserFollowListNextPage(userId, feed1.getPagination().getNextCursor());
         assertEquals(50, feed2.getUserList().size());
-        
+
         assertNotEquals(feed1.getUserList().get(0).getId(), feed2.getUserList().get(1).getId());
     }
+
+    @Test
+    public void searchUser() throws Exception {
+        String query = "";
+        UserFeed userFeed = instagram.searchUser(query);
+
+        for (UserFeedData userFeedData : userFeed.getUserList()) {
+            System.out.println("\n\n**************************************************");
+            System.out.println("Id : " + userFeedData.getId());
+            System.out.println("Username : " + userFeedData.getUserName());
+            System.out.println("Name  : " + userFeedData.getFullName());
+            System.out.println("Bio : " + userFeedData.getBio());
+            System.out.println("Profile Picture URL : " + userFeedData.getProfilePictureUrl());
+            System.out.println("Website : " + userFeedData.getWebsite());
+            System.out.println("**************************************************\n\n");
+
+
+        }
+
+
+    }
+
+
+    @Test
+    public void testGetAllUserPhotos() throws Exception {
+        getUserPhotos("18428658");
+    }
+
+    private List<MediaFeedData> getUserPhotos(String userId) throws Exception {
+        MediaFeed recentMediaFeed = instagram.getRecentMediaFeed(userId);
+        List<MediaFeedData> userPhotos = new ArrayList<MediaFeedData>();
+
+        for (MediaFeedData mediaFeedData : recentMediaFeed.getData()) {
+            userPhotos.add(mediaFeedData);
+        }
+
+        while (recentMediaFeed.getPagination() != null) {
+            try {
+                recentMediaFeed = instagram.getRecentMediaNextPage(recentMediaFeed.getPagination());
+                for (MediaFeedData mediaFeedData : recentMediaFeed.getData()) {
+                    userPhotos.add(mediaFeedData);
+                }
+            } catch (Exception ex) {
+                break;
+            }
+        }
+
+        return userPhotos;
+    }
+
+
+
 
     private void printMediaFeedList(List<MediaFeedData> mediaFeedDataList) {
 
