@@ -1,5 +1,6 @@
 package org.jinstagram.auth.oauth;
 
+import org.jinstagram.Instagram;
 import org.jinstagram.auth.InstagramApi;
 import org.jinstagram.auth.model.OAuthConfig;
 import org.jinstagram.auth.model.OAuthConstants;
@@ -89,5 +90,19 @@ public class InstagramService {
 	 */
 	public String getAuthorizationUrl(Token requestToken) {
 		return api.getAuthorizationUrl(config);
+	}
+
+	/**
+	 * Return an Instagram object
+	 */
+	public Instagram getInstagram(Token accessToken) {
+		return new Instagram(accessToken);
+	}
+
+	/**
+	 * Return an Instagram object with enforced signed header
+	 */
+	public Instagram getSignedHeaderInstagram(Token accessToken, String ipAddress) {
+		return new Instagram(accessToken.getToken(), config.getApiSecret(), ipAddress);
 	}
 }
