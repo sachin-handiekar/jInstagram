@@ -102,6 +102,13 @@ public class Instagram {
 	public Token getAccessToken() {
 		return accessToken;
 	}
+	
+	/**
+	 * @return the clientId
+	 */
+	public String getClientId() {
+		return clientId;
+	}
 
 	/**
 	 * @param accessToken the accessToken to set
