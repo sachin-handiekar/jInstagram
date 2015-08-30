@@ -3,6 +3,7 @@ package org.jinstagram;
 import org.jinstagram.auth.model.Token;
 import org.jinstagram.entity.common.Location;
 import org.jinstagram.entity.locations.LocationSearchFeed;
+import org.jinstagram.entity.tags.TagMediaFeed;
 import org.jinstagram.entity.users.basicinfo.UserInfo;
 import org.jinstagram.entity.users.basicinfo.UserInfoData;
 import org.jinstagram.entity.users.feed.MediaFeed;
@@ -25,7 +26,7 @@ public class InstagramTest {
 
     private final Logger logger = LoggerFactory.getLogger(InstagramTest.class);
 
-    private final String ACCESS_TOKEN = "[Add your access token here]";
+   private final String ACCESS_TOKEN = "[Add your access token here]";
 
     private Token token = new Token(ACCESS_TOKEN, null);
 
@@ -109,7 +110,7 @@ public class InstagramTest {
 
     @Test
     public void searchUser() throws Exception {
-        String query = "";
+        String query = "sachin";
         UserFeed userFeed = instagram.searchUser(query);
 
         for (UserFeedData userFeedData : userFeed.getUserList()) {
@@ -125,6 +126,14 @@ public class InstagramTest {
 
         }
 
+
+    }
+
+    @Test
+    public void getMediaByTags() throws Exception {
+        String tagName = "london";
+        TagMediaFeed recentMediaTags = instagram.getRecentMediaTags(tagName);
+        printMediaFeedList(recentMediaTags.getData());
 
     }
 
