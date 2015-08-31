@@ -26,9 +26,8 @@ public class InstagramTest {
 
     private final Logger logger = LoggerFactory.getLogger(InstagramTest.class);
 
-    //private final String ACCESS_TOKEN = "[Add your access token here]";
+    private final String ACCESS_TOKEN = "[Add your access token here]";
 
-    private final String ACCESS_TOKEN = "4985281.44e6baf.5376b07649884c739d89b91b0c576513";
     private Token token = new Token(ACCESS_TOKEN, null);
 
     private Instagram instagram = new Instagram(token);
