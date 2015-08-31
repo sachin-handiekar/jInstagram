@@ -26,8 +26,9 @@ public class InstagramTest {
 
     private final Logger logger = LoggerFactory.getLogger(InstagramTest.class);
 
-   private final String ACCESS_TOKEN = "[Add your access token here]";
+    //private final String ACCESS_TOKEN = "[Add your access token here]";
 
+    private final String ACCESS_TOKEN = "4985281.44e6baf.5376b07649884c739d89b91b0c576513";
     private Token token = new Token(ACCESS_TOKEN, null);
 
     private Instagram instagram = new Instagram(token);
@@ -144,6 +145,8 @@ public class InstagramTest {
     }
 
     private List<MediaFeedData> getUserPhotos(String userId) throws Exception {
+        // Don't get all the photos, just break the page count on 5
+        final int countBreaker = 5;
         MediaFeed recentMediaFeed = instagram.getRecentMediaFeed(userId);
         List<MediaFeedData> userPhotos = new ArrayList<MediaFeedData>();
 
@@ -151,7 +154,15 @@ public class InstagramTest {
             userPhotos.add(mediaFeedData);
         }
 
+        int count = 0;
         while (recentMediaFeed.getPagination() != null) {
+            count++;
+
+            if (count == countBreaker) {
+                System.out.println("Too many photos to get!!! Breaking the loop.");
+                break;
+            }
+
             try {
                 recentMediaFeed = instagram.getRecentMediaNextPage(recentMediaFeed.getPagination());
                 for (MediaFeedData mediaFeedData : recentMediaFeed.getData()) {
@@ -164,8 +175,6 @@ public class InstagramTest {
 
         return userPhotos;
     }
-
-
 
 
     private void printMediaFeedList(List<MediaFeedData> mediaFeedDataList) {

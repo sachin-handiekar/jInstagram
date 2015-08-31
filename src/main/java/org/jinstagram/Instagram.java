@@ -941,6 +941,7 @@ public class Instagram {
 		Gson gson = new Gson();
 		final InstagramErrorResponse error;
 		String responseBody = response.getBody();
+        logger.debug("Instagram Response : " + responseBody);
 		try {
 			if (response.getCode() == 400) {
 				error = InstagramErrorResponse.parse(gson, responseBody);

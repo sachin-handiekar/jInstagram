@@ -1,52 +1,199 @@
 package org.jinstagram.entity.common;
 
-import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertNull;
+import org.junit.*;
+import static org.junit.Assert.*;
 
-import org.junit.Test;
-
-import com.google.gson.Gson;
-
+/**
+ * The class <code>MetaTest</code> contains tests for the class <code>{@link Meta}</code>.
+ *
+ * @generatedBy CodePro at 31/08/15 16:40
+ * @author sachin.handiekar
+ * @version $Revision: 1.0 $
+ */
 public class MetaTest {
-    private Gson GSON_PARSER = new Gson();
+	/**
+	 * Run the int getCode() method test.
+	 *
+	 * @throws Exception
+	 *
+	 * @generatedBy CodePro at 31/08/15 16:40
+	 */
+	@Test
+	public void testGetCode_1()
+		throws Exception {
+		Meta fixture = new Meta();
+		fixture.setErrorType("");
+		fixture.setCode(1);
+		fixture.setErrorMessage("");
 
-    private static final String CAPTION_JSON_NULL = "{\"caption\": null}";
+		int result = fixture.getCode();
 
-    private static final String CAPTION_JSON_DATA = "{"
-            + "            \"created_time\": \"1296656006\",\n"
-            + "            \"text\": \"ã\u0083\u008Fã\u0083¼ã\u0083\u0088â\u0099¥ã\u0082¢ã\u0083\u0097ã\u0083ªå§\u008Bã\u0082\u0081ã\u0081¦ä½¿ã\u0081£ã\u0081¦ã\u0081¿ã\u0081\u009Fã\u0082\u0087(^^)\",\n"
-            + "            \"from\": {\n"
-            + "                \"username\": \"cocomiin\",\n"
-            + "                \"full_name\": \"\",\n"
-            + "                \"type\": \"user\",\n"
-            + "                \"id\": \"1127272\"\n"
-            + "            },\n"
-            + "            \"id\": \"26329105\"\n"
-            + "        }";
+		// add additional test code here
+		assertEquals(1, result);
+	}
 
+	/**
+	 * Run the String getErrorMessage() method test.
+	 *
+	 * @throws Exception
+	 *
+	 * @generatedBy CodePro at 31/08/15 16:40
+	 */
+	@Test
+	public void testGetErrorMessage_1()
+		throws Exception {
+		Meta fixture = new Meta();
+		fixture.setErrorType("");
+		fixture.setCode(1);
+		fixture.setErrorMessage("");
 
-    @Test
-    public void testCaptionEntity_Null() {
-        Caption caption;
-        caption = GSON_PARSER.fromJson(CAPTION_JSON_NULL, Caption.class);
+		String result = fixture.getErrorMessage();
 
-        assertNull(caption.getCreatedTime());
-        assertNull(caption.getFrom());
-        assertNull(caption.getId());
-        assertNull(caption.getText());
-    }
+		// add additional test code here
+		assertEquals("", result);
+	}
 
-    @Test
-    public void testCaptionEntity_WithData() {
-        Caption caption;
-        caption = GSON_PARSER.fromJson(CAPTION_JSON_DATA, Caption.class);
+	/**
+	 * Run the String getErrorType() method test.
+	 *
+	 * @throws Exception
+	 *
+	 * @generatedBy CodePro at 31/08/15 16:40
+	 */
+	@Test
+	public void testGetErrorType_1()
+		throws Exception {
+		Meta fixture = new Meta();
+		fixture.setErrorType("");
+		fixture.setCode(1);
+		fixture.setErrorMessage("");
 
-        assertNotNull("'Caption' entity should not be null.", caption);
-        assertNotNull(caption.getCreatedTime());
-        assertNotNull(caption.getFrom());
-        assertNotNull(caption.getId());
-        assertNotNull(caption.getText());
-    }
+		String result = fixture.getErrorType();
 
+		// add additional test code here
+		assertEquals("", result);
+	}
 
+	/**
+	 * Run the void setCode(int) method test.
+	 *
+	 * @throws Exception
+	 *
+	 * @generatedBy CodePro at 31/08/15 16:40
+	 */
+	@Test
+	public void testSetCode_1()
+		throws Exception {
+		Meta fixture = new Meta();
+		fixture.setErrorType("");
+		fixture.setCode(1);
+		fixture.setErrorMessage("");
+		int code = 1;
+
+		fixture.setCode(code);
+
+		// add additional test code here
+	}
+
+	/**
+	 * Run the void setErrorMessage(String) method test.
+	 *
+	 * @throws Exception
+	 *
+	 * @generatedBy CodePro at 31/08/15 16:40
+	 */
+	@Test
+	public void testSetErrorMessage_1()
+		throws Exception {
+		Meta fixture = new Meta();
+		fixture.setErrorType("");
+		fixture.setCode(1);
+		fixture.setErrorMessage("");
+		String errorMessage = "";
+
+		fixture.setErrorMessage(errorMessage);
+
+		// add additional test code here
+	}
+
+	/**
+	 * Run the void setErrorType(String) method test.
+	 *
+	 * @throws Exception
+	 *
+	 * @generatedBy CodePro at 31/08/15 16:40
+	 */
+	@Test
+	public void testSetErrorType_1()
+		throws Exception {
+		Meta fixture = new Meta();
+		fixture.setErrorType("");
+		fixture.setCode(1);
+		fixture.setErrorMessage("");
+		String errorType = "";
+
+		fixture.setErrorType(errorType);
+
+		// add additional test code here
+	}
+
+	/**
+	 * Run the String toString() method test.
+	 *
+	 * @throws Exception
+	 *
+	 * @generatedBy CodePro at 31/08/15 16:40
+	 */
+	@Test
+	public void testToString_1()
+		throws Exception {
+		Meta fixture = new Meta();
+		fixture.setErrorType("");
+		fixture.setCode(1);
+		fixture.setErrorMessage("");
+
+		String result = fixture.toString();
+
+		// add additional test code here
+		assertEquals("Meta [code=1, errorMessage=, errorType=]", result);
+	}
+
+	/**
+	 * Perform pre-test initialization.
+	 *
+	 * @throws Exception
+	 *         if the initialization fails for some reason
+	 *
+	 * @generatedBy CodePro at 31/08/15 16:40
+	 */
+	@Before
+	public void setUp()
+		throws Exception {
+		// add additional set up code here
+	}
+
+	/**
+	 * Perform post-test clean-up.
+	 *
+	 * @throws Exception
+	 *         if the clean-up fails for some reason
+	 *
+	 * @generatedBy CodePro at 31/08/15 16:40
+	 */
+	@After
+	public void tearDown()
+		throws Exception {
+		// Add additional tear down code here
+	}
+
+	/**
+	 * Launch the test.
+	 *
+	 * @param args the command line arguments
+	 *
+	 * @generatedBy CodePro at 31/08/15 16:40
+	 */
+	public static void main(String[] args) {
+		new org.junit.runner.JUnitCore().run(MetaTest.class);
+	}
 }

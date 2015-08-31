@@ -1,52 +1,207 @@
 package org.jinstagram.entity.common;
 
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertNull;
 
 import org.junit.Test;
 
-import com.google.gson.Gson;
-
+/**
+ * The class <code>CaptionTest</code> contains tests for the class
+ * <code>{@link Caption}</code>.
+ *
+ * @author Sachin Handiekar
+ */
 public class CaptionTest {
-    private Gson GSON_PARSER = new Gson();
+	/**
+	 * Run the String getCreatedTime() method test.
+	 *
+	 * @throws Exception if any error occurs
+	 */
+	@Test
+	public void testGetCreatedTime_1() throws Exception {
+		Caption caption = new Caption();
+		caption.setCreatedTime("");
+		caption.setFrom(new FromTagData());
+		caption.setText("");
+		caption.setId("");
 
-    private static final String CAPTION_JSON_NULL = "{\"caption\": null}";
+		String result = caption.getCreatedTime();
 
-    private static final String CAPTION_JSON_DATA = "{"
-            + "            \"created_time\": \"1296656006\",\n"
-            + "            \"text\": \"ã\u0083\u008Fã\u0083¼ã\u0083\u0088â\u0099¥ã\u0082¢ã\u0083\u0097ã\u0083ªå§\u008Bã\u0082\u0081ã\u0081¦ä½¿ã\u0081£ã\u0081¦ã\u0081¿ã\u0081\u009Fã\u0082\u0087(^^)\",\n"
-            + "            \"from\": {\n"
-            + "                \"username\": \"cocomiin\",\n"
-            + "                \"full_name\": \"\",\n"
-            + "                \"type\": \"user\",\n"
-            + "                \"id\": \"1127272\"\n"
-            + "            },\n"
-            + "            \"id\": \"26329105\"\n"
-            + "        }";
+		// add additional test code here
+		assertEquals("", result);
+	}
 
+	/**
+	 * Run the FromTagData getFrom() method test.
+	 *
+	 * @throws Exception if any error occurs
+	 */
+	@Test
+	public void testGetFrom_1() throws Exception {
+		Caption caption = new Caption();
+		caption.setCreatedTime("");
+		caption.setFrom(new FromTagData());
+		caption.setText("");
+		caption.setId("");
 
-    @Test
-    public void testCaptionEntity_Null() {
-        Caption caption;
-        caption = GSON_PARSER.fromJson(CAPTION_JSON_NULL, Caption.class);
+		FromTagData result = caption.getFrom();
 
-        assertNull(caption.getCreatedTime());
-        assertNull(caption.getFrom());
-        assertNull(caption.getId());
-        assertNull(caption.getText());
-    }
+		// add additional test code here
+		assertNotNull(result);
+		assertEquals("FromTagData [fullName=null, id=null, profilePicture=null, username=null]", result.toString());
+		assertEquals(null, result.getId());
+		assertEquals(null, result.getFullName());
+		assertEquals(null, result.getProfilePicture());
+		assertEquals(null, result.getUsername());
+	}
 
-    @Test
-    public void testCaptionEntity_WithData() {
-        Caption caption;
-        caption = GSON_PARSER.fromJson(CAPTION_JSON_DATA, Caption.class);
+	/**
+	 * Run the String getId() method test.
+	 *
+	 * @throws Exception if any error occurs
+	 *
+	 * 
+	 */
+	@Test
+	public void testGetId_1() throws Exception {
+		Caption caption = new Caption();
+		caption.setCreatedTime("");
+		caption.setFrom(new FromTagData());
+		caption.setText("");
+		caption.setId("");
 
-        assertNotNull("'Caption' entity should not be null.", caption);
-        assertNotNull(caption.getCreatedTime());
-        assertNotNull(caption.getFrom());
-        assertNotNull(caption.getId());
-        assertNotNull(caption.getText());
-    }
+		String result = caption.getId();
 
+		// add additional test code here
+		assertEquals("", result);
+	}
+
+	/**
+	 * Run the String getText() method test.
+	 *
+	 * @throws Exception if any error occurs
+	 *
+	 * 
+	 */
+	@Test
+	public void testGetText_1() throws Exception {
+		Caption caption = new Caption();
+		caption.setCreatedTime("");
+		caption.setFrom(new FromTagData());
+		caption.setText("");
+		caption.setId("");
+
+		String result = caption.getText();
+
+		// add additional test code here
+		assertEquals("", result);
+	}
+
+	/**
+	 * Run the void setCreatedTime(String) method test.
+	 *
+	 * @throws Exception if any error occurs
+	 *
+	 * 
+	 */
+	@Test
+	public void testSetCreatedTime_1() throws Exception {
+		Caption caption = new Caption();
+		caption.setCreatedTime("");
+		caption.setFrom(new FromTagData());
+		caption.setText("");
+		caption.setId("");
+		String createdTime = "";
+
+		caption.setCreatedTime(createdTime);
+
+		// add additional test code here
+	}
+
+	/**
+	 * Run the void setFrom(FromTagData) method test.
+	 *
+	 * @throws Exception if any error occurs
+	 *
+	 * 
+	 */
+	@Test
+	public void testSetFrom_1() throws Exception {
+		Caption caption = new Caption();
+		caption.setCreatedTime("");
+		caption.setFrom(new FromTagData());
+		caption.setText("");
+		caption.setId("");
+		FromTagData from = new FromTagData();
+
+		caption.setFrom(from);
+
+		// add additional test code here
+	}
+
+	/**
+	 * Run the void setId(String) method test.
+	 *
+	 * @throws Exception if any error occurs
+	 *
+	 * 
+	 */
+	@Test
+	public void testSetId_1() throws Exception {
+		Caption caption = new Caption();
+		caption.setCreatedTime("");
+		caption.setFrom(new FromTagData());
+		caption.setText("");
+		caption.setId("");
+		String id = "";
+
+		caption.setId(id);
+
+		// add additional test code here
+	}
+
+	/**
+	 * Run the void setText(String) method test.
+	 *
+	 * @throws Exception if any error occurs
+	 *
+	 * 
+	 */
+	@Test
+	public void testSetText_1() throws Exception {
+		Caption caption = new Caption();
+		caption.setCreatedTime("");
+		caption.setFrom(new FromTagData());
+		caption.setText("");
+		caption.setId("");
+		String text = "";
+
+		caption.setText(text);
+
+		// add additional test code here
+	}
+
+	/**
+	 * Run the String toString() method test.
+	 *
+	 * @throws Exception if any error occurs
+	 *
+	 * 
+	 */
+	@Test
+	public void testToString_1() throws Exception {
+		Caption caption = new Caption();
+		caption.setCreatedTime("");
+		caption.setFrom(new FromTagData());
+		caption.setText("");
+		caption.setId("");
+
+		String result = caption.toString();
+
+		// add additional test code here
+		assertEquals(
+				"Caption [createdTime=, from=FromTagData [fullName=null, id=null, profilePicture=null, username=null], id=, text=]",
+				result);
+	}
 
 }

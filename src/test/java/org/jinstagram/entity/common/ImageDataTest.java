@@ -1,52 +1,160 @@
 package org.jinstagram.entity.common;
 
-import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertNull;
+import org.junit.*;
+import static org.junit.Assert.*;
 
-import org.junit.Test;
-
-import com.google.gson.Gson;
-
+/**
+ * The class <code>ImageDataTest</code> contains tests for the class <code>{@link ImageData}</code>.
+ *
+ 
+ * @author sachin.handiekar
+ */
 public class ImageDataTest {
-    private Gson GSON_PARSER = new Gson();
+	/**
+	 * Run the int getImageHeight() method test.
+	 *
+	 * @throws Exception
+	 *
+	 
+	 */
+	@Test
+	public void testGetImageHeight_1()
+		throws Exception {
+		ImageData fixture = new ImageData();
+		fixture.setImageHeight(1);
+		fixture.setImageUrl("");
+		fixture.setImageWidth(1);
 
-    private static final String CAPTION_JSON_NULL = "{\"caption\": null}";
+		int result = fixture.getImageHeight();
 
-    private static final String CAPTION_JSON_DATA = "{"
-            + "            \"created_time\": \"1296656006\",\n"
-            + "            \"text\": \"ã\u0083\u008Fã\u0083¼ã\u0083\u0088â\u0099¥ã\u0082¢ã\u0083\u0097ã\u0083ªå§\u008Bã\u0082\u0081ã\u0081¦ä½¿ã\u0081£ã\u0081¦ã\u0081¿ã\u0081\u009Fã\u0082\u0087(^^)\",\n"
-            + "            \"from\": {\n"
-            + "                \"username\": \"cocomiin\",\n"
-            + "                \"full_name\": \"\",\n"
-            + "                \"type\": \"user\",\n"
-            + "                \"id\": \"1127272\"\n"
-            + "            },\n"
-            + "            \"id\": \"26329105\"\n"
-            + "        }";
+		// add additional test code here
+		assertEquals(1, result);
+	}
 
+	/**
+	 * Run the String getImageUrl() method test.
+	 *
+	 * @throws Exception
+	 *
+	 
+	 */
+	@Test
+	public void testGetImageUrl_1()
+		throws Exception {
+		ImageData fixture = new ImageData();
+		fixture.setImageHeight(1);
+		fixture.setImageUrl("");
+		fixture.setImageWidth(1);
 
-    @Test
-    public void testCaptionEntity_Null() {
-        Caption caption;
-        caption = GSON_PARSER.fromJson(CAPTION_JSON_NULL, Caption.class);
+		String result = fixture.getImageUrl();
 
-        assertNull(caption.getCreatedTime());
-        assertNull(caption.getFrom());
-        assertNull(caption.getId());
-        assertNull(caption.getText());
-    }
+		// add additional test code here
+		assertEquals("", result);
+	}
 
-    @Test
-    public void testCaptionEntity_WithData() {
-        Caption caption;
-        caption = GSON_PARSER.fromJson(CAPTION_JSON_DATA, Caption.class);
+	/**
+	 * Run the int getImageWidth() method test.
+	 *
+	 * @throws Exception
+	 *
+	 
+	 */
+	@Test
+	public void testGetImageWidth_1()
+		throws Exception {
+		ImageData fixture = new ImageData();
+		fixture.setImageHeight(1);
+		fixture.setImageUrl("");
+		fixture.setImageWidth(1);
 
-        assertNotNull("'Caption' entity should not be null.", caption);
-        assertNotNull(caption.getCreatedTime());
-        assertNotNull(caption.getFrom());
-        assertNotNull(caption.getId());
-        assertNotNull(caption.getText());
-    }
+		int result = fixture.getImageWidth();
 
+		// add additional test code here
+		assertEquals(1, result);
+	}
+
+	/**
+	 * Run the void setImageHeight(int) method test.
+	 *
+	 * @throws Exception
+	 *
+	 
+	 */
+	@Test
+	public void testSetImageHeight_1()
+		throws Exception {
+		ImageData fixture = new ImageData();
+		fixture.setImageHeight(1);
+		fixture.setImageUrl("");
+		fixture.setImageWidth(1);
+		int imageHeight = 1;
+
+		fixture.setImageHeight(imageHeight);
+
+		// add additional test code here
+	}
+
+	/**
+	 * Run the void setImageUrl(String) method test.
+	 *
+	 * @throws Exception
+	 *
+	 
+	 */
+	@Test
+	public void testSetImageUrl_1()
+		throws Exception {
+		ImageData fixture = new ImageData();
+		fixture.setImageHeight(1);
+		fixture.setImageUrl("");
+		fixture.setImageWidth(1);
+		String imageUrl = "";
+
+		fixture.setImageUrl(imageUrl);
+
+		// add additional test code here
+	}
+
+	/**
+	 * Run the void setImageWidth(int) method test.
+	 *
+	 * @throws Exception
+	 *
+	 
+	 */
+	@Test
+	public void testSetImageWidth_1()
+		throws Exception {
+		ImageData fixture = new ImageData();
+		fixture.setImageHeight(1);
+		fixture.setImageUrl("");
+		fixture.setImageWidth(1);
+		int imageWidth = 1;
+
+		fixture.setImageWidth(imageWidth);
+
+		// add additional test code here
+	}
+
+	/**
+	 * Run the String toString() method test.
+	 *
+	 * @throws Exception
+	 *
+	 
+	 */
+	@Test
+	public void testToString_1()
+		throws Exception {
+		ImageData fixture = new ImageData();
+		fixture.setImageHeight(1);
+		fixture.setImageUrl("");
+		fixture.setImageWidth(1);
+
+		String result = fixture.toString();
+
+		// add additional test code here
+		assertEquals("ImageData [imageHeight=1, imageUrl=, imageWidth=1]", result);
+	}
 
 }

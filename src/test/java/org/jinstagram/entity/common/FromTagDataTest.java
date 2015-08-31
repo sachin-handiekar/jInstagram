@@ -1,52 +1,207 @@
 package org.jinstagram.entity.common;
 
-import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertNull;
+import org.junit.*;
+import static org.junit.Assert.*;
 
-import org.junit.Test;
-
-import com.google.gson.Gson;
-
+/**
+ * The class <code>FromTagDataTest</code> contains tests for the class
+ * <code>{@link FromTagData}</code>.
+ *
+ * 
+ * @author Sachin Handiekar
+ */
 public class FromTagDataTest {
-    private Gson GSON_PARSER = new Gson();
+	/**
+	 * Run the String getFullName() method test.
+	 *
+	 * @throws Exception
+	 *             if any error occurs
+	 *
+	 */
+	@Test
+	public void testGetFullName_1() throws Exception {
+		FromTagData fromTagData = new FromTagData();
+		fromTagData.setProfilePicture("");
+		fromTagData.setUsername("");
+		fromTagData.setId("");
+		fromTagData.setFullName("");
 
-    private static final String CAPTION_JSON_NULL = "{\"caption\": null}";
+		String result = fromTagData.getFullName();
 
-    private static final String CAPTION_JSON_DATA = "{"
-            + "            \"created_time\": \"1296656006\",\n"
-            + "            \"text\": \"ã\u0083\u008Fã\u0083¼ã\u0083\u0088â\u0099¥ã\u0082¢ã\u0083\u0097ã\u0083ªå§\u008Bã\u0082\u0081ã\u0081¦ä½¿ã\u0081£ã\u0081¦ã\u0081¿ã\u0081\u009Fã\u0082\u0087(^^)\",\n"
-            + "            \"from\": {\n"
-            + "                \"username\": \"cocomiin\",\n"
-            + "                \"full_name\": \"\",\n"
-            + "                \"type\": \"user\",\n"
-            + "                \"id\": \"1127272\"\n"
-            + "            },\n"
-            + "            \"id\": \"26329105\"\n"
-            + "        }";
+		// add additional test code here
+		assertEquals("", result);
+	}
 
+	/**
+	 * Run the String getId() method test.
+	 *
+	 * @throws Exception
+	 *             if any error occurs
+	 *
+	 * 
+	 */
+	@Test
+	public void testGetId_1() throws Exception {
+		FromTagData fromTagData = new FromTagData();
+		fromTagData.setProfilePicture("");
+		fromTagData.setUsername("");
+		fromTagData.setId("");
+		fromTagData.setFullName("");
 
-    @Test
-    public void testCaptionEntity_Null() {
-        Caption caption;
-        caption = GSON_PARSER.fromJson(CAPTION_JSON_NULL, Caption.class);
+		String result = fromTagData.getId();
 
-        assertNull(caption.getCreatedTime());
-        assertNull(caption.getFrom());
-        assertNull(caption.getId());
-        assertNull(caption.getText());
-    }
+		// add additional test code here
+		assertEquals("", result);
+	}
 
-    @Test
-    public void testCaptionEntity_WithData() {
-        Caption caption;
-        caption = GSON_PARSER.fromJson(CAPTION_JSON_DATA, Caption.class);
+	/**
+	 * Run the String getProfilePicture() method test.
+	 *
+	 * @throws Exception
+	 *             if any error occurs
+	 *
+	 * 
+	 */
+	@Test
+	public void testGetProfilePicture_1() throws Exception {
+		FromTagData fromTagData = new FromTagData();
+		fromTagData.setProfilePicture("");
+		fromTagData.setUsername("");
+		fromTagData.setId("");
+		fromTagData.setFullName("");
 
-        assertNotNull("'Caption' entity should not be null.", caption);
-        assertNotNull(caption.getCreatedTime());
-        assertNotNull(caption.getFrom());
-        assertNotNull(caption.getId());
-        assertNotNull(caption.getText());
-    }
+		String result = fromTagData.getProfilePicture();
 
+		// add additional test code here
+		assertEquals("", result);
+	}
+
+	/**
+	 * Run the String getUsername() method test.
+	 *
+	 * @throws Exception
+	 *             if any error occurs
+	 */
+	@Test
+	public void testGetUsername_1() throws Exception {
+		FromTagData fromTagData = new FromTagData();
+		fromTagData.setProfilePicture("");
+		fromTagData.setUsername("");
+		fromTagData.setId("");
+		fromTagData.setFullName("");
+
+		String result = fromTagData.getUsername();
+
+		// add additional test code here
+		assertEquals("", result);
+	}
+
+	/**
+	 * Run the void setFullName(String) method test.
+	 *
+	 * @throws Exception
+	 *             if any error occurs
+	 *
+	 * 
+	 */
+	@Test
+	public void testSetFullName_1() throws Exception {
+		FromTagData fromTagData = new FromTagData();
+		fromTagData.setProfilePicture("");
+		fromTagData.setUsername("");
+		fromTagData.setId("");
+		fromTagData.setFullName("");
+		String fullName = "";
+
+		fromTagData.setFullName(fullName);
+
+		// add additional test code here
+	}
+
+	/**
+	 * Run the void setId(String) method test.
+	 *
+	 * @throws Exception
+	 *             if any error occurs
+	 *
+	 * 
+	 */
+	@Test
+	public void testSetId_1() throws Exception {
+		FromTagData fromTagData = new FromTagData();
+		fromTagData.setProfilePicture("");
+		fromTagData.setUsername("");
+		fromTagData.setId("");
+		fromTagData.setFullName("");
+		String id = "";
+
+		fromTagData.setId(id);
+
+		// add additional test code here
+	}
+
+	/**
+	 * Run the void setProfilePicture(String) method test.
+	 *
+	 * @throws Exception
+	 *             if any error occurs
+	 *
+	 * 
+	 */
+	@Test
+	public void testSetProfilePicture_1() throws Exception {
+		FromTagData fromTagData = new FromTagData();
+		fromTagData.setProfilePicture("");
+		fromTagData.setUsername("");
+		fromTagData.setId("");
+		fromTagData.setFullName("");
+		String profilePicture = "";
+
+		fromTagData.setProfilePicture(profilePicture);
+
+		// add additional test code here
+	}
+
+	/**
+	 * Run the void setUsername(String) method test.
+	 *
+	 * @throws Exception
+	 *             if any error occurs
+	 *
+	 * 
+	 */
+	@Test
+	public void testSetUsername_1() throws Exception {
+		FromTagData fromTagData = new FromTagData();
+		fromTagData.setProfilePicture("");
+		fromTagData.setUsername("");
+		fromTagData.setId("");
+		fromTagData.setFullName("");
+		String username = "";
+
+		fromTagData.setUsername(username);
+
+		// add additional test code here
+	}
+
+	/**
+	 * Run the String toString() method test.
+	 *
+	 * @throws Exception
+	 *             if any error occurs
+	 */
+	@Test
+	public void testToString_1() throws Exception {
+		FromTagData fromTagData = new FromTagData();
+		fromTagData.setProfilePicture("");
+		fromTagData.setUsername("");
+		fromTagData.setId("");
+		fromTagData.setFullName("");
+
+		String result = fromTagData.toString();
+
+		// add additional test code here
+		assertEquals("FromTagData [fullName=, id=, profilePicture=, username=]", result);
+	}
 
 }

@@ -1,49 +1,112 @@
 package org.jinstagram.entity.common;
 
-import com.google.gson.Gson;
+import java.util.ArrayList;
+import java.util.List;
+import org.jinstagram.entity.comments.CommentData;
+import org.junit.*;
+import static org.junit.Assert.*;
 
-import org.junit.Test;
-
+/**
+ * The class <code>CommentsTest</code> contains tests for the class
+ * <code>{@link Comments}</code>.
+ *
+ * 
+ * @author Sachin Handiekar
+ */
 public class CommentsTest {
-    private Gson GSON_PARSER = new Gson();
+	/**
+	 * Run the List<CommentData> getComments() method test.
+	 *
+	 * @throws Exception
+	 */
+	@Test
+	public void testGetComments_1() throws Exception {
+		Comments caption = new Comments();
+		caption.setCount(1);
+		caption.setComments(new ArrayList<CommentData>());
 
-    private static final String COMMENTS_JSON_NULL = "{\"comments\": null}";
+		List<CommentData> result = caption.getComments();
 
-    private static final String COMMENTS_JSON_DATA = "{ \"data\": [{\n"
-            + "                \"created_time\": \"1279332030\",\n"
-            + "                \"text\": \"Love the sign here\",\n"
-            + "                \"from\": {\n"
-            + "                    \"username\": \"mikeyk\",\n"
-            + "                    \"full_name\": \"Mikey Krieger\",\n"
-            + "                    \"id\": \"4\",\n"
-            + "                    \"profile_picture\": \"http://distillery.s3.amazonaws.com/profiles/profile_1242695_75sq_1293915800.jpg\"\n"
-            + "                },\n"
-            + "                \"id\": \"8\"\n"
-            + "            },\n"
-            + "            {\n"
-            + "                \"created_time\": \"1279341004\",\n"
-            + "                \"text\": \"Chilako taco\",\n"
-            + "                \"from\": {\n"
-            + "                    \"username\": \"kevin\",\n"
-            + "                    \"full_name\": \"Kevin S\",\n"
-            + "                    \"id\": \"3\",\n"
-            + "                    \"profile_picture\": \"...\"\n"
-            + "                },\n"
-            + "                \"id\": \"3\"\n"
-            + "            }],\n"
-            + "            \"count\": 2\n"
-            + "        }";
+		// add additional test code here
+		assertNotNull(result);
+		assertEquals(0, result.size());
+	}
 
+	/**
+	 * Run the int getCount() method test.
+	 *
+	 * @throws Exception
+	 *
+	 * 
+	 */
+	@Test
+	public void testGetCount_1() throws Exception {
+		Comments caption = new Comments();
+		caption.setCount(1);
+		caption.setComments(new ArrayList<CommentData>());
 
-    @Test
-    public void testCommentsEntity_Null() {
-        GSON_PARSER.fromJson(COMMENTS_JSON_NULL, Comments.class);
-    }
+		int result = caption.getCount();
 
-    @Test
-    public void testCaptionEntity_WithData() {
-        GSON_PARSER.fromJson(COMMENTS_JSON_DATA, Comments.class);
-    }
+		// add additional test code here
+		assertEquals(1, result);
+	}
 
+	/**
+	 * Run the void setComments(List<CommentData>) method test.
+	 *
+	 * @throws Exception
+	 *
+	 * 
+	 */
+	@Test
+	public void testSetComments_1() throws Exception {
+		Comments caption = new Comments();
+		caption.setCount(1);
+		caption.setComments(new ArrayList<CommentData>());
+		List<CommentData> comments = new ArrayList<CommentData>();
 
+		caption.setComments(comments);
+
+		// add additional test code here
+	}
+
+	/**
+	 * Run the void setCount(int) method test.
+	 *
+	 * @throws Exception
+	 *
+	 * 
+	 */
+	@Test
+	public void testSetCount_1() throws Exception {
+		Comments caption = new Comments();
+		caption.setCount(1);
+		caption.setComments(new ArrayList<CommentData>());
+		int count = 1;
+
+		caption.setCount(count);
+
+		// add additional test code here
+	}
+
+	/**
+	 * Run the String toString() method test.
+	 *
+	 * @throws Exception
+	 *
+	 * 
+	 */
+	@Test
+	public void testToString_1() throws Exception {
+		Comments caption = new Comments();
+		caption.setCount(1);
+		caption.setComments(new ArrayList<CommentData>());
+
+		String result = caption.toString();
+
+		// add additional test code here
+		assertEquals("Comments [comments=[], count=1]", result);
+	}
+
+ 
 }
