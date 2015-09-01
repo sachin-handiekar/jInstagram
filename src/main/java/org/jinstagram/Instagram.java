@@ -133,8 +133,6 @@ public class Instagram {
 	 */
 	public UserInfo getUserInfo(String userId) throws InstagramException {
 
-		LogHelper.logEntrance(logger, "getUserInfo", userId);
-
 		logger.info("Getting user info for : " + userId);
 
 		Preconditions.checkEmptyString(userId, "UserId cannot be null or empty.");
@@ -371,7 +369,6 @@ public class Instagram {
     /**
      * Get the next page for list of 'users' the authenticated user follows.
      *
-     * @param pagination
      * @throws InstagramException
      */
     public UserFeed getUserFollowListNextPage(String userId, String cursor) throws InstagramException {
@@ -754,7 +751,7 @@ public class Instagram {
 			params.put(QueryParam.MAX_ID, String.valueOf(maxId));
 
 		String apiMethod = String.format(Methods.TAGS_RECENT_MEDIA, tagName);
-
+;
         return createInstagramObject(Verbs.GET, TagMediaFeed.class, apiMethod, params);
     }
 
@@ -922,14 +919,17 @@ public class Instagram {
 	protected <T extends InstagramObject> T createInstagramObject(Verbs verbs, Class<T> clazz, String methodName,
 			Map<String, String> params) throws InstagramException {
 		Response response;
-		try {
+        String jsonResponseBody;
+ 		try {
 			response = getApiResponse(verbs, methodName, params);
+            jsonResponseBody = response.getBody();
+            LogHelper.prettyPrintJSONResponse(logger, jsonResponseBody);
 		} catch (IOException e) {
 			throw new InstagramException("IOException while retrieving data", e);
 		}
 
 		if (response.getCode() >= 200 && response.getCode() < 300) {
-			T object = createObjectFromResponse(clazz, response.getBody());
+			T object = createObjectFromResponse(clazz, jsonResponseBody);
 			object.setHeaders(response.getHeaders());
 			return object;
 		}
@@ -941,7 +941,6 @@ public class Instagram {
 		Gson gson = new Gson();
 		final InstagramErrorResponse error;
 		String responseBody = response.getBody();
-        logger.debug("Instagram Error Response : " + responseBody);
 		try {
 			if (response.getCode() == 400) {
 				error = InstagramErrorResponse.parse(gson, responseBody);
@@ -976,7 +975,9 @@ public class Instagram {
 		String apiResourceUrl = config.getApiURL() + methodName;
 		OAuthRequest request = new OAuthRequest(verb, apiResourceUrl);
 
-		request.setConnectTimeout(config.getConnectionTimeoutMills(), TimeUnit.MILLISECONDS);
+        logger.debug("Creating request for Instagram -  " + request.getUrl());
+
+        request.setConnectTimeout(config.getConnectionTimeoutMills(), TimeUnit.MILLISECONDS);
 		request.setReadTimeout(config.getReadTimeoutMills(), TimeUnit.MILLISECONDS);
 
 		if (enforceSignatrue != null) {
@@ -1001,19 +1002,24 @@ public class Instagram {
 		// Add the AccessToken to the Request Url
 		if ((verb == Verbs.GET) || (verb == Verbs.DELETE)) {
 			if (accessToken == null) {
+                logger.debug("Using " + OAuthConstants.CLIENT_ID + " : " + clientId);
 				request.addQuerystringParameter(OAuthConstants.CLIENT_ID, clientId);
 			} else {
-				request.addQuerystringParameter(OAuthConstants.ACCESS_TOKEN, accessToken.getToken());
+                logger.debug("Using " + OAuthConstants.ACCESS_TOKEN + " : " + accessToken.getToken());
+                request.addQuerystringParameter(OAuthConstants.ACCESS_TOKEN, accessToken.getToken());
 			}
 		} else {
 			if (accessToken == null) {
-				request.addBodyParameter(OAuthConstants.CLIENT_ID, clientId);
+                logger.debug("Using " + OAuthConstants.CLIENT_ID + " : " + clientId);
+                request.addBodyParameter(OAuthConstants.CLIENT_ID, clientId);
 			} else {
-				request.addBodyParameter(OAuthConstants.ACCESS_TOKEN, accessToken.getToken());
+                logger.debug("Using " + OAuthConstants.ACCESS_TOKEN + " : " + accessToken.getToken());
+                request.addBodyParameter(OAuthConstants.ACCESS_TOKEN, accessToken.getToken());
 			}
 		}
 
-		response = request.send();
+        logger.debug("Sending request to Instagram...");
+        response = request.send();
 
 		return response;
 	}
