@@ -217,7 +217,6 @@ public class InstagramTest {
 
             logger.info("-------------------------------------------");
 
-
         }
     }
 }
