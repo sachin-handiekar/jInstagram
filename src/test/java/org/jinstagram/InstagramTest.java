@@ -37,11 +37,14 @@ public class InstagramTest {
 
     private boolean isAccessTokenAvailable() {
 
-        if (System.getProperty(IG_TOKEN_SYSTEM_PROPERTY) != null) {
-            String ACCESS_TOKEN = System.getProperty(IG_TOKEN_SYSTEM_PROPERTY);
+        if (System.getenv(IG_TOKEN_SYSTEM_PROPERTY) != null) {
+            logger.info("Access token found...")
+            String ACCESS_TOKEN = System.getenv(IG_TOKEN_SYSTEM_PROPERTY);
             Token token = new Token(ACCESS_TOKEN, null);
             instagram = new Instagram(token);
             return true;
+        } else {
+            logger.error("No access token found...");
         }
         return false;
     }
