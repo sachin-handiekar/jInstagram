@@ -1009,6 +1009,9 @@ public class Instagram {
         request.setConnectTimeout(config.getConnectionTimeoutMills(), TimeUnit.MILLISECONDS);
 		request.setReadTimeout(config.getReadTimeoutMills(), TimeUnit.MILLISECONDS);
 
+        // #51 Connection Keep Alive
+        request.setConnectionKeepAlive(config.isConnectionKeepAlive());
+
 		if (enforceSignatrue != null) {
 			request.addHeader(EnforceSignedHeaderUtils.ENFORCE_SIGNED_HEADER, enforceSignatrue);
 		}

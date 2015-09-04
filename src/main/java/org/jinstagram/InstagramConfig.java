@@ -9,6 +9,7 @@ public class InstagramConfig {
 	private String apiURL;
 	private int connectionTimeoutMills = 0;
 	private int readTimeoutMills = 0;
+    private boolean connectionKeepAlive = false;
 
 	public InstagramConfig() {
 		baseURI = Constants.BASE_URI;
@@ -53,4 +54,15 @@ public class InstagramConfig {
 	public void setReadTimeoutMills(int readTimeoutMills) {
 		this.readTimeoutMills = readTimeoutMills;
 	}
+
+    public boolean isConnectionKeepAlive() {
+        return connectionKeepAlive;
+    }
+
+    public void setConnectionKeepAlive(boolean connectionKeepAlive) {
+        this.connectionKeepAlive = connectionKeepAlive;
+    }
 }
+
+
+
