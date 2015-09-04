@@ -12,6 +12,7 @@ import org.jinstagram.entity.users.feed.UserFeed;
 import org.jinstagram.entity.users.feed.UserFeedData;
 import org.jinstagram.exceptions.InstagramBadRequestException;
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -56,6 +57,7 @@ public class InstagramTest {
     }
 
     @Test
+    @Ignore
     public void testInvalidRequest() throws Exception {
         instagram.getRecentMediaTags("test/u10191");
     }
