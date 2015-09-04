@@ -41,11 +41,11 @@ public class InstagramErrorResponse {
             String msg = errorMeta.getErrorType() + ": " + errorMeta.getErrorMessage();
             switch (errorMeta.getCode()) {
                 case 400:
-                    throw new InstagramBadRequestException(msg, this.headers);
+                    throw new InstagramBadRequestException(errorMeta.getErrorType(), msg, this.headers);
                 case 429:
-                    throw new InstagramRateLimitException(msg, this.headers);
+                    throw new InstagramRateLimitException(errorMeta.getErrorType(), msg, this.headers);
                 default:
-                    throw new InstagramException(msg, this.headers);
+                    throw new InstagramException(errorMeta.getErrorType(), msg, this.headers);
             }
         } else {
             throw new InstagramException("No metadata found in response", this.headers);
@@ -62,11 +62,18 @@ public class InstagramErrorResponse {
      */
     public static InstagramErrorResponse parse(Gson gson, String json) {
         JsonElement jsonElement = gson.fromJson(json, JsonElement.class);
-        JsonElement metaMember = jsonElement.getAsJsonObject().get("meta");
+        JsonElement metaMember = null;
+if(jsonElement != null){
+     metaMember = jsonElement.getAsJsonObject().get("meta");
+}
         final Meta meta;
         if (metaMember != null) {
             meta = gson.fromJson(metaMember, Meta.class);
         } else {
+
+            System.out.println("Printing jsonElement : " + jsonElement);
+            System.out.println("Printing json : " + json);
+
             meta = gson.fromJson(jsonElement, Meta.class);
         }
 

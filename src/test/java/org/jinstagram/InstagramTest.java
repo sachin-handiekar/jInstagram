@@ -10,7 +10,8 @@ import org.jinstagram.entity.users.feed.MediaFeed;
 import org.jinstagram.entity.users.feed.MediaFeedData;
 import org.jinstagram.entity.users.feed.UserFeed;
 import org.jinstagram.entity.users.feed.UserFeedData;
-import org.junit.Ignore;
+import org.jinstagram.exceptions.InstagramBadRequestException;
+import org.junit.Before;
 import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -21,16 +22,40 @@ import java.util.List;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotEquals;
 
-@Ignore
 public class InstagramTest {
 
     private final Logger logger = LoggerFactory.getLogger(InstagramTest.class);
 
-    private final String ACCESS_TOKEN = "[Add your access token here]";
+    private static final String IG_TOKEN_SYSTEM_PROPERTY = "IG_ACCESS_TOKEN";
 
-    private Token token = new Token(ACCESS_TOKEN, null);
+    private Instagram instagram = null;
 
-    private Instagram instagram = new Instagram(token);
+    @Before
+    public void beforeMethod() {
+        org.junit.Assume.assumeTrue(isAccessTokenAvailable());
+    }
+
+    private boolean isAccessTokenAvailable() {
+
+        if (System.getProperty(IG_TOKEN_SYSTEM_PROPERTY) != null) {
+            String ACCESS_TOKEN = System.getProperty(IG_TOKEN_SYSTEM_PROPERTY);
+            Token token = new Token(ACCESS_TOKEN, null);
+            instagram = new Instagram(token);
+            return true;
+        }
+        return false;
+    }
+
+    @Test(expected = InstagramBadRequestException.class)
+    public void testInvalidAccessToken() throws Exception {
+        Instagram instagram = new Instagram(new Token("InvalidAccessToken", null));
+        instagram.getPopularMedia();
+    }
+
+    @Test
+    public void testInvalidRequest() throws Exception {
+        instagram.getRecentMediaTags("test/u10191");
+    }
 
     @Test
     public void testCurrentUserInfo() throws Exception {

@@ -17,16 +17,28 @@ public class InstagramBadRequestException extends InstagramException {
 		super(message);
 	}
 
-	/**
-	 * No-exception constructor with response headers. 
-	 * Used when there is no original exception
-	 * 
-	 * @param message message explaining what went wrong
-	 * @param responseHeaders the headers obtained from Instagram http response
-	 */
-	public InstagramBadRequestException(String message, Map<String, String> responseHeaders) {
-		super(message, responseHeaders);
-	}
+    /**
+     * No-exception constructor with response headers.
+     * Used when there is no original exception
+     *
+     * @param message message explaining what went wrong
+     * @param responseHeaders the headers obtained from Instagram http response
+     */
+    public InstagramBadRequestException(String message, Map<String, String> responseHeaders) {
+        super(message, responseHeaders);
+    }
+
+    /**
+     * No-exception constructor with response headers.
+     * Used when there is no original exception
+     *
+     * @param message message explaining what went wrong
+     * @param responseHeaders the headers obtained from Instagram http response
+     */
+    public InstagramBadRequestException(String exceptionType, String message, Map<String, String> responseHeaders) {
+        super(exceptionType, message, responseHeaders);
+    }
+
 
 	/**
 	 * Default constructor

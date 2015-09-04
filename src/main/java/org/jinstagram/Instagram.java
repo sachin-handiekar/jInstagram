@@ -1,7 +1,9 @@
 package org.jinstagram;
 
 import java.io.IOException;
+import java.io.UnsupportedEncodingException;
 import java.net.Proxy;
+import java.net.URLEncoder;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
@@ -727,7 +729,7 @@ public class Instagram {
 			params.put(QueryParam.COUNT, String.valueOf(count));
 		}
 
-		String apiMethod = String.format(Methods.TAGS_RECENT_MEDIA, tagName);
+        String apiMethod = String.format(Methods.TAGS_RECENT_MEDIA, tagName);
 
         return createInstagramObject(Verbs.GET, TagMediaFeed.class, apiMethod, params);
     }
@@ -928,24 +930,27 @@ public class Instagram {
 			throw new InstagramException("IOException while retrieving data", e);
 		}
 
+        Map<String, String> responseHeaders = null;
 		if (response.getCode() >= 200 && response.getCode() < 300) {
 			T object = createObjectFromResponse(clazz, jsonResponseBody);
-			object.setHeaders(response.getHeaders());
+            responseHeaders = response.getHeaders();
+			object.setHeaders(responseHeaders);
 			return object;
 		}
 
-		throw handleInstagramError(response);
+        throw handleInstagramError(response.getCode(), jsonResponseBody, responseHeaders);
 	}
 
+    @Deprecated
 	protected InstagramException handleInstagramError(Response response) throws InstagramException {
 		Gson gson = new Gson();
 		final InstagramErrorResponse error;
-		String responseBody = response.getBody();
-		try {
+        String responseBody = response.getBody();
+        try {
 			if (response.getCode() == 400) {
-				error = InstagramErrorResponse.parse(gson, responseBody);
-				error.setHeaders(response.getHeaders());
-				error.throwException();
+                error = InstagramErrorResponse.parse(gson, responseBody);
+                error.setHeaders(response.getHeaders());
+                error.throwException();
 			}
 			//sending too many requests too quickly;
 			//limited to 5000 requests per hour per access_token or client_id overall.  (according to spec)
@@ -961,6 +966,30 @@ public class Instagram {
 		throw new InstagramException("Unknown error response code: " + response.getCode() + " " + responseBody,
 				response.getHeaders());
 	}
+
+    protected InstagramException handleInstagramError(long responseCode, String responseBody, Map<String,String> responseHeaders) throws InstagramException {
+        Gson gson = new Gson();
+        final InstagramErrorResponse error;
+        try {
+            if (responseCode == 400) {
+                error = InstagramErrorResponse.parse(gson, responseBody);
+                error.setHeaders(responseHeaders);
+                error.throwException();
+            }
+            //sending too many requests too quickly;
+            //limited to 5000 requests per hour per access_token or client_id overall.  (according to spec)
+            else if (responseCode == 503) {
+                error = InstagramErrorResponse.parse(gson, responseBody);
+                error.setHeaders(responseHeaders);
+                error.throwException();
+            }
+        } catch (JsonSyntaxException e) {
+            throw new InstagramException("Failed to decode error response " + responseBody, e,
+                    responseHeaders);
+        }
+        throw new InstagramException("Unknown error response code: " + responseCode + " " + responseBody,
+                responseHeaders);
+    }
 
 	/**
 	 * Get response from Instagram.

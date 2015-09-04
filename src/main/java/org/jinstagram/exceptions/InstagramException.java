@@ -11,6 +11,8 @@ public class InstagramException extends IOException implements InstagramResponse
 
 	private final Map<String, String> headers;
 
+    private final String errorType;
+
 	/**
 	 * No-exception constructor. Used when there is no original exception
 	 * 
@@ -19,6 +21,7 @@ public class InstagramException extends IOException implements InstagramResponse
 	public InstagramException(String message) {
 		super(message, null);
 		this.headers = null;
+        this.errorType = null;
 	}
 
 	/**
@@ -31,7 +34,21 @@ public class InstagramException extends IOException implements InstagramResponse
 	public InstagramException(String message, Map<String, String> responseHeaders) {
 		super(message, null);
 		this.headers = responseHeaders;
-	}
+        this.errorType = null;
+    }
+
+    /**
+     * No-exception constructor with response headers.
+     * Used when there is no original exception
+     *
+     * @param message message explaining what went wrong
+     * @param responseHeaders the headers obtained from Instagram http response
+     */
+    public InstagramException(String exceptionType, String message, Map<String, String> responseHeaders) {
+        super(message, null);
+        this.headers = responseHeaders;
+        this.errorType = exceptionType;
+    }
 
 	/**
 	 * Default constructor
@@ -42,7 +59,9 @@ public class InstagramException extends IOException implements InstagramResponse
 	public InstagramException(String message, Exception e) {
 		super(message, e);
 		this.headers = null;
-	}
+        this.errorType = null;
+
+    }
 
 	/**
 	 * Constructor with response headers
@@ -53,7 +72,8 @@ public class InstagramException extends IOException implements InstagramResponse
 	public InstagramException(String message, Exception e, Map<String, String> responseHeaders) {
 		super(message, e);
 		this.headers = responseHeaders;
-	}
+        this.errorType = null;
+    }
 
 	@Override
 	public int getAPILimitStatus() {
