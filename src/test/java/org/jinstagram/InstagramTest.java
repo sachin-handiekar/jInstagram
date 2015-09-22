@@ -1,7 +1,9 @@
 package org.jinstagram;
 
+import com.google.gson.Gson;
 import org.jinstagram.auth.model.Token;
 import org.jinstagram.entity.common.Location;
+import org.jinstagram.entity.common.Meta;
 import org.jinstagram.entity.locations.LocationSearchFeed;
 import org.jinstagram.entity.tags.TagMediaFeed;
 import org.jinstagram.entity.users.basicinfo.UserInfo;
@@ -11,6 +13,8 @@ import org.jinstagram.entity.users.feed.MediaFeedData;
 import org.jinstagram.entity.users.feed.UserFeed;
 import org.jinstagram.entity.users.feed.UserFeedData;
 import org.jinstagram.exceptions.InstagramBadRequestException;
+import org.jinstagram.exceptions.InstagramException;
+import org.jinstagram.exceptions.InstagramRateLimitException;
 import org.junit.Before;
 import org.junit.Ignore;
 import org.junit.Test;
@@ -218,5 +222,22 @@ public class InstagramTest {
             logger.info("-------------------------------------------");
 
         }
+    }
+
+    @Test(expected = InstagramRateLimitException.class)
+    public void testCheckRateLimitException() throws InstagramException {
+        int responseCode = 429; //according to API Docs https://instagram.com/developer/limits/
+        String responseBody = createRateLimitMeta(429);
+
+        instagram.handleInstagramError(responseCode, responseBody, null);
+    }
+
+    private String createRateLimitMeta(int code) {
+        Meta meta = new Meta();
+        meta.setCode(code);
+        meta.setErrorMessage("message");
+        meta.setErrorType("type");
+
+        return new Gson().toJson(meta);
     }
 }
