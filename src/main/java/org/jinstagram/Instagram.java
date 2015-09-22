@@ -978,7 +978,7 @@ public class Instagram {
             }
             //sending too many requests too quickly;
             //limited to 5000 requests per hour per access_token or client_id overall.  (according to spec)
-            else if (responseCode == 503) {
+            else if (responseCode == 429) {
                 error = InstagramErrorResponse.parse(gson, responseBody);
                 error.setHeaders(responseHeaders);
                 error.throwException();
