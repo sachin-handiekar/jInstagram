@@ -1,9 +1,7 @@
 package org.jinstagram;
 
 import java.io.IOException;
-import java.io.UnsupportedEncodingException;
 import java.net.Proxy;
-import java.net.URLEncoder;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
@@ -35,6 +33,7 @@ import org.jinstagram.model.Methods;
 import org.jinstagram.model.QueryParam;
 import org.jinstagram.model.Relationship;
 import org.jinstagram.utils.EnforceSignedHeaderUtils;
+import org.jinstagram.utils.EnforceSignedRequestUtils;
 import org.jinstagram.utils.LogHelper;
 import org.jinstagram.utils.Preconditions;
 import org.slf4j.Logger;
@@ -52,30 +51,33 @@ import com.google.gson.JsonSyntaxException;
 public class Instagram {
 
 	private static final Logger logger = LoggerFactory.getLogger(Instagram.class);
+
 	private Token accessToken;
 	private final String clientId;
 	private final InstagramConfig config;
-	private String enforceSignatrue;
 	private Proxy requestProxy;
 
+	@Deprecated
+	private String enforceSignature;
+
 	public Instagram(Token accessToken) {
-		this.accessToken = accessToken;
-		clientId = null;
-		config = new InstagramConfig();
+		this(accessToken, null, new InstagramConfig());
 	}
 
+	public Instagram(String token, String secret) {
+		this(new Token(token, secret), null, new InstagramConfig());
+	}
+
+	@Deprecated
 	public Instagram(String token, String secret, String ips) {
-		Token accessToken = new Token(token, secret);
-		this.accessToken = accessToken;
+		this.accessToken = new Token(token, secret);
 		clientId = null;
 		config = new InstagramConfig();
-		enforceSignatrue = createEnforceSignatrue(secret, ips);
+		enforceSignature = createEnforceSignature(secret, ips);
 	}
 
 	public Instagram(Token accessToken, InstagramConfig config) {
-		this.accessToken = accessToken;
-		clientId = null;
-		this.config = config;
+		this(accessToken, null, config);
 	}
 
 	/**
@@ -83,13 +85,35 @@ public class Instagram {
 	 * application but not any particular user)
 	 */
 	public Instagram(String clientId) {
-		this.accessToken = null;
-		this.clientId = clientId;
-		config = new InstagramConfig();
+		this(null, clientId, new InstagramConfig());
 	}
 
 	public Instagram(String clientId, InstagramConfig config) {
-		this.accessToken = null;
+		this(null, clientId, config);
+	}
+
+	/**
+	 * Private constructor
+	 *
+	 * @param accessToken the access Token object
+	 * @param clientId the client ID for unauthenticated requests
+	 * @param config the Instagram Config
+	 * @throws IllegalArgumentException if any of the arguments are invalid
+	 */
+	private Instagram(Token accessToken, String clientId, InstagramConfig config) {
+		// pre-checks
+		Preconditions.checkBothNotNull(accessToken, clientId, "accessToken and clientId cannot both be null");
+		Preconditions.checkNotNull(config, "config cannot be null");
+		if (accessToken == null) {
+			Preconditions.checkEmptyString(clientId, "clientId cannot be an empty string");
+		} else {
+			// accessToken not null, check we have secret if enforcing signed requests
+			if (config.isEnforceSignedRequest()) {
+				Preconditions.checkEmptyString(accessToken.getSecret(), "enforce signed requests need a client secret");
+			}
+		}
+
+		this.accessToken = accessToken;
 		this.clientId = clientId;
 		this.config = config;
 	}
@@ -930,10 +954,9 @@ public class Instagram {
 			throw new InstagramException("IOException while retrieving data", e);
 		}
 
-        Map<String, String> responseHeaders = null;
+        Map<String, String> responseHeaders = response.getHeaders();;
 		if (response.getCode() >= 200 && response.getCode() < 300) {
 			T object = createObjectFromResponse(clazz, jsonResponseBody);
-            responseHeaders = response.getHeaders();
 			object.setHeaders(responseHeaders);
 			return object;
 		}
@@ -1012,10 +1035,6 @@ public class Instagram {
         // #51 Connection Keep Alive
         request.setConnectionKeepAlive(config.isConnectionKeepAlive());
 
-		if (enforceSignatrue != null) {
-			request.addHeader(EnforceSignedHeaderUtils.ENFORCE_SIGNED_HEADER, enforceSignatrue);
-		}
-
 		if (requestProxy != null) {
 			request.setProxy(requestProxy);
 		}
@@ -1050,13 +1069,23 @@ public class Instagram {
 			}
 		}
 
+		// check if we are enforcing a signed request and add the 'sig' parameter
+		if (config.isEnforceSignedRequest()) {
+			if ((verb == Verbs.GET) || (verb == Verbs.DELETE)) {
+				request.addQuerystringParameter(QueryParam.SIGNATURE, EnforceSignedRequestUtils.signature(methodName, request.getQueryStringParams(), accessToken.getSecret()));
+			} else {
+				request.addBodyParameter(QueryParam.SIGNATURE, EnforceSignedRequestUtils.signature(methodName, request.getBodyParams(), accessToken.getSecret()));
+			}
+		}
+
         logger.debug("Sending request to Instagram...");
         response = request.send();
 
 		return response;
 	}
 
-	protected String createEnforceSignatrue(String secret, String ips) {
+	@Deprecated
+	protected String createEnforceSignature(String secret, String ips) {
 		if (null != ips) {
 			try {
 				String signature = EnforceSignedHeaderUtils.signature(secret, ips);

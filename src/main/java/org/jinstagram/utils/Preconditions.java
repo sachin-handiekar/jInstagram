@@ -2,6 +2,7 @@ package org.jinstagram.utils;
 
 import java.util.regex.Pattern;
 
+import org.apache.commons.lang3.StringUtils;
 import org.jinstagram.auth.model.OAuthConstants;
 
 /**
@@ -26,13 +27,25 @@ public class Preconditions {
 	}
 
 	/**
+	 * Checks that at least one of object1 or object2 is not null
+	 *
+	 * @param object1 any object
+	 * @param object2 any object
+	 * @param errorMsg error message
+	 * @throws IllegalArgumentException if both object1 and object2 are null
+	 */
+	public static void checkBothNotNull(Object object1, Object object2, String errorMsg) {
+		check(!(object1 == null && object2 == null), errorMsg);
+	}
+
+	/**
 	 * Checks that a string is not null or empty
 	 * @param string   any string
 	 * @param errorMsg error message
 	 * @throws IllegalArgumentException if the string is null or empty
 	 */
 	public static void checkEmptyString(String string, String errorMsg) {
-		check((string != null) && !string.trim().equals(""), errorMsg);
+		check(StringUtils.isNotBlank(string), errorMsg);
 	}
 
 	/**
@@ -97,7 +110,7 @@ public class Preconditions {
 	}
 
 	private static void check(boolean requirements, String error) {
-		String message = ((error == null) || (error.trim().length() <= 0)) ? DEFAULT_MESSAGE : error;
+		String message = StringUtils.isBlank(error) ? DEFAULT_MESSAGE : error;
 
 		if (!requirements) {
 			throw new IllegalArgumentException(message);
