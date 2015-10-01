@@ -32,7 +32,7 @@ public class MapUtils {
         return sorted;
     }
 
-    private static List<String> getSortedKeys(Map<String, String> map) {
+    /*package private*/ static List<String> getSortedKeys(Map<String, String> map) {
         List<String> keys = new ArrayList<String>(map.keySet());
 
         Collections.sort(keys);

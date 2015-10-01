@@ -10,6 +10,7 @@ public class InstagramConfig {
 	private int connectionTimeoutMills = 0;
 	private int readTimeoutMills = 0;
     private boolean connectionKeepAlive = false;
+	private boolean enforceSignedRequest = false;
 
 	public InstagramConfig() {
 		baseURI = Constants.BASE_URI;
@@ -62,7 +63,12 @@ public class InstagramConfig {
     public void setConnectionKeepAlive(boolean connectionKeepAlive) {
         this.connectionKeepAlive = connectionKeepAlive;
     }
+
+	public boolean isEnforceSignedRequest() {
+		return enforceSignedRequest;
+	}
+
+	public void setEnforceSignedRequest(boolean enforceSignedRequest) {
+		this.enforceSignedRequest = enforceSignedRequest;
+	}
 }
-
-
-

@@ -1,9 +1,7 @@
 package org.jinstagram;
 
 import java.io.IOException;
-import java.io.UnsupportedEncodingException;
 import java.net.Proxy;
-import java.net.URLEncoder;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
@@ -35,6 +33,7 @@ import org.jinstagram.model.Methods;
 import org.jinstagram.model.QueryParam;
 import org.jinstagram.model.Relationship;
 import org.jinstagram.utils.EnforceSignedHeaderUtils;
+import org.jinstagram.utils.EnforceSignedRequestUtils;
 import org.jinstagram.utils.LogHelper;
 import org.jinstagram.utils.Preconditions;
 import org.slf4j.Logger;
@@ -955,10 +954,9 @@ public class Instagram {
 			throw new InstagramException("IOException while retrieving data", e);
 		}
 
-        Map<String, String> responseHeaders = null;
+        Map<String, String> responseHeaders = response.getHeaders();;
 		if (response.getCode() >= 200 && response.getCode() < 300) {
 			T object = createObjectFromResponse(clazz, jsonResponseBody);
-            responseHeaders = response.getHeaders();
 			object.setHeaders(responseHeaders);
 			return object;
 		}
@@ -1068,6 +1066,15 @@ public class Instagram {
 			} else {
                 logger.debug("Using " + OAuthConstants.ACCESS_TOKEN + " : " + accessToken.getToken());
                 request.addBodyParameter(OAuthConstants.ACCESS_TOKEN, accessToken.getToken());
+			}
+		}
+
+		// check if we are enforcing a signed request and add the 'sig' parameter
+		if (config.isEnforceSignedRequest()) {
+			if ((verb == Verbs.GET) || (verb == Verbs.DELETE)) {
+				request.addQuerystringParameter(QueryParam.SIGNATURE, EnforceSignedRequestUtils.signature(methodName, request.getQueryStringParams(), accessToken.getSecret()));
+			} else {
+				request.addBodyParameter(QueryParam.SIGNATURE, EnforceSignedRequestUtils.signature(methodName, request.getBodyParams(), accessToken.getSecret()));
 			}
 		}
 
