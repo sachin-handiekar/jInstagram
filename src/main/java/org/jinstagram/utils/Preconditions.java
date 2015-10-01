@@ -45,7 +45,7 @@ public class Preconditions {
 	 * @throws IllegalArgumentException if the string is null or empty
 	 */
 	public static void checkEmptyString(String string, String errorMsg) {
-		check(StringUtils.isNotEmpty(string), errorMsg);
+		check(StringUtils.isNotBlank(string), errorMsg);
 	}
 
 	/**
@@ -110,7 +110,7 @@ public class Preconditions {
 	}
 
 	private static void check(boolean requirements, String error) {
-		String message = StringUtils.isEmpty(error) ? DEFAULT_MESSAGE : error;
+		String message = StringUtils.isBlank(error) ? DEFAULT_MESSAGE : error;
 
 		if (!requirements) {
 			throw new IllegalArgumentException(message);
