@@ -1037,10 +1037,6 @@ public class Instagram {
         // #51 Connection Keep Alive
         request.setConnectionKeepAlive(config.isConnectionKeepAlive());
 
-		if (enforceSignatrue != null) {
-			request.addHeader(EnforceSignedHeaderUtils.ENFORCE_SIGNED_HEADER, enforceSignatrue);
-		}
-
 		if (requestProxy != null) {
 			request.setProxy(requestProxy);
 		}
@@ -1081,7 +1077,8 @@ public class Instagram {
 		return response;
 	}
 
-	protected String createEnforceSignatrue(String secret, String ips) {
+	@Deprecated
+	protected String createEnforceSignature(String secret, String ips) {
 		if (null != ips) {
 			try {
 				String signature = EnforceSignedHeaderUtils.signature(secret, ips);

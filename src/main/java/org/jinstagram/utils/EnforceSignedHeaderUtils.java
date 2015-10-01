@@ -10,12 +10,14 @@ import javax.crypto.spec.SecretKeySpec;
 import org.apache.commons.codec.binary.Hex;
 import org.jinstagram.exceptions.InstagramException;
 
+@Deprecated
 public class EnforceSignedHeaderUtils {
 
     public static final String ENFORCE_SIGNED_HEADER = "X-Insta-Forwarded-For";
     
     private static final String HMAC_SHA256 = "HmacSHA256";
 
+    @Deprecated
     public static String signature(String clientSecret, String message) throws InstagramException {
         SecretKeySpec keySpec = new SecretKeySpec(clientSecret.getBytes(Charset.forName("UTF-8")), HMAC_SHA256);
 
@@ -23,8 +25,7 @@ public class EnforceSignedHeaderUtils {
             Mac mac = Mac.getInstance(HMAC_SHA256);
             mac.init(keySpec);
             byte[] result = mac.doFinal(message.getBytes(Charset.forName("UTF-8")));
-            String encodedResult = Hex.encodeHexString(result);
-            return encodedResult;
+            return Hex.encodeHexString(result);
         } catch (NoSuchAlgorithmException e) {
             throw new InstagramException("Invalid algorithm name!", e);
         } catch (InvalidKeyException e) {

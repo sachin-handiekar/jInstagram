@@ -102,6 +102,7 @@ public class InstagramService {
 	/**
 	 * Return an Instagram object with enforced signed header
 	 */
+	@Deprecated
 	public Instagram getSignedHeaderInstagram(Token accessToken, String ipAddress) {
 		return new Instagram(accessToken.getToken(), config.getApiSecret(), ipAddress);
 	}
