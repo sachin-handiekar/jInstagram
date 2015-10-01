@@ -52,30 +52,33 @@ import com.google.gson.JsonSyntaxException;
 public class Instagram {
 
 	private static final Logger logger = LoggerFactory.getLogger(Instagram.class);
+
 	private Token accessToken;
 	private final String clientId;
 	private final InstagramConfig config;
-	private String enforceSignatrue;
 	private Proxy requestProxy;
 
+	@Deprecated
+	private String enforceSignature;
+
 	public Instagram(Token accessToken) {
-		this.accessToken = accessToken;
-		clientId = null;
-		config = new InstagramConfig();
+		this(accessToken, null, new InstagramConfig());
 	}
 
+	public Instagram(String token, String secret) {
+		this(new Token(token, secret), null, new InstagramConfig());
+	}
+
+	@Deprecated
 	public Instagram(String token, String secret, String ips) {
-		Token accessToken = new Token(token, secret);
-		this.accessToken = accessToken;
+		this.accessToken = new Token(token, secret);
 		clientId = null;
 		config = new InstagramConfig();
-		enforceSignatrue = createEnforceSignatrue(secret, ips);
+		enforceSignature = createEnforceSignature(secret, ips);
 	}
 
 	public Instagram(Token accessToken, InstagramConfig config) {
-		this.accessToken = accessToken;
-		clientId = null;
-		this.config = config;
+		this(accessToken, null, config);
 	}
 
 	/**
@@ -83,13 +86,35 @@ public class Instagram {
 	 * application but not any particular user)
 	 */
 	public Instagram(String clientId) {
-		this.accessToken = null;
-		this.clientId = clientId;
-		config = new InstagramConfig();
+		this(null, clientId, new InstagramConfig());
 	}
 
 	public Instagram(String clientId, InstagramConfig config) {
-		this.accessToken = null;
+		this(null, clientId, config);
+	}
+
+	/**
+	 * Private constructor
+	 *
+	 * @param accessToken the access Token object
+	 * @param clientId the client ID for unauthenticated requests
+	 * @param config the Instagram Config
+	 * @throws IllegalArgumentException if any of the arguments are invalid
+	 */
+	private Instagram(Token accessToken, String clientId, InstagramConfig config) {
+		// pre-checks
+		Preconditions.checkBothNotNull(accessToken, clientId, "accessToken and clientId cannot both be null");
+		Preconditions.checkNotNull(config, "config cannot be null");
+		if (accessToken == null) {
+			Preconditions.checkEmptyString(clientId, "clientId cannot be an empty string");
+		} else {
+			// accessToken not null, check we have secret if enforcing signed requests
+			if (config.isEnforceSignedRequest()) {
+				Preconditions.checkEmptyString(accessToken.getSecret(), "enforce signed requests need a client secret");
+			}
+		}
+
+		this.accessToken = accessToken;
 		this.clientId = clientId;
 		this.config = config;
 	}
