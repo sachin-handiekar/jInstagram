@@ -168,9 +168,14 @@ public class InstagramTest {
         String tagName = "london";
         TagMediaFeed recentMediaTags = instagram.getRecentMediaTags(tagName);
         printMediaFeedList(recentMediaTags.getData());
-
     }
 
+    @Test
+    public void getMediaByTagsSpecialCharacters() throws Exception {
+        String tagName = "❤london";
+        TagMediaFeed recentMediaTags = instagram.getRecentMediaTags(tagName);
+        printMediaFeedList(recentMediaTags.getData());
+    }
 
     @Test
     public void testGetAllUserPhotos() throws Exception {
