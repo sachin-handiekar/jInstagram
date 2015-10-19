@@ -28,6 +28,7 @@ import org.jinstagram.entity.users.feed.MediaFeed;
 import org.jinstagram.entity.users.feed.UserFeed;
 import org.jinstagram.exceptions.InstagramException;
 import org.jinstagram.http.Response;
+import org.jinstagram.http.URLUtils;
 import org.jinstagram.http.Verbs;
 import org.jinstagram.model.Methods;
 import org.jinstagram.model.QueryParam;
@@ -233,6 +234,7 @@ public class Instagram {
 	 */
 	public MediaFeed getRecentMediaFeed(String userId) throws InstagramException {
 		Preconditions.checkEmptyString(userId, "UserId cannot be null or empty.");
+
 
 		String methodName = String.format(Methods.USERS_RECENT_MEDIA, userId);
 
@@ -753,7 +755,7 @@ public class Instagram {
 			params.put(QueryParam.COUNT, String.valueOf(count));
 		}
 
-        String apiMethod = String.format(Methods.TAGS_RECENT_MEDIA, tagName);
+        String apiMethod = String.format(Methods.TAGS_RECENT_MEDIA, URLUtils.encodeURIComponent(tagName));
 
         return createInstagramObject(Verbs.GET, TagMediaFeed.class, apiMethod, params);
     }
