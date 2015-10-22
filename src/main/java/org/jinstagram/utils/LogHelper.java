@@ -2,6 +2,7 @@ package org.jinstagram.utils;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import com.google.gson.JsonElement;
 import com.google.gson.JsonParser;
 import org.slf4j.Logger;
 
@@ -95,7 +96,19 @@ public final class LogHelper {
      * @param jsonString the json String which is to be pretty printed.
      */
     public static void prettyPrintJSONResponse(Logger logger, String jsonString) {
-        logger.debug("Received JSON response from Instagram - " + new GsonBuilder().setPrettyPrinting().create().toJson(new JsonParser().parse(jsonString)));
+        if(logger.isDebugEnabled()) {
+            final JsonElement element = new JsonParser().parse(jsonString);
+            
+            // it can fail...on 404 it usually not a json
+            String s;
+            try {
+                s = new GsonBuilder().setPrettyPrinting().create().toJson(element);
+            } catch(Exception e) {
+                s = jsonString;
+            }
+            
+            logger.debug("Received JSON response from Instagram - " + s);
+        }
     }
 
 }
