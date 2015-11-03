@@ -1031,11 +1031,7 @@ public class Instagram {
 
         logger.debug("Creating request for Instagram -  " + request.getUrl());
 
-        request.setConnectTimeout(config.getConnectionTimeoutMills(), TimeUnit.MILLISECONDS);
-		request.setReadTimeout(config.getReadTimeoutMills(), TimeUnit.MILLISECONDS);
-
-        // #51 Connection Keep Alive
-        request.setConnectionKeepAlive(config.isConnectionKeepAlive());
+        configureConnectionSettings(request, config);
 
 		if (requestProxy != null) {
 			request.setProxy(requestProxy);
@@ -1085,6 +1081,15 @@ public class Instagram {
 
 		return response;
 	}
+
+    /** configure the request with the connection settings of config */
+    public static void configureConnectionSettings(final OAuthRequest request, final InstagramConfig config) {
+        request.setConnectTimeout(config.getConnectionTimeoutMills(), TimeUnit.MILLISECONDS);
+		request.setReadTimeout(config.getReadTimeoutMills(), TimeUnit.MILLISECONDS);
+
+        // #51 Connection Keep Alive
+        request.setConnectionKeepAlive(config.isConnectionKeepAlive());
+    }
 
 	@Deprecated
 	protected String createEnforceSignature(String secret, String ips) {
