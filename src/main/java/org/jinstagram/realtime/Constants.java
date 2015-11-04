@@ -1,8 +1,6 @@
 package org.jinstagram.realtime;
 
 class Constants {
-	public static final String SUBSCRIPTION_ENDPOINT = "https://api.instagram.com/v1/subscriptions/";
-
 	public static final String CLIENT_ID = "client_id";
 
 	public static final String CLIENT_SECRET = "client_secret";

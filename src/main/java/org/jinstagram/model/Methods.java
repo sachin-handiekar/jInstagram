@@ -156,4 +156,10 @@ public final class Methods {
      * that link.
      */
     public static final String OEMBED_INFORMATION = "/oembed?url=%s";
+    
+    /**
+     * CRUD Real-time  subscriptions
+     */
+    public static final String SUBSCRIPTIONS = "/subscriptions";
+
 }

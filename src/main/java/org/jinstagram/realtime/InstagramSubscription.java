@@ -1,10 +1,14 @@
 package org.jinstagram.realtime;
 
+import static org.jinstagram.Instagram.configureConnectionSettings;
+
+import org.jinstagram.InstagramConfig;
 import org.jinstagram.auth.model.OAuthConstants;
 import org.jinstagram.auth.model.OAuthRequest;
 import org.jinstagram.exceptions.InstagramException;
 import org.jinstagram.http.Response;
 import org.jinstagram.http.Verbs;
+import org.jinstagram.model.Methods;
 import org.jinstagram.utils.Preconditions;
 
 import com.google.gson.Gson;
@@ -16,6 +20,7 @@ import java.util.Map;
 public class InstagramSubscription {
 
 	private final Map<String, String> params;
+	private InstagramConfig config = new InstagramConfig();
 
 	/**
 	 * Default constructor
@@ -157,6 +162,16 @@ public class InstagramSubscription {
 		return this;
 	}
 
+	/**
+	 * Configure the connection configuration
+	 */
+	public InstagramSubscription requestConfiguration(final InstagramConfig config){
+		if(config != null) {
+			this.config = config;
+		}
+		return this;
+	}
+    
     /**
      * Creates a subscription with the current state of this instance.
      * <p/>
@@ -244,12 +259,13 @@ public class InstagramSubscription {
   
         String clientSecret = params.get(Constants.CLIENT_SECRET);
         Preconditions.checkEmptyString(clientSecret, "You must provide a clientSecret");
-
-        final OAuthRequest request = new OAuthRequest(verb, Constants.SUBSCRIPTION_ENDPOINT);
+        
+        final OAuthRequest request = new OAuthRequest(verb, config.getApiURL() + Methods.SUBSCRIPTIONS);
         // Add the oauth parameter in the body
         request.addQuerystringParameter(Constants.CLIENT_ID, clientId);
         request.addQuerystringParameter(Constants.CLIENT_SECRET, clientSecret);
-
+        configureConnectionSettings(request, config);
+        
         return request;
     }
 
