@@ -193,7 +193,7 @@ public class Instagram {
      * through the review process.
      * See changelog on Nov 17, 2015
      *
-     * use getUsersRecentMedia() instead
+     * use getUserRecentMedia() instead
 	 */
     @Deprecated
 	public MediaFeed getUserFeeds() throws InstagramException {
@@ -209,8 +209,8 @@ public class Instagram {
      * @throws InstagramException
      * @author tolstovdmit
      */
-    public MediaFeed getUsersRecentMedia() throws InstagramException{
-        LogHelper.logEntrance(logger, "getUsersRecentMedia", null);
+    public MediaFeed getUserRecentMedia() throws InstagramException{
+        LogHelper.logEntrance(logger, "getUserRecentMedia", null);
         logger.info("Getting current user recent media...");
 
         return createInstagramObject(Verbs.GET, MediaFeed.class, Methods.USERS_SELF_RECENT_MEDIA, null);
@@ -227,8 +227,8 @@ public class Instagram {
      * @throws InstagramException
      * @author tolstovdmit
      */
-    public MediaFeed getUsersRecentMedia(int count, String minId, String maxId) throws InstagramException {
-        LogHelper.logEntrance(logger, "getUsersRecentMedia", "[ count : " + count + ", minId : " + minId + ", maxId : " + maxId + "]");
+    public MediaFeed getUserRecentMedia(int count, String minId, String maxId) throws InstagramException {
+        LogHelper.logEntrance(logger, "getUserRecentMedia", "[ count : " + count + ", minId : " + minId + ", maxId : " + maxId + "]");
         logger.info("Getting current user recent media...");
 
         Map<String, String> params = new HashMap<String, String>();
@@ -263,7 +263,7 @@ public class Instagram {
     * through the review process.
     * See changelog on Nov 17, 2015
     *
-    * use getUsersRecentMedia(int count, String minId, String maxId) instead
+    * use getUserRecentMedia(int count, String minId, String maxId) instead
 	*/
     @Deprecated
 	public MediaFeed getUserFeeds(String maxId, String minId, long count) throws InstagramException {

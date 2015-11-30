@@ -249,8 +249,8 @@ public class InstagramTest {
     }
 
     @Test
-    public void testGetUsersRecentMedia() throws Exception{
-        MediaFeed mf = instagram.getUsersRecentMedia();
+    public void testGetUserRecentMedia() throws Exception{
+        MediaFeed mf = instagram.getUserRecentMedia();
 
         List<MediaFeedData> mediaFeedDataList = mf.getData();
 
@@ -259,9 +259,9 @@ public class InstagramTest {
     }
 
     @Test
-    public void testGetUsersRecentMediaWithParams() throws  Exception{
+    public void testGetUserRecentMediaWithParams() throws  Exception{
 
-        MediaFeed mf = instagram.getUsersRecentMedia(2, null, null);
+        MediaFeed mf = instagram.getUserRecentMedia(2, null, null);
 
         List<MediaFeedData> mediaFeedDataList = mf.getData();
         Assert.assertEquals(mediaFeedDataList.size(), 2);
