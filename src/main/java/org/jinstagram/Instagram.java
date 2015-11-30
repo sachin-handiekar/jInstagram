@@ -188,7 +188,14 @@ public class Instagram {
 	 *
 	 * @return a MediaFeed object.
 	 * @throws InstagramException if any error occurs.
+     * @deprecated Any app created before Nov 17, 2015
+     * will continue to function until June 2016.
+     * After June 2016, the app will automatically
+     * be moved to Sandbox Mode if it wasn't approved
+     * through the review process.
+     * See changelog on Nov 17, 2015
 	 */
+    @Deprecated
 	public MediaFeed getUserFeeds() throws InstagramException {
         LogHelper.logEntrance(logger, "getUserFeeds", null);
 
@@ -203,7 +210,14 @@ public class Instagram {
 	* @param count Count of media to return.
 	* @return a MediaFeed object.
 	* @throws InstagramException if any error occurs.
+    * @deprecated Any app created before Nov 17, 2015
+    * will continue to function until June 2016.
+    * After June 2016, the app will automatically
+    * be moved to Sandbox Mode if it wasn't approved
+    * through the review process.
+    * See changelog on Nov 17, 2015
 	*/
+    @Deprecated
 	public MediaFeed getUserFeeds(String maxId, String minId, long count) throws InstagramException {
         LogHelper.logEntrance(logger, "getUserFeeds", "[ maxId : " + maxId + ", minId : " + minId + ", count : " + count + "]");
 
@@ -593,7 +607,14 @@ public class Instagram {
 	 *
 	 * @return a MediaFeed object.
 	 * @throws InstagramException if any error occurs.
+     * @deprecated Any app created before Nov 17, 2015
+     * will continue to function until June 2016.
+     * After June 2016, the app will automatically
+     * be moved to Sandbox Mode if it wasn't approved
+     * through the review process.
+     * See changelog on Nov 17, 2015
 	 */
+    @Deprecated
 	public MediaFeed getPopularMedia() throws InstagramException {
 		MediaFeed mediaFeed = createInstagramObject(Verbs.GET, MediaFeed.class, Methods.MEDIA_POPULAR, null);
 
