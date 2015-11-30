@@ -202,6 +202,20 @@ public class Instagram {
         return createInstagramObject(Verbs.GET, MediaFeed.class, Methods.USERS_SELF_FEED, null);
     }
 
+    /**
+     * Get current user's recent media
+     *
+     * @return a MediaFeedObject
+     * @throws InstagramException
+     * @author tolstovdmit
+     */
+    public MediaFeed getUsersRecentMedia() throws InstagramException{
+        LogHelper.logEntrance(logger, "getUsersRecentMedia", null);
+        logger.info("Getting current user recent media...");
+
+        return createInstagramObject(Verbs.GET, MediaFeed.class, Methods.USERS_SELF_RECENT_MEDIA, null);
+    }
+
 	/**
 	* See the authenticated user's feed
 	*

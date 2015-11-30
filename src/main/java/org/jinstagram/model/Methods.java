@@ -133,6 +133,11 @@ public final class Methods {
     @Deprecated
 	public static final String USERS_SELF_FEED = "/users/self/feed";
 
+    /*
+     * Get the most recent media published by the owner of the access_token.
+     */
+    public static final String USERS_SELF_RECENT_MEDIA = "/users/self/media/recent";
+
 	/**
 	 * See the authenticated user's list of media they've liked. Note that this
 	 * list is ordered by the order in which the user liked the media. Private
