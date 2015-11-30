@@ -4,6 +4,7 @@ import org.jinstagram.entity.common.Meta;
 
 import com.google.gson.annotations.SerializedName;
 
+@Deprecated
 public class SubscriptionResponse {
 
 	@SerializedName("meta")
