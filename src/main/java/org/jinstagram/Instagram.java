@@ -627,6 +627,8 @@ public class Instagram {
      * be moved to Sandbox Mode if it wasn't approved
      * through the review process.
      * See changelog on Nov 17, 2015
+     *
+     * No analog method was offered instead.
 	 */
     @Deprecated
 	public MediaFeed getPopularMedia() throws InstagramException {
