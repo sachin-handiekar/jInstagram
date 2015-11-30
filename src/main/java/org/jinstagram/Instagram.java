@@ -2,9 +2,7 @@ package org.jinstagram;
 
 import java.io.IOException;
 import java.net.Proxy;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 import java.util.concurrent.TimeUnit;
 
 import org.apache.commons.lang3.StringUtils;
@@ -214,6 +212,38 @@ public class Instagram {
         logger.info("Getting current user recent media...");
 
         return createInstagramObject(Verbs.GET, MediaFeed.class, Methods.USERS_SELF_RECENT_MEDIA, null);
+    }
+
+    /**
+     * Get current user's recent media with parameters.
+     *
+     *
+     * @param count Count of media to return.
+     * @param minId
+     * @param maxId
+     * @return a MediaFeedObject
+     * @throws InstagramException
+     * @author tolstovdmit
+     */
+    public MediaFeed getUsersRecentMedia(int count, String minId, String maxId) throws InstagramException {
+        LogHelper.logEntrance(logger, "getUsersRecentMedia", "[ count : " + count + ", minId : " + minId + ", maxId : " + maxId + "]");
+        logger.info("Getting current user recent media...");
+
+        Map<String, String> params = new HashMap<String, String>();
+
+        if (maxId != null) {
+            params.put(QueryParam.MAX_ID, String.valueOf(maxId));
+        }
+
+        if (minId != null) {
+            params.put(QueryParam.MIN_ID, String.valueOf(minId));
+        }
+
+        if (count != 0) {
+            params.put(QueryParam.COUNT, String.valueOf(count));
+        }
+
+        return createInstagramObject(Verbs.GET, MediaFeed.class, Methods.USERS_SELF_RECENT_MEDIA, params);
     }
 
 	/**
