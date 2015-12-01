@@ -4,7 +4,7 @@ import com.google.gson.Gson;
 import org.jinstagram.auth.model.Token;
 import org.jinstagram.entity.common.Location;
 import org.jinstagram.entity.common.Meta;
-import org.jinstagram.entity.locations.LocationSearchFeed;testGetUserRecentMediaWithParams
+import org.jinstagram.entity.locations.LocationSearchFeed;
 import org.jinstagram.entity.tags.TagMediaFeed;
 import org.jinstagram.entity.users.basicinfo.UserInfo;
 import org.jinstagram.entity.users.basicinfo.UserInfoData;
