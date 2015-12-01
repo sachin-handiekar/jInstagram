@@ -17,6 +17,7 @@ public final class Methods {
 	 * Note: you can only access Geographies that were explicitly created by
 	 * your OAuth client.
 	 */
+    @Deprecated
 	public static final String GEOGRAPHIES_RECENT_MEDIA_BY_ID = "/geographies/%s/media/recent";
 
 	/**
@@ -61,6 +62,7 @@ public final class Methods {
 	/**
 	 * Get a list of what media is most popular at the moment.
 	 */
+    @Deprecated
 	public static final String MEDIA_POPULAR = "/media/popular";
 
 	/**
@@ -128,7 +130,13 @@ public final class Methods {
 	/**
 	 * See the authenticated user's feed.
 	 */
+    @Deprecated
 	public static final String USERS_SELF_FEED = "/users/self/feed";
+
+    /*
+     * Get the most recent media published by the owner of the access_token.
+     */
+    public static final String USERS_SELF_RECENT_MEDIA = "/users/self/media/recent";
 
 	/**
 	 * See the authenticated user's list of media they've liked. Note that this

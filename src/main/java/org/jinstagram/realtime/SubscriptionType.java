@@ -1,5 +1,6 @@
 package org.jinstagram.realtime;
 
+@Deprecated
 public enum SubscriptionType {
 	/**
 	 * A enum to denote the 'user' subscription type.

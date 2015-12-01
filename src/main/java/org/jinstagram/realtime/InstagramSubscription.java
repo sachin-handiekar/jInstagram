@@ -17,6 +17,7 @@ import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
+@Deprecated
 public class InstagramSubscription {
 
 	private final Map<String, String> params;

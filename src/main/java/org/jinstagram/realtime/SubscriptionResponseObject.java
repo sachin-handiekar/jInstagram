@@ -2,6 +2,7 @@ package org.jinstagram.realtime;
 
 import com.google.gson.annotations.SerializedName;
 
+@Deprecated
 public class SubscriptionResponseObject {
 
 	@SerializedName("changed_aspect")

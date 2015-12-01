@@ -2,9 +2,7 @@ package org.jinstagram;
 
 import java.io.IOException;
 import java.net.Proxy;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 import java.util.concurrent.TimeUnit;
 
 import org.apache.commons.lang3.StringUtils;
@@ -188,11 +186,66 @@ public class Instagram {
 	 *
 	 * @return a MediaFeed object.
 	 * @throws InstagramException if any error occurs.
+     * @deprecated Any app created before Nov 17, 2015
+     * will continue to function until June 2016.
+     * After June 2016, the app will automatically
+     * be moved to Sandbox Mode if it wasn't approved
+     * through the review process.
+     * See changelog on Nov 17, 2015
+     *
+     * use getUserRecentMedia() instead
 	 */
+    @Deprecated
 	public MediaFeed getUserFeeds() throws InstagramException {
         LogHelper.logEntrance(logger, "getUserFeeds", null);
 
         return createInstagramObject(Verbs.GET, MediaFeed.class, Methods.USERS_SELF_FEED, null);
+    }
+
+    /**
+     * Get current user's recent media
+     *
+     * @return a MediaFeedObject
+     * @throws InstagramException
+     * @author tolstovdmit
+     */
+    public MediaFeed getUserRecentMedia() throws InstagramException{
+        LogHelper.logEntrance(logger, "getUserRecentMedia", null);
+        logger.info("Getting current user recent media...");
+
+        return createInstagramObject(Verbs.GET, MediaFeed.class, Methods.USERS_SELF_RECENT_MEDIA, null);
+    }
+
+    /**
+     * Get current user's recent media with parameters.
+     *
+     *
+     * @param count Count of media to return.
+     * @param minId
+     * @param maxId
+     * @return a MediaFeedObject
+     * @throws InstagramException
+     * @author tolstovdmit
+     */
+    public MediaFeed getUserRecentMedia(int count, String minId, String maxId) throws InstagramException {
+        LogHelper.logEntrance(logger, "getUserRecentMedia", "[ count : " + count + ", minId : " + minId + ", maxId : " + maxId + "]");
+        logger.info("Getting current user recent media...");
+
+        Map<String, String> params = new HashMap<String, String>();
+
+        if (maxId != null) {
+            params.put(QueryParam.MAX_ID, String.valueOf(maxId));
+        }
+
+        if (minId != null) {
+            params.put(QueryParam.MIN_ID, String.valueOf(minId));
+        }
+
+        if (count != 0) {
+            params.put(QueryParam.COUNT, String.valueOf(count));
+        }
+
+        return createInstagramObject(Verbs.GET, MediaFeed.class, Methods.USERS_SELF_RECENT_MEDIA, params);
     }
 
 	/**
@@ -203,7 +256,16 @@ public class Instagram {
 	* @param count Count of media to return.
 	* @return a MediaFeed object.
 	* @throws InstagramException if any error occurs.
+    * @deprecated Any app created before Nov 17, 2015
+    * will continue to function until June 2016.
+    * After June 2016, the app will automatically
+    * be moved to Sandbox Mode if it wasn't approved
+    * through the review process.
+    * See changelog on Nov 17, 2015
+    *
+    * use getUserRecentMedia(int count, String minId, String maxId) instead
 	*/
+    @Deprecated
 	public MediaFeed getUserFeeds(String maxId, String minId, long count) throws InstagramException {
         LogHelper.logEntrance(logger, "getUserFeeds", "[ maxId : " + maxId + ", minId : " + minId + ", count : " + count + "]");
 
@@ -593,7 +655,16 @@ public class Instagram {
 	 *
 	 * @return a MediaFeed object.
 	 * @throws InstagramException if any error occurs.
+     * @deprecated Any app created before Nov 17, 2015
+     * will continue to function until June 2016.
+     * After June 2016, the app will automatically
+     * be moved to Sandbox Mode if it wasn't approved
+     * through the review process.
+     * See changelog on Nov 17, 2015
+     *
+     * No analog method was offered instead.
 	 */
+    @Deprecated
 	public MediaFeed getPopularMedia() throws InstagramException {
 		MediaFeed mediaFeed = createInstagramObject(Verbs.GET, MediaFeed.class, Methods.MEDIA_POPULAR, null);
 

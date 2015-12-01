@@ -12,6 +12,7 @@ import com.google.gson.Gson;
 import org.apache.commons.codec.binary.Hex;
 import org.jinstagram.exceptions.InstagramException;
 
+@Deprecated
 public class SubscriptionUtil {
 
 	private static final String HMAC_SHA1 = "HmacSHA1";
