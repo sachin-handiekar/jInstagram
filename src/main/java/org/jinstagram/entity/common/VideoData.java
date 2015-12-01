@@ -39,7 +39,7 @@ public class VideoData {
 	
     @Override
     public String toString() {
-        return String.format("VideoData [videoWidth=%i, videoHeight=%i, videoUrl=%s]",
+        return String.format("VideoData [videoWidth=%d, videoHeight=%d, videoUrl=%s]",
                 width, height, url);
     }
 }
