@@ -2,7 +2,6 @@ package org.jinstagram.auth;
 
 import java.net.Proxy;
 
-import com.sun.tools.javadoc.JavadocTodo;
 import org.jinstagram.auth.model.OAuthConfig;
 import org.jinstagram.auth.model.OAuthConstants;
 import org.jinstagram.auth.oauth.InstagramService;
