@@ -1,5 +1,8 @@
 package org.jinstagram.auth;
 
+import java.net.Proxy;
+
+import com.sun.tools.javadoc.JavadocTodo;
 import org.jinstagram.auth.model.OAuthConfig;
 import org.jinstagram.auth.model.OAuthConstants;
 import org.jinstagram.auth.oauth.InstagramService;
@@ -16,6 +19,8 @@ public class InstagramAuthService {
 	private String display;
 
 	private String scope;
+
+	private Proxy requestProxy;
 
 	/**
 	 * Default constructor
@@ -98,16 +103,38 @@ public class InstagramAuthService {
 	}
 
 	/**
+	 * Configures the Display parameter ; if you want a mobile-optimized
+	 * authorization screen
+	 *
+	 * @param requestProxy The {@link Proxy} object to be used by the OAuthRequest
+	 * @return the {@link InstagramAuthService} instance for method chaining
+	 */
+	public InstagramAuthService proxy(Proxy requestProxy) {
+		//TODO Add Preconditions check here
+
+		this.requestProxy = requestProxy;
+
+		return this;
+	}
+
+	/**
 	 * Returns the fully configured {@link OAuthService}
 	 * 
 	 * @return fully configured {@link OAuthService}
 	 */
 	public InstagramService build() {
 		InstagramApi api = new InstagramApi();
+		OAuthConfig config;
 
 		Preconditions.checkEmptyString(apiKey, "You must provide an api key");
 		Preconditions.checkEmptyString(apiSecret, "You must provide an api secret");
 
-		return api.createService(new OAuthConfig(apiKey, apiSecret, callback, scope, display));
+		config = new OAuthConfig(apiKey, apiSecret, callback, scope, display);
+
+		if (this.requestProxy != null) {
+			config.setRequestProxy(this.requestProxy);
+		}
+
+		return api.createService(config);
 	}
 }

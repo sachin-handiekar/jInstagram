@@ -53,6 +53,10 @@ public class InstagramService {
 			request.addBodyParameter(OAuthConstants.DISPLAY, config.getDisplay());
 		}
 
+		if (config.requestProxy != null) {
+			request.setProxy(config.requestProxy );
+		}
+
 		Response response;
 		try {
 			response = request.send();
