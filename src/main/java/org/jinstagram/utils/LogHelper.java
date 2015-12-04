@@ -97,11 +97,10 @@ public final class LogHelper {
      */
     public static void prettyPrintJSONResponse(Logger logger, String jsonString) {
         if(logger.isDebugEnabled()) {
-            final JsonElement element = new JsonParser().parse(jsonString);
-            
             // it can fail...on 404 it usually not a json
             String s;
             try {
+                final JsonElement element = new JsonParser().parse(jsonString);
                 s = new GsonBuilder().setPrettyPrinting().create().toJson(element);
             } catch(Exception e) {
                 s = jsonString;
