@@ -1,4 +1,4 @@
-#jInstagram [![Build Status](https://travis-ci.org/sachin-handiekar/jInstagram.svg)](https://travis-ci.org/sachin-handiekar/jInstagram) [![Maven Central](https://img.shields.io/maven-central/v/com.sachinhandiekar/jInstagram.svg)](https://img.shields.io/maven-central/v/com.sachinhandiekar/jInstagram.svg) [![javaDoc](https://img.shields.io/badge/javaDoc-v1.1.4-green.svg)](http://www.javadoc.io/doc/com.sachinhandiekar/jInstagram) [![Coverage Status](https://coveralls.io/repos/sachin-handiekar/jInstagram/badge.svg?branch=master&service=github)](https://coveralls.io/github/sachin-handiekar/jInstagram?branch=master)
+#jInstagram [![Build Status](https://travis-ci.org/sachin-handiekar/jInstagram.svg)](https://travis-ci.org/sachin-handiekar/jInstagram) [![Maven Central](https://img.shields.io/maven-central/v/com.sachinhandiekar/jInstagram.svg)](https://img.shields.io/maven-central/v/com.sachinhandiekar/jInstagram.svg) [![javaDoc](https://img.shields.io/badge/javaDoc-v1.1.5-green.svg)](http://www.javadoc.io/doc/com.sachinhandiekar/jInstagram) [![Coverage Status](https://coveralls.io/repos/sachin-handiekar/jInstagram/badge.svg?branch=master&service=github)](https://coveralls.io/github/sachin-handiekar/jInstagram?branch=master)
 [![Join the chat at https://gitter.im/sachin-handiekar/jInstagram](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/sachin-handiekar/jInstagram?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 
 A java library for the Instagram API.
@@ -31,7 +31,7 @@ If you're using Maven in your project, then you can integrate jInstagram by addi
 <dependency>
    <groupId>com.sachinhandiekar</groupId>
    <artifactId>jInstagram</artifactId>
-   <version>1.1.4</version>
+   <version>1.1.5</version>
 </dependency>
 ```
 
@@ -56,7 +56,7 @@ If you prefer using the latest snapshot build, include the following lines to yo
         <dependency>
             <groupId>com.sachinhandiekar</groupId>
             <artifactId>jInstagram</artifactId>
-             <version>1.1.5-SNAPSHOT</version>
+             <version>1.1.6-SNAPSHOT</version>
         </dependency>
     </dependencies>
 ```
@@ -64,7 +64,7 @@ If you prefer using the latest snapshot build, include the following lines to yo
     
 You can also integrate jInstagram by adding the following jar files in your project - 
 
-* [jInstagram-1.1.4.jar](http://central.maven.org/maven2/com/sachinhandiekar/jInstagram/1.1.4/jInstagram-1.1.4.jar)
+* [jInstagram-1.1.4.jar](http://central.maven.org/maven2/com/sachinhandiekar/jInstagram/1.1.5/jInstagram-1.1.5.jar)
 * [GSON](http://central.maven.org/maven2/com/google/code/gson/gson/2.2.2/gson-2.2.2.jar), [commons-lang3](http://central.maven.org/maven2/org/apache/commons/commons-lang3/3.1/commons-lang3-3.1.jar), [commons-codec](http://central.maven.org/maven2/commons-codec/commons-codec/1.8/commons-codec-1.8.jar), [jUnit](http://central.maven.org/maven2/junit/junit/4.11/junit-4.11.jar), [mockito](http://central.maven.org/maven2/org/mockito/mockito-all/1.8.4/mockito-all-1.8.4.jar) 
 
 
