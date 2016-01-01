@@ -25,7 +25,7 @@ public final class Methods {
 	 *
 	 * Required scope : likes
 	 */
-	public static final String LIKES_BY_MEDIA_ID = "/media/%s/likes/";
+	public static final String LIKES_BY_MEDIA_ID = "/media/%s/likes";
 
 	/**
 	 * Get information about a location.
@@ -35,7 +35,7 @@ public final class Methods {
 	/**
 	 * Get a list of recent media objects from a given location.
 	 */
-	public static final String LOCATIONS_RECENT_MEDIA_BY_ID = "/locations/%s/media/recent/";
+	public static final String LOCATIONS_RECENT_MEDIA_BY_ID = "/locations/%s/media/recent";
 
 	/**
 	 * Search for a location by geographic coordinate.
