@@ -469,9 +469,7 @@ public class Instagram {
             params.put("cursor", cursor);
 
         String apiMethod = String.format(Methods.USERS_ID_FOLLOWS, userId);
-        UserFeed userFeed = createInstagramObject(Verbs.GET, UserFeed.class, apiMethod, params);
-        
-        return userFeed;
+        return createInstagramObject(Verbs.GET, UserFeed.class, apiMethod, params);
     }
     /**
      * Get the next page for list of 'users' the authenticated user follows.
@@ -508,9 +506,7 @@ public class Instagram {
             params.put("cursor", cursor);
         
         String apiMethod = String.format(Methods.USERS_ID_FOLLOWED_BY, userId);
-        UserFeed userFeed = createInstagramObject(Verbs.GET, UserFeed.class, apiMethod, params);
-
-        return userFeed;
+        return createInstagramObject(Verbs.GET, UserFeed.class, apiMethod, params);
     }
 
     /**
@@ -530,9 +526,7 @@ public class Instagram {
 	 * @throws InstagramException if any error occurs.
 	 */
 	public UserFeed getUserRequestedBy() throws InstagramException {
-		UserFeed userFeed = createInstagramObject(Verbs.GET, UserFeed.class, Methods.USERS_SELF_REQUESTED_BY, null);
-
-		return userFeed;
+		return createInstagramObject(Verbs.GET, UserFeed.class, Methods.USERS_SELF_REQUESTED_BY, null);
 	}
 
 	/**
@@ -547,9 +541,7 @@ public class Instagram {
 		Preconditions.checkEmptyString(userId, "userId cannot be null or empty.");
 
 		String apiMethod = String.format(Methods.USERS_ID_RELATIONSHIP, userId);
-		RelationshipFeed feed = createInstagramObject(Verbs.GET, RelationshipFeed.class, apiMethod, null);
-
-		return feed;
+		return createInstagramObject(Verbs.GET, RelationshipFeed.class, apiMethod, null);
 	}
 
 	/**
@@ -666,9 +658,7 @@ public class Instagram {
 	 */
     @Deprecated
 	public MediaFeed getPopularMedia() throws InstagramException {
-		MediaFeed mediaFeed = createInstagramObject(Verbs.GET, MediaFeed.class, Methods.MEDIA_POPULAR, null);
-
-		return mediaFeed;
+		return createInstagramObject(Verbs.GET, MediaFeed.class, Methods.MEDIA_POPULAR, null);
 	}
 
 	/**
@@ -963,10 +953,8 @@ public class Instagram {
 		params.put(QueryParam.LONGITUDE, Double.toString(longitude));
 		params.put(QueryParam.DISTANCE, Integer.toString(distance));
 
-		LocationSearchFeed feed = createInstagramObject(Verbs.GET, LocationSearchFeed.class, Methods.LOCATIONS_SEARCH,
+		return createInstagramObject(Verbs.GET, LocationSearchFeed.class, Methods.LOCATIONS_SEARCH,
 				params);
-
-		return feed;
 	}
 
 	/**
@@ -981,10 +969,8 @@ public class Instagram {
 
 		params.put(QueryParam.FOURSQUARE_V2_ID, foursquareId);
 
-		LocationSearchFeed feed = createInstagramObject(Verbs.GET, LocationSearchFeed.class, Methods.LOCATIONS_SEARCH,
+		return createInstagramObject(Verbs.GET, LocationSearchFeed.class, Methods.LOCATIONS_SEARCH,
 				params);
-
-		return feed;
 	}
 
 	/**
@@ -999,10 +985,8 @@ public class Instagram {
 
 		params.put(QueryParam.FACEBOOK_PLACES_ID, facebookPlacesId);
 
-		LocationSearchFeed feed = createInstagramObject(Verbs.GET, LocationSearchFeed.class, Methods.LOCATIONS_SEARCH,
+		return createInstagramObject(Verbs.GET, LocationSearchFeed.class, Methods.LOCATIONS_SEARCH,
 				params);
-
-		return feed;
 	}
 
 	/**

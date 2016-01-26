@@ -29,8 +29,7 @@ public class InstagramOembed {
 	 */
 	public OembedInformation getOembedInformation(String url) throws InstagramException {
 		String apiMethod = String.format(Methods.OEMBED_INFORMATION, url);
-		OembedInformation information = createInstagramObject(Verbs.GET, OembedInformation.class, apiMethod, null);
-		return information;
+		return createInstagramObject(Verbs.GET, OembedInformation.class, apiMethod, null);
 	}
 
 	/**
