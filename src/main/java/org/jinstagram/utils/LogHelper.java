@@ -7,6 +7,29 @@ import com.google.gson.JsonParser;
 import org.slf4j.Logger;
 
 public final class LogHelper {
+    
+    /**
+     * <p>
+     * The message format pattern used to log the exception.
+     * </p>
+     */
+    private static final String EXCEPTION_PATTERN = "Error in method {0}.\n\tException name: {1}.\n\t"
+            + "Stack trace: {2}.\n\tTime spent in the method: {3} milliseconds.";
+    
+    /**
+     * <p>
+     * The message format pattern used to log the exit of method.
+     * </p>
+     */
+    private static final String EXIT_METHOD_PATTERN = "Exiting method %s.\n\tReturn value: [{%s}].\n\tTime spent in the method: {2" +
+            "%d} milliseconds.";
+    
+    /**
+     * <p>
+     * The message format pattern used to log the entrance of method.
+     * </p>
+     */
+    private static final String ENTRANCE_METHOD_PATTERN = "Entering method %s.\n\tMethod arguments: [%s].";
 
     private static Gson GSON = new GsonBuilder().setPrettyPrinting().create();
 
@@ -18,29 +41,6 @@ public final class LogHelper {
      */
     private LogHelper() {
     }
-
-    /**
-     * <p>
-     * The message format pattern used to log the entrance of method.
-     * </p>
-     */
-    private static final String ENTRANCE_METHOD_PATTERN = "Entering method %s.\n\tMethod arguments: [%s].";
-
-    /**
-     * <p>
-     * The message format pattern used to log the exit of method.
-     * </p>
-     */
-    private static final String EXIT_METHOD_PATTERN = "Exiting method %s.\n\tReturn value: [{%s}].\n\tTime spent in the method: {2" +
-            "%d} milliseconds.";
-
-    /**
-     * <p>
-     * The message format pattern used to log the exception.
-     * </p>
-     */
-    private static final String EXCEPTION_PATTERN = "Error in method {0}.\n\tException name: {1}.\n\t"
-            + "Stack trace: {2}.\n\tTime spent in the method: {3} milliseconds.";
 
     /**
      * <p>
