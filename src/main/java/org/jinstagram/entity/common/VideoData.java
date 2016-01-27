@@ -3,7 +3,16 @@ package org.jinstagram.entity.common;
 import com.google.gson.annotations.SerializedName;
 
 public class VideoData {
-
+	
+	@SerializedName("url")
+	private String url;
+	
+	@SerializedName("width")
+	private int width;
+	
+	@SerializedName("height")
+	private int height;
+	
 	public String getUrl() {
 		return url;
 	}
@@ -28,15 +37,6 @@ public class VideoData {
 		this.height = height;
 	}
 
-	@SerializedName("url")
-	private String url;
-
-	@SerializedName("width")
-	private int width;
-
-	@SerializedName("height")
-	private int height;
-	
     @Override
     public String toString() {
         return String.format("VideoData [videoWidth=%d, videoHeight=%d, videoUrl=%s]",
