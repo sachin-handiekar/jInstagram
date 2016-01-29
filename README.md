@@ -64,7 +64,7 @@ If you prefer using the latest snapshot build, include the following lines to yo
     
 You can also integrate jInstagram by adding the following jar files in your project - 
 
-* [jInstagram-1.1.4.jar](http://central.maven.org/maven2/com/sachinhandiekar/jInstagram/1.1.5/jInstagram-1.1.5.jar)
+* [jInstagram-1.1.5.jar](http://central.maven.org/maven2/com/sachinhandiekar/jInstagram/1.1.5/jInstagram-1.1.5.jar)
 * [GSON](http://central.maven.org/maven2/com/google/code/gson/gson/2.2.2/gson-2.2.2.jar), [commons-lang3](http://central.maven.org/maven2/org/apache/commons/commons-lang3/3.1/commons-lang3-3.1.jar), [commons-codec](http://central.maven.org/maven2/commons-codec/commons-codec/1.8/commons-codec-1.8.jar), [jUnit](http://central.maven.org/maven2/junit/junit/4.11/junit-4.11.jar), [mockito](http://central.maven.org/maven2/org/mockito/mockito-all/1.8.4/mockito-all-1.8.4.jar) 
 
 
