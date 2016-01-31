@@ -5,9 +5,6 @@ package org.jinstagram.http;
  */
 public enum HttpStatus {
 
-
-
-
     // 2xx Success
 
     /**
@@ -397,11 +394,9 @@ public enum HttpStatus {
      */
     NETWORK_AUTHENTICATION_REQUIRED(511, "Network Authentication Required");
 
-
     private final int value;
 
     private final String reasonPhrase;
-
 
     private HttpStatus(int value, String reasonPhrase) {
         this.value = value;
@@ -421,6 +416,5 @@ public enum HttpStatus {
     public String getReasonPhrase() {
         return reasonPhrase;
     }
-
 
 }
