@@ -4,11 +4,8 @@ import org.junit.*;
 import static org.junit.Assert.*;
 
 /**
- * The class <code>UserTest</code> contains tests for the class <code>{@link User}</code>.
- *
- * @generatedBy CodePro at 31/08/15 16:40
- * @author sachin.handiekar
- * @version $Revision: 1.0 $
+ * The class <code>UserTest</code> contains tests for the class
+ * <code>{@link User}</code>.
  */
 public class UserTest {
 	/**
@@ -16,11 +13,10 @@ public class UserTest {
 	 *
 	 * @throws Exception
 	 *
-	 * @generatedBy CodePro at 31/08/15 16:40
+	 * 
 	 */
 	@Test
-	public void testGetBio_1()
-		throws Exception {
+	public void testGetBio() throws Exception {
 		User fixture = new User();
 		fixture.setBio("");
 		fixture.setUserName("");
@@ -40,11 +36,10 @@ public class UserTest {
 	 *
 	 * @throws Exception
 	 *
-	 * @generatedBy CodePro at 31/08/15 16:40
+	 * 
 	 */
 	@Test
-	public void testGetFullName_1()
-		throws Exception {
+	public void testGetFullName() throws Exception {
 		User fixture = new User();
 		fixture.setBio("");
 		fixture.setUserName("");
@@ -64,11 +59,10 @@ public class UserTest {
 	 *
 	 * @throws Exception
 	 *
-	 * @generatedBy CodePro at 31/08/15 16:40
+	 * 
 	 */
 	@Test
-	public void testGetId_1()
-		throws Exception {
+	public void testGetId() throws Exception {
 		User fixture = new User();
 		fixture.setBio("");
 		fixture.setUserName("");
@@ -88,11 +82,10 @@ public class UserTest {
 	 *
 	 * @throws Exception
 	 *
-	 * @generatedBy CodePro at 31/08/15 16:40
+	 * 
 	 */
 	@Test
-	public void testGetProfilePictureUrl_1()
-		throws Exception {
+	public void testGetProfilePictureUrl() throws Exception {
 		User fixture = new User();
 		fixture.setBio("");
 		fixture.setUserName("");
@@ -112,11 +105,10 @@ public class UserTest {
 	 *
 	 * @throws Exception
 	 *
-	 * @generatedBy CodePro at 31/08/15 16:40
+	 * 
 	 */
 	@Test
-	public void testGetUserName_1()
-		throws Exception {
+	public void testGetUserName() throws Exception {
 		User fixture = new User();
 		fixture.setBio("");
 		fixture.setUserName("");
@@ -136,11 +128,10 @@ public class UserTest {
 	 *
 	 * @throws Exception
 	 *
-	 * @generatedBy CodePro at 31/08/15 16:40
+	 * 
 	 */
 	@Test
-	public void testGetWebsiteUrl_1()
-		throws Exception {
+	public void testGetWebsiteUrl() throws Exception {
 		User fixture = new User();
 		fixture.setBio("");
 		fixture.setUserName("");
@@ -160,11 +151,10 @@ public class UserTest {
 	 *
 	 * @throws Exception
 	 *
-	 * @generatedBy CodePro at 31/08/15 16:40
+	 * 
 	 */
 	@Test
-	public void testSetBio_1()
-		throws Exception {
+	public void testSetBio() throws Exception {
 		User fixture = new User();
 		fixture.setBio("");
 		fixture.setUserName("");
@@ -184,11 +174,10 @@ public class UserTest {
 	 *
 	 * @throws Exception
 	 *
-	 * @generatedBy CodePro at 31/08/15 16:40
+	 * 
 	 */
 	@Test
-	public void testSetFullName_1()
-		throws Exception {
+	public void testSetFullName() throws Exception {
 		User fixture = new User();
 		fixture.setBio("");
 		fixture.setUserName("");
@@ -208,11 +197,10 @@ public class UserTest {
 	 *
 	 * @throws Exception
 	 *
-	 * @generatedBy CodePro at 31/08/15 16:40
+	 * 
 	 */
 	@Test
-	public void testSetId_1()
-		throws Exception {
+	public void testSetId() throws Exception {
 		User fixture = new User();
 		fixture.setBio("");
 		fixture.setUserName("");
@@ -232,11 +220,10 @@ public class UserTest {
 	 *
 	 * @throws Exception
 	 *
-	 * @generatedBy CodePro at 31/08/15 16:40
+	 * 
 	 */
 	@Test
-	public void testSetProfilePictureUrl_1()
-		throws Exception {
+	public void testSetProfilePictureUrl() throws Exception {
 		User fixture = new User();
 		fixture.setBio("");
 		fixture.setUserName("");
@@ -256,11 +243,10 @@ public class UserTest {
 	 *
 	 * @throws Exception
 	 *
-	 * @generatedBy CodePro at 31/08/15 16:40
+	 * 
 	 */
 	@Test
-	public void testSetUserName_1()
-		throws Exception {
+	public void testSetUserName() throws Exception {
 		User fixture = new User();
 		fixture.setBio("");
 		fixture.setUserName("");
@@ -280,11 +266,10 @@ public class UserTest {
 	 *
 	 * @throws Exception
 	 *
-	 * @generatedBy CodePro at 31/08/15 16:40
+	 * 
 	 */
 	@Test
-	public void testSetWebsiteUrl_1()
-		throws Exception {
+	public void testSetWebsiteUrl() throws Exception {
 		User fixture = new User();
 		fixture.setBio("");
 		fixture.setUserName("");
@@ -304,11 +289,10 @@ public class UserTest {
 	 *
 	 * @throws Exception
 	 *
-	 * @generatedBy CodePro at 31/08/15 16:40
+	 * 
 	 */
 	@Test
-	public void testToString_1()
-		throws Exception {
+	public void testToString() throws Exception {
 		User fixture = new User();
 		fixture.setBio("");
 		fixture.setUserName("");
@@ -323,42 +307,4 @@ public class UserTest {
 		assertEquals("User [bio=, fullName=, id=, profilePictureUrl=, userName=, websiteUrl=]", result);
 	}
 
-	/**
-	 * Perform pre-test initialization.
-	 *
-	 * @throws Exception
-	 *         if the initialization fails for some reason
-	 *
-	 * @generatedBy CodePro at 31/08/15 16:40
-	 */
-	@Before
-	public void setUp()
-		throws Exception {
-		// add additional set up code here
-	}
-
-	/**
-	 * Perform post-test clean-up.
-	 *
-	 * @throws Exception
-	 *         if the clean-up fails for some reason
-	 *
-	 * @generatedBy CodePro at 31/08/15 16:40
-	 */
-	@After
-	public void tearDown()
-		throws Exception {
-		// Add additional tear down code here
-	}
-
-	/**
-	 * Launch the test.
-	 *
-	 * @param args the command line arguments
-	 *
-	 * @generatedBy CodePro at 31/08/15 16:40
-	 */
-	public static void main(String[] args) {
-		new org.junit.runner.JUnitCore().run(UserTest.class);
-	}
 }

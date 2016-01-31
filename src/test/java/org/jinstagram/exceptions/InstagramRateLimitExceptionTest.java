@@ -6,11 +6,9 @@ import static org.junit.Assert.*;
 import com.google.gson.internal.StringMap;
 
 /**
- * The class <code>InstagramRateLimitExceptionTest</code> contains tests for the class <code>{@link InstagramRateLimitException}</code>.
+ * The class <code>InstagramRateLimitExceptionTest</code> contains tests for the
+ * class <code>{@link InstagramRateLimitException}</code>.
  *
- * @generatedBy CodePro at 31/08/15 16:48
- * @author sachin.handiekar
- * @version $Revision: 1.0 $
  */
 public class InstagramRateLimitExceptionTest {
 	/**
@@ -18,11 +16,10 @@ public class InstagramRateLimitExceptionTest {
 	 *
 	 * @throws Exception
 	 *
-	 * @generatedBy CodePro at 31/08/15 16:48
+	 * 
 	 */
 	@Test
-	public void testInstagramRateLimitException_1()
-		throws Exception {
+	public void testInstagramRateLimitException_1() throws Exception {
 		String message = "";
 
 		InstagramRateLimitException result = new InstagramRateLimitException(message);
@@ -42,11 +39,10 @@ public class InstagramRateLimitExceptionTest {
 	 *
 	 * @throws Exception
 	 *
-	 * @generatedBy CodePro at 31/08/15 16:48
+	 * 
 	 */
 	@Test
-	public void testInstagramRateLimitException_2()
-		throws Exception {
+	public void testInstagramRateLimitException_2() throws Exception {
 		String message = "";
 		Exception e = new Exception();
 
@@ -62,15 +58,15 @@ public class InstagramRateLimitExceptionTest {
 	}
 
 	/**
-	 * Run the InstagramRateLimitException(String,Map<String,String>) constructor test.
+	 * Run the InstagramRateLimitException(String,Map<String,String>)
+	 * constructor test.
 	 *
 	 * @throws Exception
 	 *
-	 * @generatedBy CodePro at 31/08/15 16:48
+	 * 
 	 */
 	@Test
-	public void testInstagramRateLimitException_3()
-		throws Exception {
+	public void testInstagramRateLimitException_3() throws Exception {
 		String message = "";
 		Map<String, String> responseHeaders = new StringMap();
 
@@ -87,15 +83,15 @@ public class InstagramRateLimitExceptionTest {
 	}
 
 	/**
-	 * Run the InstagramRateLimitException(String,Exception,Map<String,String>) constructor test.
+	 * Run the InstagramRateLimitException(String,Exception,Map<String,String>)
+	 * constructor test.
 	 *
 	 * @throws Exception
 	 *
-	 * @generatedBy CodePro at 31/08/15 16:48
+	 * 
 	 */
 	@Test
-	public void testInstagramRateLimitException_4()
-		throws Exception {
+	public void testInstagramRateLimitException_4() throws Exception {
 		String message = "";
 		Exception e = new Exception();
 		Map<String, String> responseHeaders = new StringMap();

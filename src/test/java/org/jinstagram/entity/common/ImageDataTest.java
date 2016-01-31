@@ -4,9 +4,10 @@ import org.junit.*;
 import static org.junit.Assert.*;
 
 /**
- * The class <code>ImageDataTest</code> contains tests for the class <code>{@link ImageData}</code>.
+ * The class <code>ImageDataTest</code> contains tests for the class
+ * <code>{@link ImageData}</code>.
  *
- 
+ * 
  * @author sachin.handiekar
  */
 public class ImageDataTest {
@@ -15,11 +16,10 @@ public class ImageDataTest {
 	 *
 	 * @throws Exception
 	 *
-	 
+	 * 
 	 */
 	@Test
-	public void testGetImageHeight_1()
-		throws Exception {
+	public void testGetImageHeight_1() throws Exception {
 		ImageData fixture = new ImageData();
 		fixture.setImageHeight(1);
 		fixture.setImageUrl("");
@@ -36,11 +36,10 @@ public class ImageDataTest {
 	 *
 	 * @throws Exception
 	 *
-	 
+	 * 
 	 */
 	@Test
-	public void testGetImageUrl_1()
-		throws Exception {
+	public void testGetImageUrl_1() throws Exception {
 		ImageData fixture = new ImageData();
 		fixture.setImageHeight(1);
 		fixture.setImageUrl("");
@@ -57,11 +56,10 @@ public class ImageDataTest {
 	 *
 	 * @throws Exception
 	 *
-	 
+	 * 
 	 */
 	@Test
-	public void testGetImageWidth_1()
-		throws Exception {
+	public void testGetImageWidth_1() throws Exception {
 		ImageData fixture = new ImageData();
 		fixture.setImageHeight(1);
 		fixture.setImageUrl("");
@@ -78,11 +76,10 @@ public class ImageDataTest {
 	 *
 	 * @throws Exception
 	 *
-	 
+	 * 
 	 */
 	@Test
-	public void testSetImageHeight_1()
-		throws Exception {
+	public void testSetImageHeight_1() throws Exception {
 		ImageData fixture = new ImageData();
 		fixture.setImageHeight(1);
 		fixture.setImageUrl("");
@@ -99,11 +96,10 @@ public class ImageDataTest {
 	 *
 	 * @throws Exception
 	 *
-	 
+	 * 
 	 */
 	@Test
-	public void testSetImageUrl_1()
-		throws Exception {
+	public void testSetImageUrl_1() throws Exception {
 		ImageData fixture = new ImageData();
 		fixture.setImageHeight(1);
 		fixture.setImageUrl("");
@@ -120,11 +116,10 @@ public class ImageDataTest {
 	 *
 	 * @throws Exception
 	 *
-	 
+	 * 
 	 */
 	@Test
-	public void testSetImageWidth_1()
-		throws Exception {
+	public void testSetImageWidth_1() throws Exception {
 		ImageData fixture = new ImageData();
 		fixture.setImageHeight(1);
 		fixture.setImageUrl("");
@@ -141,11 +136,10 @@ public class ImageDataTest {
 	 *
 	 * @throws Exception
 	 *
-	 
+	 * 
 	 */
 	@Test
-	public void testToString_1()
-		throws Exception {
+	public void testToString_1() throws Exception {
 		ImageData fixture = new ImageData();
 		fixture.setImageHeight(1);
 		fixture.setImageUrl("");

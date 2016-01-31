@@ -19,7 +19,7 @@ public class FromTagDataTest {
 	 *
 	 */
 	@Test
-	public void testGetFullName_1() throws Exception {
+	public void testGetFullName() throws Exception {
 		FromTagData fromTagData = new FromTagData();
 		fromTagData.setProfilePicture("");
 		fromTagData.setUsername("");
@@ -41,7 +41,7 @@ public class FromTagDataTest {
 	 * 
 	 */
 	@Test
-	public void testGetId_1() throws Exception {
+	public void testGetId() throws Exception {
 		FromTagData fromTagData = new FromTagData();
 		fromTagData.setProfilePicture("");
 		fromTagData.setUsername("");
@@ -63,7 +63,7 @@ public class FromTagDataTest {
 	 * 
 	 */
 	@Test
-	public void testGetProfilePicture_1() throws Exception {
+	public void testGetProfilePicture() throws Exception {
 		FromTagData fromTagData = new FromTagData();
 		fromTagData.setProfilePicture("");
 		fromTagData.setUsername("");
@@ -83,7 +83,7 @@ public class FromTagDataTest {
 	 *             if any error occurs
 	 */
 	@Test
-	public void testGetUsername_1() throws Exception {
+	public void testGetUsername() throws Exception {
 		FromTagData fromTagData = new FromTagData();
 		fromTagData.setProfilePicture("");
 		fromTagData.setUsername("");
@@ -105,7 +105,7 @@ public class FromTagDataTest {
 	 * 
 	 */
 	@Test
-	public void testSetFullName_1() throws Exception {
+	public void testSetFullName() throws Exception {
 		FromTagData fromTagData = new FromTagData();
 		fromTagData.setProfilePicture("");
 		fromTagData.setUsername("");
@@ -127,7 +127,7 @@ public class FromTagDataTest {
 	 * 
 	 */
 	@Test
-	public void testSetId_1() throws Exception {
+	public void testSetId() throws Exception {
 		FromTagData fromTagData = new FromTagData();
 		fromTagData.setProfilePicture("");
 		fromTagData.setUsername("");
@@ -149,7 +149,7 @@ public class FromTagDataTest {
 	 * 
 	 */
 	@Test
-	public void testSetProfilePicture_1() throws Exception {
+	public void testSetProfilePicture() throws Exception {
 		FromTagData fromTagData = new FromTagData();
 		fromTagData.setProfilePicture("");
 		fromTagData.setUsername("");
@@ -171,7 +171,7 @@ public class FromTagDataTest {
 	 * 
 	 */
 	@Test
-	public void testSetUsername_1() throws Exception {
+	public void testSetUsername() throws Exception {
 		FromTagData fromTagData = new FromTagData();
 		fromTagData.setProfilePicture("");
 		fromTagData.setUsername("");
@@ -191,7 +191,7 @@ public class FromTagDataTest {
 	 *             if any error occurs
 	 */
 	@Test
-	public void testToString_1() throws Exception {
+	public void testToString() throws Exception {
 		FromTagData fromTagData = new FromTagData();
 		fromTagData.setProfilePicture("");
 		fromTagData.setUsername("");

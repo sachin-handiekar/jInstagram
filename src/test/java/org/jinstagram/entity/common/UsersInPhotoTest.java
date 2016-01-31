@@ -4,11 +4,9 @@ import org.junit.*;
 import static org.junit.Assert.*;
 
 /**
- * The class <code>UsersInPhotoTest</code> contains tests for the class <code>{@link UsersInPhoto}</code>.
+ * The class <code>UsersInPhotoTest</code> contains tests for the class
+ * <code>{@link UsersInPhoto}</code>.
  *
- * @generatedBy CodePro at 31/08/15 16:40
- * @author sachin.handiekar
- * @version $Revision: 1.0 $
  */
 public class UsersInPhotoTest {
 	/**
@@ -16,11 +14,9 @@ public class UsersInPhotoTest {
 	 *
 	 * @throws Exception
 	 *
-	 * @generatedBy CodePro at 31/08/15 16:40
 	 */
 	@Test
-	public void testGetPosition_1()
-		throws Exception {
+	public void testGetPosition_1() throws Exception {
 		UsersInPhoto fixture = new UsersInPhoto();
 		fixture.setPosition(new GridPosition());
 		fixture.setUser(new User());
@@ -38,11 +34,9 @@ public class UsersInPhotoTest {
 	 *
 	 * @throws Exception
 	 *
-	 * @generatedBy CodePro at 31/08/15 16:40
 	 */
 	@Test
-	public void testGetUser_1()
-		throws Exception {
+	public void testGetUser_1() throws Exception {
 		UsersInPhoto fixture = new UsersInPhoto();
 		fixture.setPosition(new GridPosition());
 		fixture.setUser(new User());
@@ -51,7 +45,8 @@ public class UsersInPhotoTest {
 
 		// add additional test code here
 		assertNotNull(result);
-		assertEquals("User [bio=null, fullName=null, id=null, profilePictureUrl=null, userName=null, websiteUrl=null]", result.toString());
+		assertEquals("User [bio=null, fullName=null, id=null, profilePictureUrl=null, userName=null, websiteUrl=null]",
+				result.toString());
 		assertEquals(null, result.getId());
 		assertEquals(null, result.getFullName());
 		assertEquals(null, result.getProfilePictureUrl());
@@ -65,11 +60,9 @@ public class UsersInPhotoTest {
 	 *
 	 * @throws Exception
 	 *
-	 * @generatedBy CodePro at 31/08/15 16:40
 	 */
 	@Test
-	public void testSetPosition_1()
-		throws Exception {
+	public void testSetPosition_1() throws Exception {
 		UsersInPhoto fixture = new UsersInPhoto();
 		fixture.setPosition(new GridPosition());
 		fixture.setUser(new User());
@@ -85,11 +78,9 @@ public class UsersInPhotoTest {
 	 *
 	 * @throws Exception
 	 *
-	 * @generatedBy CodePro at 31/08/15 16:40
 	 */
 	@Test
-	public void testSetUser_1()
-		throws Exception {
+	public void testSetUser_1() throws Exception {
 		UsersInPhoto fixture = new UsersInPhoto();
 		fixture.setPosition(new GridPosition());
 		fixture.setUser(new User());
@@ -100,42 +91,4 @@ public class UsersInPhotoTest {
 		// add additional test code here
 	}
 
-	/**
-	 * Perform pre-test initialization.
-	 *
-	 * @throws Exception
-	 *         if the initialization fails for some reason
-	 *
-	 * @generatedBy CodePro at 31/08/15 16:40
-	 */
-	@Before
-	public void setUp()
-		throws Exception {
-		// add additional set up code here
-	}
-
-	/**
-	 * Perform post-test clean-up.
-	 *
-	 * @throws Exception
-	 *         if the clean-up fails for some reason
-	 *
-	 * @generatedBy CodePro at 31/08/15 16:40
-	 */
-	@After
-	public void tearDown()
-		throws Exception {
-		// Add additional tear down code here
-	}
-
-	/**
-	 * Launch the test.
-	 *
-	 * @param args the command line arguments
-	 *
-	 * @generatedBy CodePro at 31/08/15 16:40
-	 */
-	public static void main(String[] args) {
-		new org.junit.runner.JUnitCore().run(UsersInPhotoTest.class);
-	}
 }

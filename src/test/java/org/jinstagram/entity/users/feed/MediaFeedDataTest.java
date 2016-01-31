@@ -1,7 +1,11 @@
 package org.jinstagram.entity.users.feed;
 
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
+
 import java.util.ArrayList;
 import java.util.List;
+
 import org.jinstagram.entity.common.Caption;
 import org.jinstagram.entity.common.Comments;
 import org.jinstagram.entity.common.Images;
@@ -10,25 +14,20 @@ import org.jinstagram.entity.common.Location;
 import org.jinstagram.entity.common.User;
 import org.jinstagram.entity.common.UsersInPhoto;
 import org.jinstagram.entity.common.Videos;
-import org.junit.*;
-import static org.junit.Assert.*;
+import org.junit.Test;
 
 /**
- * The class <code>MediaFeedDataTest</code> contains tests for the class <code>{@link MediaFeedData}</code>.
- *
- * @generatedBy CodePro at 31/08/15 16:47
- * @author sachin.handiekar
- * @version $Revision: 1.0 $
+ * The class <code>MediaFeedDataTest</code> contains tests for the class
+ * <code>{@link MediaFeedData}</code>.
  */
 public class MediaFeedDataTest {
 	/**
 	 * Run the MediaFeedData() constructor test.
 	 *
-	 * @generatedBy CodePro at 31/08/15 16:47
+	 * 
 	 */
 	@Test
-	public void testMediaFeedData_1()
-		throws Exception {
+	public void testMediaFeedData_1() throws Exception {
 		MediaFeedData result = new MediaFeedData();
 		assertNotNull(result);
 		// add additional test code here
@@ -39,11 +38,10 @@ public class MediaFeedDataTest {
 	 *
 	 * @throws Exception
 	 *
-	 * @generatedBy CodePro at 31/08/15 16:47
+	 * 
 	 */
 	@Test
-	public void testGetCaption_1()
-		throws Exception {
+	public void testGetCaption_1() throws Exception {
 		MediaFeedData fixture = new MediaFeedData();
 		fixture.setId("");
 		fixture.setCreatedTime("");
@@ -77,11 +75,10 @@ public class MediaFeedDataTest {
 	 *
 	 * @throws Exception
 	 *
-	 * @generatedBy CodePro at 31/08/15 16:47
+	 * 
 	 */
 	@Test
-	public void testGetComments_1()
-		throws Exception {
+	public void testGetComments_1() throws Exception {
 		MediaFeedData fixture = new MediaFeedData();
 		fixture.setId("");
 		fixture.setCreatedTime("");
@@ -113,11 +110,10 @@ public class MediaFeedDataTest {
 	 *
 	 * @throws Exception
 	 *
-	 * @generatedBy CodePro at 31/08/15 16:47
+	 * 
 	 */
 	@Test
-	public void testGetCreatedTime_1()
-		throws Exception {
+	public void testGetCreatedTime_1() throws Exception {
 		MediaFeedData fixture = new MediaFeedData();
 		fixture.setId("");
 		fixture.setCreatedTime("");
@@ -146,11 +142,10 @@ public class MediaFeedDataTest {
 	 *
 	 * @throws Exception
 	 *
-	 * @generatedBy CodePro at 31/08/15 16:47
+	 * 
 	 */
 	@Test
-	public void testGetId_1()
-		throws Exception {
+	public void testGetId_1() throws Exception {
 		MediaFeedData fixture = new MediaFeedData();
 		fixture.setId("");
 		fixture.setCreatedTime("");
@@ -179,11 +174,10 @@ public class MediaFeedDataTest {
 	 *
 	 * @throws Exception
 	 *
-	 * @generatedBy CodePro at 31/08/15 16:47
+	 * 
 	 */
 	@Test
-	public void testGetImageFilter_1()
-		throws Exception {
+	public void testGetImageFilter_1() throws Exception {
 		MediaFeedData fixture = new MediaFeedData();
 		fixture.setId("");
 		fixture.setCreatedTime("");
@@ -212,11 +206,10 @@ public class MediaFeedDataTest {
 	 *
 	 * @throws Exception
 	 *
-	 * @generatedBy CodePro at 31/08/15 16:47
+	 * 
 	 */
 	@Test
-	public void testGetImages_1()
-		throws Exception {
+	public void testGetImages_1() throws Exception {
 		MediaFeedData fixture = new MediaFeedData();
 		fixture.setId("");
 		fixture.setCreatedTime("");
@@ -249,11 +242,10 @@ public class MediaFeedDataTest {
 	 *
 	 * @throws Exception
 	 *
-	 * @generatedBy CodePro at 31/08/15 16:47
+	 * 
 	 */
 	@Test
-	public void testGetLikes_1()
-		throws Exception {
+	public void testGetLikes_1() throws Exception {
 		MediaFeedData fixture = new MediaFeedData();
 		fixture.setId("");
 		fixture.setCreatedTime("");
@@ -285,11 +277,10 @@ public class MediaFeedDataTest {
 	 *
 	 * @throws Exception
 	 *
-	 * @generatedBy CodePro at 31/08/15 16:47
+	 * 
 	 */
 	@Test
-	public void testGetLink_1()
-		throws Exception {
+	public void testGetLink_1() throws Exception {
 		MediaFeedData fixture = new MediaFeedData();
 		fixture.setId("");
 		fixture.setCreatedTime("");
@@ -318,11 +309,10 @@ public class MediaFeedDataTest {
 	 *
 	 * @throws Exception
 	 *
-	 * @generatedBy CodePro at 31/08/15 16:47
+	 * 
 	 */
 	@Test
-	public void testGetLocation_1()
-		throws Exception {
+	public void testGetLocation_1() throws Exception {
 		MediaFeedData fixture = new MediaFeedData();
 		fixture.setId("");
 		fixture.setCreatedTime("");
@@ -356,11 +346,10 @@ public class MediaFeedDataTest {
 	 *
 	 * @throws Exception
 	 *
-	 * @generatedBy CodePro at 31/08/15 16:47
+	 * 
 	 */
 	@Test
-	public void testGetTags_1()
-		throws Exception {
+	public void testGetTags_1() throws Exception {
 		MediaFeedData fixture = new MediaFeedData();
 		fixture.setId("");
 		fixture.setCreatedTime("");
@@ -390,11 +379,10 @@ public class MediaFeedDataTest {
 	 *
 	 * @throws Exception
 	 *
-	 * @generatedBy CodePro at 31/08/15 16:47
+	 * 
 	 */
 	@Test
-	public void testGetType_1()
-		throws Exception {
+	public void testGetType_1() throws Exception {
 		MediaFeedData fixture = new MediaFeedData();
 		fixture.setId("");
 		fixture.setCreatedTime("");
@@ -423,11 +411,10 @@ public class MediaFeedDataTest {
 	 *
 	 * @throws Exception
 	 *
-	 * @generatedBy CodePro at 31/08/15 16:47
+	 * 
 	 */
 	@Test
-	public void testGetUser_1()
-		throws Exception {
+	public void testGetUser_1() throws Exception {
 		MediaFeedData fixture = new MediaFeedData();
 		fixture.setId("");
 		fixture.setCreatedTime("");
@@ -449,7 +436,8 @@ public class MediaFeedDataTest {
 
 		// add additional test code here
 		assertNotNull(result);
-		assertEquals("User [bio=null, fullName=null, id=null, profilePictureUrl=null, userName=null, websiteUrl=null]", result.toString());
+		assertEquals("User [bio=null, fullName=null, id=null, profilePictureUrl=null, userName=null, websiteUrl=null]",
+				result.toString());
 		assertEquals(null, result.getId());
 		assertEquals(null, result.getFullName());
 		assertEquals(null, result.getProfilePictureUrl());
@@ -463,11 +451,10 @@ public class MediaFeedDataTest {
 	 *
 	 * @throws Exception
 	 *
-	 * @generatedBy CodePro at 31/08/15 16:47
+	 * 
 	 */
 	@Test
-	public void testGetUsersInPhotoList_1()
-		throws Exception {
+	public void testGetUsersInPhotoList_1() throws Exception {
 		MediaFeedData fixture = new MediaFeedData();
 		fixture.setId("");
 		fixture.setCreatedTime("");
@@ -497,11 +484,10 @@ public class MediaFeedDataTest {
 	 *
 	 * @throws Exception
 	 *
-	 * @generatedBy CodePro at 31/08/15 16:47
+	 * 
 	 */
 	@Test
-	public void testGetVideos_1()
-		throws Exception {
+	public void testGetVideos_1() throws Exception {
 		MediaFeedData fixture = new MediaFeedData();
 		fixture.setId("");
 		fixture.setCreatedTime("");
@@ -533,11 +519,10 @@ public class MediaFeedDataTest {
 	 *
 	 * @throws Exception
 	 *
-	 * @generatedBy CodePro at 31/08/15 16:47
+	 * 
 	 */
 	@Test
-	public void testIsUserHasLiked_1()
-		throws Exception {
+	public void testIsUserHasLiked_1() throws Exception {
 		MediaFeedData fixture = new MediaFeedData();
 		fixture.setId("");
 		fixture.setCreatedTime("");
@@ -566,11 +551,10 @@ public class MediaFeedDataTest {
 	 *
 	 * @throws Exception
 	 *
-	 * @generatedBy CodePro at 31/08/15 16:47
+	 * 
 	 */
 	@Test
-	public void testIsUserHasLiked_2()
-		throws Exception {
+	public void testIsUserHasLiked_2() throws Exception {
 		MediaFeedData fixture = new MediaFeedData();
 		fixture.setId("");
 		fixture.setCreatedTime("");
@@ -599,11 +583,10 @@ public class MediaFeedDataTest {
 	 *
 	 * @throws Exception
 	 *
-	 * @generatedBy CodePro at 31/08/15 16:47
+	 * 
 	 */
 	@Test
-	public void testSetCaption_1()
-		throws Exception {
+	public void testSetCaption_1() throws Exception {
 		MediaFeedData fixture = new MediaFeedData();
 		fixture.setId("");
 		fixture.setCreatedTime("");
@@ -632,11 +615,10 @@ public class MediaFeedDataTest {
 	 *
 	 * @throws Exception
 	 *
-	 * @generatedBy CodePro at 31/08/15 16:47
+	 * 
 	 */
 	@Test
-	public void testSetComments_1()
-		throws Exception {
+	public void testSetComments_1() throws Exception {
 		MediaFeedData fixture = new MediaFeedData();
 		fixture.setId("");
 		fixture.setCreatedTime("");
@@ -665,11 +647,10 @@ public class MediaFeedDataTest {
 	 *
 	 * @throws Exception
 	 *
-	 * @generatedBy CodePro at 31/08/15 16:47
+	 * 
 	 */
 	@Test
-	public void testSetCreatedTime_1()
-		throws Exception {
+	public void testSetCreatedTime_1() throws Exception {
 		MediaFeedData fixture = new MediaFeedData();
 		fixture.setId("");
 		fixture.setCreatedTime("");
@@ -698,11 +679,10 @@ public class MediaFeedDataTest {
 	 *
 	 * @throws Exception
 	 *
-	 * @generatedBy CodePro at 31/08/15 16:47
+	 * 
 	 */
 	@Test
-	public void testSetId_1()
-		throws Exception {
+	public void testSetId_1() throws Exception {
 		MediaFeedData fixture = new MediaFeedData();
 		fixture.setId("");
 		fixture.setCreatedTime("");
@@ -731,11 +711,10 @@ public class MediaFeedDataTest {
 	 *
 	 * @throws Exception
 	 *
-	 * @generatedBy CodePro at 31/08/15 16:47
+	 * 
 	 */
 	@Test
-	public void testSetImageFilter_1()
-		throws Exception {
+	public void testSetImageFilter_1() throws Exception {
 		MediaFeedData fixture = new MediaFeedData();
 		fixture.setId("");
 		fixture.setCreatedTime("");
@@ -764,11 +743,10 @@ public class MediaFeedDataTest {
 	 *
 	 * @throws Exception
 	 *
-	 * @generatedBy CodePro at 31/08/15 16:47
+	 * 
 	 */
 	@Test
-	public void testSetImages_1()
-		throws Exception {
+	public void testSetImages_1() throws Exception {
 		MediaFeedData fixture = new MediaFeedData();
 		fixture.setId("");
 		fixture.setCreatedTime("");
@@ -797,11 +775,10 @@ public class MediaFeedDataTest {
 	 *
 	 * @throws Exception
 	 *
-	 * @generatedBy CodePro at 31/08/15 16:47
+	 * 
 	 */
 	@Test
-	public void testSetLikes_1()
-		throws Exception {
+	public void testSetLikes_1() throws Exception {
 		MediaFeedData fixture = new MediaFeedData();
 		fixture.setId("");
 		fixture.setCreatedTime("");
@@ -830,11 +807,10 @@ public class MediaFeedDataTest {
 	 *
 	 * @throws Exception
 	 *
-	 * @generatedBy CodePro at 31/08/15 16:47
+	 * 
 	 */
 	@Test
-	public void testSetLink_1()
-		throws Exception {
+	public void testSetLink_1() throws Exception {
 		MediaFeedData fixture = new MediaFeedData();
 		fixture.setId("");
 		fixture.setCreatedTime("");
@@ -863,11 +839,10 @@ public class MediaFeedDataTest {
 	 *
 	 * @throws Exception
 	 *
-	 * @generatedBy CodePro at 31/08/15 16:47
+	 * 
 	 */
 	@Test
-	public void testSetLocation_1()
-		throws Exception {
+	public void testSetLocation_1() throws Exception {
 		MediaFeedData fixture = new MediaFeedData();
 		fixture.setId("");
 		fixture.setCreatedTime("");
@@ -896,11 +871,10 @@ public class MediaFeedDataTest {
 	 *
 	 * @throws Exception
 	 *
-	 * @generatedBy CodePro at 31/08/15 16:47
+	 * 
 	 */
 	@Test
-	public void testSetTags_1()
-		throws Exception {
+	public void testSetTags_1() throws Exception {
 		MediaFeedData fixture = new MediaFeedData();
 		fixture.setId("");
 		fixture.setCreatedTime("");
@@ -929,11 +903,10 @@ public class MediaFeedDataTest {
 	 *
 	 * @throws Exception
 	 *
-	 * @generatedBy CodePro at 31/08/15 16:47
+	 * 
 	 */
 	@Test
-	public void testSetType_1()
-		throws Exception {
+	public void testSetType_1() throws Exception {
 		MediaFeedData fixture = new MediaFeedData();
 		fixture.setId("");
 		fixture.setCreatedTime("");
@@ -962,11 +935,10 @@ public class MediaFeedDataTest {
 	 *
 	 * @throws Exception
 	 *
-	 * @generatedBy CodePro at 31/08/15 16:47
+	 * 
 	 */
 	@Test
-	public void testSetUser_1()
-		throws Exception {
+	public void testSetUser_1() throws Exception {
 		MediaFeedData fixture = new MediaFeedData();
 		fixture.setId("");
 		fixture.setCreatedTime("");
@@ -995,11 +967,10 @@ public class MediaFeedDataTest {
 	 *
 	 * @throws Exception
 	 *
-	 * @generatedBy CodePro at 31/08/15 16:47
+	 * 
 	 */
 	@Test
-	public void testSetUserHasLiked_1()
-		throws Exception {
+	public void testSetUserHasLiked_1() throws Exception {
 		MediaFeedData fixture = new MediaFeedData();
 		fixture.setId("");
 		fixture.setCreatedTime("");
@@ -1028,11 +999,10 @@ public class MediaFeedDataTest {
 	 *
 	 * @throws Exception
 	 *
-	 * @generatedBy CodePro at 31/08/15 16:47
+	 * 
 	 */
 	@Test
-	public void testSetUsersInPhotoList_1()
-		throws Exception {
+	public void testSetUsersInPhotoList_1() throws Exception {
 		MediaFeedData fixture = new MediaFeedData();
 		fixture.setId("");
 		fixture.setCreatedTime("");
@@ -1061,11 +1031,10 @@ public class MediaFeedDataTest {
 	 *
 	 * @throws Exception
 	 *
-	 * @generatedBy CodePro at 31/08/15 16:47
+	 * 
 	 */
 	@Test
-	public void testSetVideos_1()
-		throws Exception {
+	public void testSetVideos_1() throws Exception {
 		MediaFeedData fixture = new MediaFeedData();
 		fixture.setId("");
 		fixture.setCreatedTime("");
@@ -1094,11 +1063,10 @@ public class MediaFeedDataTest {
 	 *
 	 * @throws Exception
 	 *
-	 * @generatedBy CodePro at 31/08/15 16:47
+	 * 
 	 */
 	@Test
-	public void testToString_1()
-		throws Exception {
+	public void testToString_1() throws Exception {
 		MediaFeedData fixture = new MediaFeedData();
 		fixture.setId("");
 		fixture.setCreatedTime("");
@@ -1119,45 +1087,9 @@ public class MediaFeedDataTest {
 		String result = fixture.toString();
 
 		// add additional test code here
-		assertEquals("MediaFeedData [caption=Caption [createdTime=null, from=null, id=null, text=null], comments=Comments [comments=null, count=0], createdTime=, id=, imageFilter=, images=Images [lowResolution=null, standardResolution=null, thumbnail=null], likes=Likes [count=0, likesUserList=null], link=, location=Location [id=null, name=null, latitude=0.0, longitude=0.0], tags=[], type=, user=User [bio=null, fullName=null, id=null, profilePictureUrl=null, userName=null, websiteUrl=null], userHasLiked=true, usersInPhoto=[]]", result);
+		assertEquals(
+				"MediaFeedData [caption=Caption [createdTime=null, from=null, id=null, text=null], comments=Comments [comments=null, count=0], createdTime=, id=, imageFilter=, images=Images [lowResolution=null, standardResolution=null, thumbnail=null], likes=Likes [count=0, likesUserList=null], link=, location=Location [id=null, name=null, latitude=0.0, longitude=0.0], tags=[], type=, user=User [bio=null, fullName=null, id=null, profilePictureUrl=null, userName=null, websiteUrl=null], userHasLiked=true, usersInPhoto=[]]",
+				result);
 	}
 
-	/**
-	 * Perform pre-test initialization.
-	 *
-	 * @throws Exception
-	 *         if the initialization fails for some reason
-	 *
-	 * @generatedBy CodePro at 31/08/15 16:47
-	 */
-	@Before
-	public void setUp()
-		throws Exception {
-		// add additional set up code here
-	}
-
-	/**
-	 * Perform post-test clean-up.
-	 *
-	 * @throws Exception
-	 *         if the clean-up fails for some reason
-	 *
-	 * @generatedBy CodePro at 31/08/15 16:47
-	 */
-	@After
-	public void tearDown()
-		throws Exception {
-		// Add additional tear down code here
-	}
-
-	/**
-	 * Launch the test.
-	 *
-	 * @param args the command line arguments
-	 *
-	 * @generatedBy CodePro at 31/08/15 16:47
-	 */
-	public static void main(String[] args) {
-		new org.junit.runner.JUnitCore().run(MediaFeedDataTest.class);
-	}
 }

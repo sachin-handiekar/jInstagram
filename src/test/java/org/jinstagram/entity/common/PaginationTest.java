@@ -1,14 +1,12 @@
 package org.jinstagram.entity.common;
 
-import org.junit.*;
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+
+import org.junit.Test;
 
 /**
- * The class <code>PaginationTest</code> contains tests for the class <code>{@link Pagination}</code>.
- *
- * @generatedBy CodePro at 31/08/15 16:40
- * @author sachin.handiekar
- * @version $Revision: 1.0 $
+ * The class <code>PaginationTest</code> contains tests for the class
+ * <code>{@link Pagination}</code>.
  */
 public class PaginationTest {
 	/**
@@ -16,11 +14,10 @@ public class PaginationTest {
 	 *
 	 * @throws Exception
 	 *
-	 * @generatedBy CodePro at 31/08/15 16:40
+	 * 
 	 */
 	@Test
-	public void testGetDepreciationWarning_1()
-		throws Exception {
+	public void testGetDepreciationWarning_1() throws Exception {
 		Pagination fixture = new Pagination();
 		fixture.setNextMaxId("");
 		fixture.setNextMaxTagId("");
@@ -41,11 +38,10 @@ public class PaginationTest {
 	 *
 	 * @throws Exception
 	 *
-	 * @generatedBy CodePro at 31/08/15 16:40
+	 * 
 	 */
 	@Test
-	public void testGetMinTagId_1()
-		throws Exception {
+	public void testGetMinTagId_1() throws Exception {
 		Pagination fixture = new Pagination();
 		fixture.setNextMaxId("");
 		fixture.setNextMaxTagId("");
@@ -66,11 +62,10 @@ public class PaginationTest {
 	 *
 	 * @throws Exception
 	 *
-	 * @generatedBy CodePro at 31/08/15 16:40
+	 * 
 	 */
 	@Test
-	public void testGetNextCursor_1()
-		throws Exception {
+	public void testGetNextCursor_1() throws Exception {
 		Pagination fixture = new Pagination();
 		fixture.setNextMaxId("");
 		fixture.setNextMaxTagId("");
@@ -91,11 +86,10 @@ public class PaginationTest {
 	 *
 	 * @throws Exception
 	 *
-	 * @generatedBy CodePro at 31/08/15 16:40
+	 * 
 	 */
 	@Test
-	public void testGetNextMaxId_1()
-		throws Exception {
+	public void testGetNextMaxId_1() throws Exception {
 		Pagination fixture = new Pagination();
 		fixture.setNextMaxId("");
 		fixture.setNextMaxTagId("");
@@ -116,11 +110,10 @@ public class PaginationTest {
 	 *
 	 * @throws Exception
 	 *
-	 * @generatedBy CodePro at 31/08/15 16:40
+	 * 
 	 */
 	@Test
-	public void testGetNextMaxTagId_1()
-		throws Exception {
+	public void testGetNextMaxTagId_1() throws Exception {
 		Pagination fixture = new Pagination();
 		fixture.setNextMaxId("");
 		fixture.setNextMaxTagId("");
@@ -141,11 +134,10 @@ public class PaginationTest {
 	 *
 	 * @throws Exception
 	 *
-	 * @generatedBy CodePro at 31/08/15 16:40
+	 * 
 	 */
 	@Test
-	public void testGetNextMinId_1()
-		throws Exception {
+	public void testGetNextMinId_1() throws Exception {
 		Pagination fixture = new Pagination();
 		fixture.setNextMaxId("");
 		fixture.setNextMaxTagId("");
@@ -166,11 +158,10 @@ public class PaginationTest {
 	 *
 	 * @throws Exception
 	 *
-	 * @generatedBy CodePro at 31/08/15 16:40
+	 * 
 	 */
 	@Test
-	public void testGetNextUrl_1()
-		throws Exception {
+	public void testGetNextUrl_1() throws Exception {
 		Pagination fixture = new Pagination();
 		fixture.setNextMaxId("");
 		fixture.setNextMaxTagId("");
@@ -191,11 +182,10 @@ public class PaginationTest {
 	 *
 	 * @throws Exception
 	 *
-	 * @generatedBy CodePro at 31/08/15 16:40
+	 * 
 	 */
 	@Test
-	public void testHasNextPage_1()
-		throws Exception {
+	public void testHasNextPage_1() throws Exception {
 		Pagination fixture = new Pagination();
 		fixture.setNextMaxId("");
 		fixture.setNextMaxTagId("");
@@ -216,11 +206,10 @@ public class PaginationTest {
 	 *
 	 * @throws Exception
 	 *
-	 * @generatedBy CodePro at 31/08/15 16:40
+	 * 
 	 */
 	@Test
-	public void testHasNextPage_2()
-		throws Exception {
+	public void testHasNextPage_2() throws Exception {
 		Pagination fixture = new Pagination();
 		fixture.setNextMaxId("");
 		fixture.setNextMaxTagId("");
@@ -241,11 +230,10 @@ public class PaginationTest {
 	 *
 	 * @throws Exception
 	 *
-	 * @generatedBy CodePro at 31/08/15 16:40
+	 * 
 	 */
 	@Test
-	public void testSetDepreciationWarning_1()
-		throws Exception {
+	public void testSetDepreciationWarning_1() throws Exception {
 		Pagination fixture = new Pagination();
 		fixture.setNextMaxId("");
 		fixture.setNextMaxTagId("");
@@ -266,11 +254,10 @@ public class PaginationTest {
 	 *
 	 * @throws Exception
 	 *
-	 * @generatedBy CodePro at 31/08/15 16:40
+	 * 
 	 */
 	@Test
-	public void testSetMinTagId_1()
-		throws Exception {
+	public void testSetMinTagId_1() throws Exception {
 		Pagination fixture = new Pagination();
 		fixture.setNextMaxId("");
 		fixture.setNextMaxTagId("");
@@ -291,11 +278,10 @@ public class PaginationTest {
 	 *
 	 * @throws Exception
 	 *
-	 * @generatedBy CodePro at 31/08/15 16:40
+	 * 
 	 */
 	@Test
-	public void testSetNextCursor_1()
-		throws Exception {
+	public void testSetNextCursor_1() throws Exception {
 		Pagination fixture = new Pagination();
 		fixture.setNextMaxId("");
 		fixture.setNextMaxTagId("");
@@ -316,11 +302,10 @@ public class PaginationTest {
 	 *
 	 * @throws Exception
 	 *
-	 * @generatedBy CodePro at 31/08/15 16:40
+	 * 
 	 */
 	@Test
-	public void testSetNextMaxId_1()
-		throws Exception {
+	public void testSetNextMaxId_1() throws Exception {
 		Pagination fixture = new Pagination();
 		fixture.setNextMaxId("");
 		fixture.setNextMaxTagId("");
@@ -341,11 +326,10 @@ public class PaginationTest {
 	 *
 	 * @throws Exception
 	 *
-	 * @generatedBy CodePro at 31/08/15 16:40
+	 * 
 	 */
 	@Test
-	public void testSetNextMaxTagId_1()
-		throws Exception {
+	public void testSetNextMaxTagId_1() throws Exception {
 		Pagination fixture = new Pagination();
 		fixture.setNextMaxId("");
 		fixture.setNextMaxTagId("");
@@ -366,11 +350,10 @@ public class PaginationTest {
 	 *
 	 * @throws Exception
 	 *
-	 * @generatedBy CodePro at 31/08/15 16:40
+	 * 
 	 */
 	@Test
-	public void testSetNextMinId_1()
-		throws Exception {
+	public void testSetNextMinId_1() throws Exception {
 		Pagination fixture = new Pagination();
 		fixture.setNextMaxId("");
 		fixture.setNextMaxTagId("");
@@ -391,11 +374,10 @@ public class PaginationTest {
 	 *
 	 * @throws Exception
 	 *
-	 * @generatedBy CodePro at 31/08/15 16:40
+	 * 
 	 */
 	@Test
-	public void testSetNextUrl_1()
-		throws Exception {
+	public void testSetNextUrl_1() throws Exception {
 		Pagination fixture = new Pagination();
 		fixture.setNextMaxId("");
 		fixture.setNextMaxTagId("");
@@ -416,11 +398,10 @@ public class PaginationTest {
 	 *
 	 * @throws Exception
 	 *
-	 * @generatedBy CodePro at 31/08/15 16:40
+	 * 
 	 */
 	@Test
-	public void testToString_1()
-		throws Exception {
+	public void testToString_1() throws Exception {
 		Pagination fixture = new Pagination();
 		fixture.setNextMaxId("");
 		fixture.setNextMaxTagId("");
@@ -433,45 +414,8 @@ public class PaginationTest {
 		String result = fixture.toString();
 
 		// add additional test code here
-		assertEquals("Pagination [depreciationWarning=, minTagId=, nextMaxId=, nextMaxTagId=, nextMinId=, nextUrl=]", result);
+		assertEquals("Pagination [depreciationWarning=, minTagId=, nextMaxId=, nextMaxTagId=, nextMinId=, nextUrl=]",
+				result);
 	}
 
-	/**
-	 * Perform pre-test initialization.
-	 *
-	 * @throws Exception
-	 *         if the initialization fails for some reason
-	 *
-	 * @generatedBy CodePro at 31/08/15 16:40
-	 */
-	@Before
-	public void setUp()
-		throws Exception {
-		// add additional set up code here
-	}
-
-	/**
-	 * Perform post-test clean-up.
-	 *
-	 * @throws Exception
-	 *         if the clean-up fails for some reason
-	 *
-	 * @generatedBy CodePro at 31/08/15 16:40
-	 */
-	@After
-	public void tearDown()
-		throws Exception {
-		// Add additional tear down code here
-	}
-
-	/**
-	 * Launch the test.
-	 *
-	 * @param args the command line arguments
-	 *
-	 * @generatedBy CodePro at 31/08/15 16:40
-	 */
-	public static void main(String[] args) {
-		new org.junit.runner.JUnitCore().run(PaginationTest.class);
-	}
 }
