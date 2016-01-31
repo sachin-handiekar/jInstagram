@@ -21,6 +21,7 @@ import org.mockito.Mockito;
 import org.mockito.runners.MockitoJUnitRunner;
 
 import static org.mockito.Mockito.*;
+
 /**
  * The class <code>RequestTest</code> contains tests for the class
  * <code>{@link Request}</code>.
@@ -30,43 +31,33 @@ public class RequestTest {
 
 	private static final Proxy proxy = new Proxy(Proxy.Type.HTTP, new InetSocketAddress("0.0.0.0", 8080));
 
-	 
+	@Mock
+	private HttpURLConnection mockHttpConnection;
+	
+	@Mock
+	private OutputStream mockOut;
 
 	@Mock
-	private HttpURLConnection mockHttpConnection;// = Mockito.mock(HttpURLConnection.class);
-	
-	@Mock
-	private OutputStream mockOut;// = Mockito.mock(OutputStream.class);
-	
-	@Mock
 	private InputStream mockInput;
-	
-	
+
 	@Mock
 	private InputStream mockErrStream;
-	
-	 
-	
-	//
+
 	@Before
 	public void init() {
-	
+
 		try {
 			when(mockHttpConnection.getOutputStream()).thenReturn(mockOut);
 			when(mockHttpConnection.getInputStream()).thenReturn(mockInput);
 			when(mockHttpConnection.getErrorStream()).thenReturn(mockErrStream);
 
-		 URL url = new URL("http://mock.url/to/test");
-		 when(mockHttpConnection.getURL()).thenReturn(url);
-			
-		
-		
-		
+			URL url = new URL("http://mock.url/to/test");
+			when(mockHttpConnection.getURL()).thenReturn(url);
+
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-
 
 	}
 
@@ -110,13 +101,12 @@ public class RequestTest {
 		fixture.setProxy(proxy);
 
 		byte[] content = "Dummy Payload".getBytes();
- 
-		
+
 		HttpURLConnection mockConn = Mockito.mock(HttpURLConnection.class);
-	
+
 		OutputStream mockOut = Mockito.mock(OutputStream.class);
 		Mockito.when(mockConn.getOutputStream()).thenReturn(mockOut);
-		
+
 		System.out.println(mockConn);
 		fixture.addBody(mockConn, content);
 		// add additional test code here
@@ -145,8 +135,7 @@ public class RequestTest {
 
 		byte[] content = "Dummy Payload".getBytes();
 
-		
- 		fixture.addBody(mockHttpConnection, content);
+		fixture.addBody(mockHttpConnection, content);
 
 		// add additional test code here
 		// An unexpected exception was thrown in user code while executing this
@@ -677,14 +666,10 @@ public class RequestTest {
 		fixture.setConnectionKeepAlive(true);
 		fixture.setCharset("UTF-8");
 		fixture.addPayload("Dummy payload");
-		
-		
-	 	
+
 		fixture.setConnection(mockHttpConnection);
 		fixture.setProxy(proxy);
 
-		
-		
 		Map<String, String> result = fixture.getQueryStringParams();
 
 		// add additional test code here
