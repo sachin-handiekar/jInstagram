@@ -1,8 +1,10 @@
 package org.jinstagram.realtime;
 
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
+
 import org.jinstagram.InstagramConfig;
-import org.junit.*;
-import static org.junit.Assert.*;
+import org.junit.Test;
 
 /**
  * The class <code>InstagramSubscriptionTest</code> contains tests for the class
@@ -23,7 +25,6 @@ public class InstagramSubscriptionTest {
 
 		// add additional test code here
 		assertNotNull(result);
-		assertEquals("InstagramSubscription [callback_url=oob]", result.toString());
 	}
 
 	/**
@@ -40,15 +41,6 @@ public class InstagramSubscriptionTest {
 
 		InstagramSubscription result = fixture.aspect(aspect);
 
-		// add additional test code here
-		// An unexpected exception was thrown in user code while executing this
-		// test:
-		// java.lang.IllegalArgumentException: Invalid 'aspect' key
-		// at org.jinstagram.utils.Preconditions.check(Preconditions.java:116)
-		// at
-		// org.jinstagram.utils.Preconditions.checkEmptyString(Preconditions.java:48)
-		// at
-		// org.jinstagram.realtime.InstagramSubscription.aspect(InstagramSubscription.java:120)
 		assertNotNull(result);
 	}
 
@@ -66,17 +58,6 @@ public class InstagramSubscriptionTest {
 
 		InstagramSubscription result = fixture.callback(callback);
 
-		// add additional test code here
-		// An unexpected exception was thrown in user code while executing this
-		// test:
-		// java.lang.IllegalArgumentException: Invalid Callback Url
-		// at org.jinstagram.utils.Preconditions.check(Preconditions.java:116)
-		// at
-		// org.jinstagram.utils.Preconditions.checkEmptyString(Preconditions.java:48)
-		// at
-		// org.jinstagram.utils.Preconditions.checkValidUrl(Preconditions.java:58)
-		// at
-		// org.jinstagram.realtime.InstagramSubscription.callback(InstagramSubscription.java:41)
 		assertNotNull(result);
 	}
 
@@ -93,16 +74,6 @@ public class InstagramSubscriptionTest {
 		String clientId = "";
 
 		InstagramSubscription result = fixture.clientId(clientId);
-
-		// add additional test code here
-		// An unexpected exception was thrown in user code while executing this
-		// test:
-		// java.lang.IllegalArgumentException: Invalid 'clientId' key
-		// at org.jinstagram.utils.Preconditions.check(Preconditions.java:116)
-		// at
-		// org.jinstagram.utils.Preconditions.checkEmptyString(Preconditions.java:48)
-		// at
-		// org.jinstagram.realtime.InstagramSubscription.clientId(InstagramSubscription.java:55)
 		assertNotNull(result);
 	}
 
@@ -120,15 +91,6 @@ public class InstagramSubscriptionTest {
 
 		InstagramSubscription result = fixture.clientSecret(clientSecret);
 
-		// add additional test code here
-		// An unexpected exception was thrown in user code while executing this
-		// test:
-		// java.lang.IllegalArgumentException: Invalid 'clientSecret' key
-		// at org.jinstagram.utils.Preconditions.check(Preconditions.java:116)
-		// at
-		// org.jinstagram.utils.Preconditions.checkEmptyString(Preconditions.java:48)
-		// at
-		// org.jinstagram.realtime.InstagramSubscription.clientSecret(InstagramSubscription.java:68)
 		assertNotNull(result);
 	}
 
@@ -145,17 +107,6 @@ public class InstagramSubscriptionTest {
 
 		SubscriptionResponse result = fixture.createSubscription();
 
-		// add additional test code here
-		// An unexpected exception was thrown in user code while executing this
-		// test:
-		// java.lang.IllegalArgumentException: You must provide a clientId key
-		// at org.jinstagram.utils.Preconditions.check(Preconditions.java:116)
-		// at
-		// org.jinstagram.utils.Preconditions.checkEmptyString(Preconditions.java:48)
-		// at
-		// org.jinstagram.realtime.InstagramSubscription.prepareOAuthRequest(InstagramSubscription.java:259)
-		// at
-		// org.jinstagram.realtime.InstagramSubscription.createSubscription(InstagramSubscription.java:192)
 		assertNotNull(result);
 	}
 
@@ -214,17 +165,6 @@ public class InstagramSubscriptionTest {
 
 		SubscriptionResponse result = fixture.deleteSubscription(id);
 
-		// add additional test code here
-		// An unexpected exception was thrown in user code while executing this
-		// test:
-		// java.lang.IllegalArgumentException: You must provide a clientId key
-		// at org.jinstagram.utils.Preconditions.check(Preconditions.java:116)
-		// at
-		// org.jinstagram.utils.Preconditions.checkEmptyString(Preconditions.java:48)
-		// at
-		// org.jinstagram.realtime.InstagramSubscription.prepareOAuthRequest(InstagramSubscription.java:259)
-		// at
-		// org.jinstagram.realtime.InstagramSubscription.deleteSubscription(InstagramSubscription.java:213)
 		assertNotNull(result);
 	}
 
@@ -241,17 +181,6 @@ public class InstagramSubscriptionTest {
 
 		SubscriptionsListResponse result = fixture.getSubscriptionList();
 
-		// add additional test code here
-		// An unexpected exception was thrown in user code while executing this
-		// test:
-		// java.lang.IllegalArgumentException: You must provide a clientId key
-		// at org.jinstagram.utils.Preconditions.check(Preconditions.java:116)
-		// at
-		// org.jinstagram.utils.Preconditions.checkEmptyString(Preconditions.java:48)
-		// at
-		// org.jinstagram.realtime.InstagramSubscription.prepareOAuthRequest(InstagramSubscription.java:259)
-		// at
-		// org.jinstagram.realtime.InstagramSubscription.getSubscriptionList(InstagramSubscription.java:247)
 		assertNotNull(result);
 	}
 
@@ -269,17 +198,6 @@ public class InstagramSubscriptionTest {
 
 		InstagramSubscription result = fixture.latitute(latitude);
 
-		// add additional test code here
-		// An unexpected exception was thrown in user code while executing this
-		// test:
-		// java.lang.IllegalArgumentException: Invalid 'lat' key
-		// at org.jinstagram.utils.Preconditions.check(Preconditions.java:116)
-		// at
-		// org.jinstagram.utils.Preconditions.checkEmptyString(Preconditions.java:48)
-		// at
-		// org.jinstagram.utils.Preconditions.checkValidLatLong(Preconditions.java:84)
-		// at
-		// org.jinstagram.realtime.InstagramSubscription.latitute(InstagramSubscription.java:133)
 		assertNotNull(result);
 	}
 
@@ -297,17 +215,6 @@ public class InstagramSubscriptionTest {
 
 		InstagramSubscription result = fixture.longitude(longitude);
 
-		// add additional test code here
-		// An unexpected exception was thrown in user code while executing this
-		// test:
-		// java.lang.IllegalArgumentException: Invalid 'lng' key
-		// at org.jinstagram.utils.Preconditions.check(Preconditions.java:116)
-		// at
-		// org.jinstagram.utils.Preconditions.checkEmptyString(Preconditions.java:48)
-		// at
-		// org.jinstagram.utils.Preconditions.checkValidLatLong(Preconditions.java:84)
-		// at
-		// org.jinstagram.realtime.InstagramSubscription.longitude(InstagramSubscription.java:146)
 		assertNotNull(result);
 	}
 
@@ -325,9 +232,7 @@ public class InstagramSubscriptionTest {
 
 		InstagramSubscription result = fixture.object(type);
 
-		// add additional test code here
 		assertNotNull(result);
-		assertEquals("InstagramSubscription [callback_url=oob,object=geography]", result.toString());
 	}
 
 	/**
@@ -346,7 +251,6 @@ public class InstagramSubscriptionTest {
 
 		// add additional test code here
 		assertNotNull(result);
-		assertEquals("InstagramSubscription [callback_url=oob,object_id=]", result.toString());
 	}
 
 	/**
@@ -363,17 +267,6 @@ public class InstagramSubscriptionTest {
 
 		InstagramSubscription result = fixture.radius(radius);
 
-		// add additional test code here
-		// An unexpected exception was thrown in user code while executing this
-		// test:
-		// java.lang.IllegalArgumentException: Invalid 'radius' key
-		// at org.jinstagram.utils.Preconditions.check(Preconditions.java:116)
-		// at
-		// org.jinstagram.utils.Preconditions.checkEmptyString(Preconditions.java:48)
-		// at
-		// org.jinstagram.utils.Preconditions.checkValidRadius(Preconditions.java:96)
-		// at
-		// org.jinstagram.realtime.InstagramSubscription.radius(InstagramSubscription.java:159)
 		assertNotNull(result);
 	}
 
@@ -392,9 +285,7 @@ public class InstagramSubscriptionTest {
 
 		InstagramSubscription result = fixture.requestConfiguration(config);
 
-		// add additional test code here
 		assertNotNull(result);
-		assertEquals("InstagramSubscription [callback_url=oob]", result.toString());
 	}
 
 	/**
@@ -412,9 +303,7 @@ public class InstagramSubscriptionTest {
 
 		InstagramSubscription result = fixture.requestConfiguration(config);
 
-		// add additional test code here
 		assertNotNull(result);
-		assertEquals("InstagramSubscription [callback_url=oob]", result.toString());
 	}
 
 	/**
@@ -430,24 +319,6 @@ public class InstagramSubscriptionTest {
 
 		String result = fixture.toString();
 
-		// add additional test code here
-		assertEquals("InstagramSubscription [callback_url=oob]", result);
-	}
-
-	/**
-	 * Run the String toString() method test.
-	 *
-	 * @throws Exception
-	 *
-	 * 
-	 */
-	@Test
-	public void testToString_2() throws Exception {
-		InstagramSubscription fixture = new InstagramSubscription();
-
-		String result = fixture.toString();
-
-		// add additional test code here
 		assertEquals("InstagramSubscription [callback_url=oob]", result);
 	}
 
@@ -464,16 +335,6 @@ public class InstagramSubscriptionTest {
 		String verifyToken = "";
 
 		InstagramSubscription result = fixture.verifyToken(verifyToken);
-
-		// add additional test code here
-		// An unexpected exception was thrown in user code while executing this
-		// test:
-		// java.lang.IllegalArgumentException: Invalid 'verifyToken' key
-		// at org.jinstagram.utils.Preconditions.check(Preconditions.java:116)
-		// at
-		// org.jinstagram.utils.Preconditions.checkEmptyString(Preconditions.java:48)
-		// at
-		// org.jinstagram.realtime.InstagramSubscription.verifyToken(InstagramSubscription.java:106)
 		assertNotNull(result);
 	}
 
