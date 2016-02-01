@@ -41,7 +41,6 @@ public class SubscriptionUtil {
 	 * @return VerificationResult a class that represent result of the signature verification
 	 * @throws InstagramException
 	 */
-
 	public static VerificationResult verifySubscriptionPostRequestSignature(String clientSecret, byte[] rawJsonData,
 			String xHubSignature) throws InstagramException {
 		SecretKeySpec keySpec;
