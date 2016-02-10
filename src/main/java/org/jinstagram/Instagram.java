@@ -1141,9 +1141,9 @@ public class Instagram {
 		// check if we are enforcing a signed request and add the 'sig' parameter
 		if (config.isEnforceSignedRequest()) {
 			if ((verb == Verbs.GET) || (verb == Verbs.DELETE)) {
-				request.addQuerystringParameter(QueryParam.SIGNATURE, EnforceSignedRequestUtils.signature(methodName, request.getQueryStringParams(), accessToken.getSecret()));
+				request.addQuerystringParameter(QueryParam.SIGNATURE, EnforceSignedRequestUtils.signature(methodName, request.getQueryStringParams(), accessToken != null ? accessToken.getSecret() : null));
 			} else {
-				request.addBodyParameter(QueryParam.SIGNATURE, EnforceSignedRequestUtils.signature(methodName, request.getBodyParams(), accessToken.getSecret()));
+				request.addBodyParameter(QueryParam.SIGNATURE, EnforceSignedRequestUtils.signature(methodName, request.getBodyParams(), accessToken != null ? accessToken.getSecret() : null));
 			}
 		}
 
