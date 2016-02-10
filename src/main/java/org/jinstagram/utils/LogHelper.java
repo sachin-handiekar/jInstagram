@@ -67,7 +67,7 @@ public final class LogHelper {
      * @param logger         the logger instance
      * @param verboseLogging the control flag defining whether the detailed logging actions should be performed
      */
-    public static void logExit(Logger logger, boolean verboseLogging, String methodName, String returnValue,
+    public static void logExit(Logger logger, String methodName, String returnValue,
                                long timeSpent) {
         logger.debug(String.format(EXIT_METHOD_PATTERN, methodName, returnValue, timeSpent));
 
@@ -84,7 +84,7 @@ public final class LogHelper {
      * @param logger         the logger instance
      * @param verboseLogging the control flag defining whether the detailed logging actions should be performed
      */
-    public static void logException(Logger logger, boolean verboseLogging, String methodName, Throwable e,
+    public static void logException(Logger logger, String methodName, Throwable e,
                                     long timeSpent) {
         logger.error(String.format(EXCEPTION_PATTERN, methodName, e.getClass().getSimpleName(), e.getMessage()));
     }
