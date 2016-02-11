@@ -91,11 +91,11 @@ public class URLUtils {
 	private static String doFormUrlEncode(Map<String, String> map) {
 		StringBuffer encodedString = new StringBuffer(map.size() * 20);
 
-		for (String key : map.keySet()) {
-			encodedString.append(PARAM_SEPARATOR).append(formURLEncode(key));
+		for (Map.Entry<String, String> entry : map.entrySet()) {
+			encodedString.append(PARAM_SEPARATOR).append(formURLEncode(entry.getKey()));
 
-			if (map.get(key) != null) {
-				encodedString.append(PAIR_SEPARATOR).append(formURLEncode(map.get(key)));
+			if (entry.getValue() != null) {
+				encodedString.append(PAIR_SEPARATOR).append(formURLEncode(entry.getValue()));
 			}
 		}
 
@@ -181,9 +181,9 @@ public class URLUtils {
 	public static String concatSortedPercentEncodedParams(Map<String, String> params) {
 		StringBuilder result = new StringBuilder();
 
-		for (String key : params.keySet()) {
-			result.append(key).append(PAIR_SEPARATOR);
-			result.append(params.get(key)).append(PARAM_SEPARATOR);
+		for (Map.Entry<String, String> entry : params.entrySet()) {
+			result.append(entry.getKey()).append(PAIR_SEPARATOR);
+			result.append(entry.getValue()).append(PARAM_SEPARATOR);
 		}
 
 		return result.toString().substring(0, result.length() - 1);

@@ -13,8 +13,6 @@ import org.jinstagram.entity.users.basicinfo.UserInfo;
  */
 public class InstagramAuthenticationTest {
 
-	private static final Token EMPTY_TOKEN = null;
-
 	public static void main(String[] args) throws Exception {
 
 		String clientId = "44e6baf1dc5d45a082cae725ffa2f36d";
@@ -28,7 +26,7 @@ public class InstagramAuthenticationTest {
 				                           .callback(callbackUrl)
                                            .build();
 
-		String authorizationUrl = service.getAuthorizationUrl(EMPTY_TOKEN);
+		String authorizationUrl = service.getAuthorizationUrl();
 
 		System.out.println("** Instagram Authorization ** \n\n");
 
@@ -45,7 +43,7 @@ public class InstagramAuthenticationTest {
 		System.out.println();
 
 		Verifier verifier = new Verifier(verifierCode);
-		Token accessToken = service.getAccessToken(EMPTY_TOKEN, verifier);
+		Token accessToken = service.getAccessToken(verifier);
 
 		System.out.println("Access Token :: " + accessToken.getToken());
 		Instagram instagram = new Instagram(accessToken);

@@ -96,8 +96,8 @@ public class Request {
 	}
 
 	void addHeaders(HttpURLConnection conn) {
-		for (String key : headers.keySet()) {
-			conn.setRequestProperty(key, headers.get(key));
+		for (Map.Entry<String, String> entry : headers.entrySet()) {
+			conn.setRequestProperty(entry.getKey(), entry.getValue());
 		}
 	}
 

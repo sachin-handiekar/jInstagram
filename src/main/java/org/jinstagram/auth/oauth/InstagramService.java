@@ -35,7 +35,7 @@ public class InstagramService {
 	/**
 	 * {@inheritDoc}
 	 */
-	public Token getAccessToken(Token requestToken, Verifier verifier) {
+	public Token getAccessToken(Verifier verifier) {
 		OAuthRequest request = new OAuthRequest(api.getAccessTokenVerb(), api.getAccessTokenEndpoint());
 
 		// Add the oauth parameter in the body
@@ -92,7 +92,7 @@ public class InstagramService {
 	/**
 	 * {@inheritDoc}
 	 */
-	public String getAuthorizationUrl(Token requestToken) {
+	public String getAuthorizationUrl() {
 		return api.getAuthorizationUrl(config);
 	}
 
