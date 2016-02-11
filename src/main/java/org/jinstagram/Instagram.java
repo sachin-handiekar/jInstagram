@@ -1233,10 +1233,10 @@ public class Instagram {
 		if (config.isEnforceSignedRequest()) {
 			if ((verb == Verbs.GET) || (verb == Verbs.DELETE)) {
 				request.addQuerystringParameter(QueryParam.SIGNATURE, EnforceSignedRequestUtils.signature(methodName,
-						request.getQueryStringParams(), accessToken.getSecret()));
+						request.getQueryStringParams(), accessToken != null ? accessToken.getSecret() : null));
 			} else {
 				request.addBodyParameter(QueryParam.SIGNATURE, EnforceSignedRequestUtils.signature(methodName,
-						request.getBodyParams(), accessToken.getSecret()));
+						request.getBodyParams(), accessToken != null ? accessToken.getSecret() : null));
 			}
 		}
 
