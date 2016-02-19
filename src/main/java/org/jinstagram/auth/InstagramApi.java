@@ -1,5 +1,9 @@
 package org.jinstagram.auth;
 
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParseException;
+import com.google.gson.JsonParser;
+import org.apache.commons.lang3.StringUtils;
 import org.jinstagram.auth.exceptions.OAuthException;
 import org.jinstagram.auth.model.Constants;
 import org.jinstagram.auth.model.OAuthConfig;
@@ -37,17 +41,19 @@ public class InstagramApi {
 
 	public AccessTokenExtractor getAccessTokenExtractor() {
 		return new AccessTokenExtractor() {
-			private Pattern accessTokenPattern = Pattern.compile(Constants.ACCESS_TOKEN_EXTRACTOR_REGEX);
-
 			@Override
 			public Token extract(String response) {
 				Preconditions.checkEmptyString(response, "Cannot extract a token from a null or empty String");
 
-				Matcher matcher = accessTokenPattern.matcher(response);
-
-				if (matcher.find()) {
-					return new Token(matcher.group(1), "", response);
-				} else {
+				try {
+					JsonParser parser = new JsonParser();
+					JsonObject obj = parser.parse(response).getAsJsonObject();
+					String token = obj.get("access_token").getAsString();
+					if(StringUtils.isEmpty(token)) {
+						throw new OAuthException("Cannot extract an acces token. Response was: " + response);
+					}
+					return new Token(token, "", response);
+				} catch(JsonParseException e) {
 					throw new OAuthException("Cannot extract an acces token. Response was: " + response);
 				}
 			}
