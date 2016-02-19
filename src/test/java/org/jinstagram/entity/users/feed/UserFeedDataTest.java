@@ -1,14 +1,12 @@
 package org.jinstagram.entity.users.feed;
 
-import org.junit.*;
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+
+import org.junit.Test;
 
 /**
- * The class <code>UserFeedDataTest</code> contains tests for the class <code>{@link UserFeedData}</code>.
- *
- * @generatedBy CodePro at 31/08/15 16:47
- * @author sachin.handiekar
- * @version $Revision: 1.0 $
+ * The class <code>UserFeedDataTest</code> contains tests for the class
+ * <code>{@link UserFeedData}</code>.
  */
 public class UserFeedDataTest {
 	/**
@@ -16,11 +14,10 @@ public class UserFeedDataTest {
 	 *
 	 * @throws Exception
 	 *
-	 * @generatedBy CodePro at 31/08/15 16:47
+	 * 
 	 */
 	@Test
-	public void testGetBio_1()
-		throws Exception {
+	public void testGetBio_1() throws Exception {
 		UserFeedData fixture = new UserFeedData();
 		fixture.setBio("");
 		fixture.setId("");
@@ -42,11 +39,10 @@ public class UserFeedDataTest {
 	 *
 	 * @throws Exception
 	 *
-	 * @generatedBy CodePro at 31/08/15 16:47
+	 * 
 	 */
 	@Test
-	public void testGetFirstName_1()
-		throws Exception {
+	public void testGetFirstName_1() throws Exception {
 		UserFeedData fixture = new UserFeedData();
 		fixture.setBio("");
 		fixture.setId("");
@@ -68,11 +64,10 @@ public class UserFeedDataTest {
 	 *
 	 * @throws Exception
 	 *
-	 * @generatedBy CodePro at 31/08/15 16:47
+	 * 
 	 */
 	@Test
-	public void testGetFullName_1()
-		throws Exception {
+	public void testGetFullName_1() throws Exception {
 		UserFeedData fixture = new UserFeedData();
 		fixture.setBio("");
 		fixture.setId("");
@@ -94,11 +89,10 @@ public class UserFeedDataTest {
 	 *
 	 * @throws Exception
 	 *
-	 * @generatedBy CodePro at 31/08/15 16:47
+	 * 
 	 */
 	@Test
-	public void testGetId_1()
-		throws Exception {
+	public void testGetId_1() throws Exception {
 		UserFeedData fixture = new UserFeedData();
 		fixture.setBio("");
 		fixture.setId("");
@@ -120,11 +114,10 @@ public class UserFeedDataTest {
 	 *
 	 * @throws Exception
 	 *
-	 * @generatedBy CodePro at 31/08/15 16:47
+	 * 
 	 */
 	@Test
-	public void testGetLastName_1()
-		throws Exception {
+	public void testGetLastName_1() throws Exception {
 		UserFeedData fixture = new UserFeedData();
 		fixture.setBio("");
 		fixture.setId("");
@@ -146,11 +139,10 @@ public class UserFeedDataTest {
 	 *
 	 * @throws Exception
 	 *
-	 * @generatedBy CodePro at 31/08/15 16:47
+	 * 
 	 */
 	@Test
-	public void testGetProfilePictureUrl_1()
-		throws Exception {
+	public void testGetProfilePictureUrl_1() throws Exception {
 		UserFeedData fixture = new UserFeedData();
 		fixture.setBio("");
 		fixture.setId("");
@@ -172,11 +164,10 @@ public class UserFeedDataTest {
 	 *
 	 * @throws Exception
 	 *
-	 * @generatedBy CodePro at 31/08/15 16:47
+	 * 
 	 */
 	@Test
-	public void testGetUserName_1()
-		throws Exception {
+	public void testGetUserName_1() throws Exception {
 		UserFeedData fixture = new UserFeedData();
 		fixture.setBio("");
 		fixture.setId("");
@@ -198,11 +189,10 @@ public class UserFeedDataTest {
 	 *
 	 * @throws Exception
 	 *
-	 * @generatedBy CodePro at 31/08/15 16:47
+	 * 
 	 */
 	@Test
-	public void testGetWebsite_1()
-		throws Exception {
+	public void testGetWebsite_1() throws Exception {
 		UserFeedData fixture = new UserFeedData();
 		fixture.setBio("");
 		fixture.setId("");
@@ -224,11 +214,10 @@ public class UserFeedDataTest {
 	 *
 	 * @throws Exception
 	 *
-	 * @generatedBy CodePro at 31/08/15 16:47
+	 * 
 	 */
 	@Test
-	public void testSetBio_1()
-		throws Exception {
+	public void testSetBio_1() throws Exception {
 		UserFeedData fixture = new UserFeedData();
 		fixture.setBio("");
 		fixture.setId("");
@@ -250,11 +239,10 @@ public class UserFeedDataTest {
 	 *
 	 * @throws Exception
 	 *
-	 * @generatedBy CodePro at 31/08/15 16:47
+	 * 
 	 */
 	@Test
-	public void testSetFirstName_1()
-		throws Exception {
+	public void testSetFirstName_1() throws Exception {
 		UserFeedData fixture = new UserFeedData();
 		fixture.setBio("");
 		fixture.setId("");
@@ -276,11 +264,10 @@ public class UserFeedDataTest {
 	 *
 	 * @throws Exception
 	 *
-	 * @generatedBy CodePro at 31/08/15 16:47
+	 * 
 	 */
 	@Test
-	public void testSetFullName_1()
-		throws Exception {
+	public void testSetFullName_1() throws Exception {
 		UserFeedData fixture = new UserFeedData();
 		fixture.setBio("");
 		fixture.setId("");
@@ -302,11 +289,10 @@ public class UserFeedDataTest {
 	 *
 	 * @throws Exception
 	 *
-	 * @generatedBy CodePro at 31/08/15 16:47
+	 * 
 	 */
 	@Test
-	public void testSetId_1()
-		throws Exception {
+	public void testSetId_1() throws Exception {
 		UserFeedData fixture = new UserFeedData();
 		fixture.setBio("");
 		fixture.setId("");
@@ -328,11 +314,10 @@ public class UserFeedDataTest {
 	 *
 	 * @throws Exception
 	 *
-	 * @generatedBy CodePro at 31/08/15 16:47
+	 * 
 	 */
 	@Test
-	public void testSetLastName_1()
-		throws Exception {
+	public void testSetLastName_1() throws Exception {
 		UserFeedData fixture = new UserFeedData();
 		fixture.setBio("");
 		fixture.setId("");
@@ -354,11 +339,10 @@ public class UserFeedDataTest {
 	 *
 	 * @throws Exception
 	 *
-	 * @generatedBy CodePro at 31/08/15 16:47
+	 * 
 	 */
 	@Test
-	public void testSetProfilePictureUrl_1()
-		throws Exception {
+	public void testSetProfilePictureUrl_1() throws Exception {
 		UserFeedData fixture = new UserFeedData();
 		fixture.setBio("");
 		fixture.setId("");
@@ -380,11 +364,10 @@ public class UserFeedDataTest {
 	 *
 	 * @throws Exception
 	 *
-	 * @generatedBy CodePro at 31/08/15 16:47
+	 * 
 	 */
 	@Test
-	public void testSetUserName_1()
-		throws Exception {
+	public void testSetUserName_1() throws Exception {
 		UserFeedData fixture = new UserFeedData();
 		fixture.setBio("");
 		fixture.setId("");
@@ -406,11 +389,10 @@ public class UserFeedDataTest {
 	 *
 	 * @throws Exception
 	 *
-	 * @generatedBy CodePro at 31/08/15 16:47
+	 * 
 	 */
 	@Test
-	public void testSetWebsite_1()
-		throws Exception {
+	public void testSetWebsite_1() throws Exception {
 		UserFeedData fixture = new UserFeedData();
 		fixture.setBio("");
 		fixture.setId("");
@@ -432,11 +414,10 @@ public class UserFeedDataTest {
 	 *
 	 * @throws Exception
 	 *
-	 * @generatedBy CodePro at 31/08/15 16:47
+	 * 
 	 */
 	@Test
-	public void testToString_1()
-		throws Exception {
+	public void testToString_1() throws Exception {
 		UserFeedData fixture = new UserFeedData();
 		fixture.setBio("");
 		fixture.setId("");
@@ -453,42 +434,4 @@ public class UserFeedDataTest {
 		assertEquals("UserFeedData [id=, profilePictureUrl=, userName=, fullName=, website=, bio=]", result);
 	}
 
-	/**
-	 * Perform pre-test initialization.
-	 *
-	 * @throws Exception
-	 *         if the initialization fails for some reason
-	 *
-	 * @generatedBy CodePro at 31/08/15 16:47
-	 */
-	@Before
-	public void setUp()
-		throws Exception {
-		// add additional set up code here
-	}
-
-	/**
-	 * Perform post-test clean-up.
-	 *
-	 * @throws Exception
-	 *         if the clean-up fails for some reason
-	 *
-	 * @generatedBy CodePro at 31/08/15 16:47
-	 */
-	@After
-	public void tearDown()
-		throws Exception {
-		// Add additional tear down code here
-	}
-
-	/**
-	 * Launch the test.
-	 *
-	 * @param args the command line arguments
-	 *
-	 * @generatedBy CodePro at 31/08/15 16:47
-	 */
-	public static void main(String[] args) {
-		new org.junit.runner.JUnitCore().run(UserFeedDataTest.class);
-	}
 }

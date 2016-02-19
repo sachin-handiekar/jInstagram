@@ -19,7 +19,7 @@ public class GridPositionTest {
 	 * 
 	 */
 	@Test
-	public void testGetX_1() throws Exception {
+	public void testGetX() throws Exception {
 		GridPosition fixture = new GridPosition();
 		fixture.setX(1.0);
 		fixture.setY(1.0);
@@ -38,7 +38,7 @@ public class GridPositionTest {
 	 * 
 	 */
 	@Test
-	public void testGetY_1() throws Exception {
+	public void testGetY() throws Exception {
 		GridPosition fixture = new GridPosition();
 		fixture.setX(1.0);
 		fixture.setY(1.0);
@@ -57,7 +57,7 @@ public class GridPositionTest {
 	 * 
 	 */
 	@Test
-	public void testSetX_1() throws Exception {
+	public void testSetX() throws Exception {
 		GridPosition fixture = new GridPosition();
 		fixture.setX(1.0);
 		fixture.setY(1.0);
@@ -76,7 +76,7 @@ public class GridPositionTest {
 	 * 
 	 */
 	@Test
-	public void testSetY_1() throws Exception {
+	public void testSetY() throws Exception {
 		GridPosition fixture = new GridPosition();
 		fixture.setX(1.0);
 		fixture.setY(1.0);

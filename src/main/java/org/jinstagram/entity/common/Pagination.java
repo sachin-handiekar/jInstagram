@@ -96,7 +96,7 @@ public class Pagination {
 	}
     
     /**
-     * @param The next cursor
+     * @return the next cursor
      */
     public String getNextCursor() {
         return nextCursor;

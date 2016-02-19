@@ -1,28 +1,26 @@
 package org.jinstagram.entity.common;
 
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
+
 import java.util.ArrayList;
 import java.util.List;
-import org.junit.*;
-import static org.junit.Assert.*;
+
+import org.junit.Test;
 
 /**
- * The class <code>LikesTest</code> contains tests for the class <code>{@link Likes}</code>.
- *
- * @generatedBy CodePro at 31/08/15 16:40
- * @author sachin.handiekar
- * @version $Revision: 1.0 $
+ * The class <code>LikesTest</code> contains tests for the class
+ * <code>{@link Likes}</code>.
  */
 public class LikesTest {
 	/**
 	 * Run the int getCount() method test.
 	 *
 	 * @throws Exception
-	 *
-	 * @generatedBy CodePro at 31/08/15 16:40
+	 * 
 	 */
 	@Test
-	public void testGetCount_1()
-		throws Exception {
+	public void testGetCount() throws Exception {
 		Likes fixture = new Likes();
 		fixture.setCount(1);
 		fixture.setLikesUserList(new ArrayList<User>());
@@ -38,11 +36,10 @@ public class LikesTest {
 	 *
 	 * @throws Exception
 	 *
-	 * @generatedBy CodePro at 31/08/15 16:40
+	 *
 	 */
 	@Test
-	public void testGetLikesUserList_1()
-		throws Exception {
+	public void testGetLikesUserList() throws Exception {
 		Likes fixture = new Likes();
 		fixture.setCount(1);
 		fixture.setLikesUserList(new ArrayList<User>());
@@ -59,11 +56,10 @@ public class LikesTest {
 	 *
 	 * @throws Exception
 	 *
-	 * @generatedBy CodePro at 31/08/15 16:40
+	 *
 	 */
 	@Test
-	public void testSetCount_1()
-		throws Exception {
+	public void testSetCount() throws Exception {
 		Likes fixture = new Likes();
 		fixture.setCount(1);
 		fixture.setLikesUserList(new ArrayList<User>());
@@ -79,11 +75,10 @@ public class LikesTest {
 	 *
 	 * @throws Exception
 	 *
-	 * @generatedBy CodePro at 31/08/15 16:40
+	 *
 	 */
 	@Test
-	public void testSetLikesUserList_1()
-		throws Exception {
+	public void testSetLikesUserList() throws Exception {
 		Likes fixture = new Likes();
 		fixture.setCount(1);
 		fixture.setLikesUserList(new ArrayList<User>());
@@ -99,11 +94,10 @@ public class LikesTest {
 	 *
 	 * @throws Exception
 	 *
-	 * @generatedBy CodePro at 31/08/15 16:40
+	 *
 	 */
 	@Test
-	public void testToString_1()
-		throws Exception {
+	public void testToString() throws Exception {
 		Likes fixture = new Likes();
 		fixture.setCount(1);
 		fixture.setLikesUserList(new ArrayList<User>());
@@ -114,42 +108,4 @@ public class LikesTest {
 		assertEquals("Likes [count=1, likesUserList=[]]", result);
 	}
 
-	/**
-	 * Perform pre-test initialization.
-	 *
-	 * @throws Exception
-	 *         if the initialization fails for some reason
-	 *
-	 * @generatedBy CodePro at 31/08/15 16:40
-	 */
-	@Before
-	public void setUp()
-		throws Exception {
-		// add additional set up code here
-	}
-
-	/**
-	 * Perform post-test clean-up.
-	 *
-	 * @throws Exception
-	 *         if the clean-up fails for some reason
-	 *
-	 * @generatedBy CodePro at 31/08/15 16:40
-	 */
-	@After
-	public void tearDown()
-		throws Exception {
-		// Add additional tear down code here
-	}
-
-	/**
-	 * Launch the test.
-	 *
-	 * @param args the command line arguments
-	 *
-	 * @generatedBy CodePro at 31/08/15 16:40
-	 */
-	public static void main(String[] args) {
-		new org.junit.runner.JUnitCore().run(LikesTest.class);
-	}
 }

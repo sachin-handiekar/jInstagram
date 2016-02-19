@@ -1,8 +1,24 @@
 sudo: false
+cache:
+  directories:
+    - '$HOME/.m2/repository'
+before_script:
+  - pip install --user codecov
 language: java
 install: mvn clean install
 after_success:
+- codecov
 - mvn cobertura:cobertura coveralls:report
 - echo "<settings><servers><server><id>ossrh</id><username>\${env.OSSRH_USER}</username><password>\${env.OSSRH_PASS}</password></server></servers></settings>"
   > ~/settings.xml
 - if [ -z ${TRAVIS_TAG} ]; then mvn deploy --settings ~/settings.xml; fi
+
+addons:
+  coverity_scan:
+    project:
+      name: "sachin-handiekar/jInstagram"
+      description: "Build submitted via Travis CI"
+    notification_email: sachin.handiekar@gmail.com
+    build_command_prepend: "mvn clean"
+    build_command:   "mvn -DskipTests=true compile"
+    branch_pattern: master

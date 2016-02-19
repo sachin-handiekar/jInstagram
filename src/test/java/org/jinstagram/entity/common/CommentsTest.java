@@ -20,7 +20,7 @@ public class CommentsTest {
 	 * @throws Exception
 	 */
 	@Test
-	public void testGetComments_1() throws Exception {
+	public void testGetComments() throws Exception {
 		Comments caption = new Comments();
 		caption.setCount(1);
 		caption.setComments(new ArrayList<CommentData>());
@@ -40,7 +40,7 @@ public class CommentsTest {
 	 * 
 	 */
 	@Test
-	public void testGetCount_1() throws Exception {
+	public void testGetCount() throws Exception {
 		Comments caption = new Comments();
 		caption.setCount(1);
 		caption.setComments(new ArrayList<CommentData>());
@@ -59,7 +59,7 @@ public class CommentsTest {
 	 * 
 	 */
 	@Test
-	public void testSetComments_1() throws Exception {
+	public void testSetComments() throws Exception {
 		Comments caption = new Comments();
 		caption.setCount(1);
 		caption.setComments(new ArrayList<CommentData>());
@@ -78,7 +78,7 @@ public class CommentsTest {
 	 * 
 	 */
 	@Test
-	public void testSetCount_1() throws Exception {
+	public void testSetCount() throws Exception {
 		Comments caption = new Comments();
 		caption.setCount(1);
 		caption.setComments(new ArrayList<CommentData>());
@@ -97,7 +97,7 @@ public class CommentsTest {
 	 * 
 	 */
 	@Test
-	public void testToString_1() throws Exception {
+	public void testToString() throws Exception {
 		Comments caption = new Comments();
 		caption.setCount(1);
 		caption.setComments(new ArrayList<CommentData>());

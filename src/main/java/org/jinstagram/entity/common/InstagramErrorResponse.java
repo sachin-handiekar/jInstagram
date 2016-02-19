@@ -1,18 +1,17 @@
 package org.jinstagram.entity.common;
 
-import java.util.Map;
-
+import com.google.gson.Gson;
+import com.google.gson.JsonElement;
 import org.jinstagram.exceptions.InstagramBadRequestException;
 import org.jinstagram.exceptions.InstagramException;
 import org.jinstagram.exceptions.InstagramRateLimitException;
 
-import com.google.gson.Gson;
-import com.google.gson.JsonElement;
+import java.util.Map;
 
 /**
  * A class to represents an error response from Instagram API
- * @author Sachin Handiekar
  *
+ * @author Sachin Handiekar
  */
 public class InstagramErrorResponse {
 
@@ -26,6 +25,7 @@ public class InstagramErrorResponse {
 
     /**
      * Setter for headers field
+     *
      * @param responseHeaders the response headers
      */
     public void setHeaders(Map<String, String> responseHeaders) {
@@ -34,6 +34,7 @@ public class InstagramErrorResponse {
 
     /**
      * Throw instagram exception to the client
+     *
      * @throws InstagramException
      */
     public void throwException() throws InstagramException {
@@ -56,6 +57,7 @@ public class InstagramErrorResponse {
      * Parse the specified json holding a response object. Instagram has two ways of
      * specifying an error: either a meta attribute is set or the body of the
      * response is a meta object itself.
+     *
      * @param gson the gson instance to use
      * @param json the json response content
      * @return the InstagramErrorResponse object
@@ -63,9 +65,9 @@ public class InstagramErrorResponse {
     public static InstagramErrorResponse parse(Gson gson, String json) {
         JsonElement jsonElement = gson.fromJson(json, JsonElement.class);
         JsonElement metaMember = null;
-if(jsonElement != null){
-     metaMember = jsonElement.getAsJsonObject().get("meta");
-}
+        if (jsonElement != null) {
+            metaMember = jsonElement.getAsJsonObject().get("meta");
+        }
         final Meta meta;
         if (metaMember != null) {
             meta = gson.fromJson(metaMember, Meta.class);

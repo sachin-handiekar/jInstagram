@@ -6,11 +6,8 @@ import static org.junit.Assert.*;
 import com.google.gson.internal.StringMap;
 
 /**
- * The class <code>InstagramBadRequestExceptionTest</code> contains tests for the class <code>{@link InstagramBadRequestException}</code>.
- *
- * @generatedBy CodePro at 31/08/15 16:48
- * @author sachin.handiekar
- * @version $Revision: 1.0 $
+ * The class <code>InstagramBadRequestExceptionTest</code> contains tests for
+ * the class <code>{@link InstagramBadRequestException}</code>.
  */
 public class InstagramBadRequestExceptionTest {
 	/**
@@ -18,11 +15,10 @@ public class InstagramBadRequestExceptionTest {
 	 *
 	 * @throws Exception
 	 *
-	 * @generatedBy CodePro at 31/08/15 16:48
+	 * 
 	 */
 	@Test
-	public void testInstagramBadRequestException_1()
-		throws Exception {
+	public void testInstagramBadRequestException_1() throws Exception {
 		String message = "";
 
 		InstagramBadRequestException result = new InstagramBadRequestException(message);
@@ -42,11 +38,10 @@ public class InstagramBadRequestExceptionTest {
 	 *
 	 * @throws Exception
 	 *
-	 * @generatedBy CodePro at 31/08/15 16:48
+	 * 
 	 */
 	@Test
-	public void testInstagramBadRequestException_2()
-		throws Exception {
+	public void testInstagramBadRequestException_2() throws Exception {
 		String message = "";
 		Exception e = new Exception();
 
@@ -62,15 +57,15 @@ public class InstagramBadRequestExceptionTest {
 	}
 
 	/**
-	 * Run the InstagramBadRequestException(String,Map<String,String>) constructor test.
+	 * Run the InstagramBadRequestException(String,Map<String,String>)
+	 * constructor test.
 	 *
 	 * @throws Exception
 	 *
-	 * @generatedBy CodePro at 31/08/15 16:48
+	 * 
 	 */
 	@Test
-	public void testInstagramBadRequestException_3()
-		throws Exception {
+	public void testInstagramBadRequestException_3() throws Exception {
 		String message = "";
 		Map<String, String> responseHeaders = new StringMap();
 
@@ -87,15 +82,15 @@ public class InstagramBadRequestExceptionTest {
 	}
 
 	/**
-	 * Run the InstagramBadRequestException(String,Exception,Map<String,String>) constructor test.
+	 * Run the InstagramBadRequestException(String,Exception,Map<String,String>)
+	 * constructor test.
 	 *
 	 * @throws Exception
 	 *
-	 * @generatedBy CodePro at 31/08/15 16:48
+	 * 
 	 */
 	@Test
-	public void testInstagramBadRequestException_4()
-		throws Exception {
+	public void testInstagramBadRequestException_4() throws Exception {
 		String message = "";
 		Exception e = new Exception();
 		Map<String, String> responseHeaders = new StringMap();

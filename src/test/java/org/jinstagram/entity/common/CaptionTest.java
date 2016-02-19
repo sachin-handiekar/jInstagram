@@ -18,7 +18,7 @@ public class CaptionTest {
 	 * @throws Exception if any error occurs
 	 */
 	@Test
-	public void testGetCreatedTime_1() throws Exception {
+	public void testGetCreatedTime() throws Exception {
 		Caption caption = new Caption();
 		caption.setCreatedTime("");
 		caption.setFrom(new FromTagData());
@@ -37,7 +37,7 @@ public class CaptionTest {
 	 * @throws Exception if any error occurs
 	 */
 	@Test
-	public void testGetFrom_1() throws Exception {
+	public void testGetFrom() throws Exception {
 		Caption caption = new Caption();
 		caption.setCreatedTime("");
 		caption.setFrom(new FromTagData());
@@ -63,7 +63,7 @@ public class CaptionTest {
 	 * 
 	 */
 	@Test
-	public void testGetId_1() throws Exception {
+	public void testGetId() throws Exception {
 		Caption caption = new Caption();
 		caption.setCreatedTime("");
 		caption.setFrom(new FromTagData());
@@ -84,7 +84,7 @@ public class CaptionTest {
 	 * 
 	 */
 	@Test
-	public void testGetText_1() throws Exception {
+	public void testGetText() throws Exception {
 		Caption caption = new Caption();
 		caption.setCreatedTime("");
 		caption.setFrom(new FromTagData());
@@ -105,7 +105,7 @@ public class CaptionTest {
 	 * 
 	 */
 	@Test
-	public void testSetCreatedTime_1() throws Exception {
+	public void testSetCreatedTime() throws Exception {
 		Caption caption = new Caption();
 		caption.setCreatedTime("");
 		caption.setFrom(new FromTagData());
@@ -126,7 +126,7 @@ public class CaptionTest {
 	 * 
 	 */
 	@Test
-	public void testSetFrom_1() throws Exception {
+	public void testSetFrom() throws Exception {
 		Caption caption = new Caption();
 		caption.setCreatedTime("");
 		caption.setFrom(new FromTagData());
@@ -147,7 +147,7 @@ public class CaptionTest {
 	 * 
 	 */
 	@Test
-	public void testSetId_1() throws Exception {
+	public void testSetId() throws Exception {
 		Caption caption = new Caption();
 		caption.setCreatedTime("");
 		caption.setFrom(new FromTagData());
@@ -168,7 +168,7 @@ public class CaptionTest {
 	 * 
 	 */
 	@Test
-	public void testSetText_1() throws Exception {
+	public void testSetText() throws Exception {
 		Caption caption = new Caption();
 		caption.setCreatedTime("");
 		caption.setFrom(new FromTagData());
@@ -189,7 +189,7 @@ public class CaptionTest {
 	 * 
 	 */
 	@Test
-	public void testToString_1() throws Exception {
+	public void testToString() throws Exception {
 		Caption caption = new Caption();
 		caption.setCreatedTime("");
 		caption.setFrom(new FromTagData());

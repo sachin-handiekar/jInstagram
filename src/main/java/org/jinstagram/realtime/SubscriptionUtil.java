@@ -12,6 +12,7 @@ import com.google.gson.Gson;
 import org.apache.commons.codec.binary.Hex;
 import org.jinstagram.exceptions.InstagramException;
 
+@Deprecated
 public class SubscriptionUtil {
 
 	private static final String HMAC_SHA1 = "HmacSHA1";
@@ -40,7 +41,6 @@ public class SubscriptionUtil {
 	 * @return VerificationResult a class that represent result of the signature verification
 	 * @throws InstagramException
 	 */
-
 	public static VerificationResult verifySubscriptionPostRequestSignature(String clientSecret, byte[] rawJsonData,
 			String xHubSignature) throws InstagramException {
 		SecretKeySpec keySpec;

@@ -3,6 +3,7 @@ package org.jinstagram.utils;
 import java.nio.charset.Charset;
 import java.security.InvalidKeyException;
 import java.security.NoSuchAlgorithmException;
+import java.lang.NullPointerException;
 
 import javax.crypto.Mac;
 import javax.crypto.spec.SecretKeySpec;
@@ -19,9 +20,8 @@ public class EnforceSignedHeaderUtils {
 
     @Deprecated
     public static String signature(String clientSecret, String message) throws InstagramException {
-        SecretKeySpec keySpec = new SecretKeySpec(clientSecret.getBytes(Charset.forName("UTF-8")), HMAC_SHA256);
-
         try {
+            SecretKeySpec keySpec = new SecretKeySpec(clientSecret.getBytes(Charset.forName("UTF-8")), HMAC_SHA256);
             Mac mac = Mac.getInstance(HMAC_SHA256);
             mac.init(keySpec);
             byte[] result = mac.doFinal(message.getBytes(Charset.forName("UTF-8")));
@@ -30,6 +30,8 @@ public class EnforceSignedHeaderUtils {
             throw new InstagramException("Invalid algorithm name!", e);
         } catch (InvalidKeyException e) {
             throw new InstagramException("Invalid key: " + clientSecret, e);
+        } catch (NullPointerException e) {
+            throw new InstagramException("Key is null!", e);
         }
     }
 

@@ -15,6 +15,7 @@ import org.jinstagram.entity.users.feed.UserFeedData;
 import org.jinstagram.exceptions.InstagramBadRequestException;
 import org.jinstagram.exceptions.InstagramException;
 import org.jinstagram.exceptions.InstagramRateLimitException;
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Ignore;
 import org.junit.Test;
@@ -80,6 +81,7 @@ public class InstagramTest {
 
 
     @Test
+    @Ignore //cause getPopularMedia is deprecated
     public void testPopularMedia() throws Exception {
 
         logger.info("Printing a list of popular media...");
@@ -244,5 +246,28 @@ public class InstagramTest {
         meta.setErrorType("type");
 
         return new Gson().toJson(meta);
+    }
+
+    @Test
+    public void testGetUserRecentMedia() throws Exception{
+        MediaFeed mf = instagram.getUserRecentMedia();
+
+        List<MediaFeedData> mediaFeedDataList = mf.getData();
+
+        printMediaFeedList(mediaFeedDataList);
+
+    }
+
+    @Test
+    @Ignore // Will fix later on
+    public void testGetUserRecentMediaWithParams() throws  Exception{
+
+        MediaFeed mf = instagram.getUserRecentMedia(2, null, null);
+
+        List<MediaFeedData> mediaFeedDataList = mf.getData();
+        Assert.assertEquals(mediaFeedDataList.size(), 2);
+
+        printMediaFeedList(mediaFeedDataList);
+
     }
 }

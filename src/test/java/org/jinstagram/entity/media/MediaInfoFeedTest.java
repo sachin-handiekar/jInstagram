@@ -8,8 +8,8 @@ import static org.junit.Assert.*;
 /**
  * The class <code>MediaInfoFeedTest</code> contains tests for the class <code>{@link MediaInfoFeed}</code>.
  *
- * @generatedBy CodePro at 31/08/15 16:47
- * @author sachin.handiekar
+ * @generatedBy CodePro at 31/01/16 15:05
+ * @author SachinHandiekar
  * @version $Revision: 1.0 $
  */
 public class MediaInfoFeedTest {
@@ -18,7 +18,7 @@ public class MediaInfoFeedTest {
 	 *
 	 * @throws Exception
 	 *
-	 * @generatedBy CodePro at 31/08/15 16:47
+	 * @generatedBy CodePro at 31/01/16 15:05
 	 */
 	@Test
 	public void testGetData_1()
@@ -31,22 +31,22 @@ public class MediaInfoFeedTest {
 
 		// add additional test code here
 		assertNotNull(result);
+		assertEquals(null, result.getImages());
+		assertEquals(null, result.getTags());
+		assertEquals(null, result.getUser());
 		assertEquals("MediaFeedData [caption=null, comments=null, createdTime=null, id=null, imageFilter=null, images=null, likes=null, link=null, location=null, tags=null, type=null, user=null, userHasLiked=false, usersInPhoto=null]", result.toString());
 		assertEquals(null, result.getLocation());
 		assertEquals(null, result.getId());
 		assertEquals(null, result.getType());
-		assertEquals(null, result.getUsersInPhotoList());
-		assertEquals(null, result.getTags());
-		assertEquals(null, result.getCaption());
-		assertEquals(null, result.getComments());
-		assertEquals(null, result.getUser());
-		assertEquals(null, result.getLink());
-		assertEquals(null, result.getImages());
 		assertEquals(false, result.isUserHasLiked());
+		assertEquals(null, result.getVideos());
+		assertEquals(null, result.getUsersInPhotoList());
 		assertEquals(null, result.getImageFilter());
 		assertEquals(null, result.getCreatedTime());
 		assertEquals(null, result.getLikes());
-		assertEquals(null, result.getVideos());
+		assertEquals(null, result.getCaption());
+		assertEquals(null, result.getLink());
+		assertEquals(null, result.getComments());
 	}
 
 	/**
@@ -54,7 +54,7 @@ public class MediaInfoFeedTest {
 	 *
 	 * @throws Exception
 	 *
-	 * @generatedBy CodePro at 31/08/15 16:47
+	 * @generatedBy CodePro at 31/01/16 15:05
 	 */
 	@Test
 	public void testGetMeta_1()
@@ -67,9 +67,9 @@ public class MediaInfoFeedTest {
 
 		// add additional test code here
 		assertNotNull(result);
-		assertEquals("Meta [code=0, errorMessage=null, errorType=null]", result.toString());
-		assertEquals(0, result.getCode());
 		assertEquals(null, result.getErrorMessage());
+		assertEquals(0, result.getCode());
+		assertEquals("Meta [code=0, errorMessage=null, errorType=null]", result.toString());
 		assertEquals(null, result.getErrorType());
 	}
 
@@ -78,7 +78,7 @@ public class MediaInfoFeedTest {
 	 *
 	 * @throws Exception
 	 *
-	 * @generatedBy CodePro at 31/08/15 16:47
+	 * @generatedBy CodePro at 31/01/16 15:05
 	 */
 	@Test
 	public void testSetData_1()
@@ -98,7 +98,7 @@ public class MediaInfoFeedTest {
 	 *
 	 * @throws Exception
 	 *
-	 * @generatedBy CodePro at 31/08/15 16:47
+	 * @generatedBy CodePro at 31/01/16 15:05
 	 */
 	@Test
 	public void testSetMeta_1()
@@ -118,7 +118,7 @@ public class MediaInfoFeedTest {
 	 *
 	 * @throws Exception
 	 *
-	 * @generatedBy CodePro at 31/08/15 16:47
+	 * @generatedBy CodePro at 31/01/16 15:05
 	 */
 	@Test
 	public void testToString_1()
@@ -139,7 +139,7 @@ public class MediaInfoFeedTest {
 	 * @throws Exception
 	 *         if the initialization fails for some reason
 	 *
-	 * @generatedBy CodePro at 31/08/15 16:47
+	 * @generatedBy CodePro at 31/01/16 15:05
 	 */
 	@Before
 	public void setUp()
@@ -153,7 +153,7 @@ public class MediaInfoFeedTest {
 	 * @throws Exception
 	 *         if the clean-up fails for some reason
 	 *
-	 * @generatedBy CodePro at 31/08/15 16:47
+	 * @generatedBy CodePro at 31/01/16 15:05
 	 */
 	@After
 	public void tearDown()
@@ -166,7 +166,7 @@ public class MediaInfoFeedTest {
 	 *
 	 * @param args the command line arguments
 	 *
-	 * @generatedBy CodePro at 31/08/15 16:47
+	 * @generatedBy CodePro at 31/01/16 15:05
 	 */
 	public static void main(String[] args) {
 		new org.junit.runner.JUnitCore().run(MediaInfoFeedTest.class);
