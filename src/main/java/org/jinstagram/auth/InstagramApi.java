@@ -48,7 +48,12 @@ public class InstagramApi {
 				try {
 					JsonParser parser = new JsonParser();
 					JsonObject obj = parser.parse(response).getAsJsonObject();
-					String token = obj.get("access_token").getAsString();
+					String token = null;
+
+					if(obj.has("access_token")) {
+						token = obj.get("access_token").getAsString();
+					}
+
 					if(StringUtils.isEmpty(token)) {
 						throw new OAuthException("Cannot extract an acces token. Response was: " + response);
 					}
