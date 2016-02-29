@@ -136,4 +136,22 @@ public class InstagramExceptionTest {
 		assertEquals(-1, result);
 	}
 
+	/**
+	 * Run the int getErrorType() method test.
+	 *
+	 * @throws Exception
+	 *
+	 */
+	@Test
+	public void testGetErrorType() throws Exception {
+		InstagramException fixture = new InstagramException(
+			"APINotAllowedError",
+			"APINotAllowedError: you cannot view this resource",
+			(Map<String, String>) null
+		);
+
+		assertEquals("APINotAllowedError", fixture.getErrorType());
+		assertEquals("APINotAllowedError: you cannot view this resource", fixture.getMessage());
+	}
+
 }
