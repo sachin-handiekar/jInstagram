@@ -75,7 +75,11 @@ public class InstagramException extends IOException implements InstagramResponse
         this.errorType = null;
     }
 
-	@Override
+    public String getErrorType() {
+        return errorType;
+    }
+
+    @Override
 	public int getAPILimitStatus() {
 		if (headers == null) {
 			return -1;
