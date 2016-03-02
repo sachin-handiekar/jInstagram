@@ -64,7 +64,7 @@ public class InstagramOembed {
 	 * @return
 	 * @throws InstagramException
 	 */
-	private InstagramException handleInstagramError(Response response) throws InstagramException {
+	private static InstagramException handleInstagramError(Response response) throws InstagramException {
 		if (response.getCode() == 400) {
 			Gson gson = new Gson();
 			final InstagramErrorResponse error = InstagramErrorResponse.parse(gson, response.getBody());
@@ -83,7 +83,7 @@ public class InstagramOembed {
 	 * @param params parameters which would be sent with the request.
 	 * @return Response object.
 	 */
-	private Response getApiResponse(Verbs verb, String methodName, Map<String, String> params) throws IOException {
+	private static Response getApiResponse(Verbs verb, String methodName, Map<String, String> params) throws IOException {
 		Response response;
 		String apiResourceUrl = Constants.API_URL + methodName;
 		OAuthRequest request = new OAuthRequest(verb, apiResourceUrl);
@@ -112,7 +112,7 @@ public class InstagramOembed {
 	 * @return a object of type <T>
 	 * @throws InstagramException if any error occurs.
 	 */
-	private <T> T createObjectFromResponse(Class<T> clazz, final String response) throws InstagramException {
+	private static <T> T createObjectFromResponse(Class<T> clazz, final String response) throws InstagramException {
 		Gson gson = new Gson();
 		T object;
 

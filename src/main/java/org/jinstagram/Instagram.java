@@ -51,6 +51,8 @@ import com.google.gson.JsonSyntaxException;
  */
 public class Instagram {
 
+	private static final String USING = "Using ";
+	private static final String USER_ID_CANNOT_BE_NULL_OR_EMPTY = "UserId cannot be null or empty.";
 	private static final Logger logger = LoggerFactory.getLogger(Instagram.class);
 
 	private Token accessToken;
@@ -171,7 +173,7 @@ public class Instagram {
 
 		logger.info("Getting user info for : " + userId);
 
-		Preconditions.checkEmptyString(userId, "UserId cannot be null or empty.");
+		Preconditions.checkEmptyString(userId, USER_ID_CANNOT_BE_NULL_OR_EMPTY);
 
 		String apiMethod = String.format(Methods.USERS_WITH_ID, userId);
 
@@ -312,7 +314,7 @@ public class Instagram {
 	 *             if any error occurs
 	 */
 	public MediaFeed getRecentMediaFeed(String userId) throws InstagramException {
-		Preconditions.checkEmptyString(userId, "UserId cannot be null or empty.");
+		Preconditions.checkEmptyString(userId, USER_ID_CANNOT_BE_NULL_OR_EMPTY);
 
 		String methodName = String.format(Methods.USERS_RECENT_MEDIA, userId);
 
@@ -334,7 +336,7 @@ public class Instagram {
 	 */
 	public MediaFeed getRecentMediaFeed(String userId, int count, String minId, String maxId, Date maxTimeStamp,
 			Date minTimeStamp) throws InstagramException {
-		Preconditions.checkEmptyString(userId, "UserId cannot be null or empty.");
+		Preconditions.checkEmptyString(userId, USER_ID_CANNOT_BE_NULL_OR_EMPTY);
 		Map<String, String> params = new HashMap<String, String>();
 
 		if (maxId != null) {
@@ -491,7 +493,7 @@ public class Instagram {
 	 * @throws InstagramException
 	 */
 	public UserFeed getUserFollowListNextPage(String userId, String cursor) throws InstagramException {
-		Preconditions.checkEmptyString(userId, "userId cannot be null or empty.");
+		Preconditions.checkEmptyString(userId, USER_ID_CANNOT_BE_NULL_OR_EMPTY);
 
 		Map<String, String> params = new HashMap<String, String>(1);
 		if (cursor != null)
@@ -531,7 +533,7 @@ public class Instagram {
 	 * @throws InstagramException
 	 */
 	public UserFeed getUserFollowedByListNextPage(String userId, String cursor) throws InstagramException {
-		Preconditions.checkEmptyString(userId, "userId cannot be null or empty.");
+		Preconditions.checkEmptyString(userId, USER_ID_CANNOT_BE_NULL_OR_EMPTY);
 
 		Map<String, String> params = new HashMap<String, String>(1);
 		if (cursor != null)
@@ -573,7 +575,7 @@ public class Instagram {
 	 *             if any error occurs.
 	 */
 	public RelationshipFeed getUserRelationship(String userId) throws InstagramException {
-		Preconditions.checkEmptyString(userId, "userId cannot be null or empty.");
+		Preconditions.checkEmptyString(userId, USER_ID_CANNOT_BE_NULL_OR_EMPTY);
 
 		String apiMethod = String.format(Methods.USERS_ID_RELATIONSHIP, userId);
 		return createInstagramObject(Verbs.GET, RelationshipFeed.class, apiMethod, null);
@@ -591,7 +593,7 @@ public class Instagram {
 	 *             if any error occurs.
 	 */
 	public RelationshipFeed setUserRelationship(String userId, Relationship relationship) throws InstagramException {
-		Preconditions.checkEmptyString(userId, "userId cannot be null or empty.");
+		Preconditions.checkEmptyString(userId, USER_ID_CANNOT_BE_NULL_OR_EMPTY);
 		Preconditions.checkNotNull(relationship, "relationship cannot be null.");
 
 		String apiMethod = String.format(Methods.USERS_ID_RELATIONSHIP, userId);
@@ -1212,18 +1214,18 @@ public class Instagram {
 		// Add the AccessToken to the Request Url
 		if ((verb == Verbs.GET) || (verb == Verbs.DELETE)) {
 			if (accessToken == null) {
-				logger.debug("Using " + OAuthConstants.CLIENT_ID + " : " + clientId);
+				logger.debug(USING + OAuthConstants.CLIENT_ID + " : " + clientId);
 				request.addQuerystringParameter(OAuthConstants.CLIENT_ID, clientId);
 			} else {
-				logger.debug("Using " + OAuthConstants.ACCESS_TOKEN + " : " + accessToken.getToken());
+				logger.debug(USING + OAuthConstants.ACCESS_TOKEN + " : " + accessToken.getToken());
 				request.addQuerystringParameter(OAuthConstants.ACCESS_TOKEN, accessToken.getToken());
 			}
 		} else {
 			if (accessToken == null) {
-				logger.debug("Using " + OAuthConstants.CLIENT_ID + " : " + clientId);
+				logger.debug(USING + OAuthConstants.CLIENT_ID + " : " + clientId);
 				request.addBodyParameter(OAuthConstants.CLIENT_ID, clientId);
 			} else {
-				logger.debug("Using " + OAuthConstants.ACCESS_TOKEN + " : " + accessToken.getToken());
+				logger.debug(USING + OAuthConstants.ACCESS_TOKEN + " : " + accessToken.getToken());
 				request.addBodyParameter(OAuthConstants.ACCESS_TOKEN, accessToken.getToken());
 			}
 		}
