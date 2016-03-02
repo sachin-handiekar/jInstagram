@@ -13,7 +13,7 @@ public class OAuthConfig {
 
 	private final String scope;
 
-	public Proxy requestProxy;
+	private Proxy requestProxy;
 
 	public OAuthConfig(String key, String secret) {
 		this(key, secret, null, null);
@@ -60,5 +60,9 @@ public class OAuthConfig {
 	 */
 	public void setRequestProxy(Proxy requestProxy) {
 		this.requestProxy = requestProxy;
+	}
+
+	public Proxy getRequestProxy() {
+		return requestProxy;
 	}
 }
