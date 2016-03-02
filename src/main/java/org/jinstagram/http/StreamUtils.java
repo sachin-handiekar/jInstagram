@@ -10,36 +10,38 @@ import java.io.Reader;
 /**
  * An utility class to deal with the HttpStream
  */
-public class StreamUtils {
+public final class StreamUtils {
 
-	/**
-	 * Returns the stream contents as an UTF-8 encoded string
-	 * 
-	 * @param is input stream
-	 * @return string contents
-	 */
-	public static String getStreamContents(InputStream is) {
-		Preconditions.checkNotNull(is, "Cannot get String from a null object");
+    private StreamUtils() {}
 
-		try {
-			final char[] buffer = new char[0x10000];
-			StringBuilder out = new StringBuilder();
-			Reader in = new InputStreamReader(is, "UTF-8");
-			int read;
+    /**
+     * Returns the stream contents as an UTF-8 encoded string
+     * 
+     * @param is input stream
+     * @return string contents
+     */
+    public static String getStreamContents(InputStream is) {
+        Preconditions.checkNotNull(is, "Cannot get String from a null object");
 
-			do {
-				read = in.read(buffer, 0, buffer.length);
+        try {
+            final char[] buffer = new char[0x10000];
+            StringBuilder out = new StringBuilder();
+            Reader in = new InputStreamReader(is, "UTF-8");
+            int read;
 
-				if (read > 0) {
-					out.append(buffer, 0, read);
-				}
-			} while (read >= 0);
+            do {
+                read = in.read(buffer, 0, buffer.length);
 
-			in.close();
+                if (read > 0) {
+                    out.append(buffer, 0, read);
+                }
+            } while (read >= 0);
 
-			return out.toString();
-		} catch (IOException ioe) {
-			throw new IllegalStateException("Error while reading response body", ioe);
-		}
-	}
+            in.close();
+
+            return out.toString();
+        } catch (IOException ioe) {
+            throw new IllegalStateException("Error while reading response body", ioe);
+        }
+    }
 }
