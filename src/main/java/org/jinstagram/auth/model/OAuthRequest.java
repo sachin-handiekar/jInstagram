@@ -41,7 +41,7 @@ public class OAuthRequest extends Request {
 		oauthParameters.put(checkKey(key), value);
 	}
 
-	private String checkKey(String key) {
+	private static String checkKey(String key) {
 		if (key.startsWith(OAUTH_PREFIX) || key.equals(OAuthConstants.SCOPE)) {
 			return key;
 		}
