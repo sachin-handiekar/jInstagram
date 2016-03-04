@@ -46,6 +46,9 @@ public final class APILimitUtils {
 
     private static int getIntegerValue(Map<String, String> header, String key) {
         String intValueStr = header.get(key);
+        if (intValueStr == null) {
+            intValueStr = header.get(key.toLowerCase());
+        }
         int value = -1;
 
         try {
