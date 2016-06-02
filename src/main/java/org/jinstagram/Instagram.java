@@ -33,10 +33,7 @@ import org.jinstagram.http.Verbs;
 import org.jinstagram.model.Methods;
 import org.jinstagram.model.QueryParam;
 import org.jinstagram.model.Relationship;
-import org.jinstagram.utils.EnforceSignedHeaderUtils;
-import org.jinstagram.utils.EnforceSignedRequestUtils;
-import org.jinstagram.utils.LogHelper;
-import org.jinstagram.utils.Preconditions;
+import org.jinstagram.utils.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -373,8 +370,9 @@ public class Instagram {
      * @throws InstagramException
      */
     public MediaFeed getRecentMediaNextPage(Pagination pagination) throws InstagramException {
+        PaginationHelper.Page page = PaginationHelper.parseNextUrl(pagination, config.getApiURL());
         return createInstagramObject(Verbs.GET, MediaFeed.class,
-                StringUtils.removeStart(pagination.getNextUrl(), config.getApiURL()), null);
+                page.getMethodName(), page.getQueryStringParams());
     }
 
     /**
@@ -384,8 +382,9 @@ public class Instagram {
      * @throws InstagramException
      */
     public UserFeed getUserFeedInfoNextPage(Pagination pagination) throws InstagramException {
+        PaginationHelper.Page page = PaginationHelper.parseNextUrl(pagination, config.getApiURL());
         return createInstagramObject(Verbs.GET, UserFeed.class,
-                StringUtils.removeStart(pagination.getNextUrl(), config.getApiURL()), null);
+                page.getMethodName(), page.getQueryStringParams());
     }
 
     /**
@@ -396,8 +395,9 @@ public class Instagram {
      * @throws InstagramException
      */
     public TagMediaFeed getTagMediaInfoNextPage(Pagination pagination) throws InstagramException {
+        PaginationHelper.Page page = PaginationHelper.parseNextUrl(pagination,config.getApiURL());
         return createInstagramObject(Verbs.GET, TagMediaFeed.class,
-                StringUtils.removeStart(pagination.getNextUrl(), config.getApiURL()), null);
+                page.getMethodName(), page.getQueryStringParams());
     }
 
     /**
@@ -1200,6 +1200,9 @@ public class Instagram {
 
         // Additional parameters in url
         if (params != null) {
+
+            params.remove(QueryParam.SIGNATURE); // needs to be recalculated last for every request
+
             for (Map.Entry<String, String> entry : params.entrySet()) {
                 if (verb == Verbs.GET) {
                     request.addQuerystringParameter(entry.getKey(), entry.getValue());
@@ -1231,12 +1234,17 @@ public class Instagram {
         // check if we are enforcing a signed request and add the 'sig'
         // parameter
         if (config.isEnforceSignedRequest()) {
-            if ((verb == Verbs.GET) || (verb == Verbs.DELETE)) {
-                request.addQuerystringParameter(QueryParam.SIGNATURE, EnforceSignedRequestUtils.signature(methodName,
-                        request.getQueryStringParams(), accessToken != null ? accessToken.getSecret() : null));
+            boolean useQueryParam = (verb == Verbs.GET) || (verb == Verbs.DELETE);
+
+            Map<String,String> sigParams = useQueryParam ? request.getQueryStringParams() : request.getBodyParams();
+
+            String sig = EnforceSignedRequestUtils.signature(methodName,
+                                    sigParams, accessToken != null ? accessToken.getSecret() : null);
+
+            if (useQueryParam) {
+                request.addQuerystringParameter(QueryParam.SIGNATURE, sig);
             } else {
-                request.addBodyParameter(QueryParam.SIGNATURE, EnforceSignedRequestUtils.signature(methodName,
-                        request.getBodyParams(), accessToken != null ? accessToken.getSecret() : null));
+                request.addBodyParameter(QueryParam.SIGNATURE, sig);
             }
         }
 
