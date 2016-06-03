@@ -372,7 +372,7 @@ public class Instagram {
     public MediaFeed getRecentMediaNextPage(Pagination pagination) throws InstagramException {
         PaginationHelper.Page page = PaginationHelper.parseNextUrl(pagination, config.getApiURL());
         return createInstagramObject(Verbs.GET, MediaFeed.class,
-                page.getMethodName(), page.getQueryStringParams());
+                page.getMethodName(), page.getRawMethodName(), page.getQueryStringParams());
     }
 
     /**
@@ -397,7 +397,7 @@ public class Instagram {
     public TagMediaFeed getTagMediaInfoNextPage(Pagination pagination) throws InstagramException {
         PaginationHelper.Page page = PaginationHelper.parseNextUrl(pagination,config.getApiURL());
         return createInstagramObject(Verbs.GET, TagMediaFeed.class,
-                page.getMethodName(), page.getQueryStringParams());
+                page.getMethodName(), page.getRawMethodName(), page.getQueryStringParams());
     }
 
     /**
@@ -529,7 +529,8 @@ public class Instagram {
     /**
      * Get the next page for list of 'users' the authenticated is followed by.
      *
-     * @param pagination
+     * @param userId
+     * @param cursor
      * @throws InstagramException
      */
     public UserFeed getUserFollowedByListNextPage(String userId, String cursor) throws InstagramException {
@@ -817,8 +818,9 @@ public class Instagram {
      *             if any error occurs.
      */
     public TagInfoFeed getTagInfo(String tagName) throws InstagramException {
-        String apiMethod = String.format(Methods.TAGS_BY_NAME, tagName);
-        return createInstagramObject(Verbs.GET, TagInfoFeed.class, apiMethod, null);
+        String apiMethod = String.format(Methods.TAGS_BY_NAME, URLUtils.encodeURIComponent(tagName));
+        String rawApiMethod = String.format(Methods.TAGS_BY_NAME, tagName);
+        return createInstagramObject(Verbs.GET, TagInfoFeed.class, apiMethod, rawApiMethod, null);
     }
 
     /**
@@ -896,8 +898,9 @@ public class Instagram {
         }
 
         String apiMethod = String.format(Methods.TAGS_RECENT_MEDIA, URLUtils.encodeURIComponent(tagName));
+        String rawApiMethod = String.format(Methods.TAGS_RECENT_MEDIA, tagName);
 
-        return createInstagramObject(Verbs.GET, TagMediaFeed.class, apiMethod, params);
+        return createInstagramObject(Verbs.GET, TagMediaFeed.class, apiMethod, rawApiMethod, params);
     }
 
     /**
@@ -920,8 +923,9 @@ public class Instagram {
         if (!StringUtils.isEmpty(maxId))
             params.put(QueryParam.MAX_ID, String.valueOf(maxId));
 
-        String apiMethod = String.format(Methods.TAGS_RECENT_MEDIA, tagName);
-        return createInstagramObject(Verbs.GET, TagMediaFeed.class, apiMethod, params);
+        String apiMethod = String.format(Methods.TAGS_RECENT_MEDIA, URLUtils.encodeURIComponent(tagName));
+        String rawApiMethod = String.format(Methods.TAGS_RECENT_MEDIA, tagName);
+        return createInstagramObject(Verbs.GET, TagMediaFeed.class, apiMethod, rawApiMethod, params);
     }
 
     /**
@@ -1093,20 +1097,24 @@ public class Instagram {
     /**
      * Create a instagram object based on class-name and response.
      *
+     * This method must be used when signing requests if the methodName
+     * could contain characters that required URI encoding
+     *
      * @param verbs
      *            HTTP State
      * @param clazz
      * @param methodName
+     * @param rawMethodName
      * @param params
      * @return
      * @throws InstagramException
      */
     protected <T extends InstagramObject> T createInstagramObject(Verbs verbs, Class<T> clazz, String methodName,
-            Map<String, String> params) throws InstagramException {
+            String rawMethodName, Map<String, String> params) throws InstagramException {
         Response response;
         String jsonResponseBody;
         try {
-            response = getApiResponse(verbs, methodName, params);
+            response = getApiResponse(verbs, methodName, rawMethodName, params);
             jsonResponseBody = response.getBody();
             LogHelper.prettyPrintJSONResponse(logger, jsonResponseBody);
         } catch (IOException e) {
@@ -1121,6 +1129,25 @@ public class Instagram {
         }
 
         throw handleInstagramError(response.getCode(), jsonResponseBody, responseHeaders);
+    }
+
+    /**
+     * Create a instagram object based on class-name and response.
+     *
+     * If using signed requests this is only safe if there are no characters
+     * requiring URI encoding in the methodName
+     *
+     * @param verbs
+     *            HTTP State
+     * @param clazz
+     * @param methodName
+     * @param params
+     * @return
+     * @throws InstagramException
+     */
+    protected <T extends InstagramObject> T createInstagramObject(Verbs verbs, Class<T> clazz, String methodName,
+            Map<String, String> params) throws InstagramException {
+        return createInstagramObject(verbs, clazz, methodName, methodName, params);
     }
 
     @Deprecated
@@ -1181,11 +1208,13 @@ public class Instagram {
      *            HTTP Verb
      * @param methodName
      *            Instagram API Method
+     * @param rawMethodName
+     *            Unencoded Instagram API Method
      * @param params
      *            parameters which would be sent with the request.
      * @return Response object.
      */
-    protected Response getApiResponse(Verbs verb, String methodName, Map<String, String> params) throws IOException {
+    protected Response getApiResponse(Verbs verb, String methodName, String rawMethodName, Map<String, String> params) throws IOException {
         Response response;
         String apiResourceUrl = config.getApiURL() + methodName;
         OAuthRequest request = new OAuthRequest(verb, apiResourceUrl);
@@ -1232,13 +1261,13 @@ public class Instagram {
         }
 
         // check if we are enforcing a signed request and add the 'sig'
-        // parameter
+        // parameter.  Must use rawMethodName here (i.e. sign the non-URI-encoded version).
         if (config.isEnforceSignedRequest()) {
             boolean useQueryParam = (verb == Verbs.GET) || (verb == Verbs.DELETE);
 
             Map<String,String> sigParams = useQueryParam ? request.getQueryStringParams() : request.getBodyParams();
 
-            String sig = EnforceSignedRequestUtils.signature(methodName,
+            String sig = EnforceSignedRequestUtils.signature(rawMethodName,
                                     sigParams, accessToken != null ? accessToken.getSecret() : null);
 
             if (useQueryParam) {
