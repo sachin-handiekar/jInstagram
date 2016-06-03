@@ -46,6 +46,9 @@ public class PaginationHelper {
             return methodName;
         }
 
+        public String getRawMethodName() {
+            return URLUtils.decodeURIComponent(methodName);
+        }
         public Map<String, String> getQueryStringParams() {
             return queryStringParams;
         }

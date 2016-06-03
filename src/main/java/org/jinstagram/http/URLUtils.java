@@ -77,6 +77,31 @@ public class URLUtils {
     }
 
     /**
+     * Decodes the passed-in String as UTF-8 using an algorithm that's compatible
+     * with JavaScript's <code>decodeURIComponent</code> function. Returns
+     * <code>null</code> if the String is <code>null</code>.
+     *
+     * @param s The String to be decoded
+     * @return the decoded String
+     *
+     * (from: http://stackoverflow.com/questions/607176/java-equivalent-to-javascripts-encodeuricomponent-that-produces-identical-outpu)
+     */
+    public static  String decodeURIComponent(String s) {
+        String result = null;
+
+        try {
+          result = URLDecoder.decode(s, "UTF-8");
+        }
+
+        // This exception should never occur.
+        catch (UnsupportedEncodingException e) {
+          result = s;
+        }
+
+        return result;
+    }
+
+    /**
      * Turns a map into a form-urlencoded string
      * 
      * @param map any map
