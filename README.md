@@ -31,7 +31,7 @@ If you're using Maven in your project, then you can integrate jInstagram by addi
 <dependency>
    <groupId>com.sachinhandiekar</groupId>
    <artifactId>jInstagram</artifactId>
-   <version>1.1.6</version>
+   <version>1.1.7</version>
 </dependency>
 ```
 
@@ -56,7 +56,7 @@ If you prefer using the latest snapshot build, include the following lines to yo
         <dependency>
             <groupId>com.sachinhandiekar</groupId>
             <artifactId>jInstagram</artifactId>
-             <version>1.1.7-SNAPSHOT</version>
+             <version>1.1.8-SNAPSHOT</version>
         </dependency>
     </dependencies>
 ```
