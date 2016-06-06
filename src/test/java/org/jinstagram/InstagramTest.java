@@ -117,6 +117,32 @@ public class InstagramTest {
     }
 
     @Test
+    public void searchLocationWithDistance() throws Exception {
+    	
+    	// London  - 51.5072° N, 0.1275° W
+    	double latitude = 51.5072;
+    	double longitude = 0.1275;
+    	int distance = 1000;
+    	
+		LocationSearchFeed locationSearchFeed = instagram.searchLocation(latitude, longitude, distance);
+    	
+    	List<Location> locationList = locationSearchFeed.getLocationList();
+    	logger.info("Printing Location Details for Latitude " + latitude + " and longitude " + longitude);
+    	
+    	for (Location location : locationList) {
+    		logger.info("-------------------------------------------");
+    		
+    		logger.info("Id : " + location.getId());
+    		logger.info("Name : " + location.getName());
+    		logger.info("Latitude : " + location.getLatitude());
+    		logger.info("Longitude : " + location.getLatitude());
+    		
+    		logger.info("-------------------------------------------");
+    		
+    	}
+    }
+
+    @Test
     @Ignore // failing due to user not found
     public void userFollowedBy() throws Exception {
         // instagram user id
