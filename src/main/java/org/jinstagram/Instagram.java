@@ -661,6 +661,31 @@ public class Instagram {
 
         return createInstagramObject(Verbs.GET, MediaFeed.class, Methods.MEDIA_SEARCH, params);
     }
+    
+    /**
+     * Search for media in a given area.
+     *
+     * @param latitude
+     *            Latitude of the center search coordinate.
+     * @param longitude
+     *            Longitude of the center search coordinate.
+     * @param distance
+     *            Default is 1km (distance=1000), max distance is 5km.
+     * @return a MediaFeed object.
+     * @throws InstagramException
+     *             if any error occurs
+     */
+    public MediaFeed searchMedia(double latitude, double longitude,  int distance)
+            throws InstagramException {
+        Map<String, String> params = new HashMap<String, String>();
+
+        params.put(QueryParam.LATITUDE, Double.toString(latitude));
+        params.put(QueryParam.LONGITUDE, Double.toString(longitude));
+
+        params.put(QueryParam.DISTANCE, String.valueOf(distance));
+
+        return createInstagramObject(Verbs.GET, MediaFeed.class, Methods.MEDIA_SEARCH, params);
+    }
 
     /**
      * Search for media in a given area.
