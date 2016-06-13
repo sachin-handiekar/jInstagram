@@ -1,8 +1,7 @@
 package org.jinstagram.auth;
 
-import com.google.gson.JsonObject;
-import com.google.gson.JsonParseException;
-import com.google.gson.JsonParser;
+import static org.jinstagram.http.URLUtils.formURLEncode;
+
 import org.apache.commons.lang3.StringUtils;
 import org.jinstagram.auth.exceptions.OAuthException;
 import org.jinstagram.auth.model.Constants;
@@ -12,10 +11,9 @@ import org.jinstagram.auth.oauth.InstagramService;
 import org.jinstagram.http.Verbs;
 import org.jinstagram.utils.Preconditions;
 
-import static org.jinstagram.http.URLUtils.formURLEncode;
-
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParseException;
+import com.google.gson.JsonParser;
 
 public class InstagramApi {
 	public String getAccessTokenEndpoint() {
@@ -33,7 +31,7 @@ public class InstagramApi {
 		// Append scope if present
 		if (config.hasScope()) {
 			return String.format(Constants.SCOPED_AUTHORIZE_URL, config.getApiKey(),
-					formURLEncode(config.getCallback()), formURLEncode(config.getScope()));
+					formURLEncode(config.getCallback()), config.getScope());
 		} else {
 			return String.format(Constants.AUTHORIZE_URL, config.getApiKey(), formURLEncode(config.getCallback()));
 		}
