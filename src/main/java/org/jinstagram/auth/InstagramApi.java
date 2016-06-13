@@ -55,11 +55,11 @@ public class InstagramApi {
 					}
 
 					if(StringUtils.isEmpty(token)) {
-						throw new OAuthException("Cannot extract an acces token. Response was: " + response);
+						throw new OAuthException("Cannot extract an access token. Response was: " + response);
 					}
 					return new Token(token, "", response);
 				} catch(JsonParseException e) {
-					throw new OAuthException("Cannot extract an acces token. Response was: " + response);
+					throw new OAuthException("Cannot extract an access token. Response was: " + response);
 				}
 			}
 		};
