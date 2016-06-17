@@ -33,7 +33,11 @@ import org.jinstagram.http.Verbs;
 import org.jinstagram.model.Methods;
 import org.jinstagram.model.QueryParam;
 import org.jinstagram.model.Relationship;
-import org.jinstagram.utils.*;
+import org.jinstagram.utils.EnforceSignedHeaderUtils;
+import org.jinstagram.utils.EnforceSignedRequestUtils;
+import org.jinstagram.utils.LogHelper;
+import org.jinstagram.utils.PaginationHelper;
+import org.jinstagram.utils.Preconditions;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -1010,6 +1014,23 @@ public class Instagram {
      *            Return media before this min_id. May be null.
      * @param maxId
      *            Return media before this max_id. May be null.
+     * @return a MediaFeed object.
+     * @throws InstagramException
+     *             if any error occurs.
+     */
+    public MediaFeed getRecentMediaByLocation(String locationId, String minId, String maxId) throws InstagramException {
+    	return getRecentMediaByLocation(locationId, minId, maxId, null, null);
+    }
+
+    /**
+     * Get a list of recent media objects from a given location.
+     *
+     * @param locationId
+     *            a id of the Media.
+     * @param minId
+     *            Return media before this min_id. May be null.
+     * @param maxId
+     *            Return media before this max_id. May be null.
      * @param maxTimeStamp
      *            Return media before this max date. May be null.
      * @param minTimeStamp
@@ -1017,7 +1038,11 @@ public class Instagram {
      * @return a MediaFeed object.
      * @throws InstagramException
      *             if any error occurs.
+     * 
+     * @Deprecated recent media by location request with maxTimeStamp and minTimeStamp parameters was deprecated by instagram
+     *              
      */
+    @Deprecated
     public MediaFeed getRecentMediaByLocation(String locationId, String minId, String maxId, Date maxTimeStamp,
             Date minTimeStamp) throws InstagramException {
         Map<String, String> params = new HashMap<String, String>();

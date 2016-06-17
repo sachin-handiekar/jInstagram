@@ -119,5 +119,20 @@ public class InstagramApiTest {
 		String result = fixture.getAuthorizationUrl(config);
 		assertNotNull(result);
 	}
+	
+	/**
+	 * Run the String getAuthorizationUrl(OAuthConfig) method test.
+	 *
+	 * @throws Exception
+	 *
+	 * 
+	 */
+	@Test
+	public void testGetAuthorizationUrlWithScope() throws Exception {
+		InstagramApi fixture = new InstagramApi();
+		OAuthConfig config = new OAuthConfig("dc5cb05605435cf4abaa5a1f17b7d457", "4c587a5ff4565989907177c11fda9999", "http://localhost", "likes+comments");
+		String result = fixture.getAuthorizationUrl(config);
+		assertEquals("https://api.instagram.com/oauth/authorize/?client_id=dc5cb05605435cf4abaa5a1f17b7d457&redirect_uri=http%3A%2F%2Flocalhost&response_type=code&scope=likes+comments",result);
+	}
 
 }
