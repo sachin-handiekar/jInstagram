@@ -1038,6 +1038,9 @@ public class Instagram {
      * @return a MediaFeed object.
      * @throws InstagramException
      *             if any error occurs.
+     * 
+     * @Deprecated recent media by location request with maxTimeStamp and minTimeStamp parameters was deprecated by instagram
+     *              
      */
     @Deprecated
     public MediaFeed getRecentMediaByLocation(String locationId, String minId, String maxId, Date maxTimeStamp,
