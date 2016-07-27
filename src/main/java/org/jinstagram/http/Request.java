@@ -1,17 +1,17 @@
 package org.jinstagram.http;
 
-import org.jinstagram.auth.exceptions.OAuthException;
-
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
-
-import java.net.*;
-
+import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
+import java.net.Proxy;
+import java.net.URL;
 import java.nio.charset.Charset;
-
 import java.util.HashMap;
 import java.util.Map;
 import java.util.concurrent.TimeUnit;
+
+import org.jinstagram.auth.exceptions.OAuthException;
 
 /**
  * Represents an HTTP Request object
@@ -261,6 +261,13 @@ public class Request {
 	public void setConnectTimeout(int duration, TimeUnit unit) {
 		this.connectTimeout = (int) unit.toMillis(duration);
 	}
+	
+	/**
+	 * Gets the connect timeout in millisecond units
+	 */
+	public int getConnectTimeoutInMillis() {
+	    return connectTimeout;
+	}
 
 	/**
 	 * Sets the read timeout for the underlying {@link HttpURLConnection}
@@ -272,6 +279,13 @@ public class Request {
 	public void setReadTimeout(int duration, TimeUnit unit) {
 		this.readTimeout = (int) unit.toMillis(duration);
 	}
+	
+	/**
+	 * Gets the read timeout in millisecond units
+	 */
+	public int getReadTimeoutInMillis() {
+	    return readTimeout;
+	}
 
 	/**
 	 * Set the charset of the body of the request
@@ -281,7 +295,8 @@ public class Request {
 	public void setCharset(String charsetName) {
 		this.charset = charsetName;
 	}
-
+	
+	
 	/**
 	 * Sets wether the underlying Http Connection is persistent or not.
 	 *
@@ -290,6 +305,13 @@ public class Request {
 	 */
 	public void setConnectionKeepAlive(boolean connectionKeepAlive) {
 		this.connectionKeepAlive = connectionKeepAlive;
+	}
+	
+	/**
+	 * Returns the connection keepalive setting
+	 */
+	public boolean getConnectionKeepAlive() {
+	    return connectionKeepAlive;
 	}
 
 	/*
@@ -305,6 +327,13 @@ public class Request {
 	 */
 	public void setProxy(Proxy proxy) {
 		this.proxy = proxy;
+	}
+	
+	/**
+	 * Return the request proxy
+	 */
+	public Proxy getProxy() {
+	    return proxy;
 	}
 
 	@Override
