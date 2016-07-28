@@ -1,6 +1,5 @@
 package org.jinstagram;
 
-import java.net.Proxy;
 import java.util.Date;
 
 import org.jinstagram.entity.comments.MediaCommentResponse;
@@ -24,12 +23,6 @@ import org.jinstagram.model.Relationship;
  * Instagram interface
  */
 public interface InstagramClient {
-
-    /**
-     * @param requestProxy
-     *            the proxy to set
-     */
-    void setRequestProxy(Proxy requestProxy);
 
     /**
      * Get basic information about a user.

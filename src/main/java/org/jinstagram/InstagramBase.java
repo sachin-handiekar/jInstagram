@@ -60,10 +60,10 @@ public abstract class InstagramBase implements InstagramClient {
         this.config = config;
     }
 
-    /* (non-Javadoc)
-     * @see org.jinstagram.InstagramClient#setRequestProxy(java.net.Proxy)
+    /**
+     * @param requestProxy
+     *            the proxy to set
      */
-    @Override
     public void setRequestProxy(Proxy requestProxy) {
         this.requestProxy = requestProxy;
     }
