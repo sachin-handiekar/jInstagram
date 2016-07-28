@@ -46,7 +46,7 @@ public class InstagramAuthenticationTest {
 		Token accessToken = service.getAccessToken(verifier);
 
 		System.out.println("Access Token :: " + accessToken.getToken());
-		Instagram instagram = new Instagram(accessToken);
+		InstagramClient instagram = new Instagram(accessToken);
 
 		UserInfo userInfo = instagram.getCurrentUserInfo();
 

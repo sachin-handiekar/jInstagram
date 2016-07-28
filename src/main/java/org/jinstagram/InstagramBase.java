@@ -41,12 +41,9 @@ import com.google.gson.Gson;
 import com.google.gson.JsonSyntaxException;
 
 /**
- * Instagram
- *
- * @author Sachin Handiekar
- * @since 1.0
+ * Instagram base class that performs no authentication
  */
-public abstract class InstagramBase {
+public abstract class InstagramBase implements InstagramClient {
 
     protected static final String USER_ID_CANNOT_BE_NULL_OR_EMPTY = "UserId cannot be null or empty.";
     protected static final Logger logger = LoggerFactory.getLogger(InstagramBase.class);
@@ -63,23 +60,18 @@ public abstract class InstagramBase {
         this.config = config;
     }
 
-    /**
-     * @param requestProxy
-     *            the proxy to set
+    /* (non-Javadoc)
+     * @see org.jinstagram.InstagramClient#setRequestProxy(java.net.Proxy)
      */
+    @Override
     public void setRequestProxy(Proxy requestProxy) {
         this.requestProxy = requestProxy;
     }
 
-    /**
-     * Get basic information about a user.
-     *
-     * @param userId
-     *            user-id
-     * @return a MediaFeed object.
-     * @throws InstagramException
-     *             if any error occurs.
+    /* (non-Javadoc)
+     * @see org.jinstagram.InstagramClient#getUserInfo(java.lang.String)
      */
+    @Override
     public UserInfo getUserInfo(String userId) throws InstagramException {
 
         logger.info("Getting user info for : " + userId);
@@ -91,13 +83,10 @@ public abstract class InstagramBase {
         return createInstagramObject(Verbs.GET, UserInfo.class, apiMethod, null);
     }
 
-    /**
-     * Get basic information about a user.
-     *
-     * @return a UserInfo object.
-     * @throws InstagramException
-     *             if any error occurs.
+    /* (non-Javadoc)
+     * @see org.jinstagram.InstagramClient#getCurrentUserInfo()
      */
+    @Override
     public UserInfo getCurrentUserInfo() throws InstagramException {
         LogHelper.logEntrance(logger, "getCurrentUserInfo", null);
 
@@ -106,19 +95,10 @@ public abstract class InstagramBase {
         return createInstagramObject(Verbs.GET, UserInfo.class, Methods.USERS_SELF, null);
     }
 
-    /**
-     * See the authenticated user's feed.
-     *
-     * @return a MediaFeed object.
-     * @throws InstagramException
-     *             if any error occurs.
-     * @deprecated Any app created before Nov 17, 2015 will continue to function
-     *             until June 2016. After June 2016, the app will automatically
-     *             be moved to Sandbox Mode if it wasn't approved through the
-     *             review process. See changelog on Nov 17, 2015
-     *
-     *             use getUserRecentMedia() instead
+    /* (non-Javadoc)
+     * @see org.jinstagram.InstagramClient#getUserFeeds()
      */
+    @Override
     @Deprecated
     public MediaFeed getUserFeeds() throws InstagramException {
         LogHelper.logEntrance(logger, "getUserFeeds", null);
@@ -126,13 +106,10 @@ public abstract class InstagramBase {
         return createInstagramObject(Verbs.GET, MediaFeed.class, Methods.USERS_SELF_FEED, null);
     }
 
-    /**
-     * Get current user's recent media
-     *
-     * @return a MediaFeedObject
-     * @throws InstagramException
-     * @author tolstovdmit
+    /* (non-Javadoc)
+     * @see org.jinstagram.InstagramClient#getUserRecentMedia()
      */
+    @Override
     public MediaFeed getUserRecentMedia() throws InstagramException {
         LogHelper.logEntrance(logger, "getUserRecentMedia", null);
         logger.info("Getting current user recent media...");
@@ -140,18 +117,10 @@ public abstract class InstagramBase {
         return createInstagramObject(Verbs.GET, MediaFeed.class, Methods.USERS_SELF_RECENT_MEDIA, null);
     }
 
-    /**
-     * Get current user's recent media with parameters.
-     *
-     *
-     * @param count
-     *            Count of media to return.
-     * @param minId
-     * @param maxId
-     * @return a MediaFeedObject
-     * @throws InstagramException
-     * @author tolstovdmit
+    /* (non-Javadoc)
+     * @see org.jinstagram.InstagramClient#getUserRecentMedia(int, java.lang.String, java.lang.String)
      */
+    @Override
     public MediaFeed getUserRecentMedia(int count, String minId, String maxId) throws InstagramException {
         LogHelper.logEntrance(logger, "getUserRecentMedia",
                 "[ count : " + count + ", minId : " + minId + ", maxId : " + maxId + "]");
@@ -174,24 +143,10 @@ public abstract class InstagramBase {
         return createInstagramObject(Verbs.GET, MediaFeed.class, Methods.USERS_SELF_RECENT_MEDIA, params);
     }
 
-    /**
-     * See the authenticated user's feed
-     *
-     * @param maxId
-     * @param minId
-     * @param count
-     *            Count of media to return.
-     * @return a MediaFeed object.
-     * @throws InstagramException
-     *             if any error occurs.
-     * @deprecated Any app created before Nov 17, 2015 will continue to function
-     *             until June 2016. After June 2016, the app will automatically
-     *             be moved to Sandbox Mode if it wasn't approved through the
-     *             review process. See changelog on Nov 17, 2015
-     *
-     *             use getUserRecentMedia(int count, String minId, String maxId)
-     *             instead
+    /* (non-Javadoc)
+     * @see org.jinstagram.InstagramClient#getUserFeeds(java.lang.String, java.lang.String, long)
      */
+    @Override
     @Deprecated
     public MediaFeed getUserFeeds(String maxId, String minId, long count) throws InstagramException {
         LogHelper.logEntrance(logger, "getUserFeeds",
@@ -215,15 +170,10 @@ public abstract class InstagramBase {
 
     }
 
-    /**
-     * Get the most recent media published by a user.
-     *
-     * @param userId
-     *            userId of the User.
-     * @return a MediaFeed object.
-     * @throws InstagramException
-     *             if any error occurs
+    /* (non-Javadoc)
+     * @see org.jinstagram.InstagramClient#getRecentMediaFeed(java.lang.String)
      */
+    @Override
     public MediaFeed getRecentMediaFeed(String userId) throws InstagramException {
         Preconditions.checkEmptyString(userId, USER_ID_CANNOT_BE_NULL_OR_EMPTY);
 
@@ -232,19 +182,10 @@ public abstract class InstagramBase {
         return createInstagramObject(Verbs.GET, MediaFeed.class, methodName, null);
     }
 
-    /**
-     * Get the most recent media published by a user.
-     * 
-     * @param userId
-     * @param count
-     * @param minId
-     * @param maxId
-     * @param maxTimeStamp
-     * @param minTimeStamp
-     * @return the mediaFeed object
-     * @throws InstagramException
-     *             if any error occurs
+    /* (non-Javadoc)
+     * @see org.jinstagram.InstagramClient#getRecentMediaFeed(java.lang.String, int, java.lang.String, java.lang.String, java.util.Date, java.util.Date)
      */
+    @Override
     public MediaFeed getRecentMediaFeed(String userId, int count, String minId, String maxId, Date maxTimeStamp,
             Date minTimeStamp) throws InstagramException {
         Preconditions.checkEmptyString(userId, USER_ID_CANNOT_BE_NULL_OR_EMPTY);
@@ -276,63 +217,49 @@ public abstract class InstagramBase {
 
     }
 
-    /**
-     * Get the next page of recent media objects from a previously executed
-     * request
-     * 
-     * @param pagination
-     * @throws InstagramException
+    /* (non-Javadoc)
+     * @see org.jinstagram.InstagramClient#getRecentMediaNextPage(org.jinstagram.entity.common.Pagination)
      */
+    @Override
     public MediaFeed getRecentMediaNextPage(Pagination pagination) throws InstagramException {
         PaginationHelper.Page page = PaginationHelper.parseNextUrl(pagination, config.getApiURL());
         return createInstagramObject(Verbs.GET, MediaFeed.class,
                 page.getMethodName(), page.getRawMethodName(), page.getQueryStringParams());
     }
 
-    /**
-     * Get the next page of user feed objects from a previously executed request
-     * 
-     * @param pagination
-     * @throws InstagramException
+    /* (non-Javadoc)
+     * @see org.jinstagram.InstagramClient#getUserFeedInfoNextPage(org.jinstagram.entity.common.Pagination)
      */
+    @Override
     public UserFeed getUserFeedInfoNextPage(Pagination pagination) throws InstagramException {
         PaginationHelper.Page page = PaginationHelper.parseNextUrl(pagination, config.getApiURL());
         return createInstagramObject(Verbs.GET, UserFeed.class,
                 page.getMethodName(), page.getQueryStringParams());
     }
 
-    /**
-     * Get the next page of tagged media objects from a previously executed
-     * request
-     * 
-     * @param pagination
-     * @throws InstagramException
+    /* (non-Javadoc)
+     * @see org.jinstagram.InstagramClient#getTagMediaInfoNextPage(org.jinstagram.entity.common.Pagination)
      */
+    @Override
     public TagMediaFeed getTagMediaInfoNextPage(Pagination pagination) throws InstagramException {
         PaginationHelper.Page page = PaginationHelper.parseNextUrl(pagination,config.getApiURL());
         return createInstagramObject(Verbs.GET, TagMediaFeed.class,
                 page.getMethodName(), page.getRawMethodName(), page.getQueryStringParams());
     }
 
-    /**
-     * Get the authenticated user's list of media they've liked.
-     *
-     * @return a MediaFeed object.
-     * @throws InstagramException
-     *             if any error occurs.
+    /* (non-Javadoc)
+     * @see org.jinstagram.InstagramClient#getUserLikedMediaFeed()
      */
+    @Override
     public MediaFeed getUserLikedMediaFeed() throws InstagramException {
 
         return createInstagramObject(Verbs.GET, MediaFeed.class, Methods.USERS_SELF_LIKED_MEDIA, null);
     }
 
-    /**
-     * Get the authenticated user's list of media they've liked.
-     *
-     * @return a MediaFeed object.
-     * @throws InstagramException
-     *             if any error occurs.
+    /* (non-Javadoc)
+     * @see org.jinstagram.InstagramClient#getUserLikedMediaFeed(long, int)
      */
+    @Override
     public MediaFeed getUserLikedMediaFeed(long maxLikeId, int count) throws InstagramException {
         Map<String, String> params = new HashMap<String, String>();
 
@@ -347,15 +274,10 @@ public abstract class InstagramBase {
         return createInstagramObject(Verbs.GET, MediaFeed.class, Methods.USERS_SELF_LIKED_MEDIA, params);
     }
 
-    /**
-     * Search for a user by name.
-     *
-     * @param query
-     *            A query string.
-     * @return a UserFeed object.
-     * @throws InstagramException
-     *             if any error occurs.
+    /* (non-Javadoc)
+     * @see org.jinstagram.InstagramClient#searchUser(java.lang.String)
      */
+    @Override
     public UserFeed searchUser(String query) throws InstagramException {
         Preconditions.checkNotNull(query, "search query cannot be null.");
 
@@ -365,15 +287,10 @@ public abstract class InstagramBase {
         return createInstagramObject(Verbs.GET, UserFeed.class, Methods.USERS_SEARCH, params);
     }
 
-    /**
-     * Search for a user by name.
-     *
-     * @param query
-     *            A query string.
-     * @return a UserFeed object.
-     * @throws InstagramException
-     *             if any error occurs.
+    /* (non-Javadoc)
+     * @see org.jinstagram.InstagramClient#searchUser(java.lang.String, int)
      */
+    @Override
     public UserFeed searchUser(String query, int count) throws InstagramException {
         Preconditions.checkNotNull(query, "search query cannot be null.");
 
@@ -388,24 +305,18 @@ public abstract class InstagramBase {
 
     }
 
-    /**
-     * Get the list of 'users' the authenticated user follows.
-     *
-     * @param userId
-     *            userId of the User.
-     * @return a UserFeed object.
-     * @throws InstagramException
-     *             if any error occurs.
+    /* (non-Javadoc)
+     * @see org.jinstagram.InstagramClient#getUserFollowList(java.lang.String)
      */
+    @Override
     public UserFeed getUserFollowList(String userId) throws InstagramException {
         return getUserFollowListNextPage(userId, null);
     }
 
-    /**
-     * Get the next page for list of 'users' the authenticated user follows.
-     *
-     * @throws InstagramException
+    /* (non-Javadoc)
+     * @see org.jinstagram.InstagramClient#getUserFollowListNextPage(java.lang.String, java.lang.String)
      */
+    @Override
     public UserFeed getUserFollowListNextPage(String userId, String cursor) throws InstagramException {
         Preconditions.checkEmptyString(userId, USER_ID_CANNOT_BE_NULL_OR_EMPTY);
 
@@ -417,36 +328,26 @@ public abstract class InstagramBase {
         return createInstagramObject(Verbs.GET, UserFeed.class, apiMethod, params);
     }
 
-    /**
-     * Get the next page for list of 'users' the authenticated user follows.
-     *
-     * @param pagination
-     * @throws InstagramException
+    /* (non-Javadoc)
+     * @see org.jinstagram.InstagramClient#getUserFollowListNextPage(org.jinstagram.entity.common.Pagination)
      */
+    @Override
     public UserFeed getUserFollowListNextPage(Pagination pagination) throws InstagramException {
         return getUserFeedInfoNextPage(pagination);
     }
 
-    /**
-     * Get the list of 'users' the current given user is followed by.
-     *
-     * @param userId
-     *            userId of the User.
-     * @return a UserFeed object.
-     * @throws InstagramException
-     *             if any error occurs.
+    /* (non-Javadoc)
+     * @see org.jinstagram.InstagramClient#getUserFollowedByList(java.lang.String)
      */
+    @Override
     public UserFeed getUserFollowedByList(String userId) throws InstagramException {
         return getUserFollowedByListNextPage(userId, null);
     }
 
-    /**
-     * Get the next page for list of 'users' the authenticated is followed by.
-     *
-     * @param userId
-     * @param cursor
-     * @throws InstagramException
+    /* (non-Javadoc)
+     * @see org.jinstagram.InstagramClient#getUserFollowedByListNextPage(java.lang.String, java.lang.String)
      */
+    @Override
     public UserFeed getUserFollowedByListNextPage(String userId, String cursor) throws InstagramException {
         Preconditions.checkEmptyString(userId, USER_ID_CANNOT_BE_NULL_OR_EMPTY);
 
@@ -458,37 +359,26 @@ public abstract class InstagramBase {
         return createInstagramObject(Verbs.GET, UserFeed.class, apiMethod, params);
     }
 
-    /**
-     * Get the next page for list of 'users' the authenticated is followed by.
-     *
-     * @param pagination
-     * @throws InstagramException
+    /* (non-Javadoc)
+     * @see org.jinstagram.InstagramClient#getUserFollowedByListNextPage(org.jinstagram.entity.common.Pagination)
      */
+    @Override
     public UserFeed getUserFollowedByListNextPage(Pagination pagination) throws InstagramException {
         return getUserFeedInfoNextPage(pagination);
     }
 
-    /**
-     * Get a list of users who have requested this user's permission to follow
-     *
-     * @return a UserFeed object.
-     * @throws InstagramException
-     *             if any error occurs.
+    /* (non-Javadoc)
+     * @see org.jinstagram.InstagramClient#getUserRequestedBy()
      */
+    @Override
     public UserFeed getUserRequestedBy() throws InstagramException {
         return createInstagramObject(Verbs.GET, UserFeed.class, Methods.USERS_SELF_REQUESTED_BY, null);
     }
 
-    /**
-     * Get information about the current user's relationship
-     * (follow/following/etc) to another user.
-     *
-     * @param userId
-     *            userId of the User.
-     * @return a Relationship feed object.
-     * @throws InstagramException
-     *             if any error occurs.
+    /* (non-Javadoc)
+     * @see org.jinstagram.InstagramClient#getUserRelationship(java.lang.String)
      */
+    @Override
     public RelationshipFeed getUserRelationship(String userId) throws InstagramException {
         Preconditions.checkEmptyString(userId, USER_ID_CANNOT_BE_NULL_OR_EMPTY);
 
@@ -496,17 +386,10 @@ public abstract class InstagramBase {
         return createInstagramObject(Verbs.GET, RelationshipFeed.class, apiMethod, null);
     }
 
-    /**
-     * Set the relationship between the current user and the target user
-     *
-     * @param userId
-     *            userId of the user.
-     * @param relationship
-     *            Relationship status
-     * @return a Relationship feed object
-     * @throws InstagramException
-     *             if any error occurs.
+    /* (non-Javadoc)
+     * @see org.jinstagram.InstagramClient#setUserRelationship(java.lang.String, org.jinstagram.model.Relationship)
      */
+    @Override
     public RelationshipFeed setUserRelationship(String userId, Relationship relationship) throws InstagramException {
         Preconditions.checkEmptyString(userId, USER_ID_CANNOT_BE_NULL_OR_EMPTY);
         Preconditions.checkNotNull(relationship, "relationship cannot be null.");
@@ -520,15 +403,10 @@ public abstract class InstagramBase {
 
     }
 
-    /**
-     * Get information about a media object.
-     *
-     * @param mediaId
-     *            mediaId of the Media object.
-     * @return a mediaFeed object.
-     * @throws InstagramException
-     *             if any error occurs.
+    /* (non-Javadoc)
+     * @see org.jinstagram.InstagramClient#getMediaInfo(java.lang.String)
      */
+    @Override
     public MediaInfoFeed getMediaInfo(String mediaId) throws InstagramException {
         Preconditions.checkNotNull(mediaId, "mediaId cannot be null.");
 
@@ -538,15 +416,10 @@ public abstract class InstagramBase {
 
     }
 
-    /**
-     * Get information about a media object.
-     *
-     * @param shortcode
-     *            shortcode of the Media object.
-     * @return a mediaFeed object.
-     * @throws InstagramException
-     *             if any error occurs.
+    /* (non-Javadoc)
+     * @see org.jinstagram.InstagramClient#getMediaInfoByShortcode(java.lang.String)
      */
+    @Override
     public MediaInfoFeed getMediaInfoByShortcode(String shortcode) throws InstagramException {
         Preconditions.checkNotNull(shortcode, "shortcode cannot be null.");
 
@@ -556,17 +429,10 @@ public abstract class InstagramBase {
 
     }
 
-    /**
-     * Search for media in a given area.
-     *
-     * @param latitude
-     *            Latitude of the center search coordinate.
-     * @param longitude
-     *            Longitude of the center search coordinate.
-     * @return a MediaFeed object.
-     * @throws InstagramException
-     *             if any error occurs
+    /* (non-Javadoc)
+     * @see org.jinstagram.InstagramClient#searchMedia(double, double)
      */
+    @Override
     public MediaFeed searchMedia(double latitude, double longitude) throws InstagramException {
         Map<String, String> params = new HashMap<String, String>();
 
@@ -576,19 +442,10 @@ public abstract class InstagramBase {
         return createInstagramObject(Verbs.GET, MediaFeed.class, Methods.MEDIA_SEARCH, params);
     }
     
-    /**
-     * Search for media in a given area.
-     *
-     * @param latitude
-     *            Latitude of the center search coordinate.
-     * @param longitude
-     *            Longitude of the center search coordinate.
-     * @param distance
-     *            Default is 1km (distance=1000), max distance is 5km.
-     * @return a MediaFeed object.
-     * @throws InstagramException
-     *             if any error occurs
+    /* (non-Javadoc)
+     * @see org.jinstagram.InstagramClient#searchMedia(double, double, int)
      */
+    @Override
     public MediaFeed searchMedia(double latitude, double longitude,  int distance)
             throws InstagramException {
         Map<String, String> params = new HashMap<String, String>();
@@ -601,17 +458,10 @@ public abstract class InstagramBase {
         return createInstagramObject(Verbs.GET, MediaFeed.class, Methods.MEDIA_SEARCH, params);
     }
 
-    /**
-     * Search for media in a given area.
-     *
-     * @param latitude
-     *            Latitude of the center search coordinate.
-     * @param longitude
-     *            Longitude of the center search coordinate.
-     * @return a MediaFeed object.
-     * @throws InstagramException
-     *             if any error occurs
+    /* (non-Javadoc)
+     * @see org.jinstagram.InstagramClient#searchMedia(double, double, java.util.Date, java.util.Date, int)
      */
+    @Override
     public MediaFeed searchMedia(double latitude, double longitude, Date maxTimeStamp, Date minTimeStamp, int distance)
             throws InstagramException {
         Map<String, String> params = new HashMap<String, String>();
@@ -632,51 +482,29 @@ public abstract class InstagramBase {
         return createInstagramObject(Verbs.GET, MediaFeed.class, Methods.MEDIA_SEARCH, params);
     }
 
-    /**
-     * Get a list of what media is most popular at the moment.
-     *
-     * @return a MediaFeed object.
-     * @throws InstagramException
-     *             if any error occurs.
-     * @deprecated Any app created before Nov 17, 2015 will continue to function
-     *             until June 2016. After June 2016, the app will automatically
-     *             be moved to Sandbox Mode if it wasn't approved through the
-     *             review process. See changelog on Nov 17, 2015
-     *
-     *             No analog method was offered instead.
+    /* (non-Javadoc)
+     * @see org.jinstagram.InstagramClient#getPopularMedia()
      */
+    @Override
     @Deprecated
     public MediaFeed getPopularMedia() throws InstagramException {
         return createInstagramObject(Verbs.GET, MediaFeed.class, Methods.MEDIA_POPULAR, null);
     }
 
-    /**
-     * Get a full list of comments on a media.
-     *
-     * @param mediaId
-     *            a mediaId
-     * @return a MediaCommentsFeed object.
-     * @throws InstagramException
-     *             if any error occurs.
+    /* (non-Javadoc)
+     * @see org.jinstagram.InstagramClient#getMediaComments(java.lang.String)
      */
+    @Override
     public MediaCommentsFeed getMediaComments(String mediaId) throws InstagramException {
         String apiMethod = String.format(Methods.MEDIA_COMMENTS, mediaId);
 
         return createInstagramObject(Verbs.GET, MediaCommentsFeed.class, apiMethod, null);
     }
 
-    /**
-     * Create a comment on a media.
-     *
-     * @param mediaId
-     *            a mediaId
-     * @param text
-     *            Text to post as a comment on the media as specified in
-     *            media-id.
-     * @return a MediaCommentResponse feed.
-     * @throws InstagramException
-     *             if any error occurs.
+    /* (non-Javadoc)
+     * @see org.jinstagram.InstagramClient#setMediaComments(java.lang.String, java.lang.String)
      */
+    @Override
     public MediaCommentResponse setMediaComments(String mediaId, String text) throws InstagramException {
         Map<String, String> params = new HashMap<String, String>();
 
@@ -686,142 +514,82 @@ public abstract class InstagramBase {
         return createInstagramObject(Verbs.POST, MediaCommentResponse.class, apiMethod, params);
     }
 
-    /**
-     * Remove a comment either on the authenticated user's media or authored by
-     * the authenticated user.
-     *
-     * @param mediaId
-     *            a mediaId of the Media
-     * @param commentId
-     *            a commentId of the Comment
-     * @return a MediaCommentResponse feed.
-     * @throws InstagramException
-     *             if any error occurs.
+    /* (non-Javadoc)
+     * @see org.jinstagram.InstagramClient#deleteMediaCommentById(java.lang.String, java.lang.String)
      */
+    @Override
     public MediaCommentResponse deleteMediaCommentById(String mediaId, String commentId) throws InstagramException {
         String apiMethod = String.format(Methods.DELETE_MEDIA_COMMENTS, mediaId, commentId);
         return createInstagramObject(Verbs.DELETE, MediaCommentResponse.class, apiMethod, null);
     }
 
-    /**
-     * Get a list of users who have liked this media.
-     *
-     * @param mediaId
-     *            a mediaId of the Media
-     * @return a LikesFeed object.
-     * @throws InstagramException
-     *             if any error occurs.
+    /* (non-Javadoc)
+     * @see org.jinstagram.InstagramClient#getUserLikes(java.lang.String)
      */
+    @Override
     public LikesFeed getUserLikes(String mediaId) throws InstagramException {
         String apiMethod = String.format(Methods.LIKES_BY_MEDIA_ID, mediaId);
 
         return createInstagramObject(Verbs.GET, LikesFeed.class, apiMethod, null);
     }
 
-    /**
-     * Set a like on this media by the currently authenticated user.
-     *
-     * @param mediaId
-     *            a mediaId of the Media
-     * @return a LikesFeed object.
-     * @throws InstagramException
-     *             if any error occurs.
+    /* (non-Javadoc)
+     * @see org.jinstagram.InstagramClient#setUserLike(java.lang.String)
      */
+    @Override
     public LikesFeed setUserLike(String mediaId) throws InstagramException {
         String apiMethod = String.format(Methods.LIKES_BY_MEDIA_ID, mediaId);
         return createInstagramObject(Verbs.POST, LikesFeed.class, apiMethod, null);
     }
 
-    /**
-     * Remove a like on this media by the currently authenticated user.
-     *
-     * @param mediaId
-     *            a mediaId of the Media
-     * @return a LikesFeed object.
-     * @throws InstagramException
-     *             if any error occurs.
+    /* (non-Javadoc)
+     * @see org.jinstagram.InstagramClient#deleteUserLike(java.lang.String)
      */
+    @Override
     public LikesFeed deleteUserLike(String mediaId) throws InstagramException {
         String apiMethod = String.format(Methods.LIKES_BY_MEDIA_ID, mediaId);
 
         return createInstagramObject(Verbs.DELETE, LikesFeed.class, apiMethod, null);
     }
 
-    /**
-     * Get information about a tag object.
-     *
-     * @param tagName
-     *            name of the tag.
-     * @return a TagInfoFeed object.
-     * @throws InstagramException
-     *             if any error occurs.
+    /* (non-Javadoc)
+     * @see org.jinstagram.InstagramClient#getTagInfo(java.lang.String)
      */
+    @Override
     public TagInfoFeed getTagInfo(String tagName) throws InstagramException {
         String apiMethod = String.format(Methods.TAGS_BY_NAME, URLUtils.encodeURIComponent(tagName));
         String rawApiMethod = String.format(Methods.TAGS_BY_NAME, tagName);
         return createInstagramObject(Verbs.GET, TagInfoFeed.class, apiMethod, rawApiMethod, null);
     }
 
-    /**
-     * Get a list of recently tagged media.
-     *
-     * @param tagName
-     *            name of the tag.
-     * @return a TagMediaFeed object.
-     * @throws InstagramException
-     *             if any error occurs.
+    /* (non-Javadoc)
+     * @see org.jinstagram.InstagramClient#getRecentMediaTags(java.lang.String)
      */
+    @Override
     public TagMediaFeed getRecentMediaTags(String tagName) throws InstagramException {
         return getRecentMediaTags(tagName, 0);
     }
 
-    /**
-     * Get a list of recently tagged media.
-     *
-     * @param tagName
-     *            name of the tag.
-     * @param count,
-     *            set to 0 to use default
-     * @return a TagMediaFeed object.
-     * @throws InstagramException
-     *             if any error occurs.
+    /* (non-Javadoc)
+     * @see org.jinstagram.InstagramClient#getRecentMediaTags(java.lang.String, long)
      */
+    @Override
     public TagMediaFeed getRecentMediaTags(String tagName, long count) throws InstagramException {
         return getRecentMediaTags(tagName, null, null, count);
     }
 
-    /**
-     * Get a list of recently tagged media.
-     *
-     * @param tagName
-     *            name of the tag.
-     * @param minTagId
-     *            (return media before this tag_id), can be null
-     * @param maxTagId
-     *            (return media before this tag_id), can be null
-     * @return a TagMediaFeed object.
-     * @throws InstagramException
-     *             if any error occurs.
+    /* (non-Javadoc)
+     * @see org.jinstagram.InstagramClient#getRecentMediaTags(java.lang.String, java.lang.String, java.lang.String)
      */
+    @Override
     public TagMediaFeed getRecentMediaTags(String tagName, String minTagId, String maxTagId) throws InstagramException {
         return getRecentMediaTags(tagName, minTagId, maxTagId, 0);
     }
 
-    /**
-     * Get a list of recently tagged media.
-     *
-     * @param tagName
-     *            name of the tag.
-     * @param minTagId
-     *            (return media before this tag_id), can be null
-     * @param maxTagId
-     *            (return media before this tag_id), can be null
-     * @param count,
-     *            set to 0 to use default
-     * @return a TagMediaFeed object.
-     * @throws InstagramException
-     *             if any error occurs.
+    /* (non-Javadoc)
+     * @see org.jinstagram.InstagramClient#getRecentMediaTags(java.lang.String, java.lang.String, java.lang.String, long)
      */
+    @Override
     public TagMediaFeed getRecentMediaTags(String tagName, String minTagId, String maxTagId, long count)
             throws InstagramException {
         Map<String, String> params = new HashMap<String, String>();
@@ -842,15 +610,10 @@ public abstract class InstagramBase {
         return createInstagramObject(Verbs.GET, TagMediaFeed.class, apiMethod, rawApiMethod, params);
     }
 
-    /**
-     * Get a list of recently tagged media.
-     *
-     * @param tagName
-     *            name of the tag.
-     * @return a TagMediaFeed object.
-     * @throws InstagramException
-     *             if any error occurs.
+    /* (non-Javadoc)
+     * @see org.jinstagram.InstagramClient#getRecentMediaTagsByRegularIds(java.lang.String, java.lang.String, java.lang.String)
      */
+    @Override
     @Deprecated
     public TagMediaFeed getRecentMediaTagsByRegularIds(String tagName, String minId, String maxId)
             throws InstagramException {
@@ -867,16 +630,10 @@ public abstract class InstagramBase {
         return createInstagramObject(Verbs.GET, TagMediaFeed.class, apiMethod, rawApiMethod, params);
     }
 
-    /**
-     * Search for tags by name - results are ordered first as an exact match,
-     * then by popularity.
-     *
-     * @param tagName
-     *            name of the tag
-     * @return a TagSearchFeed object.
-     * @throws InstagramException
-     *             if any error occurs.
+    /* (non-Javadoc)
+     * @see org.jinstagram.InstagramClient#searchTags(java.lang.String)
      */
+    @Override
     public TagSearchFeed searchTags(String tagName) throws InstagramException {
         Map<String, String> params = new HashMap<String, String>();
 
@@ -885,73 +642,38 @@ public abstract class InstagramBase {
         return createInstagramObject(Verbs.GET, TagSearchFeed.class, Methods.TAGS_SEARCH, params);
     }
 
-    /**
-     * Get information about a location.
-     *
-     * @param locationId
-     *            an id of the Location
-     * @return a LocationInfo object.
-     * @throws InstagramException
-     *             if any error occurs.
+    /* (non-Javadoc)
+     * @see org.jinstagram.InstagramClient#getLocationInfo(java.lang.String)
      */
+    @Override
     public LocationInfo getLocationInfo(String locationId) throws InstagramException {
         String apiMethod = String.format(Methods.LOCATIONS_BY_ID, locationId);
 
         return createInstagramObject(Verbs.GET, LocationInfo.class, apiMethod, null);
     }
 
-    /**
-     * Get a list of recent media objects from a given location.
-     *
-     * @param locationId
-     *            a id of the Media.
-     * @return a MediaFeed object.
-     * @throws InstagramException
-     *             if any error occurs.
+    /* (non-Javadoc)
+     * @see org.jinstagram.InstagramClient#getRecentMediaByLocation(java.lang.String)
      */
+    @Override
     public MediaFeed getRecentMediaByLocation(String locationId) throws InstagramException {
         String apiMethod = String.format(Methods.LOCATIONS_RECENT_MEDIA_BY_ID, locationId);
 
         return createInstagramObject(Verbs.GET, MediaFeed.class, apiMethod, null);
     }
 
-    /**
-     * Get a list of recent media objects from a given location.
-     *
-     * @param locationId
-     *            a id of the Media.
-     * @param minId
-     *            Return media before this min_id. May be null.
-     * @param maxId
-     *            Return media before this max_id. May be null.
-     * @return a MediaFeed object.
-     * @throws InstagramException
-     *             if any error occurs.
+    /* (non-Javadoc)
+     * @see org.jinstagram.InstagramClient#getRecentMediaByLocation(java.lang.String, java.lang.String, java.lang.String)
      */
+    @Override
     public MediaFeed getRecentMediaByLocation(String locationId, String minId, String maxId) throws InstagramException {
     	return getRecentMediaByLocation(locationId, minId, maxId, null, null);
     }
 
-    /**
-     * Get a list of recent media objects from a given location.
-     *
-     * @param locationId
-     *            a id of the Media.
-     * @param minId
-     *            Return media before this min_id. May be null.
-     * @param maxId
-     *            Return media before this max_id. May be null.
-     * @param maxTimeStamp
-     *            Return media before this max date. May be null.
-     * @param minTimeStamp
-     *            Return media after this min date. May be null.
-     * @return a MediaFeed object.
-     * @throws InstagramException
-     *             if any error occurs.
-     * 
-     * @Deprecated recent media by location request with maxTimeStamp and minTimeStamp parameters was deprecated by instagram
-     *              
+    /* (non-Javadoc)
+     * @see org.jinstagram.InstagramClient#getRecentMediaByLocation(java.lang.String, java.lang.String, java.lang.String, java.util.Date, java.util.Date)
      */
+    @Override
     @Deprecated
     public MediaFeed getRecentMediaByLocation(String locationId, String minId, String maxId, Date maxTimeStamp,
             Date minTimeStamp) throws InstagramException {
@@ -976,17 +698,10 @@ public abstract class InstagramBase {
         return createInstagramObject(Verbs.GET, MediaFeed.class, apiMethod, params);
     }
 
-    /**
-     * Search for a location by geographic coordinate.
-     *
-     * @param latitude
-     *            Latitude of the center search coordinate.
-     * @param longitude
-     *            Longitude of the center search coordinate.
-     * @return a LocationSearchFeed object.
-     * @throws InstagramException
-     *             if any error occurs.
+    /* (non-Javadoc)
+     * @see org.jinstagram.InstagramClient#searchLocation(double, double)
      */
+    @Override
     public LocationSearchFeed searchLocation(double latitude, double longitude) throws InstagramException {
         Map<String, String> params = new HashMap<String, String>();
 
@@ -996,19 +711,10 @@ public abstract class InstagramBase {
         return createInstagramObject(Verbs.GET, LocationSearchFeed.class, Methods.LOCATIONS_SEARCH, params);
     }
 
-    /**
-     * Search for a location by geographic coordinate.
-     *
-     * @param latitude
-     *            Latitude of the center search coordinate.
-     * @param longitude
-     *            Longitude of the center search coordinate.
-     * @param distance
-     *            Default is 1000m (distance=1000), max distance is 5000.
-     * @return a LocationSearchFeed object.
-     * @throws InstagramException
-     *             if any error occurs.
+    /* (non-Javadoc)
+     * @see org.jinstagram.InstagramClient#searchLocation(double, double, int)
      */
+    @Override
     public LocationSearchFeed searchLocation(double latitude, double longitude, int distance)
             throws InstagramException {
         Map<String, String> params = new HashMap<String, String>();
@@ -1020,15 +726,10 @@ public abstract class InstagramBase {
         return createInstagramObject(Verbs.GET, LocationSearchFeed.class, Methods.LOCATIONS_SEARCH, params);
     }
 
-    /**
-     * Search for a location by v2 Foursquare id.
-     *
-     * @param foursquareId
-     *            Foursquare Venue ID of the location
-     * @return a LocationSearchFeed object.
-     * @throws InstagramException
-     *             if any error occurs.
+    /* (non-Javadoc)
+     * @see org.jinstagram.InstagramClient#searchFoursquareVenue(java.lang.String)
      */
+    @Override
     public LocationSearchFeed searchFoursquareVenue(String foursquareId) throws InstagramException {
         Map<String, String> params = new HashMap<String, String>();
 
@@ -1037,15 +738,10 @@ public abstract class InstagramBase {
         return createInstagramObject(Verbs.GET, LocationSearchFeed.class, Methods.LOCATIONS_SEARCH, params);
     }
 
-    /**
-     * Search for a location by Facebook places id.
-     *
-     * @param facebookPlacesId
-     *            Facebook places id of the location
-     * @return a LocationSearchFeed object.
-     * @throws InstagramException
-     *             if any error occurs.
+    /* (non-Javadoc)
+     * @see org.jinstagram.InstagramClient#searchFacebookPlace(java.lang.String)
      */
+    @Override
     public LocationSearchFeed searchFacebookPlace(String facebookPlacesId) throws InstagramException {
         Map<String, String> params = new HashMap<String, String>();
 
