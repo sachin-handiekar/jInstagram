@@ -1,6 +1,11 @@
 package org.jinstagram;
 
-import com.google.gson.Gson;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotEquals;
+
+import java.util.ArrayList;
+import java.util.List;
+
 import org.jinstagram.auth.model.Token;
 import org.jinstagram.entity.common.Location;
 import org.jinstagram.entity.common.Meta;
@@ -22,11 +27,7 @@ import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotEquals;
+import com.google.gson.Gson;
 
 public class InstagramTest {
 
@@ -34,7 +35,7 @@ public class InstagramTest {
 
     private static final String IG_TOKEN_SYSTEM_PROPERTY = "IG_ACCESS_TOKEN";
 
-    private Instagram instagram = null;
+    private InstagramClient instagram = null;
 
     @Before
     public void beforeMethod() {
@@ -57,7 +58,7 @@ public class InstagramTest {
 
     @Test(expected = InstagramBadRequestException.class)
     public void testInvalidAccessToken() throws Exception {
-        Instagram instagram = new Instagram(new Token("InvalidAccessToken", null));
+        InstagramClient instagram = new Instagram(new Token("InvalidAccessToken", null));
         instagram.getPopularMedia();
     }
 
@@ -265,7 +266,9 @@ public class InstagramTest {
         int responseCode = 429; //according to API Docs https://instagram.com/developer/limits/
         String responseBody = createRateLimitMeta(429);
 
-        instagram.handleInstagramError(responseCode, responseBody, null);
+        Instagram instagram2=(Instagram) instagram;
+        
+        instagram2.handleInstagramError(responseCode, responseBody, null);
     }
 
     private String createRateLimitMeta(int code) {

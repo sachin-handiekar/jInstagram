@@ -1,16 +1,17 @@
 package org.jinstagram.auth.oauth;
 
+import java.io.IOException;
+
 import org.jinstagram.Instagram;
+import org.jinstagram.InstagramClient;
 import org.jinstagram.auth.InstagramApi;
+import org.jinstagram.auth.exceptions.OAuthException;
 import org.jinstagram.auth.model.OAuthConfig;
 import org.jinstagram.auth.model.OAuthConstants;
 import org.jinstagram.auth.model.OAuthRequest;
 import org.jinstagram.auth.model.Token;
 import org.jinstagram.auth.model.Verifier;
-import org.jinstagram.auth.exceptions.OAuthException;
 import org.jinstagram.http.Response;
-
-import java.io.IOException;
 
 public class InstagramService {
 	private static final String VERSION = "1.0";
@@ -99,7 +100,7 @@ public class InstagramService {
 	/**
 	 * Return an Instagram object
 	 */
-	public Instagram getInstagram(Token accessToken) {
+	public InstagramClient getInstagram(Token accessToken) {
 		return new Instagram(accessToken);
 	}
 
@@ -107,7 +108,7 @@ public class InstagramService {
 	 * Return an Instagram object with enforced signed header
 	 */
 	@Deprecated
-	public Instagram getSignedHeaderInstagram(Token accessToken, String ipAddress) {
+	public InstagramClient getSignedHeaderInstagram(Token accessToken, String ipAddress) {
 		return new Instagram(accessToken.getToken(), config.getApiSecret(), ipAddress);
 	}
 }
