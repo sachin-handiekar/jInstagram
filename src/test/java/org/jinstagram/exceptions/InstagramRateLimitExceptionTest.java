@@ -1,9 +1,10 @@
 package org.jinstagram.exceptions;
 
+import java.util.HashMap;
 import java.util.Map;
+
 import org.junit.*;
 import static org.junit.Assert.*;
-import com.google.gson.internal.StringMap;
 
 /**
  * The class <code>InstagramRateLimitExceptionTest</code> contains tests for the
@@ -68,7 +69,7 @@ public class InstagramRateLimitExceptionTest {
 	@Test
 	public void testInstagramRateLimitException_3() throws Exception {
 		String message = "";
-		Map<String, String> responseHeaders = new StringMap();
+		Map<String, String> responseHeaders = new HashMap<String, String>();
 
 		InstagramRateLimitException result = new InstagramRateLimitException(message, responseHeaders);
 
@@ -94,7 +95,7 @@ public class InstagramRateLimitExceptionTest {
 	public void testInstagramRateLimitException_4() throws Exception {
 		String message = "";
 		Exception e = new Exception();
-		Map<String, String> responseHeaders = new StringMap();
+		Map<String, String> responseHeaders = new HashMap<String, String>();
 
 		InstagramRateLimitException result = new InstagramRateLimitException(message, e, responseHeaders);
 

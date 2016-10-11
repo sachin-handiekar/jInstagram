@@ -2,13 +2,13 @@ package org.jinstagram.entity.common;
 
 import static org.junit.Assert.assertNotNull;
 
+import java.util.HashMap;
 import java.util.Map;
 
 import org.junit.Ignore;
 import org.junit.Test;
 
 import com.google.gson.Gson;
-import com.google.gson.internal.StringMap;
 
 /**
  * The class <code>InstagramErrorResponseTest</code> contains tests for the
@@ -167,8 +167,8 @@ public class InstagramErrorResponseTest {
 	@Test
 	public void testSetHeaders() throws Exception {
 		InstagramErrorResponse instagramErrorResponse = new InstagramErrorResponse(new Meta());
-		instagramErrorResponse.setHeaders(new StringMap());
-		Map<String, String> responseHeaders = new StringMap();
+		instagramErrorResponse.setHeaders(new HashMap<String, String>());
+		Map<String, String> responseHeaders = new HashMap<String, String>();
 
 		instagramErrorResponse.setHeaders(responseHeaders);
 
@@ -184,7 +184,7 @@ public class InstagramErrorResponseTest {
 	@Test(expected = org.jinstagram.exceptions.InstagramException.class)
 	public void testThrowException() throws Exception {
 		InstagramErrorResponse instagramErrorResponse = new InstagramErrorResponse(new Meta());
-		instagramErrorResponse.setHeaders(new StringMap());
+		instagramErrorResponse.setHeaders(new HashMap<String, String>());
 
 		instagramErrorResponse.throwException();
 
@@ -200,7 +200,7 @@ public class InstagramErrorResponseTest {
 	@Test(expected = org.jinstagram.exceptions.InstagramException.class)
 	public void testThrowException_2() throws Exception {
 		InstagramErrorResponse instagramErrorResponse = new InstagramErrorResponse(new Meta());
-		instagramErrorResponse.setHeaders(new StringMap());
+		instagramErrorResponse.setHeaders(new HashMap<String, String>());
 
 		instagramErrorResponse.throwException();
 
@@ -216,7 +216,7 @@ public class InstagramErrorResponseTest {
 	@Test(expected = org.jinstagram.exceptions.InstagramException.class)
 	public void testThrowException_3() throws Exception {
 		InstagramErrorResponse instagramErrorResponse = new InstagramErrorResponse(new Meta());
-		instagramErrorResponse.setHeaders(new StringMap());
+		instagramErrorResponse.setHeaders(new HashMap<String, String>());
 
 		instagramErrorResponse.throwException();
 
@@ -231,7 +231,7 @@ public class InstagramErrorResponseTest {
 	@Test(expected = org.jinstagram.exceptions.InstagramException.class)
 	public void testThrowException_4() throws Exception {
 		InstagramErrorResponse instagramErrorResponse = new InstagramErrorResponse((Meta) null);
-		instagramErrorResponse.setHeaders(new StringMap());
+		instagramErrorResponse.setHeaders(new HashMap<String, String>());
 
 		instagramErrorResponse.throwException();
 

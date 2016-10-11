@@ -1,9 +1,10 @@
 package org.jinstagram.exceptions;
 
+import java.util.HashMap;
 import java.util.Map;
+
 import org.junit.*;
 import static org.junit.Assert.*;
-import com.google.gson.internal.StringMap;
 
 /**
  * The class <code>InstagramBadRequestExceptionTest</code> contains tests for
@@ -67,7 +68,7 @@ public class InstagramBadRequestExceptionTest {
 	@Test
 	public void testInstagramBadRequestException_3() throws Exception {
 		String message = "";
-		Map<String, String> responseHeaders = new StringMap();
+		Map<String, String> responseHeaders = new HashMap<String, String>();
 
 		InstagramBadRequestException result = new InstagramBadRequestException(message, responseHeaders);
 
@@ -93,7 +94,7 @@ public class InstagramBadRequestExceptionTest {
 	public void testInstagramBadRequestException_4() throws Exception {
 		String message = "";
 		Exception e = new Exception();
-		Map<String, String> responseHeaders = new StringMap();
+		Map<String, String> responseHeaders = new HashMap<String, String>();
 
 		InstagramBadRequestException result = new InstagramBadRequestException(message, e, responseHeaders);
 

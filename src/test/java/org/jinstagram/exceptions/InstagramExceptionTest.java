@@ -1,8 +1,8 @@
 package org.jinstagram.exceptions;
 
-import com.google.gson.internal.StringMap;
 import org.junit.Test;
 
+import java.util.HashMap;
 import java.util.Map;
 
 import static org.junit.Assert.assertEquals;
@@ -66,7 +66,7 @@ public class InstagramExceptionTest {
 	@Test
 	public void testInstagramException_3() throws Exception {
 		String message = "";
-		Map<String, String> responseHeaders = new StringMap();
+		Map<String, String> responseHeaders = new HashMap<String, String>();
 
 		InstagramException result = new InstagramException(message, responseHeaders);
 
@@ -91,7 +91,7 @@ public class InstagramExceptionTest {
 	public void testInstagramException_4() throws Exception {
 		String message = "";
 		Exception e = new Exception();
-		Map<String, String> responseHeaders = new StringMap();
+		Map<String, String> responseHeaders = new HashMap<String, String>();
 
 		InstagramException result = new InstagramException(message, e, responseHeaders);
 
@@ -112,7 +112,7 @@ public class InstagramExceptionTest {
 	 */
 	@Test
 	public void testGetAPILimitStatus_1() throws Exception {
-		InstagramException fixture = new InstagramException("", new Exception(), (Map<String, String>) null);
+		InstagramException fixture = new InstagramException("", new Exception(), null);
 
 		int result = fixture.getAPILimitStatus();
 
@@ -128,7 +128,7 @@ public class InstagramExceptionTest {
 	 */
 	@Test
 	public void testGetRemainingLimitStatus_1() throws Exception {
-		InstagramException fixture = new InstagramException("", new Exception(), (Map<String, String>) null);
+		InstagramException fixture = new InstagramException("", new Exception(), null);
 
 		int result = fixture.getRemainingLimitStatus();
 
@@ -147,7 +147,7 @@ public class InstagramExceptionTest {
 		InstagramException fixture = new InstagramException(
 			"APINotAllowedError",
 			"APINotAllowedError: you cannot view this resource",
-			(Map<String, String>) null
+			null
 		);
 
 		assertEquals("APINotAllowedError", fixture.getErrorType());
