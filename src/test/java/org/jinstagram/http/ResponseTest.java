@@ -43,10 +43,6 @@ public class ResponseTest {
 	public void init() {
 
 		try {
-			when(mockHttpConnection.getOutputStream()).thenReturn(mockOutStream);
-
-			when(mockHttpConnection.getInputStream()).thenReturn(mockInputStream);
-
 			when(mockHttpConnection.getErrorStream()).thenReturn(mockErrStream);
 
 			URL url = new URL("http://mock.url/to/test");
