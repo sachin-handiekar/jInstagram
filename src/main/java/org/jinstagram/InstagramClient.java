@@ -57,6 +57,7 @@ public interface InstagramClient {
      *
      *             use getUserRecentMedia() instead
      */
+    @Deprecated
     MediaFeed getUserFeeds() throws InstagramException;
 
     /**
@@ -101,6 +102,7 @@ public interface InstagramClient {
      *             use getUserRecentMedia(int count, String minId, String maxId)
      *             instead
      */
+    @Deprecated
     MediaFeed getUserFeeds(String maxId, String minId, long count)
             throws InstagramException;
 
@@ -157,7 +159,10 @@ public interface InstagramClient {
      * 
      * @param pagination
      * @throws InstagramException
+     * @deprecated This API is deprecated in favor {@link #getRecentMediaNextPage(Pagination)}. In the
+     * next major version release ({@code 2.0}), both {@link TagMediaFeed} and this API will be removed.
      */
+    @Deprecated
     TagMediaFeed getTagMediaInfoNextPage(Pagination pagination)
             throws InstagramException;
 
@@ -376,6 +381,7 @@ public interface InstagramClient {
      *
      *             No analog method was offered instead.
      */
+    @Deprecated
     MediaFeed getPopularMedia() throws InstagramException;
 
     /**
@@ -472,8 +478,23 @@ public interface InstagramClient {
      * @return a TagMediaFeed object.
      * @throws InstagramException
      *             if any error occurs.
+     * @deprecated This API is deprecated in favor {@link #getRecentMediaFeedTags(String)}. In the
+     * next major version release ({@code 2.0}), both {@link TagMediaFeed} and this API will be removed.
      */
+    @Deprecated
     TagMediaFeed getRecentMediaTags(String tagName) throws InstagramException;
+
+	/**
+	 * Get a list of recently tagged media.
+	 *
+	 * @param tagName {@link String}
+	 *             the name of the tag
+	 * @return {@link MediaFeed}
+	 *             the media feed for the first page
+	 * @throws InstagramException
+	 *             if any error occurs.
+	 */
+	MediaFeed getRecentMediaFeedTags(String tagName) throws InstagramException;
 
     /**
      * Get a list of recently tagged media.
@@ -485,10 +506,27 @@ public interface InstagramClient {
      * @return a TagMediaFeed object.
      * @throws InstagramException
      *             if any error occurs.
+     * @deprecated This API is deprecated in favor {@link #getRecentMediaFeedTags(String, long)}. In the
+     * next major version release ({@code 2.0}), both {@link TagMediaFeed} and this API will be removed.
      */
+    @Deprecated
     TagMediaFeed getRecentMediaTags(String tagName, long count)
             throws InstagramException;
 
+	/**
+	 * Get at most <em>count</em> number of recently tagged media.
+	 *
+	 * @param tagName {@link String}
+	 *             the name of the tag
+	 * @param count {@code int}
+	 *             set to 0 to use default
+	 * @return {@link MediaFeed}
+	 *             the media feed for the first page
+	 * @throws InstagramException
+	 *             if any error occurs.
+	 */
+	MediaFeed getRecentMediaFeedTags(String tagName, long count) throws InstagramException;
+
     /**
      * Get a list of recently tagged media.
      *
@@ -501,9 +539,29 @@ public interface InstagramClient {
      * @return a TagMediaFeed object.
      * @throws InstagramException
      *             if any error occurs.
+     * @deprecated This API is deprecated in favor {@link #getRecentMediaFeedTags(String, String, String)}. In the
+     * next major version release ({@code 2.0}), both {@link TagMediaFeed} and this API will be removed.
      */
+    @Deprecated
     TagMediaFeed getRecentMediaTags(String tagName, String minTagId,
             String maxTagId) throws InstagramException;
+
+	/**
+	 * Get a list of recently tagged media.
+	 *
+	 * @param tagName
+	 *            name of the tag.
+	 * @param minTagId
+	 *            (return media before this tag_id), can be null
+	 * @param maxTagId
+	 *            (return media before this tag_id), can be null
+	 * @return {@link MediaFeed}
+	 *             the media feed for the first page
+	 * @throws InstagramException
+	 *             if any error occurs.
+	 */
+	MediaFeed getRecentMediaFeedTags(String tagName, String minTagId, String maxTagId)
+			throws InstagramException;
 
     /**
      * Get a list of recently tagged media.
@@ -519,9 +577,31 @@ public interface InstagramClient {
      * @return a TagMediaFeed object.
      * @throws InstagramException
      *             if any error occurs.
+     * @deprecated This API is deprecated in favor {@link #getRecentMediaFeedTags(String, String, String, long)}. In the
+     * next major version release ({@code 2.0}), both {@link TagMediaFeed} and this API will be removed.
      */
+    @Deprecated
     TagMediaFeed getRecentMediaTags(String tagName, String minTagId,
             String maxTagId, long count) throws InstagramException;
+
+	/**
+	 * Get a list of recently tagged media.
+	 *
+	 * @param tagName
+	 *            name of the tag.
+	 * @param minTagId
+	 *            (return media before this tag_id), can be null
+	 * @param maxTagId
+	 *            (return media before this tag_id), can be null
+	 * @param count,
+	 *            set to 0 to use default
+	 * @return {@link MediaFeed}
+	 *             the media feed for the first page
+	 * @throws InstagramException
+	 *             if any error occurs.
+	 */
+	MediaFeed getRecentMediaFeedTags(String tagName, String minTagId, String maxTagId, long count)
+			throws InstagramException;
 
     /**
      * Get a list of recently tagged media.
@@ -531,9 +611,25 @@ public interface InstagramClient {
      * @return a TagMediaFeed object.
      * @throws InstagramException
      *             if any error occurs.
+     * @deprecated This API is deprecated in favor {@link #getRecentMediaFeedTagsByRegularIds(String, String, String)}.
+     * In the next major version release ({@code 2.0}), both {@link TagMediaFeed} and this API will be removed.
      */
+    @Deprecated
     TagMediaFeed getRecentMediaTagsByRegularIds(String tagName, String minId,
             String maxId) throws InstagramException;
+
+	/**
+	 * Get a list of recently tagged media.
+	 *
+	 * @param tagName
+	 *            name of the tag.
+	 * @return {@link MediaFeed}
+	 *             the media feed for the first page
+	 * @throws InstagramException
+	 *             if any error occurs.
+	 */
+	MediaFeed getRecentMediaFeedTagsByRegularIds(String tagName, String minId, String maxId)
+			throws InstagramException;
 
     /**
      * Search for tags by name - results are ordered first as an exact match,

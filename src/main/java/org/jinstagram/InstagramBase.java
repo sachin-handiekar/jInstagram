@@ -570,13 +570,29 @@ public abstract class InstagramBase implements InstagramClient {
         return getRecentMediaTags(tagName, 0);
     }
 
-    /* (non-Javadoc)
-     * @see org.jinstagram.InstagramClient#getRecentMediaTags(java.lang.String, long)
-     */
+	/* (non-Javadoc)
+	 * @see org.jinstagram.InstagramClient#getRecentMediaFeedTags(java.lang.String)
+	 */
+	@Override
+	public MediaFeed getRecentMediaFeedTags(String tagName) throws InstagramException {
+		return getRecentMediaFeedTags(tagName, 0);
+	}
+
+	/* (non-Javadoc)
+		 * @see org.jinstagram.InstagramClient#getRecentMediaTags(java.lang.String, long)
+		 */
     @Override
     public TagMediaFeed getRecentMediaTags(String tagName, long count) throws InstagramException {
         return getRecentMediaTags(tagName, null, null, count);
     }
+
+	/* (non-Javadoc)
+	 * @see org.jinstagram.InstagramClient#getRecentMediaFeedTags(java.lang.String, long)
+	 */
+	@Override
+	public MediaFeed getRecentMediaFeedTags(String tagName, long count) throws InstagramException {
+		return getRecentMediaFeedTags(tagName, null, null, count);
+	}
 
     /* (non-Javadoc)
      * @see org.jinstagram.InstagramClient#getRecentMediaTags(java.lang.String, java.lang.String, java.lang.String)
@@ -585,6 +601,14 @@ public abstract class InstagramBase implements InstagramClient {
     public TagMediaFeed getRecentMediaTags(String tagName, String minTagId, String maxTagId) throws InstagramException {
         return getRecentMediaTags(tagName, minTagId, maxTagId, 0);
     }
+
+	/* (non-Javadoc)
+	 * @see org.jinstagram.InstagramClient#getRecentMediaFeedTags(java.lang.String, java.lang.String, java.lang.String)
+	 */
+	@Override
+	public MediaFeed getRecentMediaFeedTags(String tagName, String minTagId, String maxTagId) throws InstagramException {
+		return getRecentMediaFeedTags(tagName, minTagId, maxTagId, 0);
+	}
 
     /* (non-Javadoc)
      * @see org.jinstagram.InstagramClient#getRecentMediaTags(java.lang.String, java.lang.String, java.lang.String, long)
@@ -610,6 +634,30 @@ public abstract class InstagramBase implements InstagramClient {
         return createInstagramObject(Verbs.GET, TagMediaFeed.class, apiMethod, rawApiMethod, params);
     }
 
+	/* (non-Javadoc)
+	 * @see org.jinstagram.InstagramClient#getRecentMediaFeedTags(java.lang.String, java.lang.String, java.lang.String, long)
+	 */
+	@Override
+	public MediaFeed getRecentMediaFeedTags(String tagName, String minTagId, String maxTagId, long count)
+			throws InstagramException {
+		Map<String, String> params = new HashMap<String, String>();
+
+		if (!StringUtils.isEmpty(minTagId))
+			params.put(QueryParam.MIN_TAG_ID, String.valueOf(minTagId));
+
+		if (!StringUtils.isEmpty(maxTagId))
+			params.put(QueryParam.MAX_TAG_ID, String.valueOf(maxTagId));
+
+		if (count != 0) {
+			params.put(QueryParam.COUNT, String.valueOf(count));
+		}
+
+		String apiMethod = String.format(Methods.TAGS_RECENT_MEDIA, URLUtils.encodeURIComponent(tagName));
+		String rawApiMethod = String.format(Methods.TAGS_RECENT_MEDIA, tagName);
+
+		return createInstagramObject(Verbs.GET, MediaFeed.class, apiMethod, rawApiMethod, params);
+	}
+
     /* (non-Javadoc)
      * @see org.jinstagram.InstagramClient#getRecentMediaTagsByRegularIds(java.lang.String, java.lang.String, java.lang.String)
      */
@@ -629,6 +677,25 @@ public abstract class InstagramBase implements InstagramClient {
         String rawApiMethod = String.format(Methods.TAGS_RECENT_MEDIA, tagName);
         return createInstagramObject(Verbs.GET, TagMediaFeed.class, apiMethod, rawApiMethod, params);
     }
+
+	/* (non-Javadoc)
+	 * @see org.jinstagram.InstagramClient#getRecentMediaFeedTagsByRegularIds(java.lang.String, java.lang.String, java.lang.String)
+	 */
+	@Override
+	public MediaFeed getRecentMediaFeedTagsByRegularIds(String tagName, String minId, String maxId)
+			throws InstagramException {
+		Map<String, String> params = new HashMap<String, String>();
+
+		if (!StringUtils.isEmpty(minId))
+			params.put(QueryParam.MIN_ID, String.valueOf(minId));
+
+		if (!StringUtils.isEmpty(maxId))
+			params.put(QueryParam.MAX_ID, String.valueOf(maxId));
+
+		String apiMethod = String.format(Methods.TAGS_RECENT_MEDIA, URLUtils.encodeURIComponent(tagName));
+		String rawApiMethod = String.format(Methods.TAGS_RECENT_MEDIA, tagName);
+		return createInstagramObject(Verbs.GET, MediaFeed.class, apiMethod, rawApiMethod, params);
+	}
 
     /* (non-Javadoc)
      * @see org.jinstagram.InstagramClient#searchTags(java.lang.String)
