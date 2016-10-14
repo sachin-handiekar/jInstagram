@@ -6,9 +6,16 @@ import org.jinstagram.InstagramObject;
 import org.jinstagram.entity.common.Meta;
 import org.jinstagram.entity.common.Pagination;
 import org.jinstagram.entity.users.feed.MediaFeedData;
+import org.jinstagram.entity.users.feed.MediaFeed;
 
 import java.util.List;
 
+/**
+ * @deprecated This model is deprecated in favor of {@link MediaFeed}. {@link MediaFeed}
+ * generalizes the media returned for both users and tags. In the next major version release
+ * ({@code 2.0}), {@link TagMediaFeed} will be removed.
+ */
+@Deprecated
 public class TagMediaFeed extends InstagramObject{
 	@SerializedName("data")
 	private List<MediaFeedData> data;
