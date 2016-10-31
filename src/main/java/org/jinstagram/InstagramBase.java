@@ -1,12 +1,8 @@
 package org.jinstagram;
 
-import java.io.IOException;
-import java.net.Proxy;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.concurrent.TimeUnit;
-
+import com.google.gson.Gson;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonSyntaxException;
 import org.apache.commons.lang3.StringUtils;
 import org.jinstagram.entity.comments.MediaCommentResponse;
 import org.jinstagram.entity.comments.MediaCommentsFeed;
@@ -37,8 +33,13 @@ import org.jinstagram.utils.Preconditions;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.google.gson.Gson;
-import com.google.gson.JsonSyntaxException;
+import java.io.IOException;
+import java.net.Proxy;
+import java.net.SocketException;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.concurrent.TimeUnit;
 
 /**
  * Instagram base class that performs no authentication
@@ -838,7 +839,23 @@ public abstract class InstagramBase implements InstagramClient {
         String jsonResponseBody;
         try {
             response = getApiResponse(verbs, methodName, rawMethodName, params);
-            jsonResponseBody = response.getBody();
+
+	        if (config.isRetryOnStreamFailure() && (response.getCode() >= 200 && response.getCode() < 300)) {
+		        Exception responseException = testResponseBody(response);
+
+		        int numberOfRetries = 2;
+		        int retryAttemptNumber = 0;
+		        while (responseException != null && retryAttemptNumber < numberOfRetries) {
+			        try { Thread.sleep(1000); } catch (InterruptedException e) { /* ignore */ }
+			        // Retry request
+			        logger.warn("(Retry #{}) Retrying request for {}", retryAttemptNumber, response.getURL());
+			        response = getApiResponse(verbs, methodName, rawMethodName, params);
+			        responseException = testResponseBody(response);
+			        retryAttemptNumber++;
+		        }
+	        }
+
+			jsonResponseBody = response.getBody();
             LogHelper.prettyPrintJSONResponse(logger, jsonResponseBody);
         } catch (IOException e) {
             throw new InstagramException("IOException while retrieving data", e);
@@ -846,13 +863,39 @@ public abstract class InstagramBase implements InstagramClient {
 
         Map<String, String> responseHeaders = response.getHeaders();
         if (response.getCode() >= 200 && response.getCode() < 300) {
-            T object = createObjectFromResponse(clazz, jsonResponseBody);
+	        T object = createObjectFromResponse(clazz, jsonResponseBody);
             object.setHeaders(responseHeaders);
             return object;
         }
 
         throw handleInstagramError(response.getCode(), jsonResponseBody, responseHeaders);
     }
+
+	private Exception testResponseBody(Response response) {
+		Exception capturedException = null;
+
+		try {
+			// get response entity, attempt parse as JSON.
+			String jsonString = response.getBody();
+			new Gson().fromJson(jsonString, JsonObject.class);
+		} catch (IllegalStateException e) {
+			// this indicates a socket error (e.g. connection reset) when attempting
+			// to read HTTP response entity, capture the latest exception to be thrown
+			// at the end
+			capturedException = e;
+			if (e.getCause() instanceof SocketException) {
+				logger.warn("Socket error with HTTP response.", e.getCause());
+			} else {
+				logger.warn("IllegalState exception with HTTP response.", e.getCause());
+			}
+		} catch (JsonSyntaxException e) {
+			// HTTP response body contained malformed JSON
+			logger.warn("HTTP response body contained malformed JSON.");
+			capturedException = e;
+		}
+
+		return capturedException;
+	}
 
     /**
      * Create a instagram object based on class-name and response.
@@ -1003,7 +1046,7 @@ public abstract class InstagramBase implements InstagramClient {
         T object;
 
         try {
-            object = gson.fromJson(response, clazz);
+	        object = gson.fromJson(response, clazz);
         } catch (Exception e) {
             throw new InstagramException("Error parsing json to object type " + clazz.getName(), e);
         }
