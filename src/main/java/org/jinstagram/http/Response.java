@@ -67,7 +67,10 @@ public class Response {
 	 * @return response body
 	 */
 	public String getBody() {
-		return (body != null) ? body : parseBodyContents();
+		if (body == null) {
+			body = parseBodyContents();
+		}
+		return body;
 	}
 
 	/**

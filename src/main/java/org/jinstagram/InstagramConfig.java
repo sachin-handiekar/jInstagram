@@ -11,6 +11,7 @@ public class InstagramConfig {
     private int readTimeoutMills = 0;
     private boolean connectionKeepAlive = false;
     private boolean enforceSignedRequest = false;
+    private boolean retryOnServerError = false;
 
     public InstagramConfig() {
         baseURI = Constants.BASE_URI;
@@ -70,5 +71,13 @@ public class InstagramConfig {
 
     public void setEnforceSignedRequest(boolean enforceSignedRequest) {
         this.enforceSignedRequest = enforceSignedRequest;
+    }
+
+	public boolean isRetryOnServerError() {
+        return retryOnServerError;
+    }
+
+    public void setRetryOnServerError(boolean retryOnServerError) {
+        this.retryOnServerError = retryOnServerError;
     }
 }
