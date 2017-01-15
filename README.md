@@ -12,7 +12,6 @@ A java library for the Instagram API.
 * [Development](#development)
 * [Projects using jInstagram](#projects-using-jinstagram)
 * [License](#license)
-* [Donation](#donation)
  
 ## <a name="introduction">Introduction</a> [&#8593;](#toc)
 An unofficial Java library for the [Instagram API](http://instagram.com/developer/).
@@ -94,11 +93,3 @@ Please see the [wiki link](https://github.com/sachin-handiekar/jInstagram/wiki/P
 ## <a name="license">License</a> [&#8593;](#toc)
 
 Please check the [license](https://github.com/sachin-handiekar/jInstagram/blob/master/LICENSE.txt) file.
-
-## <a name="donation">Donation</a> [&#8593;](#toc)
-
-jInstagram is an open-source software and free of charge. You can use jInstagram freely for any commercial and non-commercial projects.
-
-If you feel jInstagram makes your life easier, please do consider making a donation!
-
-<a href="https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=WRFVX23N4TUQN"><img src="https://www.paypalobjects.com/en_GB/i/btn/btn_donate_SM.gif" /></a>
