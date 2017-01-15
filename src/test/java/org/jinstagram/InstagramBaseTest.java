@@ -49,6 +49,7 @@ public class InstagramBaseTest {
     @Before
     public void setUp() throws Exception {
         givenGson();
+        when(request.getCharset()).thenReturn("UTF-8");
     }
 
     @Test
