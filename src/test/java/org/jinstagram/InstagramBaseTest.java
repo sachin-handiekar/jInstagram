@@ -7,6 +7,7 @@ import org.jinstagram.entity.comments.MediaCommentsFeed;
 import org.jinstagram.exceptions.InstagramException;
 import org.jinstagram.http.Request;
 import org.jinstagram.http.Response;
+import org.jinstagram.http.Verbs;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -50,6 +51,9 @@ public class InstagramBaseTest {
     public void setUp() throws Exception {
         givenGson();
         when(request.getCharset()).thenReturn("UTF-8");
+        when(request.getVerb()).thenReturn(Verbs.GET);
+        when(request.getUrl()).thenReturn("/mock/");
+
     }
 
     @Test
