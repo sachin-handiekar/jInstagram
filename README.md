@@ -30,7 +30,7 @@ If you're using Maven in your project, then you can integrate jInstagram by addi
 <dependency>
    <groupId>com.sachinhandiekar</groupId>
    <artifactId>jInstagram</artifactId>
-   <version>1.1.8</version>
+   <version>1.1.9</version>
 </dependency>
 ```
 
@@ -55,7 +55,7 @@ If you prefer using the latest snapshot build, include the following lines to yo
         <dependency>
             <groupId>com.sachinhandiekar</groupId>
             <artifactId>jInstagram</artifactId>
-             <version>1.1.9-SNAPSHOT</version>
+             <version>1.2.0-SNAPSHOT</version>
         </dependency>
     </dependencies>
 ```
@@ -63,7 +63,7 @@ If you prefer using the latest snapshot build, include the following lines to yo
     
 You can also integrate jInstagram by adding the following jar files in your project - 
 
-* [jInstagram-1.1.8.jar](http://central.maven.org/maven2/com/sachinhandiekar/jInstagram/1.1.8/jInstagram-1.1.8.jar)
+* [jInstagram-1.1.9.jar](http://central.maven.org/maven2/com/sachinhandiekar/jInstagram/1.1.9/jInstagram-1.1.9.jar)
 * [GSON](http://central.maven.org/maven2/com/google/code/gson/gson/2.2.2/gson-2.2.2.jar), [commons-lang3](http://central.maven.org/maven2/org/apache/commons/commons-lang3/3.1/commons-lang3-3.1.jar), [commons-codec](http://central.maven.org/maven2/commons-codec/commons-codec/1.8/commons-codec-1.8.jar), [jUnit](http://central.maven.org/maven2/junit/junit/4.11/junit-4.11.jar), [mockito](http://central.maven.org/maven2/org/mockito/mockito-all/1.8.4/mockito-all-1.8.4.jar), [slf4j-api](http://central.maven.org/maven2/org/slf4j/slf4j-api/1.7.5/slf4j-api-1.7.5.jar)
 
 
