@@ -2,6 +2,12 @@ package org.jinstagram.entity.oembed;
 
 import com.google.gson.annotations.SerializedName;
 
+/**
+ * Holds information returned from the oembed API endpoint
+ * https://www.instagram.com/developer/embedding/#oembed
+ *
+ * @author Brenn Hill
+ */
 public class OembedInformation {
 
     @SerializedName("provider_url")
@@ -21,6 +27,18 @@ public class OembedInformation {
 
     @SerializedName("width")
     private String width;
+
+    @SerializedName("html")
+    private String html;
+
+    @SerializedName("thumbnail_url")
+    private String thumbnailUrl;
+
+    @SerializedName("thumbnail_width")
+    private int thumbnailWidth;
+
+    @SerializedName("thumbnail_height")
+    private int thumbnailHeight;
 
     @SerializedName("media_id")
     private String mediaId;
@@ -125,11 +143,27 @@ public class OembedInformation {
         this.mediaId = mediaId;
     }
 
+    public String getHtml() { return html; }
+
+    public void setHtml(final String html) { this.html = html; }
+
+    public String getThumbnailUrl() { return thumbnailUrl; }
+
+    public void setThumbnailUrl(final String thumbnailUrl) { this.thumbnailUrl = thumbnailUrl; }
+
+    public int getThumbnailWidth() { return thumbnailWidth; }
+
+    public void setThumbnailWidth(final int thumbnailWidth) { this.thumbnailWidth = thumbnailWidth; }
+
+    public int getThumbnailHeight() { return thumbnailHeight; }
+
+    public void setThumbnailHeight(final int thumbnailHeight) { this.thumbnailHeight = thumbnailHeight; }
+
     /*
-             * (non-Javadoc)
-             *
-             * @see java.lang.Object#toString()
-             */
+                 * (non-Javadoc)
+                 *
+                 * @see java.lang.Object#toString()
+                 */
     @Override
     public String toString() {
         return "OembedInformation ["
