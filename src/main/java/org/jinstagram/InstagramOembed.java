@@ -85,7 +85,7 @@ public class InstagramOembed {
      */
     private static Response getApiResponse(Verbs verb, String methodName, Map<String, String> params) throws IOException {
         Response response;
-        String apiResourceUrl = Constants.API_URL + methodName;
+        String apiResourceUrl = Constants.OEMBED_URL + methodName;
         OAuthRequest request = new OAuthRequest(verb, apiResourceUrl);
 
         // Additional parameters in url

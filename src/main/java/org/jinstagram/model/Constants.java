@@ -7,4 +7,5 @@ public final class Constants {
 
 	public static final String API_URL = String.format("%s/%s", BASE_URI, VERSION);
 
+	public static final String OEMBED_URL = BASE_URI;
 }
