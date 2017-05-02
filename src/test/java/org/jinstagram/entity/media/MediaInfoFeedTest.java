@@ -2,17 +2,18 @@ package org.jinstagram.entity.media;
 
 import static org.junit.Assert.*;
 
-import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.Reader;
 import java.io.UnsupportedEncodingException;
 import java.util.List;
 
+import org.hamcrest.CoreMatchers;
+import org.jinstagram.InstagramBase;
 import org.jinstagram.entity.common.Meta;
+import org.jinstagram.entity.users.feed.CarouselMedia;
 import org.jinstagram.entity.users.feed.MediaFeedData;
 import org.junit.*;
-import static org.junit.Assert.*;
 
 /**
  * The class <code>MediaInfoFeedTest</code> contains tests for the class <code>{@link MediaInfoFeed}</code>.
@@ -141,13 +142,37 @@ public class MediaInfoFeedTest {
 		// add additional test code here
 		assertEquals("MediaInfoFeed [data=MediaFeedData [caption=null, comments=null, createdTime=null, id=null, imageFilter=null, images=null, likes=null, link=null, location=null, tags=null, type=null, user=null, userHasLiked=false, usersInPhoto=null], meta=Meta [code=0, errorMessage=null, errorType=null]]", result);
 	}
-	
+
+	/**
+	 * Test correct deserialization of {@link CarouselMedia} videos.
+	 *
+	 * @throws Exception if an IO error is encountered deserializing the JSON file
+	 */
 	@Test
-    public void testMediaCarousel() throws Exception {
-	    final String s = toString("media-carousel-1455920561485265648_25025320.js");
-	    final MediaInfoFeed feed = org.jinstagram.InstagramBase.createObjectFromResponse(MediaInfoFeed.class, s);
-	    final List<MediaFeedData> carousel = feed.getData().getCarouselMedia();
+    public void testMediaCarouselVideos() throws IOException {
+	    final String s = toString("media-carousel-videos-1455920561485265648_25025320.json");
+	    final MediaInfoFeed feed = InstagramBase.createObjectFromResponse(MediaInfoFeed.class, s);
+	    final List<CarouselMedia> carousel = feed.getData().getCarouselMedia();
 	    assertEquals(3, carousel.size());
+	    for (CarouselMedia media : carousel) {
+		    assertEquals("video", media.getType());
+	    }
+	}
+
+	/**
+	 * Test correct deserialization of {@link CarouselMedia} images.
+	 *
+	 * @throws Exception if an IO error is encountered deserializing the JSON file
+	 */
+	@Test
+	public void testMediaCarouselImages() throws IOException {
+		final String s = toString("media-carousel-images-1477919811501485796_25025320.json");
+		final MediaInfoFeed feed = InstagramBase.createObjectFromResponse(MediaInfoFeed.class, s);
+		final List<CarouselMedia> carousel = feed.getData().getCarouselMedia();
+		assertEquals(4, carousel.size());
+		for (CarouselMedia media : carousel) {
+			assertEquals("image", media.getType());
+		}
 	}
 
     static String toString(final String s) throws UnsupportedEncodingException, IOException {
