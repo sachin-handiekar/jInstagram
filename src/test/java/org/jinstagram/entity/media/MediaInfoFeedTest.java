@@ -1,5 +1,14 @@
 package org.jinstagram.entity.media;
 
+import static org.junit.Assert.*;
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.Reader;
+import java.io.UnsupportedEncodingException;
+import java.util.List;
+
 import org.jinstagram.entity.common.Meta;
 import org.jinstagram.entity.users.feed.MediaFeedData;
 import org.junit.*;
@@ -132,6 +141,35 @@ public class MediaInfoFeedTest {
 		// add additional test code here
 		assertEquals("MediaInfoFeed [data=MediaFeedData [caption=null, comments=null, createdTime=null, id=null, imageFilter=null, images=null, likes=null, link=null, location=null, tags=null, type=null, user=null, userHasLiked=false, usersInPhoto=null], meta=Meta [code=0, errorMessage=null, errorType=null]]", result);
 	}
+	
+	@Test
+    public void testMediaCarousel() throws Exception {
+	    final String s = toString("media-carousel-1455920561485265648_25025320.js");
+	    final MediaInfoFeed feed = org.jinstagram.InstagramBase.createObjectFromResponse(MediaInfoFeed.class, s);
+	    final List<MediaFeedData> carousel = feed.getData().getCarouselMedia();
+	    assertEquals(3, carousel.size());
+	}
+
+    static String toString(final String s) throws UnsupportedEncodingException, IOException {
+        Reader is = new InputStreamReader(MediaInfoFeedTest.class.getClassLoader().getResourceAsStream(s), "utf-8");
+        try {
+            final StringBuilder sb = new StringBuilder();
+            final char cb[] = new char[1024];
+
+            int n;
+            while(-1 != (n = is.read(cb)) && sb.length() < 120000){
+                if(n == -1) {
+                    break;
+                }
+                for(int i = 0 ; i < n; i++) {
+                    sb.append(cb[i]);
+                }
+            }
+            return sb.toString();
+        } finally {
+            is.close();
+        }
+    }
 
 	/**
 	 * Perform pre-test initialization.

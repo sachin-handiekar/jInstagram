@@ -1054,7 +1054,7 @@ public abstract class InstagramBase implements InstagramClient {
      * @throws InstagramException
      *             if any error occurs.
      */
-    protected <T> T createObjectFromResponse(Class<T> clazz, final String response) throws InstagramException {
+    public static <T> T createObjectFromResponse(Class<T> clazz, final String response) throws InstagramException {
         Gson gson = new Gson();
         T object;
 
