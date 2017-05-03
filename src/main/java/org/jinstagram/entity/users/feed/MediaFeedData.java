@@ -63,7 +63,7 @@ public class MediaFeedData {
 	private List<UsersInPhoto> usersInPhotoList;
 
 	@SerializedName("carousel_media")
-	private List<MediaFeedData> carouselMedia;
+	private List<CarouselMedia> carouselMedia;
 	
 	/**
 	 * @return the location
@@ -237,8 +237,6 @@ public class MediaFeedData {
 		this.videos = videos;
 	}
 
- 
-
 	public List<UsersInPhoto> getUsersInPhotoList() {
 		return usersInPhotoList;
 	}
@@ -247,11 +245,21 @@ public class MediaFeedData {
 		this.usersInPhotoList = usersInPhotoList;
 	}
 
-	public List<MediaFeedData> getCarouselMedia() {
+	/**
+	 * Return the carousel media.
+	 *
+	 * @return {@link List} of {@link CarouselMedia} the carousel media
+	 */
+	public List<CarouselMedia> getCarouselMedia() {
         return carouselMedia;
     }
 
-    public void setCarouselMedia(List<MediaFeedData> carouselMedia) {
+	/**
+	 * Set the carousel media.
+	 *
+	 * @param carouselMedia {@link List} of {@link CarouselMedia} the carousel media
+	 */
+	public void setCarouselMedia(List<CarouselMedia> carouselMedia) {
         this.carouselMedia = carouselMedia;
     }
 
