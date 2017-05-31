@@ -6,8 +6,9 @@ import java.io.InputStream;
 import java.net.HttpURLConnection;
 import java.net.UnknownHostException;
 
-import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
+import java.util.TreeMap;
 
 /**
  * Represents an HTTP Response.
@@ -48,12 +49,18 @@ public class Response {
 	}
 
 	private Map<String, String> parseHeaders(HttpURLConnection conn) {
-		Map<String, String> headers = new HashMap<String, String>();
+		Map<String, String> headers = new TreeMap<String, String>(String.CASE_INSENSITIVE_ORDER);
 
-		for (String key : conn.getHeaderFields().keySet()) {
-			headers.put(key, conn.getHeaderFields().get(key).get(0));
+		for (java.util.Map.Entry<String,List<String>> entry : conn.getHeaderFields().entrySet()) {
+			String key= entry.getKey();
+			List<String> valueList= entry.getValue();
+			if (key!=null && valueList!=null && valueList.size()>0) {
+				String value= valueList.get(0);
+				if (value!=null) {
+					headers.put(key, value);
+				}
+			}
 		}
-
 		return headers;
 	}
 
