@@ -15,7 +15,7 @@ A java library for the Instagram API.
 ## <a name="introduction">Introduction</a> [&#8593;](#toc)
 An unofficial Java library for the [Instagram API](http://instagram.com/developer/).
 
-Note : jInstagram uses code from the [scribe-java] (https://github.com/fernandezpablo85/scribe-java) library developed by [Pablo Fernandez] (https://github.com/fernandezpablo85). 
+Note : jInstagram uses code from the [scribe-java](https://github.com/fernandezpablo85/scribe-java) library developed by [Pablo Fernandez](https://github.com/fernandezpablo85). 
 
 
 
