@@ -1,4 +1,4 @@
-# jInstagram [![Build Status](https://travis-ci.org/sachin-handiekar/jInstagram.svg)](https://travis-ci.org/sachin-handiekar/jInstagram) [![Maven Central](https://img.shields.io/maven-central/v/com.sachinhandiekar/jInstagram.svg)](https://img.shields.io/maven-central/v/com.sachinhandiekar/jInstagram.svg) [![javaDoc](https://img.shields.io/badge/javaDoc-v1.1.6-green.svg)](http://www.javadoc.io/doc/com.sachinhandiekar/jInstagram) [![Coverage Status](https://coveralls.io/repos/sachin-handiekar/jInstagram/badge.svg?branch=master&service=github)](https://coveralls.io/github/sachin-handiekar/jInstagram?branch=master) [![Coverity Scan Build Status](https://scan.coverity.com/projects/7231/badge.svg?flat=1)](https://scan.coverity.com/projects/sachin-handiekar-jinstagram) [![Join the chat at https://gitter.im/sachin-handiekar/jInstagram](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/sachin-handiekar/jInstagram?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+# jInstagram [![Build Status](https://travis-ci.org/sachin-handiekar/jInstagram.svg)](https://travis-ci.org/sachin-handiekar/jInstagram) [![Maven Central](https://img.shields.io/maven-central/v/com.sachinhandiekar/jInstagram.svg)](https://img.shields.io/maven-central/v/com.sachinhandiekar/jInstagram.svg) [![javaDoc](https://javadoc-emblem.rhcloud.com/doc/com.sachinhandiekar/jInstagram/badge.svg?subject=javaDoc&prefix=v)](http://www.javadoc.io/doc/com.sachinhandiekar/jInstagram) [![Coverage Status](https://coveralls.io/repos/sachin-handiekar/jInstagram/badge.svg?branch=master&service=github)](https://coveralls.io/github/sachin-handiekar/jInstagram?branch=master) [![Coverity Scan Build Status](https://scan.coverity.com/projects/7231/badge.svg?flat=1)](https://scan.coverity.com/projects/sachin-handiekar-jinstagram) [![Join the chat at https://gitter.im/sachin-handiekar/jInstagram](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/sachin-handiekar/jInstagram?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 
 A java library for the Instagram API.
 
@@ -15,7 +15,7 @@ A java library for the Instagram API.
 ## <a name="introduction">Introduction</a> [&#8593;](#toc)
 An unofficial Java library for the [Instagram API](http://instagram.com/developer/).
 
-Note : jInstagram uses code from the [scribe-java] (https://github.com/fernandezpablo85/scribe-java) library developed by [Pablo Fernandez] (https://github.com/fernandezpablo85). 
+Note : jInstagram uses code from the [scribe-java](https://github.com/fernandezpablo85/scribe-java) library developed by [Pablo Fernandez](https://github.com/fernandezpablo85). 
 
 
 
@@ -29,7 +29,7 @@ If you're using Maven in your project, then you can integrate jInstagram by addi
 <dependency>
    <groupId>com.sachinhandiekar</groupId>
    <artifactId>jInstagram</artifactId>
-   <version>1.2.1</version>
+   <version>1.2.2</version>
 </dependency>
 ```
 
@@ -54,7 +54,7 @@ If you prefer using the latest snapshot build, include the following lines to yo
         <dependency>
             <groupId>com.sachinhandiekar</groupId>
             <artifactId>jInstagram</artifactId>
-             <version>1.2.2-SNAPSHOT</version>
+             <version>1.2.3-SNAPSHOT</version>
         </dependency>
     </dependencies>
 ```
@@ -62,7 +62,7 @@ If you prefer using the latest snapshot build, include the following lines to yo
     
 You can also integrate jInstagram by adding the following jar files in your project - 
 
-* [jInstagram-1.2.1.jar](http://central.maven.org/maven2/com/sachinhandiekar/jInstagram/1.2.1/jInstagram-1.2.1.jar)
+* [jInstagram-1.2.2.jar](http://central.maven.org/maven2/com/sachinhandiekar/jInstagram/1.2.2/jInstagram-1.2.2.jar)
 * [GSON](http://central.maven.org/maven2/com/google/code/gson/gson/2.2.2/gson-2.2.2.jar), [commons-lang3](http://central.maven.org/maven2/org/apache/commons/commons-lang3/3.1/commons-lang3-3.1.jar), [commons-codec](http://central.maven.org/maven2/commons-codec/commons-codec/1.8/commons-codec-1.8.jar), [jUnit](http://central.maven.org/maven2/junit/junit/4.11/junit-4.11.jar), [mockito](http://central.maven.org/maven2/org/mockito/mockito-all/1.8.4/mockito-all-1.8.4.jar), [slf4j-api](http://central.maven.org/maven2/org/slf4j/slf4j-api/1.7.5/slf4j-api-1.7.5.jar)
 
 

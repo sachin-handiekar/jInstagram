@@ -72,10 +72,6 @@ public class InstagramErrorResponse {
         if (metaMember != null) {
             meta = gson.fromJson(metaMember, Meta.class);
         } else {
-
-            System.out.println("Printing jsonElement : " + jsonElement);
-            System.out.println("Printing json : " + json);
-
             meta = gson.fromJson(jsonElement, Meta.class);
         }
 
