@@ -49,6 +49,7 @@ public class MediaFeedData {
 
 	public static final String TYPE_IMAGE = "image";
 	public static final String TYPE_VIDEO = "video";
+	public static final String TYPE_CAROUSEL = "carousel";
 
 	@SerializedName("type")
 	private String type;

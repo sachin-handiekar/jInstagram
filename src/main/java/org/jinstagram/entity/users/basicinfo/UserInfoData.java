@@ -30,6 +30,9 @@ public class UserInfoData {
 	@SerializedName("website")
 	private String website;
 
+	@SerializedName("is_business")
+	private boolean isBusiness;
+
 	public String getUsername() {
 		return username;
 	}
@@ -101,10 +104,18 @@ public class UserInfoData {
 	public void setFullName(String fullName) {
 		this.fullName = fullName;
 	}
+	
+	public boolean isBusiness() {
+		return isBusiness;
+	}
 
-    @Override
-    public String toString() {
-        return String.format("UserInfoData [bio=%s, counts=%s, first_name=%s, id=%s, last_name=%s, profile_picture=%s, username=%s, fullName=%s, website=%s]",
-                        bio, counts, firstName, id, lastName, profilePicture, username, fullName, website);
-    }
+	public void setBusiness(boolean isBusiness) {
+		this.isBusiness = isBusiness;
+	}
+
+	@Override
+	public String toString() {
+		return String.format("UserInfoData [bio=%s, counts=%s, first_name=%s, id=%s, last_name=%s, profile_picture=%s, username=%s, fullName=%s, website=%s, isBusiness=%b]",
+				bio, counts, firstName, id, lastName, profilePicture, username, fullName, website, isBusiness);
+	}
 }
