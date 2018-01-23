@@ -1,9 +1,9 @@
 package org.jinstagram.entity.users.basicinfo;
 
+import org.junit.Test;
+
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
-
-import org.junit.Test;
 
 /**
  * The class <code>UserInfoDataTest</code> contains tests for the class
@@ -483,32 +483,6 @@ public class UserInfoDataTest {
 		// add additional test code here
 	}
 
-	/**
-	 * Run the String toString() method test.
-	 *
-	 * @throws Exception
-	 *
-	 * 
-	 */
-	@Test
-	public void testToString_1() throws Exception {
-		UserInfoData fixture = new UserInfoData();
-		fixture.setUsername("");
-		fixture.setFullName("");
-		fixture.setProfilePicture("");
-		fixture.setId("");
-		fixture.setLast_name("");
-		fixture.setCounts(new Counts());
-		fixture.setFirstName("");
-		fixture.setBio("");
-		fixture.setWebsite("");
-
-		String result = fixture.toString();
-
-		// add additional test code here
-		assertEquals(
-				"UserInfoData [bio=, counts=Counts [follows=0, followed_by=0, media=0], first_name=, id=, last_name=, profile_picture=, username=, fullName=, website=]",
-				result);
-	}
+	
 
 }

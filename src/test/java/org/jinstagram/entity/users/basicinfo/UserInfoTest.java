@@ -1,11 +1,11 @@
 package org.jinstagram.entity.users.basicinfo;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotNull;
-
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
+
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
 
 /**
  * The class <code>UserInfoTest</code> contains tests for the class
@@ -29,9 +29,7 @@ public class UserInfoTest {
 		// add additional test code here
 		assertNotNull(result);
 		assertEquals(null, result.getFullName());
-		assertEquals(
-				"UserInfoData [bio=null, counts=null, first_name=null, id=null, last_name=null, profile_picture=null, username=null, fullName=null, website=null]",
-				result.toString());
+		 
 		assertEquals(null, result.getId());
 		assertEquals(null, result.getFirstName());
 		assertEquals(null, result.getUsername());
@@ -60,25 +58,7 @@ public class UserInfoTest {
 		// add additional test code here
 	}
 
-	/**
-	 * Run the String toString() method test.
-	 *
-	 * @throws Exception
-	 *
-	 * 
-	 */
-	@Test
-	public void testToString_1() throws Exception {
-		UserInfo fixture = new UserInfo();
-		fixture.setData(new UserInfoData());
-
-		String result = fixture.toString();
-
-		// add additional test code here
-		assertEquals(
-				"UserInfo [data=UserInfoData [bio=null, counts=null, first_name=null, id=null, last_name=null, profile_picture=null, username=null, fullName=null, website=null]]",
-				result);
-	}
+	 
 
 	/**
 	 * Perform pre-test initialization.
