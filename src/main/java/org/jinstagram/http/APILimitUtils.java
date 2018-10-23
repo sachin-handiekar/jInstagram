@@ -54,7 +54,7 @@ public final class APILimitUtils {
         try {
             value = Integer.valueOf(intValueStr);
         } catch (NumberFormatException e) {
-            logger.error("Invalid Integer value for key: " + key + ", value :" + intValueStr);
+            logger.error("Invalid Integer value for key: {} , value : {}", key, intValueStr);
         }
         return value;
     }

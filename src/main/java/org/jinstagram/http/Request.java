@@ -75,9 +75,9 @@ public class Request {
 		if (connection == null) {
 			System.setProperty("http.keepAlive", connectionKeepAlive ? "true" : "false");
 
-			URL url = new URL(effectiveUrl);
+			URL urlConnection = new URL(effectiveUrl);
 			connection = (HttpURLConnection) (proxy == null ?
-					url.openConnection() : url.openConnection(proxy));
+					urlConnection.openConnection() : urlConnection.openConnection(proxy));
 
 			connection.setConnectTimeout(connectTimeout);
 			connection.setReadTimeout(readTimeout);

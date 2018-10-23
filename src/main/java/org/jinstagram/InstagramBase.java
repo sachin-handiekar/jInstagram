@@ -996,8 +996,7 @@ public abstract class InstagramBase implements InstagramClient {
     protected Response getApiResponse(Verbs verb, String methodName, String rawMethodName, Map<String, String> params) throws IOException {
         Request request=request(verb, methodName, rawMethodName, params);
         logger.debug("Sending request to Instagram...");
-        Response response=request.send();
-        return response;
+        return request.send();
     }
     
     protected Request request(Verbs verb, String methodName, String rawMethodName, Map<String, String> params) throws InstagramException {
