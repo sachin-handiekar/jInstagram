@@ -136,25 +136,36 @@ public class Instagram extends InstagramBase {
         // Add the AccessToken to the Request Url
         if ((verb == Verbs.GET) || (verb == Verbs.DELETE)) {
             if (accessToken == null) {
-                logger.debug(USING + OAuthConstants.CLIENT_ID + " : " + clientId);
+                logger.debug("{}{}:{}",USING, OAuthConstants.CLIENT_ID, clientId);
                 result.addQuerystringParameter(OAuthConstants.CLIENT_ID, clientId);
             } else {
-                logger.debug(USING + OAuthConstants.ACCESS_TOKEN + " : " + accessToken.getToken());
+                logger.debug("{}{}:{}",USING,OAuthConstants.ACCESS_TOKEN, accessToken.getToken());
                 result.addQuerystringParameter(OAuthConstants.ACCESS_TOKEN, accessToken.getToken());
             }
         } else {
             if (accessToken == null) {
-                logger.debug(USING + OAuthConstants.CLIENT_ID + " : " + clientId);
+                logger.debug("{}{}:{}", USING,OAuthConstants.CLIENT_ID, clientId);
                 result.addBodyParameter(OAuthConstants.CLIENT_ID, clientId);
             } else {
-                logger.debug(USING + OAuthConstants.ACCESS_TOKEN + " : " + accessToken.getToken());
+                logger.debug("{}{}:{}", USING, OAuthConstants.ACCESS_TOKEN, accessToken.getToken());
                 result.addBodyParameter(OAuthConstants.ACCESS_TOKEN, accessToken.getToken());
             }
         }
 
-        // check if we are enforcing a signed request and add the 'sig'
-        // parameter.  Must use rawMethodName here (i.e. sign the non-URI-encoded version).
-        if (config.isEnforceSignedRequest()) {
+        return checkIfEnforcing(result, verb, rawMethodName);
+    }
+    
+    /**
+     * Check if we are enforcing a signed request and add the 'sig'
+     * parameter.  Must use rawMethodName here (i.e. sign the non-URI-encoded version).
+     * @param result
+     * @param verb
+     * @param rawMethodName
+     * @return
+     * @throws InstagramException
+     */
+    private OAuthRequest checkIfEnforcing(OAuthRequest result, Verbs verb, String rawMethodName) throws InstagramException {
+    	if (config.isEnforceSignedRequest()) {
             boolean useQueryParam = (verb == Verbs.GET) || (verb == Verbs.DELETE);
 
             Map<String,String> sigParams = useQueryParam ? result.getQueryStringParams() : result.getBodyParams();
@@ -168,8 +179,7 @@ public class Instagram extends InstagramBase {
                 result.addBodyParameter(QueryParam.SIGNATURE, sig);
             }
         }
-        
-        return result;
+    	return result;
     }
 
     @Deprecated

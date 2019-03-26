@@ -54,7 +54,7 @@ public class Response {
 		for (java.util.Map.Entry<String,List<String>> entry : conn.getHeaderFields().entrySet()) {
 			String key= entry.getKey();
 			List<String> valueList= entry.getValue();
-			if (key!=null && valueList!=null && valueList.size()>0) {
+			if (key!=null && valueList!=null && valueList.isEmpty()) {
 				String value= valueList.get(0);
 				if (value!=null) {
 					headers.put(key, value);

@@ -3,7 +3,6 @@ package org.jinstagram.utils;
 import java.nio.charset.Charset;
 import java.security.InvalidKeyException;
 import java.security.NoSuchAlgorithmException;
-import java.lang.NullPointerException;
 
 import javax.crypto.Mac;
 import javax.crypto.spec.SecretKeySpec;
